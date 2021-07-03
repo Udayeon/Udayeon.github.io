@@ -1,5 +1,5 @@
 ---
-layout: about
+layout: list
 title: About Me
 slug: about me
 menu: true
