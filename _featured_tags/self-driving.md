@@ -1,7 +1,7 @@
 ---
 layout: list
 title: Self-Driving car
-slug: self driving car
+slug: self-driving 
 menu: true
 order: 1
 description: >
