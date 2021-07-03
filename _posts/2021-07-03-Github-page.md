@@ -1,12 +1,13 @@
 ---
 layout: post
 title: Github Page
-description: >
- Github page 제작
-
-tags: [etc]
+description: |
+  Github page 제작
+tags:
+  - etc
 author: Udayeon
-canonical_url: http://hyde.getpoole.com/2012/02/06/whats-jekyll/
+canonical_url: 'http://hyde.getpoole.com/2012/02/06/whats-jekyll/'
+published: true
 ---
 Github에서 제공하는 Github page 제작하는 과정에서 막혔던 부분을 어떻게 해결했는지 간단한 기록으로 남긴다. 
 Jekyll을 이용해 테마를 적용하고 커스텀 하는데 까지는 문제가 없었으나 github으로 코드를 push하는 과정에 어려움이 있었다.
