@@ -27,8 +27,6 @@ title:                 Dayeon Yu
 # A short description (~150 chars) of the page used for the meta description tag.
 # Can use markdown, but no more than one paragraph (enforced by `>`)
 description:           >
- 개인 연구 일지입니다.
-
 
 # A shorter description for the sidebar.
 tagline:               >
@@ -38,7 +36,7 @@ tagline:               >
 keywords:              []
 
 # Used by jekyll-seo-tag...
-logo:                 /assets/img/profile.jpg
+logo:              /assets/img/profile.jpg
 
 # This should be the same author as first entry in `_data/authors.yml`.
 # Duplication is necessary due to the `jekyll-feed`, `jekyll-seo-tag` plugin.
