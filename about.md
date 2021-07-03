@@ -20,7 +20,7 @@ menu: true
 [portfolio]: https://qwtel.com/hydejack/variations/
 [resume]: https://qwtel.com/hydejack/resume/
 [download]: https://qwtel.com/download/
-[welcome]: https://qwtel.com/hydejack/
+[welcome]: https://udayeon.github.io/about/
 [forms]: https://qwtel.com/hydejack/forms-by-example/
 
 [feat]: #features
