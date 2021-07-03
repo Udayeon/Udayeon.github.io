@@ -1,6 +1,6 @@
 ---
 layout: list
-title:    AI / Deep Learning
+title:  AI / Deep Learning
 slug: ai
 menu: true
 order: 2
