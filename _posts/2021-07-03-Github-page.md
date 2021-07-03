@@ -12,7 +12,6 @@ Github에서 제공하는 Github page 제작하는 과정에서 막혔던 부분
 Jekyll을 이용해 테마를 적용하고 커스텀 하는데 까지는 문제가 없었으나 github으로 코드를 push하는 과정에 어려움이 있었다.
 
 
-
 [Jekyll](https://jekyllrb.com) is a static site generator, an open-source tool for creating simple yet powerful websites of all shapes and sizes. From [the project's readme](https://github.com/mojombo/jekyll/blob/master/README.markdown):
 
 **NOTE**: This post is outdated and only included for legacy reasons.
