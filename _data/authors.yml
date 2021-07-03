@@ -7,12 +7,12 @@ Udayeon:
 
   # Used at the bottom of each page and at the top of the `about` layout
   # Markdown enabled, can use multiple paragraphs (enabled by `|`)
-  about:             
-    Lorem ipsum dolor sit amet, consectetur adipiscing elit,
-    sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-    Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-
-    Open `_data/authors.yml` to edit this text.
+  about:
+    Welcome! Thank you for coming to my page. This page is a personal study diary
+    to record and organize my research. 
+    Major fields are self-driving cars, artificial intelligence and deep learning.
+    It also covers programming languages, dynamics , mathematics, and automotive news, etc.
+    For information about me, see the following. Thank you.
 
   # This photo will be used in the about section
   picture:
