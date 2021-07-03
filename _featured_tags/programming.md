@@ -1,7 +1,7 @@
 ---
 layout: list
 title: Programming Languages
-slug: programming languages
+slug: programming
 menu: true
 order: 3
 description: >
