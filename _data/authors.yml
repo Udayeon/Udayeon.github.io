@@ -10,7 +10,8 @@ Udayeon:
   about:
   '''</center>
       공대생의 서랍장
-      
+  '''
+  
   # This photo will be used in the about section
   picture:
     path:            /assets/img/profile.jpg
