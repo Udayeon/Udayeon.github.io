@@ -8,8 +8,8 @@ Udayeon:
   # Used at the bottom of each page and at the top of the `about` layout
   # Markdown enabled, can use multiple paragraphs (enabled by `|`)
   about:
-      공대생의 서랍🗄
-  
+      공대생의 서랍장🗃
+      
   # This photo will be used in the about section
   picture:
     path:            /assets/img/profile.jpg
