@@ -7,7 +7,7 @@ order: 6
 description: >
   
 accent_color: '#268bd2'
-accent_image:
+accent_image: /assets/img/sidebar-bg.webp
   background: '#202020'
   overlay:    false
 ---
