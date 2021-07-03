@@ -1,9 +1,9 @@
 ---
 layout: post
-title: Third Party Scripts (v6.3)
+title: 자율주행차량
 description: >
   Hydejack v6.3 makes including third party plugins easier.
-tags: [hydejack]
+tags: [selfdriving]
 ---
 
 This release makes including third party plugins easier.
