@@ -3,7 +3,7 @@ layout: post
 title: 자율주행차량
 description: >
   Hydejack v6.3 makes including third party plugins easier.
-tags: [selfdriving]
+tags: [self-driving]
 ---
 
 This release makes including third party plugins easier.
