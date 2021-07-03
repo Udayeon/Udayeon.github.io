@@ -37,7 +37,7 @@ keywords:              []
 
 # Used by jekyll-seo-tag...
 logo:
-      /assets/img/sidebar-bg.webp
+      /assets/img/profile.jpg
 
 # This should be the same author as first entry in `_data/authors.yml`.
 # Duplication is necessary due to the `jekyll-feed`, `jekyll-seo-tag` plugin.
@@ -70,7 +70,7 @@ paginate_path:         /page-:num/
 # ========================================================================================
 
 # Sidebar image and theme color of the site.
-accent_image:          /assets/img/sidebar-bg.webp
+accent_image:          /assets/img/profile.jpg
 accent_color:          '#4fb1ba'
 
 # The string encoding which fonts to fetch from Google Fonts.
