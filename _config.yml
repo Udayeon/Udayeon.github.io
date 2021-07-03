@@ -36,7 +36,8 @@ tagline:               >
 keywords:              []
 
 # Used by jekyll-seo-tag...
-logo:              /assets/img/profile.jpg
+logo:
+      /assets/img/sidebar-bg.webp
 
 # This should be the same author as first entry in `_data/authors.yml`.
 # Duplication is necessary due to the `jekyll-feed`, `jekyll-seo-tag` plugin.
