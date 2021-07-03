@@ -36,7 +36,7 @@ tagline:               >
 keywords:              []
 
 # Used by jekyll-seo-tag...
-logo:
+#logo:
       /assets/img/profile.jpg
 
 # This should be the same author as first entry in `_data/authors.yml`.
@@ -70,7 +70,7 @@ paginate_path:         /page-:num/
 # ========================================================================================
 
 # Sidebar image and theme color of the site.
-accent_image:          /assets/img/profile.jpg
+accent_image:          /assets/img/sidebar-bg.jpg
 accent_color:          '#4fb1ba'
 
 # The string encoding which fonts to fetch from Google Fonts.
