@@ -6,8 +6,8 @@ menu: true
 order: 1
 description: >
   자율주행 차량과 관련된 자료를 업로드 합니다. 
-accent_color: '#268bd2'
-accent_image:
-  background: '#202020'
-  overlay:    false
+# accent_color: '#268bd2'
+# accent_image: /assets/img/sidebar-bg.webp
+#  background: '#202020'
+#  overlay:    false
 ---
