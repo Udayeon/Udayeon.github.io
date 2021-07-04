@@ -1,5 +1,5 @@
 ---
-layout: list
+layout: post
 title: Diary
 slug: diary
 menu: true
