@@ -1,9 +1,13 @@
+
 ---
 layout: post
-title: 첫 글
-published: true
+title: 2021.07.04
 description: >
-tags: [diary]
+  첫 번째 일기
+tags:
+  - diary
+author: Udayeon
+published: true
 ---
 미루고 미루던 Github 페이지를 드디어 만들었다. Java나 HTML에 익숙치 않아 어려움이 조금 있었지만... 
 블로그 이름인 '공대생의 서랍장'은 예전부터 마음에 품고 있던 것인데 정리 안된 나의 서랍처럼 이것저것 담아보고 싶다는 의미로 지었다 :)
