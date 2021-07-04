@@ -1,5 +1,5 @@
 ---
-layout: post
+layout: list
 title: Diary
 slug: diary
 
