@@ -2,6 +2,8 @@
 layout: post
 title: 첫 글
 published: true
+description: >
+  블로그의 첫 글
 tags: [diary]
 ---
 미루고 미루던 Github 페이지를 드디어 만들었다. Java나 HTML에 익숙치 않아 어려움이 조금 있었지만... 
