@@ -4,7 +4,7 @@ title: 2021.07.04
 description: >
   첫 번째 일기
 tags:
-  - diary
+  - ai
 author: Udayeon
 published: true
 ---
