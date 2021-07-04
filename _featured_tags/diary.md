@@ -2,6 +2,7 @@
 layout: post
 title: Diary
 slug: diary
+
 menu: true
 order: 6
 description: >
