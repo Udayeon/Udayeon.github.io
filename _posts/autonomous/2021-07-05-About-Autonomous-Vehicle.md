@@ -6,7 +6,6 @@ tags: [autonomous]
 
 description: > - 자율주행 자동차의 정의
                - 자율주행 자동차의 발전 동향
----
 title: About Autonomous Vehicle
 ---
 
