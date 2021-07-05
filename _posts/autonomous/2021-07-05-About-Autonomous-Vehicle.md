@@ -1,7 +1,7 @@
 ---
 layout: post
 title: About Autonomous Vehicle
-description: |
+description: >
   - 자율주행 자동차의 정의
   - 자율주행 자동차의 발전 동향
 tags:
