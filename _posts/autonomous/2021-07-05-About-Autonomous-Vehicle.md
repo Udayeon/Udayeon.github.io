@@ -3,13 +3,14 @@ layout: post
 image: /assets/img/j3016-levels-of-driving-automation-12-10.jpg
 hide_image: true
 tags: [autonomous]
-description: > - 자율주행 자동차의 정의
-               - 자율주행 자동차의 발전 동향
+description: > 
+    - 자율주행 자동차의 정의
+    - 자율주행 자동차의 발전 동향
 title: About Autonomous Vehicle
 ---
 
 
-## 자율주행 자동차의 정의
+자율주행 자동차의 정의
 주변 환경을 인식, 위험을 판단, 적절한 제어를 자동차 스스로 할 수 있어 운전자의 개입이 최소화 된 자동차를 말한다.
 미국 자동차 공학회에서 제시한 자율주행 단계는 다음과 같다. 
 ![image](https://user-images.githubusercontent.com/69246778/124420342-4b1fa800-dd9a-11eb-85f2-26b3986b9d7c.png)
