@@ -1,12 +1,13 @@
 ---
 layout: post
-image: /assets/img/j3016-levels-of-driving-automation-12-10.jpg
-hide_image: true
-tags: [autonomous]
-description: > 
+title: About Autonomous Vehicle
+description: |
     - 자율주행 자동차의 정의
     - 자율주행 자동차의 발전 동향
-title: About Autonomous Vehicle
+tags:
+  - autonomous
+author: Udayeon
+published: true
 ---
 
 
