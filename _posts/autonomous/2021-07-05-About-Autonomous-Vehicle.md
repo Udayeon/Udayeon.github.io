@@ -3,7 +3,6 @@ layout: post
 image: /assets/img/j3016-levels-of-driving-automation-12-10.jpg
 hide_image: true
 tags: [autonomous]
-
 description: > - 자율주행 자동차의 정의
                - 자율주행 자동차의 발전 동향
 title: About Autonomous Vehicle
