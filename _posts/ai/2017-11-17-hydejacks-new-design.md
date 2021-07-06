@@ -1,10 +1,9 @@
 ---
 layout: post
-title: Hydejack's New Design
+title: About AI
 description: >
-  This post introduces Hydejack's now background image, color palette and logo.
-image: /assets/img/caleb-george.jpg
+  인공지능의 정의와 개념
 hide_image: true
 tags: [ai]
-redirect_from: /2017/11/17/whats-new-in-v7/
 ---
+
