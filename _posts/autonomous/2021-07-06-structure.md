@@ -30,11 +30,11 @@ V2X를 통해 안전성도 확보하게 되었다. 자율주행자동차 등장 
 
 >**V2X** : Vehicle to everything 의 약자로, 자동차가 자율주행을 위해 도로에 있는 다양한 요소와 소통하는 기술
  {:.lead}
-V2V(Vehicle to Vehicle) : 차량-차량 소통
+V2V (Vehicle to Vehicle) : 차량-차량 소통
 {:.lead}
-V2I(Vehicle to Infrastructure) : 차량-도로인프라 소통
+V2I (Vehicle to Infrastructure) : 차량-도로인프라 소통
 {:.lead}
-V2P(Vehicle to Pedestrian) : 차량-보행자 소통
+V2P (Vehicle to Pedestrian) : 차량-보행자 소통
 {:.lead}
 
 ### 1. Lidar
