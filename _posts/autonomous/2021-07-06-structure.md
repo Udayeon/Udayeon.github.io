@@ -11,7 +11,7 @@ published: true
 
 # Components of Autonomous Cars
 - [Sensor](https://udayeon.github.io/2021/07/06/structure/#sensor)
-	- [Lidar](https://udayeon.github.io/2021/07/06/structure/#1-lidar)
+    - [Lidar](https://udayeon.github.io/2021/07/06/structure/#1-lidar)
     - [Radar](https://udayeon.github.io/2021/07/06/structure/#2-radar)
     - [Camera](https://udayeon.github.io/2021/07/06/structure/#3-camera)
 - [ECU]
@@ -122,21 +122,21 @@ ADAS에 적용되는 센서로 **전자파**를 이용해 목표물까지의 거
 매우 치명적이므로 엄격한 안정성과 평가가 진행 되어야 하고 적절한 보안 시스템과 안전성을 위한 다중화 
 제어 구조가 갖추어져야 한다. 
 
-##Driving Device
+## Driving Device
 다양한 구동시스템 덕에 자율주행 기술 실현에 한 발짝 다가설 수 있다. 
 {:.message}
 * * *
 
-###Power Steering
+### 1.Power Steering
 운전자가 핸들을 손쉽게 돌릴 수 있도록 힘을 보조해주는 장치로 대부분의 차량에 장착되어 있다.
 이미 자동차의 조향축에 힘을 더해줄 수 있는 모터가 부착되어 있으므로 자율주행 차량이 조향을 위해
 별도의 구동장치를 사용하지 않아도 된다. 과거의 기계식 유압장치에서 전자식으로 발전했다.
 
-###Throttle Valve
+### 2.Throttle Valve
 과거의 스로틀 밸브는 운전자가 직접 힘을 가해야 했으나 전자식 스로틀 밸브의 발달로 운전자가 패들을
 밟은 양에 비례하게 모터를 제어해서 밸브를 여닫을 수 있다.
 
-### Electronic Brake
+### 3.Electronic Brake
 컴퓨터로 가속/감속 지령을 보내면 스로틀 밸브나 브레이크가 스스로 속도를 제어한다. 별도의 구동장치가
 필요치 않다. 하이브리드 자동차의 경우 **회생 제동 시스템**을 사용한다.
 
