@@ -11,14 +11,14 @@ published: true
 
 # Components of Autonomous Cars
 - [Sensor](https://udayeon.github.io/2021/07/06/structure/#sensor)
-    - [Lidar](https://udayeon.github.io/2021/07/06/structure/#1-lidar)
-    - [Radar](https://udayeon.github.io/2021/07/06/structure/#2-radar)
-    - [Camera](https://udayeon.github.io/2021/07/06/structure/#3-camera)
+    - [Lidar](https://udayeon.github.io/2021/07/06/structure/#lidar)
+    - [Radar](https://udayeon.github.io/2021/07/06/structure/#radar)
+    - [Camera](https://udayeon.github.io/2021/07/06/structure/#camera)
 - [ECU](https://udayeon.github.io/2021/07/06/structure/#electronic-control-units-ecu)
 - [Driving Device](https://udayeon.github.io/2021/07/06/structure/#driving-device)
-    - [Power Steering](https://udayeon.github.io/2021/07/06/structure/#1power-steering)
-    - [Throttle Valve](https://udayeon.github.io/2021/07/06/structure/#2throttle-valve)
-    - [Electronic Brake](https://udayeon.github.io/2021/07/06/structure/#3electronic-brake)
+    - [Power Steering](https://udayeon.github.io/2021/07/06/structure/#power-steering)
+    - [Throttle Valve](https://udayeon.github.io/2021/07/06/structure/#throttle-valve)
+    - [Electronic Brake](https://udayeon.github.io/2021/07/06/structure/#electronic-brake)
 {:.message}
 
 자율주행 자동차는 **센서, 연산장치, 구동장치** 의 상호작용으로 동작한다. 
@@ -64,7 +64,7 @@ d= 1/2*c*t_d
   
 ## Radar
 
-ADAS에 적용되는 센서로 **전자파**를 이용해 목표물까지의 거리를 측정한다. [**도플러효과**](https://udayeon.github.io/2021/07/06/structure/#도플러효과)를 이용해 목표물의 속도를 정밀하게 측정할 수 있다. 
+ADAS에 적용되는 센서로 **전자파**를 이용해 목표물까지의 거리를 측정한다. [**도플러효과**](https://udayeon.github.io/2021/07/06/structure/#doppler-effect)를 이용해 목표물의 속도를 정밀하게 측정할 수 있다. 
 
 * **Pros and Cons**
 
@@ -134,7 +134,7 @@ ADAS에 적용되는 센서로 **전자파**를 이용해 목표물까지의 거
 - V2P (Vehicle to Pedestrian) : 차량-보행자 소통
 
 
-#### 도플러효과
+#### Doppler effect
 :목표물의 속도에 따라 돌아오는 파장의 주파수가 달라지는 효과를 말한다. 
 목표물에 맞고 돌아오는 파장의 주파수를 측정하고, 센서에서 보내진 원래 주파수와의 차이를 통해 목표물과의 상대속도를 측정할 수 있다.
 * * *
