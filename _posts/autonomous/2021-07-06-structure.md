@@ -29,11 +29,10 @@ published: true
 센서가 발달함에 따라, 자율주행자동차의 환경 인식능력을 상승해 정밀지도의 제작이 가능했고, 
 V2X를 통해 안전성도 확보하게 되었다. 자율주행자동차 등장 초기에는 센서가 매우 고가였으나 최근 다양한 기업이 경쟁에 뛰어들면서 가격은 낮아지고 정밀도와 인식률은 높아지는 추세다.
 
->**V2X** : Vehicle to everything 의 약자로, 자동차가 자율주행을 위해 도로에 있는 다양한 요소와 소통하는 기술
-
-- V2V (Vehicle to Vehicle) : 차량-차량 소통
-- V2I (Vehicle to Infrastructure) : 차량-도로인프라 소통
-- V2P (Vehicle to Pedestrian) : 차량-보행자 소통
+- **V2X** : Vehicle to everything 의 약자로, 자동차가 자율주행을 위해 도로에 있는 다양한 요소와 소통하는 기술 
+	- V2V (Vehicle to Vehicle) : 차량-차량 소통
+	- V2I (Vehicle to Infrastructure) : 차량-도로인프라 소통
+	- V2P (Vehicle to Pedestrian) : 차량-보행자 소통
 
 
 ### 1. Lidar
@@ -56,7 +55,7 @@ d= 1/2*c*t_d
 **Rotating mirror Lidar**는 센서 내부의 모터를 이용해 **고속으로 회전하는 거울**을 설치한다. 회전하는 거울에  레이저를 쏘면 레이저는 360도 방향으로 퍼져나간다. 퍼져나간 빛이 물체를 맞고 반사하면 마찬가지로 거울을 통해 센서로 되돌아 오고 센서에서는 레이저가 발사된 지점에서의 거울의 각도와 레이저가 돌아오기 까지의 시간차를 이용해 물체의 위치를 계측할 수 있다. 레이저가 모아서 쏘아지므로 멀리 있는 **물체의 정밀한 인식이 가능**하지만 **가격이 비싸고** 고속 회전을 해야하므로 **진동이 발생**한다는 단점이 있다.
 
 
-### Pros and Cons
+** Pros and Cons**
 
   |Lidar|장점|단점|
   |:----|:---|:---|
@@ -89,7 +88,7 @@ ADAS에 적용되는 센서로 **전자파**를 이용해 목표물까지의 거
 
 **발전방향**
 
-1. 다양한 안전시스템 개발(ACC,LKAS...)
+1. [다양한 안전시스템 개발(ACC,LKAS...)](https://udayeon.github.io/2021/07/05/About-AV/#advanced-driver-assistance-system-adas)
 2. 소형화 
 3. 79GHz 대역 고해상도 레이더 개발
 4. 3차원 Scanning으로 높이까지 측정하도록.(현재는 2차원 스캔이라 거리&횡방향 정보만 획득 가능)
