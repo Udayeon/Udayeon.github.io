@@ -14,18 +14,18 @@ published: true
     - [Lidar](https://udayeon.github.io/2021/07/06/structure/#1-lidar)
     - [Radar](https://udayeon.github.io/2021/07/06/structure/#2-radar)
     - [Camera](https://udayeon.github.io/2021/07/06/structure/#3-camera)
-- [ECU]
-- [Driving Device]
-    - [Power Steering]
-    - [Throttle Valve]
-    - [Electronic Brake]
+- [ECU](https://udayeon.github.io/2021/07/06/structure/#electronic-control-units-ecu)
+- [Driving Device](https://udayeon.github.io/2021/07/06/structure/#driving-device)
+    - [Power Steering](https://udayeon.github.io/2021/07/06/structure/#1power-steering)
+    - [Throttle Valve](https://udayeon.github.io/2021/07/06/structure/#2throttle-valve)
+    - [Electronic Brake](https://udayeon.github.io/2021/07/06/structure/#3electronic-brake)
 
 자율주행 자동차는 **센서, 연산장치, 구동장치** 의 상호작용으로 동작한다. 
 **센서** 가 주변 환경을 인식하면 이 센서 정보를 바탕으로 **연산 장치** 가 적절한 판단 및 제어를 결정하고 
 **구동장치** 가 원하는 속도, 방향으로 주행할 수 있도록 Streeing Wheel이나 가속 또는 제동 등을 조작한다.
 
 
-## Sensor
+# Sensor
 센서가 발달함에 따라, 자율주행자동차의 환경 인식능력을 상승해 정밀지도의 제작이 가능했고, 
 V2X를 통해 안전성도 확보하게 되었다. 자율주행자동차 등장 초기에는 센서가 매우 고가였으나 최근 다양한 기업이 경쟁에 뛰어들면서 가격은 낮아지고 정밀도와 인식률은 높아지는 추세다.
 
