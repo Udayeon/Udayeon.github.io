@@ -17,8 +17,17 @@ published: true
     - Local Path Planning
   - Challenges
   - Perception in path planning
+ 
 - Path Generation
-- 
+  - Definition
+  - Lane Keeping
+    - Process
+    - Challanges
+  - A* 
+  - RRT 
+  - RRT* 
+ 
+- Path Following
 
 
 # Path Planning
@@ -117,9 +126,69 @@ perception한 정보의 종류에 따라 경로 계획이 달라진다.
 |장애물 없는 교차로                         |신호만 고려                                             |
 |복잡한 교차로                              |주변 동적개체 고려해 우선 순위 판단하여 다양하게 주행가능|
 
-## A* 알고리즘
+## A* 
 
+### Definition
+출발점에서 목적지까지 최단거리를 구하는 그래프/트리 알고리즘 중 하나.
+
+### features
+1. 현실 세계를 2D grid로 표현하고 Grid Map 상에서 최단 경로를 계속해서 탐색해서 판단
+<2d격자 그림>
+3. Robotics 분야 - 로봇의 경로 생성
+4. 자율주행 분야 - 로봇보다 제한적이므로 활용 가능
+5. 8 방향의 격자에 대한 Cost를 계산해 최적의 경로를 찾는다.
+<8방향 고려하는 그림>
+6. 격자의 크기에 따라 특성이 다름
+<격자에 따라 다른 특성 보이는 그림>
+**따라서 적정한 수준의 격자를 찾는게 중요하다. obstacle 크기에 기반해 표현이 가능한 적절한 단위 선택**
+
+### Process
+<A* 과정 필기 노트>
+
+
+## RRT 
+
+### Definition
+Rapidly-exploring Random Tree
+무작위 sample을 사용해 고차원의 구성공간을 탐색하는 알고리즘. 시작점과 목적지가 정해지면 임의의 Xrand를 뽑아 검색트리 T를 확장시킨다.
+이때, Xrand는 균등분포를 사용해 선택하고 목적지에 빠르게 다다르기 위해 목적지에 치우친 분포를 사용할 수도 있다. 
+트리 T가 목적지에 다다르면 목적지부터 시작점까지 재귀적으로 Tree를 검색하여 경로를 탐색한다. 
+<RRT 과정 그림>
+
+### Pseudo Code
+
+
+### limit
+랜덤으로 샘플링하므로 최적화(Optimality)를 보장하진 않는다. 따라서 RRT* 등장.
+
+## RRT*
+
+### Definiton 
+RRT알고리즘에서 Optimality를 향상 시킨 알고리즘으로 최적의 이동 계획을 위한 Cost function을 도입한다. 새로운 State를 뽑을 때마다
+new state의 Neighbor들을 Optimal path로 rewiring한다.
+Xnew의 일정 반경 내의 어떤 node들의 후보 set를 추리고 그 후보 set에 최적 검사를 해서 Best parent Node를 설정한다.
+
+<RRT* 그림>
+
+### Pseudo Code
+
+## RRT vs RRT*
+
+|           |     RRT   |     RRT     |
+|:----------|:----------|:------------|
+|공통점     | - 실시간성 보장 되어야 함(obstacle정보도 고려)|
+|           | - 적정량의 트리구조       |
+|           |   (너무 많으면 실시간성이 떨어지고 적으면 정확도가 떨어진다.)|
 
 # Path following
 * * *
 ##
+
+
+
+##### 트리구조
+그래프의 일종으로 여러 노드가 한 노드를 가리킬 수 없는 구조.
+최상위 노드인 Root node와 부모노드(Parent node), 자식노드(Child node)로 구성
+
+##### Rewiring
+best parent 생성 후 주변 node를 재해석, 경로 체크하여 edge를 끊거나 만들어 냄.
