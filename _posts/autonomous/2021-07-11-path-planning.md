@@ -10,8 +10,10 @@ published: true
 ---
 
 # Path Planning
-* * * 
 
+
+# Path Planning
+* * * 
 ## Definition
 
 한 지점에서 다른 한 지점까지 가는 동안 주변을 인식하고, 정보를 처리해 적절한 판단을 하여 가야할 경로를 생성하고, 정확한 제어를 통해 길을 따라가는 일련의 과정.
