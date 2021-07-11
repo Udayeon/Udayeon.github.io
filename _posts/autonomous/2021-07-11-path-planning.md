@@ -97,7 +97,7 @@ perception한 정보의 종류에 따라 경로 계획이 달라짐.
 |정보                      |경로 계획|
 |:------------------------ |:-------|
 |object 유/무와 주변의 위치| Search region에 Object가 있나 없나만 따져서, 있다면 걍 멈춰버림(답답..)|
-| + 속도                   |Collision avoidance 계산해서 주행전략 수립|
+| + 속도                   |[Collision avoidance](https://udayeon.github.io/2021/07/11/path-planning/#collision-avoidance) 계산해서 주행전략 수립|
 | + 종류                   |Human-like 한 주행 (약간만 비껴간다거나..)|
 
 
@@ -218,3 +218,6 @@ perception한 정보의 종류에 따라 경로 계획이 달라짐.
 
 ##### Rewiring
 best parent 생성 후 주변 node를 재해석, 경로 체크하여 edge를 끊거나 만들어 냄.   
+
+##### Collision avoidance
+
