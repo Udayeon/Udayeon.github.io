@@ -156,14 +156,24 @@ Path를 잇는다.
 * * *
 ### 2.5.1. Definition
 * **Rapidly-exploring Random Tree**
-* **무작위 sample**을 사용해 고차원의 구성공간을 탐색하는 알고리즘. 
-* 시작점과 목적지가 정해지면 임의의 Xrand를 뽑아 검색트리 T를 확장.   
-* 이때, Xrand는 균등분포를 사용해 선택하고 목적지에 빠르게 다다르기 위해 목적지에 치우친 분포를 사용할 수도 있음.   
+* 무작위 샘플링을 사용하여 고차원의 구성공간을 탐색하는 경로 계획 알고리즘.
+![RRT](https://user-images.githubusercontent.com/69246778/125198047-3c099000-e29b-11eb-9a1c-4f34f73b8020.jpg)
+* Xrand와 가장 가까운 점 Xnear사이에 임의의 점 Xnew를 설정하고 Xrand를 이 새로운 Xnew로 편입시킴.   
+ 그리고 다시, Xrand를 뿌린 후 Xrand와 가장 가까운 점 Xnear를 구하고 Xrand와 Xnear 사이에 임의의 점 Xnew를 설정.   
+ Xrand를 이 새로운 Xnew에 편입. 위 과정을 목적지에 다다를 때 까지 반복한다.
+* 중간에 장애물에 걸리면 새로운 Xrand를 뿌린다.
+{:.message}
+
+### 2.5.2. Features
+* **샘플링 기반**에 의거한 방식
+* 시작점과 목적지가 정해지면 임의의 Xrand를 뽑아 검색트리 T를 계속 확장. (신경망,나뭇가지처럼...)   
+* 이때, Xrand는 일반적으로 균등분포를 사용해 선택하고 목적지에 빠르게 다다르기 위해 목적지에 치우친 분포를 사용할 수도 있음.   
 * 트리 T가 목적지에 다다르면 목적지부터 시작점까지 재귀적으로 Tree를 검색하여 경로를 탐색.   
 {:.message}
 
 ### 2.5.2. Pseudo Code
-
+![RRTseudo](https://user-images.githubusercontent.com/69246778/125198056-42980780-e29b-11eb-8e18-01094a79204d.jpg)
+{:.message}
 
 ### 2.5.3. limit
 랜덤으로 샘플링하므로 최적화(Optimality)를 보장하진 않음. 따라서 RRT* 등장.
@@ -171,12 +181,16 @@ Path를 잇는다.
 ## 2.6. RRT*
 * * *
 ### 2.6.1. Definiton 
+![rrtstar](https://user-images.githubusercontent.com/69246778/125198183-d4a01000-e29b-11eb-8c36-7a6ff32e24b3.jpg)
 * RRT알고리즘에서 **Optimality를 향상** 시킨 알고리즘으로 최적의 이동 계획을 위한 Cost function을 도입.   
 * 새로운 State를 뽑을 때마다 new state의 Neighbor들을 Optimal path로 [rewiring](https://udayeon.github.io/2021/07/11/path-planning/#rewiring).   
 * Xnew의 일정 반경 내의 어떤 node들의 후보 set를 추리고 그 후보 set에 최적 검사를 해서 Best parent Node를 설정.   
+* 즉, 새롭게 뿌린 Xrand와 가장 가까운 점을 단순히 연결하는 것이 아니라 Xrand를 둘러싼 여러 후보 set에서 최적인 점을 찾아 다시 연결할 수도 있음. 그러면 새로운 부모 노드가 탄생하게 됨.
 {:.message}
 
 ### 2.6.2. Pseudo Code
+![RRTstarseudo](https://user-images.githubusercontent.com/69246778/125198194-df5aa500-e29b-11eb-813b-6035f12c6540.jpg)
+{:.message}
 
 ### 2.6.3. RRT vs RRT*
 
