@@ -62,12 +62,11 @@ published: true
 
 ![local](https://user-images.githubusercontent.com/69246778/125190794-e375cb00-e279-11eb-928f-ebdd59e58b68.jpg)
 
-
-**(1)obstacle 없는 경우**   
+- obstacle 없는 경우
 
 ![obsX](https://user-images.githubusercontent.com/69246778/125190796-e7095200-e279-11eb-8b7d-4de2e275b32b.jpg)
 
-**(2)obstacle 있는 경우**   
+- obstacle 있는 경우
 
 ![obsO](https://user-images.githubusercontent.com/69246778/125190798-e8d31580-e279-11eb-82a7-b827210d46a5.jpg)
 두 지점 사이의 위험 요소들을 피하는 경로를 선택하되 너무 돌아가면 효율성이 떨어지고, 너무 가로지르면 안전성이 떨어짐.   
