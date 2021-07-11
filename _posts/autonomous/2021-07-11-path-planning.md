@@ -18,6 +18,7 @@ published: true
   - [Challenges](https://udayeon.github.io/2021/07/11/path-planning/#challenges)
   - [Perception in path planning](https://udayeon.github.io/2021/07/11/path-planning/#perception-in-path-planning)
  
+ 
 - [Path Generation](https://udayeon.github.io/2021/07/11/path-planning/#path-generation)
   - [Definition](https://udayeon.github.io/2021/07/11/path-planning/#definition-1)
   - [Lane Keeping](https://udayeon.github.io/2021/07/11/path-planning/#lane-keeping)
@@ -27,9 +28,10 @@ published: true
   - [RRT](https://udayeon.github.io/2021/07/11/path-planning/#rrt) 
   - [RRT*](https://udayeon.github.io/2021/07/11/path-planning/#rrt-1) 
  
+ 
 - Path Following
-  - Pure pursuit
-  - Model Predictive Control, MPC
+  - [Pure pursuit](https://udayeon.github.io/2021/07/11/path-planning/#pure-pursuit)
+  - [Model Predictive Control, MPC](https://udayeon.github.io/2021/07/11/path-planning/#model-predictive-control-mpc)
 
 
 # Path Planning
