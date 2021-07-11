@@ -111,7 +111,7 @@ perception한 정보의 종류에 따라 경로 계획이 달라짐.
 
 ## Lane Keeping
 경로 생성의 가장 간단한 기술 중 하나   
-**Process**   
+**Process**
 1. Deep Learning, Classical Vision 기술로 차선 인식
 2. 차선 중심에 Set Point 도출 (경로 생성기술)
 3. 그 Set Point 들을 다항식 보간법을 이용해 차로의 중심 Line 형성
