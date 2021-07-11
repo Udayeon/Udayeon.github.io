@@ -11,71 +11,62 @@ published: true
 ---
 
 # Path Planning
-- [Path Planning](https://udayeon.github.io/2021/07/11/path-planning/#path-planning)
-  - [Definiton](https://udayeon.github.io/2021/07/11/path-planning/#definition)
-  - [Type](https://udayeon.github.io/2021/07/11/path-planning/#type)
-  - [Challenges](https://udayeon.github.io/2021/07/11/path-planning/#challenges)
-  - [Perception in path planning](https://udayeon.github.io/2021/07/11/path-planning/#perception-in-path-planning)
+- [1. Path Planning](https://udayeon.github.io/2021/07/11/path-planning/#path-planning)
+  - [1.1. Definiton](https://udayeon.github.io/2021/07/11/path-planning/#definition)
+  - [1.2. Type](https://udayeon.github.io/2021/07/11/path-planning/#type)
+  - [1.3. Challenges](https://udayeon.github.io/2021/07/11/path-planning/#challenges)
+  - [1.4. Perception in path planning](https://udayeon.github.io/2021/07/11/path-planning/#perception-in-path-planning)
  
-- [Path Generation](https://udayeon.github.io/2021/07/11/path-planning/#path-generation)
-  - [Definition](https://udayeon.github.io/2021/07/11/path-planning/#definition-1)
-  - [Lane Keeping](https://udayeon.github.io/2021/07/11/path-planning/#lane-keeping)
-  - [Challenges](https://udayeon.github.io/2021/07/11/path-planning/#challenges-1)
-  - [A*](https://udayeon.github.io/2021/07/11/path-planning/#a) 
-  - [RRT](https://udayeon.github.io/2021/07/11/path-planning/#rrt) 
-  - [RRT*](https://udayeon.github.io/2021/07/11/path-planning/#rrt-1) 
+- [2. Path Generation](https://udayeon.github.io/2021/07/11/path-planning/#path-generation)
+  - [2.1. Definition](https://udayeon.github.io/2021/07/11/path-planning/#definition-1)
+  - [2.2. Lane Keeping](https://udayeon.github.io/2021/07/11/path-planning/#lane-keeping)
+  - [2.3. Challenges](https://udayeon.github.io/2021/07/11/path-planning/#challenges-1)
+  - [2.4. A*](https://udayeon.github.io/2021/07/11/path-planning/#a) 
+  - [2.5. RRT](https://udayeon.github.io/2021/07/11/path-planning/#rrt) 
+  - [2.6. RRT*](https://udayeon.github.io/2021/07/11/path-planning/#rrt-1) 
  
-- [Path Following](https://udayeon.github.io/2021/07/11/path-planning/#path-following)
-  - [Definition](https://udayeon.github.io/2021/07/11/path-planning/#definition-3)
-  - [Pure pursuit](https://udayeon.github.io/2021/07/11/path-planning/#pure-pursuit)
-  - [Model Predictive Control, MPC](https://udayeon.github.io/2021/07/11/path-planning/#model-predictive-control-mpc)
+- [3. Path Following](https://udayeon.github.io/2021/07/11/path-planning/#path-following)
+  - [3.1. Definition](https://udayeon.github.io/2021/07/11/path-planning/#definition-3)
+  - [3.2. Pure pursuit](https://udayeon.github.io/2021/07/11/path-planning/#pure-pursuit)
+  - [3.3. Model Predictive Control, MPC](https://udayeon.github.io/2021/07/11/path-planning/#model-predictive-control-mpc)
 
 
-# Path Planning
+# 1. Path Planning
 * * * 
 
-## Definition
-
+## 1.1. Definition
+* * *
 * 한 지점에서 다른 한 지점까지 가는 동안 주변을 인식하고, 정보를 처리해 적절한 판단을 하여 가야할 경로를 생성하고, 정확한 제어를 통해 길을 따라가는 일련의 과정.   
 * 경로 생성에 필요한 기술은 다음과 같다.                                                                  
 - Path generation (경로생성)
 - Path following (경로추종) 
 - Decision making 
 
-## type
-
-### Global path planning
-**전역경로계획** 
-
-![global](https://user-images.githubusercontent.com/69246778/125191437-68161880-e27d-11eb-8304-0ca8f018b7bb.jpg)
-
+## 1.2.type
+* * * 
+### 1.2.1. Global path planning
+**전역경로계획**   
+![global](https://user-images.githubusercontent.com/69246778/125191437-68161880-e27d-11eb-8304-0ca8f018b7bb.jpg)   
 * **전역 지도** 안에서 출발점-도착점까지 갈 수 있는 **수많은 경로 중 하나**를 선택하는 것.   
 * 예를 들어, 강남에서 국민대학교 까지 여러 경로를 기준(최단거리 or 최저비용...)에 따라 결정.   
 * 이미 흔히 제공 되는 서비스로 자율 주행 발달에 따라 큰 변화가 필요한 영역은 아님. 
+{:.message}
 
-
-### Local path planning
-**지역경로계획** 
-
-![local](https://user-images.githubusercontent.com/69246778/125191438-6b110900-e27d-11eb-954c-3f8c35d79159.jpg)
-
+### 1.2.2. Local path planning
+**지역경로계획**   
+![local](https://user-images.githubusercontent.com/69246778/125191438-6b110900-e27d-11eb-954c-3f8c35d79159.jpg)   
 * 내 차 근처 100~500m 까지의 지역 지도 안에서 **주변 환경을 실시간으로 처리**하여 주행하도록 하는 것.   
 * 경로 후보를 **실타래**처럼 뿌려서 그 중 최적의 경로를 선택하고 선택된 경로를 따라감.   
-* **자율 주행 발달시 실시간으로 계속 선택해야 하므로 중요한 영역**
-
-![obsX](https://user-images.githubusercontent.com/69246778/125191295-99daaf80-e27c-11eb-8472-000365237479.jpg)
-![obsO](https://user-images.githubusercontent.com/69246778/125191312-b0810680-e27c-11eb-846e-4fd323b0c215.jpg)
-
-
+* **자율 주행 발달시 실시간으로 계속 선택해야 하므로 중요한 영역**   
+![obsX](https://user-images.githubusercontent.com/69246778/125191295-99daaf80-e27c-11eb-8472-000365237479.jpg)   
+![obsO](https://user-images.githubusercontent.com/69246778/125191312-b0810680-e27c-11eb-846e-4fd323b0c215.jpg)   
 두 지점 사이의 위험 요소들을 피하는 경로를 선택하되 너무 돌아가면 효율성이 떨어지고, 너무 가로지르면 안전성이 떨어짐.   
-
-
 * **효율성과 안전성을 잘 조절해야 함.**   
 * **실시간 처리가 필요하므로 너무 무거운 알고리즘을 쓰면 안됨**   
+{:.message}
 
-
-## Challenges
-
+## 1.3. Challenges
+* * *
 |                               |                                                |
 |:------------------------------|:-----------------------------------------------|
 |기본적인 차선 유지 및 차선 변경 |                                                |
@@ -89,8 +80,8 @@ published: true
 
 **안전성과 효율성의 적정 지점 찾기**
 
-## Perception in path planning
-
+## 1.4. Perception in path planning
+* * * 
 perception한 정보의 종류에 따라 경로 계획이 달라짐.
 
 |정보                      |경로 계획|
@@ -99,25 +90,25 @@ perception한 정보의 종류에 따라 경로 계획이 달라짐.
 | + 속도                   |[Collision avoidance](https://udayeon.github.io/2021/07/11/path-planning/#collision-avoidance) 계산해서 주행전략 수립|
 | + 종류                   |Human-like 한 주행 (약간만 비껴간다거나..)|
 
-
-
-# Path generation
+# 2. Path generation
 * * *
 
-## Definition
-
+## 2.1. Definition
+* * *
 어떤 경로를 끊임없이 실시간으로 생성해서 선택하는 알고리즘
 
-## Lane Keeping
+## 2.2. Lane Keeping
 경로 생성의 가장 간단한 기술 중 하나   
-**Process**
+* * * 
+### 2.2.1. Process
 1. Deep Learning, Classical Vision 기술로 차선 인식
 2. 차선 중심에 Set Point 도출 (경로 생성기술)
 3. 그 Set Point 들을 다항식 보간법을 이용해 차로의 중심 Line 형성
 4. 그 Path를 추종
+{:.message}
 
-## Challenges
-
+## 2.3. Challenges
+* * *
 |                                          |                                                        |
 |:-----------------------------------------|:-------------------------------------------------------|
 |주변에 장애물X, 모든 차가 자기 자리를 지킴 |차선 인식해서 걍 따르면 됨                               |
@@ -126,40 +117,38 @@ perception한 정보의 종류에 따라 경로 계획이 달라짐.
 |장애물 없는 교차로                         |신호만 고려                                             |
 |복잡한 교차로                              |주변 동적개체 고려해 우선 순위 판단하여 다양하게 주행가능|
 
-## A* 
+## 2.4. A*
+* * *
+### 2.4.1 Definition
 * 출발점에서 목적지까지 최단거리를 구하는 그래프/[트리](https://udayeon.github.io/2021/07/11/path-planning/#tree-structure)
 알고리즘 중 하나.   
-* features
-   
-  
+{:.message}
+
+### 2.4.2. features
 1. 현실 세계를 2D grid로 표현하고 Grid Map 상에서 최단 경로를 계속해서 탐색해서 판단.
-![A1f1](https://user-images.githubusercontent.com/69246778/125193588-19ba4700-e288-11eb-8784-88d01797c9d6.jpg) 
- 
-2. Robotics 분야 - 로봇의 경로 생성.
-
-3. 자율주행 분야 - 로봇보다 제한적이므로 활용 가능.   
-
-4. 8 방향의 격자에 대한 Cost를 계산해 최적의 경로를 찾는다.
-![A1cost](https://user-images.githubusercontent.com/69246778/125193623-51c18a00-e288-11eb-9180-b365d3e5f71e.jpg)   
-
-5. 격자의 크기에 따라 특성이 다름.
-![A1res](https://user-images.githubusercontent.com/69246778/125193666-8d5c5400-e288-11eb-8dcf-4bc708afee1c.jpg)
+![A1f1](https://user-images.githubusercontent.com/69246778/125193588-19ba4700-e288-11eb-8784-88d01797c9d6.jpg)   
+2. Robotics 분야 - 로봇의 경로 생성.   
+3. 자율주행 분야 - 로봇보다 제한적이므로 활용 가능.      
+4. 8 방향의 격자에 대한 Cost를 계산해 최적의 경로를 찾는다.   
+![A1cost](https://user-images.githubusercontent.com/69246778/125193623-51c18a00-e288-11eb-9180-b365d3e5f71e.jpg)     
+5. 격자의 크기에 따라 특성이 다름.   
+![A1res](https://user-images.githubusercontent.com/69246778/125193666-8d5c5400-e288-11eb-8dcf-4bc708afee1c.jpg)   
 - 크게 나누는 경우 : 격자 수가 적으므로 계산량에 부담은 없어 실시간으로 돌리기에 유리함
 - 작게 나누는 경우 : 현실 세계를 더 잘 표현할 수 있지만 격자가 많아 계산량이 늘어난다.   
 **따라서 적정한 수준의 격자를 찾는게 중요하다. obstacle 크기에 기반해 표현이 가능한 적절한 단위 선택**   
+{:.message}
 
-* Process
-
+### 2.4.3. Process
 ![1](https://user-images.githubusercontent.com/69246778/125193762-2be8b500-e289-11eb-8201-88dce9308cc9.jpg)
-![2](https://user-images.githubusercontent.com/69246778/125193879-bdf0bd80-e289-11eb-846c-fb71c0fd71bc.jpg)
+![2](https://user-images.githubusercontent.com/69246778/125193879-bdf0bd80-e289-11eb-846c-fb71c0fd71bc.jpg)   
+- 경로 선택 실패 : Open List가 비어 있는 경우, 조사할 부분이 없음을 의미하므로 길이 없다고 판단.   
+- 결로 선택 성공 : 목표한 사각형이 Open List에 들어가는 경우, 앞으로 조사할 경로 중에 목적지가 포함되는 것.    
+**주의**   
+* 트리 구조 알고리즘은 경로 선택 과정이 시작에서 끝으로 가는 것이 아니라, 끝에서 시작으로 거꾸로 가는 것.   
+* 목표한 사각형이 Open list에 들어가는 경우에, 그 때부터 도착점부터 출발점까지 재귀적으로(부모 노드를 가리키는 방향으로)   
+Path를 잇는다.
+{:.message}
 
-- 경로 선택 실패 : Open List가 비어 있는 경우, 조사할 부분이 없음을 의미하므로 길이 없다고 판단.
-- 결로 선택 성공 : 목표한 사각형이 Open List에 들어가는 경우, 앞으로 조사할 경로 중에 목적지가 포함되는 것. 
-
-**주의**
-* 트리 구조 알고리즘은 경로 선택 과정이 시작에서 끝으로 가는 것이 아니라, 끝에서 시작으로 거꾸로 가는 것.
-* 목표한 사각형이 Open list에 들어가는 경우에, 그 때부터 도착점부터 출발점까지 재귀적으로(부모 노드를 가리키는 방향으로) 
-Path를 잇는다. 
 
 ## RRT 
 
