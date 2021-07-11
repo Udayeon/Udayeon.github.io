@@ -151,8 +151,7 @@ perception한 정보의 종류에 따라 경로 계획이 달라짐.
 * Process
 
 ![1](https://user-images.githubusercontent.com/69246778/125193762-2be8b500-e289-11eb-8201-88dce9308cc9.jpg)
-![2](https://user-images.githubusercontent.com/69246778/125193764-2be8b500-e289-11eb-9ae7-ef969c0439d5.jpg)
-![3](https://user-images.githubusercontent.com/69246778/125193761-2ab78800-e289-11eb-9632-da32727d7fc0.jpg)
+![2](https://user-images.githubusercontent.com/69246778/125193879-bdf0bd80-e289-11eb-846c-fb71c0fd71bc.jpg)
 
 
 ## RRT 
