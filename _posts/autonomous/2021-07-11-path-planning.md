@@ -11,6 +11,8 @@ published: true
 ---
 
 # Path Planning
+Path Planning, Path Generation, Path following, A*, RRT, RRT*, Pure Pursuit, MPC
+
 - [1. Path Planning](https://udayeon.github.io/2021/07/11/path-planning/#path-planning)
   - [1.1. Definiton](https://udayeon.github.io/2021/07/11/path-planning/#definition)
   - [1.2. Type](https://udayeon.github.io/2021/07/11/path-planning/#type)
