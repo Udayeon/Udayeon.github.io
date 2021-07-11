@@ -46,29 +46,27 @@ published: true
 
 ### Global path planning
 **전역경로계획** 
-* 전역 지도 안에서 출발점-도착점까지 갈 수 있는 수많은 경로 중 하나를 선택하는 것.   
-* 예를 들어, 강남에서 국민대학교 까지 여러 경로를 기준(최단거리 or 최저비용...)에 따라 결정.   
-* 이미 흔히 제공 되는 서비스로 자율 주행 발달에 따라 큰 변화가 필요한 영역은 아님. 
   
 ![global](https://user-images.githubusercontent.com/69246778/125190791-e1ac0780-e279-11eb-9b5e-13e279a37d3c.jpg)
 
+* 전역 지도 안에서 출발점-도착점까지 갈 수 있는 수많은 경로 중 하나를 선택하는 것.   
+* 예를 들어, 강남에서 국민대학교 까지 여러 경로를 기준(최단거리 or 최저비용...)에 따라 결정.   
+* 이미 흔히 제공 되는 서비스로 자율 주행 발달에 따라 큰 변화가 필요한 영역은 아님. 
 
 
 ### Local path planning
 **지역경로계획** 
+
+![local](https://user-images.githubusercontent.com/69246778/125190794-e375cb00-e279-11eb-928f-ebdd59e58b68.jpg)
+
 * 내 차 근처 100~500m 까지의 지역 지도 안에서 주변 환경을 실시간으로 처리하여 주행하도록 하는 것.   
 * 경로 후보를 실타래처럼 뿌려서 그 중 최적의 경로를 선택하고 선택된 경로를 따라감.   
 * **자율 주행 발달시 실시간으로 계속 선택해야 하므로 중요한 영역**
 
-![local](https://user-images.githubusercontent.com/69246778/125190794-e375cb00-e279-11eb-928f-ebdd59e58b68.jpg)
-
-- obstacle 없는 경우
-
 ![obsX](https://user-images.githubusercontent.com/69246778/125190796-e7095200-e279-11eb-8b7d-4de2e275b32b.jpg)
-
-- obstacle 있는 경우
-
 ![obsO](https://user-images.githubusercontent.com/69246778/125190798-e8d31580-e279-11eb-82a7-b827210d46a5.jpg)
+
+
 두 지점 사이의 위험 요소들을 피하는 경로를 선택하되 너무 돌아가면 효율성이 떨어지고, 너무 가로지르면 안전성이 떨어짐.   
 
 
