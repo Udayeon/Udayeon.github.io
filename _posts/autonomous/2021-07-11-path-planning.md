@@ -13,21 +13,15 @@ published: true
 - [Path Planning](https://udayeon.github.io/2021/07/11/path-planning/#path-planning)
   - [Definiton](https://udayeon.github.io/2021/07/11/path-planning/#definition)
   - [Type](https://udayeon.github.io/2021/07/11/path-planning/#type)
-    - [Global Path Planning](https://udayeon.github.io/2021/07/11/path-planning/#global-path-planning)
-    - [Local Path Planning](https://udayeon.github.io/2021/07/11/path-planning/#local-path-planni)
   - [Challenges](https://udayeon.github.io/2021/07/11/path-planning/#challenges)
   - [Perception in path planning](https://udayeon.github.io/2021/07/11/path-planning/#perception-in-path-planning)
- 
  
 - [Path Generation](https://udayeon.github.io/2021/07/11/path-planning/#path-generation)
   - [Definition](https://udayeon.github.io/2021/07/11/path-planning/#definition-1)
   - [Lane Keeping](https://udayeon.github.io/2021/07/11/path-planning/#lane-keeping)
-    - [Process](https://udayeon.github.io/2021/07/11/path-planning/#process)
-    - [Challanges](https://udayeon.github.io/2021/07/11/path-planning/#challenges-1)
   - [A*](https://udayeon.github.io/2021/07/11/path-planning/#a) 
   - [RRT](https://udayeon.github.io/2021/07/11/path-planning/#rrt) 
   - [RRT*](https://udayeon.github.io/2021/07/11/path-planning/#rrt-1) 
- 
  
 - [Path Following](https://udayeon.github.io/2021/07/11/path-planning/#path-following)
   - [Pure pursuit](https://udayeon.github.io/2021/07/11/path-planning/#pure-pursuit)
