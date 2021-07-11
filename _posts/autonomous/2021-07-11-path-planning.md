@@ -14,7 +14,7 @@ published: true
   - [Definiton](https://udayeon.github.io/2021/07/11/path-planning/#definition)
   - [Type](https://udayeon.github.io/2021/07/11/path-planning/#type)
     - [Global Path Planning](https://udayeon.github.io/2021/07/11/path-planning/#global-path-planning)
-    - [Local Path Planning](https://udayeon.github.io/2021/07/11/path-planning/#local-path-planni
+    - [Local Path Planning](https://udayeon.github.io/2021/07/11/path-planning/#local-path-planni)
   - [Challenges](https://udayeon.github.io/2021/07/11/path-planning/#challenges)
   - [Perception in path planning](https://udayeon.github.io/2021/07/11/path-planning/#perception-in-path-planning)
  
@@ -24,7 +24,7 @@ published: true
     - [Process](https://udayeon.github.io/2021/07/11/path-planning/#process)
     - [Challanges](https://udayeon.github.io/2021/07/11/path-planning/#challenges-1)
   - [A*](https://udayeon.github.io/2021/07/11/path-planning/#a) 
-  - RRT 
+  - [RRT](https://udayeon.github.io/2021/07/11/path-planning/#rrt) 
   - RRT* 
  
 - Path Following
