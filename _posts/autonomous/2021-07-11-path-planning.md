@@ -124,12 +124,9 @@ perception한 정보의 종류에 따라 경로 계획이 달라짐.
 |복잡한 교차로                              |주변 동적개체 고려해 우선 순위 판단하여 다양하게 주행가능|
 
 ## A* 
-
-### Definition
-출발점에서 목적지까지 최단거리를 구하는 그래프/[트리](https://udayeon.github.io/2021/07/11/path-planning/#tree-structure)
-알고리즘 중 하나.
-
-### features
+* 출발점에서 목적지까지 최단거리를 구하는 그래프/[트리](https://udayeon.github.io/2021/07/11/path-planning/#tree-structure)
+알고리즘 중 하나.   
+* features
 1. 현실 세계를 2D grid로 표현하고 Grid Map 상에서 최단 경로를 계속해서 탐색해서 판단.
 2. Robotics 분야 - 로봇의 경로 생성.
 3. 자율주행 분야 - 로봇보다 제한적이므로 활용 가능.
@@ -138,7 +135,7 @@ perception한 정보의 종류에 따라 경로 계획이 달라짐.
 
 **따라서 적정한 수준의 격자를 찾는게 중요하다. obstacle 크기에 기반해 표현이 가능한 적절한 단위 선택**
 
-### Process
+* Process
 
 
 
