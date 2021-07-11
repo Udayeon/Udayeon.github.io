@@ -26,6 +26,7 @@ published: true
   - [RRT*](https://udayeon.github.io/2021/07/11/path-planning/#rrt-1) 
  
 - [Path Following](https://udayeon.github.io/2021/07/11/path-planning/#path-following)
+  - [Definition](https://udayeon.github.io/2021/07/11/path-planning/#definition-3)
   - [Pure pursuit](https://udayeon.github.io/2021/07/11/path-planning/#pure-pursuit)
   - [Model Predictive Control, MPC](https://udayeon.github.io/2021/07/11/path-planning/#model-predictive-control-mpc)
 
