@@ -6,7 +6,7 @@ description: |
 tags:
   - autonomous
 author: Udayeon
-published: true
+published: false
 ---
 
 # Components of Autonomous Cars
