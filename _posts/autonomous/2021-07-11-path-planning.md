@@ -28,6 +28,8 @@ published: true
   - [RRT*](https://udayeon.github.io/2021/07/11/path-planning/#rrt-1) 
  
 - Path Following
+  - Pure pursuit
+  - Model Predictive Control, MPC
 
 
 # Path Planning
@@ -195,11 +197,25 @@ Xnew의 일정 반경 내의 어떤 node들의 후보 set를 추리고 그 후�
 |극심한 각도의 코너| Human-like한 주행 필요|
 
 ## Pure Pursuit
+### Definition
+하나의 점을 선택해 경로를 추종하는 방식으로 목표 경로를 실시간으로 추종하는 기하학 기반의 알고리즘이다.
+하나의 목표 지점의 골라서 Steering angle을 발행한다는 특징이 있고 차량의 **제어**와 밀접한 관련이 있다.
+**차량의 Path의 한 점을, 원호를 그리며 따라가는 방법**
+
+### Lookahead distance
+path의 수많은 점들 중 어떤 점을 잡을지 기준을 제시하는 값이다. 속도와 비례하므로
+저속일 때 가까운 점을 선택하고, 고속일 때 먼 점을 선택한다는 특징이 있다.
+
+## Model Predictive Control, MPC
+
+### Definition 
 
 
 
 
 
+
+* * *
 ##### 트리구조
 그래프의 일종으로 여러 노드가 한 노드를 가리킬 수 없는 구조.
 최상위 노드인 Root node와 부모노드(Parent node), 자식노드(Child node)로 구성
