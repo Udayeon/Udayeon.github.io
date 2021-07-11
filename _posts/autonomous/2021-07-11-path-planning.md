@@ -130,16 +130,29 @@ perception한 정보의 종류에 따라 경로 계획이 달라짐.
 * 출발점에서 목적지까지 최단거리를 구하는 그래프/[트리](https://udayeon.github.io/2021/07/11/path-planning/#tree-structure)
 알고리즘 중 하나.   
 * features
+   
+  
 1. 현실 세계를 2D grid로 표현하고 Grid Map 상에서 최단 경로를 계속해서 탐색해서 판단.
+![A1f1](https://user-images.githubusercontent.com/69246778/125193588-19ba4700-e288-11eb-8784-88d01797c9d6.jpg) 
+ 
 2. Robotics 분야 - 로봇의 경로 생성.
-3. 자율주행 분야 - 로봇보다 제한적이므로 활용 가능.
-4. 8 방향의 격자에 대한 Cost를 계산해 최적의 경로를 찾는다.
-5. 격자의 크기에 따라 특성이 다름.
 
-**따라서 적정한 수준의 격자를 찾는게 중요하다. obstacle 크기에 기반해 표현이 가능한 적절한 단위 선택**
+3. 자율주행 분야 - 로봇보다 제한적이므로 활용 가능.   
+
+4. 8 방향의 격자에 대한 Cost를 계산해 최적의 경로를 찾는다.
+![A1cost](https://user-images.githubusercontent.com/69246778/125193623-51c18a00-e288-11eb-9180-b365d3e5f71e.jpg)   
+
+5. 격자의 크기에 따라 특성이 다름.
+![A1res](https://user-images.githubusercontent.com/69246778/125193666-8d5c5400-e288-11eb-8dcf-4bc708afee1c.jpg)
+- 크게 나누는 경우 : 격자 수가 적으므로 계산량에 부담은 없어 실시간으로 돌리기에 유리함
+- 작게 나누는 경우 : 현실 세계를 더 잘 표현할 수 있지만 격자가 많아 계산량이 늘어난다.   
+**따라서 적정한 수준의 격자를 찾는게 중요하다. obstacle 크기에 기반해 표현이 가능한 적절한 단위 선택**   
 
 * Process
 
+![1](https://user-images.githubusercontent.com/69246778/125193762-2be8b500-e289-11eb-8201-88dce9308cc9.jpg)
+![2](https://user-images.githubusercontent.com/69246778/125193764-2be8b500-e289-11eb-9ae7-ef969c0439d5.jpg)
+![3](https://user-images.githubusercontent.com/69246778/125193761-2ab78800-e289-11eb-9632-da32727d7fc0.jpg)
 
 
 ## RRT 
