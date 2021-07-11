@@ -20,6 +20,7 @@ published: true
 - [Path Generation](https://udayeon.github.io/2021/07/11/path-planning/#path-generation)
   - [Definition](https://udayeon.github.io/2021/07/11/path-planning/#definition-1)
   - [Lane Keeping](https://udayeon.github.io/2021/07/11/path-planning/#lane-keeping)
+  - [Challenges](https://udayeon.github.io/2021/07/11/path-planning/#challenges-1)
   - [A*](https://udayeon.github.io/2021/07/11/path-planning/#a) 
   - [RRT](https://udayeon.github.io/2021/07/11/path-planning/#rrt) 
   - [RRT*](https://udayeon.github.io/2021/07/11/path-planning/#rrt-1) 
