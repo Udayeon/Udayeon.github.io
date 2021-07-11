@@ -2,7 +2,8 @@
 layout: post
 title: Path Planning
 description: |
-  K-mooc 자율주행자동차기술(국민대학교) 강의 부분
+  [K-mooc 자율주행자동차기술(국민대학교) 강의](http://www.kmooc.kr/courses/course-v1:KMUk+CK-KMUK_02+2021_1/course/)
+  
 tags:
   - autonomous
 author: Udayeon
