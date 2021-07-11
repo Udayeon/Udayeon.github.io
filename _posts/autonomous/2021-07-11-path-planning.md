@@ -21,9 +21,9 @@ published: true
   - [2.1. Definition](https://udayeon.github.io/2021/07/11/path-planning/#definition-1)
   - [2.2. Lane Keeping](https://udayeon.github.io/2021/07/11/path-planning/#lane-keeping)
   - [2.3. Challenges](https://udayeon.github.io/2021/07/11/path-planning/#challenges-1)
-  - [2.4. A*](https://udayeon.github.io/2021/07/11/path-planning/#a) 
-  - [2.5. RRT](https://udayeon.github.io/2021/07/11/path-planning/#rrt) 
-  - [2.6. RRT*](https://udayeon.github.io/2021/07/11/path-planning/#rrt-1) 
+  - [2.4. A* Algorithm](https://udayeon.github.io/2021/07/11/path-planning/#a) 
+  - [2.5. RRT Algorithm](https://udayeon.github.io/2021/07/11/path-planning/#rrt) 
+  - [2.6. RRT* Algorithm](https://udayeon.github.io/2021/07/11/path-planning/#rrt-1) 
  
 - [3. Path Following](https://udayeon.github.io/2021/07/11/path-planning/#path-following)
   - [3.1. Definition](https://udayeon.github.io/2021/07/11/path-planning/#definition-3)
@@ -119,7 +119,7 @@ perception한 정보의 종류에 따라 경로 계획이 달라짐.
 |**장애물 없는 교차로**                        |신호만 고려                                             |
 |**복잡한 교차로**                              |주변 동적개체 고려해 우선 순위 판단하여 다양하게 주행가능|
 
-## 2.4. A* 
+## 2.4. A* Algorithm
 * * *
 ### 2.4.1 Definition
 * 출발점에서 목적지까지 최단거리를 구하는 그래프/[트리](https://udayeon.github.io/2021/07/11/path-planning/#tree-structure)
@@ -152,7 +152,7 @@ Path를 잇는다.
 {:.message}
 
 
-## 2.5. RRT 
+## 2.5. RRT Algorithm
 * * *
 ### 2.5.1. Definition
 * **Rapidly-exploring Random Tree**
@@ -168,7 +168,7 @@ Path를 잇는다.
 * **샘플링 기반**에 의거한 방식
 * 시작점과 목적지가 정해지면 임의의 Xrand를 뽑아 검색트리 T를 계속 확장. (신경망,나뭇가지처럼...)   
 * 이때, Xrand는 일반적으로 균등분포를 사용해 선택하고 목적지에 빠르게 다다르기 위해 목적지에 치우친 분포를 사용할 수도 있음.   
-* 트리 T가 목적지에 다다르면 목적지부터 시작점까지 재귀적으로 Tree를 검색하여 경로를 탐색.   
+* **🚨주의🚨**  트리 T가 목적지에 다다르면 목적지부터 시작점까지 **재귀적으로** Tree를 검색하여 경로를 탐색.   
 {:.message}
 
 ### 2.5.2. Pseudo Code
@@ -178,7 +178,7 @@ Path를 잇는다.
 ### 2.5.3. limit
 랜덤으로 샘플링하므로 최적화(Optimality)를 보장하진 않음. 따라서 RRT* 등장.
 
-## 2.6. RRT*
+## 2.6. RRT* Algorithm
 * * *
 ### 2.6.1. Definiton 
 ![rrtstar](https://user-images.githubusercontent.com/69246778/125198183-d4a01000-e29b-11eb-8c36-7a6ff32e24b3.jpg)
@@ -239,6 +239,7 @@ Path를 잇는다.
 * 차량 **제어** 와 밀접한 관련
 * **현재정보 + 예측정보(찰나의 짧은 시간 후를 예측)** 를 이용해 안정성을 높임 
 {:.message}
+* * *
 
 
 
@@ -253,4 +254,9 @@ Path를 잇는다.
 best parent 생성 후 주변 node를 재해석, 경로 체크하여 edge를 끊거나 만들어 냄.   
 
 ##### Collision avoidance
+
+* * *
+##### 참고
+https://msc9533.github.io/irl-study-2020/algorithm/2020/04/24/RRT_RRTstar.html
+http://www.kmooc.kr/courses/course-v1:KMUk+CK-KMUK_02+2021_1/courseware/25eed851127d4eaa866d7f05056b5158/02b7a4c06dbd48ea95603ce3889b35af/1?activate_block_id=block-v1%3AKMUk%2BCK-KMUK_02%2B2021_1%2Btype%40vertical%2Bblock%4047ab7edf20e242819d768524fd3ce39b
 
