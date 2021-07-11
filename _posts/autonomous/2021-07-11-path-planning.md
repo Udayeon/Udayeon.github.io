@@ -10,20 +10,20 @@ published: true
 ---
 
 # Path Planning
-- Path Planning
-  - Definiton
-  - Type
-    - Global Path Planning
-    - Local Path Planning
-  - Challenges
-  - Perception in path planning
+- [Path Planning](https://udayeon.github.io/2021/07/11/path-planning/#path-planning)
+  - [Definiton](https://udayeon.github.io/2021/07/11/path-planning/#definition)
+  - [Type](https://udayeon.github.io/2021/07/11/path-planning/#type)
+    - [Global Path Planning](https://udayeon.github.io/2021/07/11/path-planning/#global-path-planning)
+    - [Local Path Planning](https://udayeon.github.io/2021/07/11/path-planning/#local-path-planni
+  - [Challenges](https://udayeon.github.io/2021/07/11/path-planning/#challenges)
+  - [Perception in path planning](https://udayeon.github.io/2021/07/11/path-planning/#perception-in-path-planning)
  
-- Path Generation
-  - Definition
-  - Lane Keeping
-    - Process
-    - Challanges
-  - A* 
+- [Path Generation](https://udayeon.github.io/2021/07/11/path-planning/#path-generation)
+  - [Definition](https://udayeon.github.io/2021/07/11/path-planning/#definition-1)
+  - [Lane Keeping](https://udayeon.github.io/2021/07/11/path-planning/#lane-keeping)
+    - [Process](https://udayeon.github.io/2021/07/11/path-planning/#process)
+    - [Challanges](https://udayeon.github.io/2021/07/11/path-planning/#challenges-1)
+  - [A*](https://udayeon.github.io/2021/07/11/path-planning/#a) 
   - RRT 
   - RRT* 
  
@@ -133,24 +133,15 @@ perception한 정보의 종류에 따라 경로 계획이 달라진다.
 
 ### features
 1. 현실 세계를 2D grid로 표현하고 Grid Map 상에서 최단 경로를 계속해서 탐색해서 판단
-
-<2d격자 그림>
-
 2. Robotics 분야 - 로봇의 경로 생성
 3. 자율주행 분야 - 로봇보다 제한적이므로 활용 가능
 4. 8 방향의 격자에 대한 Cost를 계산해 최적의 경로를 찾는다.
-
-<8방향 고려하는 그림>
-
 5. 격자의 크기에 따라 특성이 다름
-
-<격자에 따라 다른 특성 보이는 그림>
 
 **따라서 적정한 수준의 격자를 찾는게 중요하다. obstacle 크기에 기반해 표현이 가능한 적절한 단위 선택**
 
 ### Process
 
-<A* 과정 필기 노트>
 
 
 ## RRT 
@@ -162,7 +153,6 @@ Rapidly-exploring Random Tree
 이때, Xrand는 균등분포를 사용해 선택하고 목적지에 빠르게 다다르기 위해 목적지에 치우친 분포를 사용할 수도 있다. 
 트리 T가 목적지에 다다르면 목적지부터 시작점까지 재귀적으로 Tree를 검색하여 경로를 탐색한다. 
 
-<RRT 과정 그림>
 
 ### Pseudo Code
 
@@ -176,8 +166,6 @@ Rapidly-exploring Random Tree
 RRT알고리즘에서 Optimality를 향상 시킨 알고리즘으로 최적의 이동 계획을 위한 Cost function을 도입한다. 새로운 State를 뽑을 때마다
 new state의 Neighbor들을 Optimal path로 rewiring한다.
 Xnew의 일정 반경 내의 어떤 node들의 후보 set를 추리고 그 후보 set에 최적 검사를 해서 Best parent Node를 설정한다.
-
-<RRT* 그림>
 
 ### Pseudo Code
 
