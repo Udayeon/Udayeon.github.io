@@ -129,7 +129,8 @@ perception한 정보의 종류에 따라 경로 계획이 달라진다.
 ## A* 
 
 ### Definition
-출발점에서 목적지까지 최단거리를 구하는 그래프/트리 알고리즘 중 하나.
+출발점에서 목적지까지 최단거리를 구하는 그래프/[트리](https://udayeon.github.io/2021/07/11/path-planning/#%ED%8A%B8%EB%A6%AC%EA%B5%AC%EC%A1%B0)
+알고리즘 중 하나.
 
 ### features
 1. 현실 세계를 2D grid로 표현하고 Grid Map 상에서 최단 경로를 계속해서 탐색해서 판단
@@ -164,7 +165,7 @@ Rapidly-exploring Random Tree
 
 ### Definiton 
 RRT알고리즘에서 Optimality를 향상 시킨 알고리즘으로 최적의 이동 계획을 위한 Cost function을 도입한다. 새로운 State를 뽑을 때마다
-new state의 Neighbor들을 Optimal path로 rewiring한다.
+new state의 Neighbor들을 Optimal path로 [rewiring](https://udayeon.github.io/2021/07/11/path-planning/#rewiring)한다.
 Xnew의 일정 반경 내의 어떤 node들의 후보 set를 추리고 그 후보 set에 최적 검사를 해서 Best parent Node를 설정한다.
 
 ### Pseudo Code
