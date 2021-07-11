@@ -67,6 +67,7 @@ published: true
 
 ## 1.3. Challenges
 * * *
+
 |                               |                                                |
 |:------------------------------|:-----------------------------------------------|
 |기본적인 차선 유지 및 차선 변경 |                                                |
@@ -109,6 +110,7 @@ perception한 정보의 종류에 따라 경로 계획이 달라짐.
 
 ## 2.3. Challenges
 * * *
+
 |                                          |                                                        |
 |:-----------------------------------------|:-------------------------------------------------------|
 |주변에 장애물X, 모든 차가 자기 자리를 지킴 |차선 인식해서 걍 따르면 됨                               |
@@ -117,7 +119,7 @@ perception한 정보의 종류에 따라 경로 계획이 달라짐.
 |장애물 없는 교차로                         |신호만 고려                                             |
 |복잡한 교차로                              |주변 동적개체 고려해 우선 순위 판단하여 다양하게 주행가능|
 
-## 2.4. A*
+## 2.4. A* 
 * * *
 ### 2.4.1 Definition
 * 출발점에서 목적지까지 최단거리를 구하는 그래프/[트리](https://udayeon.github.io/2021/07/11/path-planning/#tree-structure)
@@ -142,56 +144,59 @@ perception한 정보의 종류에 따라 경로 계획이 달라짐.
 ![1](https://user-images.githubusercontent.com/69246778/125193762-2be8b500-e289-11eb-8201-88dce9308cc9.jpg)
 ![2](https://user-images.githubusercontent.com/69246778/125193879-bdf0bd80-e289-11eb-846c-fb71c0fd71bc.jpg)   
 - 경로 선택 실패 : Open List가 비어 있는 경우, 조사할 부분이 없음을 의미하므로 길이 없다고 판단.   
-- 결로 선택 성공 : 목표한 사각형이 Open List에 들어가는 경우, 앞으로 조사할 경로 중에 목적지가 포함되는 것.    
-**주의**   
+- 경로 선택 성공 : 목표한 사각형이 Open List에 들어가는 경우, 앞으로 조사할 경로 중에 목적지가 포함되는 것.    
+**🚨주의🚨**   
 * 트리 구조 알고리즘은 경로 선택 과정이 시작에서 끝으로 가는 것이 아니라, 끝에서 시작으로 거꾸로 가는 것.   
 * 목표한 사각형이 Open list에 들어가는 경우에, 그 때부터 도착점부터 출발점까지 재귀적으로(부모 노드를 가리키는 방향으로)   
 Path를 잇는다.
 {:.message}
 
 
-## RRT 
-
-### Definition
-
+## 2.5. RRT 
+* * *
+### 2.5.1. Definition
 * Rapidly-exploring Random Tree
 * 무작위 sample을 사용해 고차원의 구성공간을 탐색하는 알고리즘. 
 * 시작점과 목적지가 정해지면 임의의 Xrand를 뽑아 검색트리 T를 확장.   
 * 이때, Xrand는 균등분포를 사용해 선택하고 목적지에 빠르게 다다르기 위해 목적지에 치우친 분포를 사용할 수도 있음.   
 * 트리 T가 목적지에 다다르면 목적지부터 시작점까지 재귀적으로 Tree를 검색하여 경로를 탐색.   
+{:.message}
+
+### 2.5.2. Pseudo Code
 
 
-### Pseudo Code
-
-
-### limit
+### 2.5.3. limit
 랜덤으로 샘플링하므로 최적화(Optimality)를 보장하진 않음. 따라서 RRT* 등장.
 
-## RRT*
-
-### Definiton 
+## 2.6. RRT*
+* * *
+### 2.6.1. Definiton 
 * RRT알고리즘에서 Optimality를 향상 시킨 알고리즘으로 최적의 이동 계획을 위한 Cost function을 도입.   
 * 새로운 State를 뽑을 때마다 new state의 Neighbor들을 Optimal path로 [rewiring](https://udayeon.github.io/2021/07/11/path-planning/#rewiring).   
 * Xnew의 일정 반경 내의 어떤 node들의 후보 set를 추리고 그 후보 set에 최적 검사를 해서 Best parent Node를 설정.   
+{:.message}
 
-### Pseudo Code
+### 2.6.2. Pseudo Code
 
-## RRT vs RRT*
+### 2.6.3. RRT vs RRT*
 
 |     공통점   |
 |:----------------------|
 | - 실시간성 보장 되어야 함(obstacle정보도 고려)|
 | - 적정량의 트리구조 (너무 많으면 실시간성이 떨어지고 적으면 정확도가 떨어진다.)|
+{:.message}
 
-# Path following
+# 3. Path following
 * * *
-## Definition
+## 3.1. Definition
+* * * 
 * 경로 생성 과정을 통해 선택된 실시간 경로를 차량이 정확하게 따라가게 하는 기술로 적절한 조향각과 속도를 결정.   
 * 차량이 움직이는 것을 조절하므로 **제어**와 밀접한 관련.   
 * 실시간성을 보장해야 한다. Lane keeping으로 결정한 차선을 cm단위로 정확하고 정밀하게 추종하는 것이 중요.   
 크기가 큰 차량의 경우 방향이 조금만 틀어져도 옆 차선을 침범할 위험이 있기 때문이다.   
 
-## Challenges
+## 3.2. Challenges
+* * * 
 
 |           |                                                                                |
 |:----------|:-------------------------------------------------------------------------------|
@@ -199,20 +204,27 @@ Path를 잇는다.
 |좁은 골목길| 낮은 속도로 섬세하고 정밀한 조향각 제어 필요|
 |극심한 각도의 코너| Human-like한 주행 필요|
 
-## Pure Pursuit
-### Definition
+## 3.3. Pure Pursuit
+* * *
+### 3.3.1 Definition
 * 하나의 점을 선택해 경로를 추종하는 방식으로 목표 경로를 실시간으로 추종하는 기하학 기반의 알고리즘.   
 * 하나의 목표 지점의 골라서 Steering angle을 발행한다는 특징이 있고 차량의 **제어**와 밀접한 관련.   
 * **차량의 Path의 한 점을, 원호를 그리며 따라가는 방법**   
+{:.message}
 
-### Lookahead distance
+### 3.3.2. Lookahead distance
 * path의 수많은 점들 중 어떤 점을 잡을지 기준을 제시하는 값.    
 * 속도와 비례하므로 저속일 때 가까운 점을 선택하고, 고속일 때 먼 점을 선택.   
+{:.message}
 
-## Model Predictive Control, MPC
-
-### Definition 
-
+##3.4. Model Predictive Control, MPC
+* * *
+### 3.4.1. Definition 
+* 목표 경로를 최적으로 추종하여 쫓아가는 알고리즘
+* Path를 인위적으로 바꿔가면서 실시간 대응
+* 차량 제어와 밀접한 관련
+* **현재정보 + 예측정보(찰나의 짧은 시간 후를 예측)** 를 이용해 안정성을 높임 
+{:.message}
 
 
 
