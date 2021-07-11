@@ -10,6 +10,15 @@ published: true
 ---
 
 # Path Planning
+- Path Planning
+  - Definiton
+  - Type
+    - Global Path Planning
+    - Local Path Planning
+  - Challenges
+  - Perception in path planning
+- Path Generation
+- 
 
 
 # Path Planning
@@ -55,7 +64,7 @@ Lane keeping 기반
 **실시간 처리가 필요하므로 너무 무거운 알고리즘을 쓰면 안됨**
 
 
-## 당면 과제
+## Challenges
 
 |                               |                                                |
 |:------------------------------|:-----------------------------------------------|
@@ -84,7 +93,32 @@ perception한 정보의 종류에 따라 경로 계획이 달라진다.
 
 # Path generation
 * * *
+
 ## Definition
+
+어떤 경로를 끊임없이 실시간으로 생성해서 선택하는 알고리즘
+
+## Lane Keeping
+경로 생성의 가장 간단한 기술 중 하나
+
+### Process
+1. Deep Learning, Classical Vision 기술로 차선 인식
+2. 차선 중심에 Set Point 도출 (경로 생성기술)
+3. 그 Set Point 들을 다항식 보간법을 이용해 차로의 중심 Line 형성
+4. 그 Path를 추종
+
+### Challenges
+
+|                                          |                                                        |
+|:-----------------------------------------|:-------------------------------------------------------|
+|주변에 장애물X, 모든 차가 자기 자리를 지킴 |차선 인식해서 걍 따르면 됨                               |
+|주변 차량 인접 or 화물차가 옆에            |주변 차량 고려한 미세조정 필요                           |
+|갓길 주차차량 or 오토바이                  |Human-like한 주행으로 살짝만 비끼기                      |    
+|장애물 없는 교차로                         |신호만 고려                                             |
+|복잡한 교차로                              |주변 동적개체 고려해 우선 순위 판단하여 다양하게 주행가능|
+
+## A* 알고리즘
+
 
 # Path following
 * * *
