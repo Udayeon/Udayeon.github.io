@@ -48,13 +48,13 @@ published: true
 
 <1지역경로계획그림>
 
-** (1)obstacle 없는 경우**
+**(1)obstacle 없는 경우**
 
 <2obstacle없는 경우그림>
 
 Lane keeping 기반
 
-** (2)obstacle 있는 경우**
+**(2)obstacle 있는 경우**
 
 <3obstacle 있는 경우 그림>
 
