@@ -9,7 +9,7 @@ menu: true
 ---
 ## Dayeon Yu
 
-* Kookmin University, Department of Automotive Engineering
+* Kookmin University, Department of Automotive Engineering B.S candidate
 * Research Intern at Intelligent Vehicle Signal Processing Lab, Kookmin University
 
 
