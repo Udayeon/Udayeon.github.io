@@ -230,11 +230,20 @@ Path를 잇는다.
 * **차량의 Path의 한 점을, 원호를 그리며 따라가는 방법**이라 할 수 있다.  
 {:.message}
 
-### 3.3.2. Lookahead distance
+### 3.3.2. Look-ahead distance 
 ![purehigh](https://user-images.githubusercontent.com/69246778/125227267-89264a00-e30d-11eb-9c51-577f20e417a8.jpg)
 ![purelow](https://user-images.githubusercontent.com/69246778/125227259-86c3f000-e30d-11eb-99b4-2fdbe8673560.jpg)
 * path의 수많은 점들 중 어떤 점을 잡을지 **기준**을 제시하는 값.    
 * **속도와 비례**하므로 저속일 때 가까운 점을 선택하고, 고속일 때 먼 점을 선택.   
+{:.message}
+
+### 3.3.3. Look-ahead distance setting
+* 가야하는 path의 정보(Way Point)를 미리알 수 있으면 좋다.   
+  EX) 직진하다가 극심한 코너를 미리 인지하여 Look-ahead distance를 미리 줄인다.
+* Maximun/Minimum bound가 필요하다. 너무 작거나 크면 성능이 불안정하다.
+* Velocity Control: Obstacle이 존재하면 제동거리 기반의 가/감속 결정   
+$$ d_2 = v^2 /2gf = V^2 /254f $$   
+$$ (d_2:제동정지거리, v,V : 주행속도, g:중력가속도, f:노면-타이어 간 종방향 미끄럼 마찰계수) $$   
 {:.message}
 
 ## 3.4. Model Predictive Control, MPC
