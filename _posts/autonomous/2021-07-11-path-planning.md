@@ -15,24 +15,24 @@ published: true
 # Path Planning
 Path Planning, Path Generation, Path Following, Algorithm
 
-- [1. Path Planning](https://udayeon.github.io/2021/07/11/path-planning/#path-planning)
-  - [1.1. Definiton](https://udayeon.github.io/2021/07/11/path-planning/#definition)
-  - [1.2. Type](https://udayeon.github.io/2021/07/11/path-planning/#type)
-  - [1.3. Challenges](https://udayeon.github.io/2021/07/11/path-planning/#challenges)
-  - [1.4. Perception in path planning](https://udayeon.github.io/2021/07/11/path-planning/#perception-in-path-planning)
+- [1. Path Planning](https://udayeon.github.io/2021/07/11/path-planning/#1-path-planning)
+  - [1.1. Definiton](https://udayeon.github.io/2021/07/11/path-planning/#11-definition)
+  - [1.2. Type](https://udayeon.github.io/2021/07/11/path-planning/#12-type)
+  - [1.3. Challenges](https://udayeon.github.io/2021/07/11/path-planning/#13-challenges)
+  - [1.4. Perception in path planning](https://udayeon.github.io/2021/07/11/path-planning/#14-perception-in-path-planning)
  
-- [2. Path Generation](https://udayeon.github.io/2021/07/11/path-planning/#path-generation)
-  - [2.1. Definition](https://udayeon.github.io/2021/07/11/path-planning/#definition-1)
-  - [2.2. Lane Keeping](https://udayeon.github.io/2021/07/11/path-planning/#lane-keeping)
-  - [2.3. Challenges](https://udayeon.github.io/2021/07/11/path-planning/#challenges-1)
-  - [2.4. A* Algorithm](https://udayeon.github.io/2021/07/11/path-planning/#a) 
-  - [2.5. RRT Algorithm](https://udayeon.github.io/2021/07/11/path-planning/#rrt) 
-  - [2.6. RRT* Algorithm](https://udayeon.github.io/2021/07/11/path-planning/#rrt-1) 
+- [2. Path Generation](https://udayeon.github.io/2021/07/11/path-planning/#2-path-generation)
+  - [2.1. Definition](https://udayeon.github.io/2021/07/11/path-planning/#21-definition)
+  - [2.2. Lane Keeping](https://udayeon.github.io/2021/07/11/path-planning/#22-lane-keeping)
+  - [2.3. Challenges](https://udayeon.github.io/2021/07/11/path-planning/#23-challenges)
+  - [2.4. A* Algorithm](https://udayeon.github.io/2021/07/11/path-planning/#24-a-algorithm) 
+  - [2.5. RRT Algorithm](https://udayeon.github.io/2021/07/11/path-planning/#25-rrt-algorithm) 
+  - [2.6. RRT* Algorithm](https://udayeon.github.io/2021/07/11/path-planning/#26-rrt-algorithm) 
  
-- [3. Path Following](https://udayeon.github.io/2021/07/11/path-planning/#path-following)
-  - [3.1. Definition](https://udayeon.github.io/2021/07/11/path-planning/#definition-3)
-  - [3.2. Pure pursuit](https://udayeon.github.io/2021/07/11/path-planning/#pure-pursuit)
-  - [3.3. Model Predictive Control, MPC](https://udayeon.github.io/2021/07/11/path-planning/#model-predictive-control-mpc)
+- [3. Path Following](https://udayeon.github.io/2021/07/11/path-planning/#3-path-following)
+  - [3.1. Definition](https://udayeon.github.io/2021/07/11/path-planning/#31-definition)
+  - [3.2. Pure pursuit](https://udayeon.github.io/2021/07/11/path-planning/#33-pure-pursuit)
+  - [3.3. Model Predictive Control, MPC](https://udayeon.github.io/2021/07/11/path-planning/#34-model-predictive-control-mpc)
 
 
 # 1. Path Planning
@@ -244,7 +244,7 @@ Path를 잇는다.
   EX) 직진하다가 극심한 코너를 미리 인지하여 Look-ahead distance를 미리 줄인다.
 * Maximun/Minimum bound가 필요하다. 너무 작거나 크면 성능이 불안정하다.
 * Velocity Control: Obstacle이 존재하면 제동거리 기반의 가/감속 결정   
-![CodeCogsEqn](https://user-images.githubusercontent.com/69246778/125229028-dbb53580-e310-11eb-89fe-55b97ea0e6ff.gif)
+![CodeCogsEqn](https://user-images.githubusercontent.com/69246778/125229028-dbb53580-e310-11eb-89fe-55b97ea0e6ff.gif)   
 (d_2:제동정지거리, v,V : 주행속도, g:중력가속도, f:노면-타이어 간 종방향 미끄럼 마찰계수)
 {:.message}
 
@@ -264,8 +264,9 @@ Path를 잇는다.
 |* 기하학적 접근방법        |* 모델 예측 접근 방법 | 
 |* 다양한 동역학적 변수 제외 |* 실시간 예측 및 추종 |
 |* 미래 예측 어려움         |* 광범위한 범위에서 주목받는 연구 분야|   
+{:.message}
 
-
+###
 
 
 
