@@ -242,8 +242,8 @@ Path를 잇는다.
   EX) 직진하다가 극심한 코너를 미리 인지하여 Look-ahead distance를 미리 줄인다.
 * Maximun/Minimum bound가 필요하다. 너무 작거나 크면 성능이 불안정하다.
 * Velocity Control: Obstacle이 존재하면 제동거리 기반의 가/감속 결정   
-$$ d_2 = v^2 /2gf = V^2 /254f $$   
-$$ (d_2:제동정지거리, v,V : 주행속도, g:중력가속도, f:노면-타이어 간 종방향 미끄럼 마찰계수) $$   
+$$d_2 = v^2 /2gf = V^2 /254f$$   
+$$(d_2:제동정지거리, v,V : 주행속도, g:중력가속도, f:노면-타이어 간 종방향 미끄럼 마찰계수)$$   
 {:.message}
 
 ## 3.4. Model Predictive Control, MPC
