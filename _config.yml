@@ -160,6 +160,13 @@ collections:
     permalink:         /projects/:path/
     output:            true
 
+# Math equation
+markdown: kramdown
+highlighter: rouge
+lsi: false
+excerpt_separator: "\n\n"
+incremental: false
+
 
 # File inclusion/exclusion
 # ========================================================================================
