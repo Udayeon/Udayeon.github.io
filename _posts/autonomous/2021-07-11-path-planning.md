@@ -223,6 +223,7 @@ Path를 잇는다.
 ## 3.3. Pure Pursuit
 * * *
 ### 3.3.1 Definition
+![pure1](https://user-images.githubusercontent.com/69246778/125227247-7f044b80-e30d-11eb-99fd-6e7768084ce9.jpg)
 * 하나의 점을 선택해 경로를 추종하는 방식으로 목표 경로를 실시간으로 추종하는 기하학 기반의 알고리즘.   
 * 하나의 목표 지점의 골라서 지속적으로 추종할 수 있는 Steering angle을 발행
 *  **제어**와 밀접한 관련.   
@@ -230,6 +231,8 @@ Path를 잇는다.
 {:.message}
 
 ### 3.3.2. Lookahead distance
+![purehigh](https://user-images.githubusercontent.com/69246778/125227267-89264a00-e30d-11eb-9c51-577f20e417a8.jpg)
+![purelow](https://user-images.githubusercontent.com/69246778/125227259-86c3f000-e30d-11eb-99b4-2fdbe8673560.jpg)
 * path의 수많은 점들 중 어떤 점을 잡을지 **기준**을 제시하는 값.    
 * **속도와 비례**하므로 저속일 때 가까운 점을 선택하고, 고속일 때 먼 점을 선택.   
 {:.message}
