@@ -316,5 +316,5 @@ best parent 생성 후 주변 node를 재해석, 경로 체크하여 edge를 끊
 * * *
 ##### 참고
 [RRT&RRT*](https://msc9533.github.io/irl-study-2020/algorithm/2020/04/24/RRT_RRTstar.html)
-[seudo code자료](http://www.kmooc.kr/courses/course-v1:KMUk+CK-KMUK_02+2021_1/courseware/25eed851127d4eaa866d7f05056b5158/02b7a4c06dbd48ea95603ce3889b35af/1?activate_block_id=block-v1%3AKMUk%2BCK-KMUK_02%2B2021_1%2Btype%40vertical%2Bblock%4047ab7edf20e242819d768524fd3ce39b)
+[Pseudo code자료](http://www.kmooc.kr/courses/course-v1:KMUk+CK-KMUK_02+2021_1/courseware/25eed851127d4eaa866d7f05056b5158/02b7a4c06dbd48ea95603ce3889b35af/1?activate_block_id=block-v1%3AKMUk%2BCK-KMUK_02%2B2021_1%2Btype%40vertical%2Bblock%4047ab7edf20e242819d768524fd3ce39b)
 [pure pursuit](https://www.researchgate.net/figure/Illustration-of-Pure-Pursuit-algorithm-principle-Knowing-the-current-robot-location-and_fig6_319714221)
