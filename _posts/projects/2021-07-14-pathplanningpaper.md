@@ -179,6 +179,31 @@ M * N 행렬로 λ를 정의하고, 설계 변수는 λ_j,k(j,k항목)임.
 각 열은 모든 M개의 차선의 convex 조합에 대해 multiplier역할을 해줌.
 각 행은 서로 다른 time step에 대한 multiplier임.
 λ는 Λ_M * N 에 속하고 이건 R_MN으로 정의된 단위 simplex 집합이다.
+   식   
+   
+#### Lane-Associated Potential Field
+**안정적이고 자연스러운 조작을 위해 우리는 lane-associated potential field를 소개한다.**
+이것은 다음과 같이 나타내고, 이 식은 차량의 현재 차선의 종방향에 있는 주변 차량에 적용(?) 한다.
+(이때, 주변차량의 index 집합은 V로 표현됨)   
+위 식에서 d는 시간k일 때 j번째 차선에 함꼐 있는 주변 차량과 자차 간의 종방향 거리를 나타냄.   
+s는 potential field의 maximum magnitude
+감마는 potential field 의 기울기를 결정함. 
+낮은 속도의 차량보다 빠른 속도의 차량에도 광범위하게 이를 적용하기 위해 감마는 j번째 고속도로의 차량 속도 v와 비례하게 설정한다.
+그 증명은 다음과 같다.
+**Firg 4**
+속도v0=10일 때 주변차량에 적용되는 Lane-Associated Potential Field의 형태.
+Longitudinal = ego vehicle - surrounding vehicle
+주변 차량이 자차보다 앞에 있으면 음수값. 
+
+#### Collison Avoidance
+potential field가 차량과 다른 것들 간의 특정 거리를 유지하도록 돕지만 추가적으로 충돌회피를 보장하는 매카니즘이 필요함
+우리는 종/횡 방향 모두에서 ego 차량의 안전을 보장하기 위해 MPC에서 일종의 제약 조건을 가지고 충돌 회피를 시행함.   
+자차와 주변 차량을 흔히 사용하는 원이나 타원 대신 사각형으로 모델링함. 
+왜냐하면 사각형이 차량의 모양을 더 잘 나타낼 수 있으니까
+게다가, 주행 환경에서 만나는 obstacle은 주로 바리게이트나 공사장 이므로 다면체로 나타내기 더 좋음.
+그러므로 우리는 바ㅏㄻ직하게 MPC를 이요해 다면체 충돌 회피 전략을 개발함.
+다면체는 A_c<b로 표현할 수 있음. 이때, A와 비는 적절한 차원을 나타냄. 
+충돌회피는 두 다면체가 교차하지 않아야하며 이는 다음의 조건에 해당함.   
 
 
 ##### [Heading angle:Bicycle Model](https://archit-rstg.medium.com/two-to-four-bicycle-model-for-car-898063e87074)
