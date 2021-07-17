@@ -5,7 +5,7 @@ description: |
   경로계획 관련 논문 조사 및 MPC 실습과제
   
 tags:
-  - project
+  - projects
 use_math : true
 comments : true
 author: Udayeon
