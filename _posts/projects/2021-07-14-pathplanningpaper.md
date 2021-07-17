@@ -168,7 +168,10 @@ N을 prediction horizon으로 두자.
 먼저 각 항마다 곱해진 w는 가중치를 나타내는 것임   
 
 #### Lane Selection
-차선을 선택할 때 이 식을 어떻게 활용할까?
+MPC식을 보면 h(x_k,y_k,p_c^j)^2로 정의 된 항이 있음.
+이는 k시간에 (xk,yk)에 존재하는 차량과 j번째 차로의 중심선 사이의 lateral 거리를 나타낸다.
+이때, pcj는 4차 다항식으로 정의할 수 있다.
+
    식 
 차량이 머물 차선을 결정하기 위해 MPC를 이용해 **혼합정수문제**를 정의하고, 이 때 정수 변수들은 차선의 선택을 반영함.
 그러나, 이 문제를 **non-convex programming**으로 풀기에는 (1b)와 (1d)가 계산하기 매우 버거우므로 실제 구현에는 적합하지 않음.
@@ -201,7 +204,7 @@ potential field가 차량과 다른 것들 간의 특정 거리를 유지하도�
 자차와 주변 차량을 흔히 사용하는 원이나 타원 대신 사각형으로 모델링함. 
 왜냐하면 사각형이 차량의 모양을 더 잘 나타낼 수 있으니까
 게다가, 주행 환경에서 만나는 obstacle은 주로 바리게이트나 공사장 이므로 다면체로 나타내기 더 좋음.
-그러므로 우리는 바ㅏㄻ직하게 MPC를 이요해 다면체 충돌 회피 전략을 개발함.
+그러므로 우리는 바람직하게 MPC를 이용해 다면체 충돌 회피 전략을 개발함.
 다면체는 A_c<b로 표현할 수 있음. 이때, A와 비는 적절한 차원을 나타냄. 
 충돌회피는 두 다면체가 교차하지 않아야하며 이는 다음의 조건에 해당함.   
 
@@ -213,4 +216,13 @@ potential field가 차량과 다른 것들 간의 특정 거리를 유지하도�
 ##### [Simplex](https://en.wikipedia.org/wiki/Simplex)
 n차원 벡터 공간에 n+1개의 점을 가지는 볼록 집합을 말함
 ##### [Convex set](https://terms.naver.com/entry.naver?docId=3474742&cid=58439&categoryId=58439)
-기하학적 집합에 포함되는 임의의 2개의 점을 결합하는 직선상의 모든 점이, 그 기하학적 집합에 포함되는 경우의 집합.
+[convex,non-convex](https://www.oreilly.com/radar/the-hard-thing-about-deep-learning/?twitter=@bigdata)
+[convex combination](https://blog.naver.com/wjddudwo209/222400921429,https://en.wikipedia.org/wiki/Convex_combination)
+[convex combination](https://blog.naver.com/atelierjpro/221174354585)
+convex set : 기하학적 집합에 포함되는 임의의 2개의 점을 결합하는 직선이 다시 그 기하학적 집합에 포함되는 경우의 집합.
+
+
+##### [Polynomianl](https://www.researchgate.net/publication/291827239_Lane_Information_Fusion_Scheme_using_Multiple_Lane_Sensors)
+차선의 모델은 사용 목적  및  센서 특징  및  탐지범위에  따라 1차, 2차 또는 3차 다항식 기반의 차선 모델로 모델링  할  수  있다(그림 2). 1차 다항식 모델은 차량  주행  정보  중  차선 오프셋과 방향성 정보만 추출되어  사용이 적으며 곡률 정보가 가미된 2차원 이상의 모델이 주류를 이룬다.  본  연구에서는 곡률의 변화가 선형적으로  이루어진다는 가정을 바탕으로 하는 차량의 3차  다항식으로 표현한 모델[1]을  기준으로 차선 정보를 추출한다.3차 다항식 모델은 식 (1)을 기반으로 하며 각 계수의  의미는 (lateral offset), (heading angle), (curvature), (curvature derivative)이다.fxCCxCxCx=+ + +
+3차 다항식으로 차선을 표현하는 건 찾았지만 4차 다항식으로 표현하는건 어케하는건지?
+
