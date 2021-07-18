@@ -12,7 +12,7 @@ author: Udayeon
 published: true
 ---
 
-# (Review)Path Planning and Tracking for Vehicle Collision Avoidance Based on Model Predictive Control With Multiconstraints
+# (Review) Path Planning and Tracking for Vehicle Collision Avoidance Based on Model Predictive Control With Multiconstraints
 - 개요
 - 논문
   - Abstract
