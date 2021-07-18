@@ -44,6 +44,12 @@ IEEE TRANSACTIONS ON VEHICULAR TECHNOLOGY, VOL. 66, NO. 2, FEBRUARY 2017
 
 # 4. Vehicle mathematical model for path-tracking problem 
 * * *
+Path tracking 문제는 차량 모델링에 의존한다. 왜냐하면 모델링은 MMPC법 설계에 필요한 요소이기 때문이다. 본 논문에서 사용하는 모델은 차량의 
+운동학적 및 동적 측면을 고려해야 한다. 여기서, 우리는 충돌 회피 시스템 개발에 사용되는 차량의 확장적 수학 모델을 제안한다. [Section 4-A]에
+서는 lateral 및 yaw dynamic을 고려한 차량 dynamic 모델을 개발하고 [Section 4-B]에서는 MMPC개발에 사용되는 이산 상태 공간 차량 모델을 
+소개한다.   
+
+## 4.A. Vehicle Dynamic Model for Path Tracking
 이 Section에서는 control design을 사용하기 위한 차량과 타이어의 모델링에 대해 설명한다. path-tracking 문제에서 차량 모델링에서의 가정은
 다음과 같다.
 - longitudinal 속도는 일정하다.
@@ -57,13 +63,53 @@ lf와 lr은 각각 Center of gravity(CG)로 부터 각각 앞과 뒤 바퀴 간�
 코너링하는 타이어의 힘에 대한 여러가지 모델이 존재한다. 타이어의 slip angle이 작을 때, lateral tire force는 slip angle의 선형함수로
 근사된다. 앞바퀴, 뒷바퀴의 tire force와 tire slip angle은 다음과 같이 정의된다.
 
-여기서 delta는 앞바퀴의 조향각이다. Cf와 Cr은 각각 앞바퀴 뒷바퀴의 선형화된 cornering stiffness를 나타낸다.
+여기서 delta는 앞바퀴의 조향각이다. Cf와 Cr은 각각 앞바퀴 뒷바퀴의 선형화된 cornering stiffness를 나타낸다.   
+식 (14),(15)를 식(12),(13)에 대입해서 구한 다음의 식은 lateral 및 yaw 의 동력학을 다루는 식이 된다.
+
+## 4.B. Discrete linear vehicle model for MPC
+여기서, 우리는 MMPC최적화를 위해 이산 상태-공간 차량 모델을, 이전 section에서 얻은 수학적 모델로부터 유도한다. 새로운 차량 모델에서, 상태
+공간 벡터는 차량 CG의 lateral 방향 Vx, 차량의 side slip angle β, yaw angle ψ, yaw rate ψ'로 구성된다. input은 앞 바퀴의 steering angle δ로 주어진다. 이런 정의에 의해,  state-space 벡터는 다음과 같다.
+
+이 상태 방정식은 이전 section에서 유도된 **(식16)** 과 **(식17)** 에 기반해 다음과 같이 쓸 수 있다. 
+이 때 Ac, Bc, Cc는 다음과 같다.   
+앞에서 언급한 차량 모델은 선형화 된 연속시간 및 단일입력, 다중출력 시스템이다. 그러나, 제어될 시스템은 일반적으로 MPC literatue의 discrete
+state-space model에 의해 모델링된다. 따라서, **(식19)** 와 **(식20)** 은 다음의 식을 얻기 위해 discrete state-space 모델로 변환되어야 한다.
+
 
 ```
 📝NOTE
-
+MPC literaure ? 
+Discrete state-space model : 29번 문헌 174page
 ```
 
+여기서 Ad와 Bd는 각각 discrete state-sapce 방정식을 위한 상태 매트릭스와 제어 매트릭스이다. 이 둘은 다음과 같이 오일러 방정식으로
+계산할 수 있다.   
+
+```
+📝NOTE
+Ad : state 매트릭스
+Bd : control 매트릭스
+```
+
+이 때, delta T 는 discrete state-space 모델의 샘플링 간격을 의미한다.   
+lateral 위치, sideslip angle, 그리고 yaw rate는 다음의 식을 사용하여 출력할 수 있다.
+
+
+여기서
+Yd(k)와 Cd는 다음과 같다.
+
+```
+📝NOTE
+Cc=Cd
+```
+
+MMPC를 사용한 Path tracking에서 [plant]변수에 의한 하드웨어 constraint와 output에 의한 소프트웨어 constraint에 의해 constrained control problem 을 실시간 최적화 문제로 공식화하는 것은 일반적이다. 
+
+```
+📝NOTE
+하드웨어, 소프트웨어 모두 constraint이 있으므로 
+constrain된 제어 문제를 실시간 최적화 문제로 생각해 푸는 것은 당연..
+```
 
 
 
