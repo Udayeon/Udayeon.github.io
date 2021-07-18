@@ -20,13 +20,13 @@ IEEE TRANSACTIONS ON VEHICULAR TECHNOLOGY, VOL. 66, NO. 2, FEBRUARY 2017
 {:.message}
 
   -  Abstract
-  - 1. Introduction
-  - 2. Description of collision avoidance system
-  - 3. Path Planning for collision avoidance using 3-D virtual dangerous potential field
-  - 4. Vehicle mathematical model for path-tracking problem 
-  - 5. Design fo multiconstrained model predictive control
-  - 6. Simulations of path tracking in different scenarios using carsim and simulink
-  - 7. Conclusion
+    - 1. Introduction
+    - 2. Description of collision avoidance system
+    - 3. Path Planning for collision avoidance using 3-D virtual dangerous potential field
+    - 4. Vehicle mathematical model for path-tracking problem 
+    - 5. Design fo multiconstrained model predictive control
+    - 6. Simulations of path tracking in different scenarios using carsim and simulink
+    - 7. Conclusion
 
 * * *
 
@@ -41,21 +41,21 @@ path planning과 tracking은 자율주행 차량을 충돌로부터 자유롭게
 ![fig11](https://user-images.githubusercontent.com/69246778/126057072-0a4934ca-a9af-4668-8ff2-28366a614b20.png)
 **(Fig 11)** 은 실행한 것을 나타낸 블럭 다이어그램이다.
 
-**NOTE**       
+**NOTE📝**       
 Lateral Position, Yaw rate, Sideslip angle정보와 미리 결정했던 Trajectory 정보를 MPC 컨트롤러가 받아 Front Wheel angle을 조작한다.
 계속해서 업데이트 되는 정보를 바탕으로 조향을 결정한다.
 {:.message}
 
-이 아키텍쳐에서는 Carsim의 고성능 "big sedan"모델을 사용한다.   
-MATLAB Simulink에 내장된 MMPC는 [Section 3]에서 소개한 Planned trajectory를 tracking하기 위해 [closed-loop] 스티어링 조작을 실행하는데 사용된다. 상황이 달라도 같은 컨트롤러를 이용해 차량을 제어할 수 있음에 유념해야 한다.   
-이 시뮬레이션 set는 초기 속도로 미리 계획된 경로를 따라가는 **충돌회피 긴급 조작**(직역했음...;)을 나타낸다.  
-제어 입력값은 앞 바퀴의 steering angle이고, 목표는 차량과 계획된 경로 간의 편차를 최소화 하면서 계획된 경로를 최대한 가까이 따라가는 것이다.   
-이러한 맥락에서, 우리는 미래의 차량이 동물 바위 또는 쓰러진 나무나 나뭇가지 같은 도로 위의 obstacle을 식별하고 완전히 자율적인 조향 시스템으로 원하는 trajectory를 따를 것이라 생각한다. 
+이 아키텍쳐에서는 Carsim의 고성능 "big sedan"모델을 사용한다. 
+MATLAB Simulink에 내장된 MMPC는 [Section 3]에서 소개한 Planned trajectory를 tracking하기 위해 [closed-loop] 스티어링 조작을 실행하는데 사용된다. 상황이 달라도 같은 컨트롤러를 이용해 차량을 제어할 수 있음에 유념해야 한다.
+이 시뮬레이션 set는 초기 속도로 미리 계획된 경로를 따라가는 **충돌회피 긴급 조작**(직역했음...;)을 나타낸다.
+제어 입력값은 앞 바퀴의 steering angle이고, 목표는 차량과 계획된 경로 간의 편차를 최소화 하면서 계획된 경로를 최대한 가까이 따라가는 것이다.
+이러한 맥락에서, 우리는 미래의 차량이 동물 바위 또는 쓰러진 나무나 나뭇가지 같은 도로 위의 obstacle을 식별하고 완전히 자율적인 조향 시스템으로
+원하는 trajectory를 따를 것이라 생각한다.   
 [Section A]는 시뮬레이션 시나리오의 상세 내용을 설명하고 [Section B]에서는 시뮬레이션의 가장 중요한 결과와 발견을 설명한다. 
 
-**NOTE**   
-도로 위의 obstacle과의 충돌을 긴급히 회피하는 시나리오를 소개한다. 
-유념할 것은   
+**NOTE📝**
+도로 위의 obstacle과의 충돌을 긴급히 회피하는 시나리오를 소개한다. 유념할 것은
 1. 여러 상황에서도 같은 controller를 사용한다는 것
 2. control input : 앞바퀴의 steering angle
 3. 목표 : 계획된 경로를 추종하는 것
@@ -68,10 +68,10 @@ lateral tracking error, yaw rate, sideslip angle에 대한 constraint를 가진 
 컨트롤러 A의 시뮬레이션 결과를 report하고 컨트롤러 B의 시뮬레이션 결과와 비교한다.
 path planning 시뮬레이션과 path tracking 시뮬레이션의 Sample time은 각각 0.2, 0.1이다.
 
-**NOTE**   
+**NOTE📝**
+Controller A : front steering angle에 constraint가 있는 일반적인 MPC   
+Controller B : front steering angle에 input constraint가 있고, lateral tracking error,yaw rate, sideslip angle에 state constraint가 있는 MPC   
 
-Controller A : front steering angle에 constraint가 있는 일반적인 MPC
-Controller B : front steering angle에 input constraint가 있고, lateral tracking error,yaw rate, sideslip angle에 state constraint가 있는 MPC
 |             |Sample time|
 |:------------|:----------|
 |Path planning|0.2        |
