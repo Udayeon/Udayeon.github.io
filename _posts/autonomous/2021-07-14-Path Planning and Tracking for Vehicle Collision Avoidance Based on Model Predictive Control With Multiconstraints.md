@@ -44,6 +44,28 @@ IEEE TRANSACTIONS ON VEHICULAR TECHNOLOGY, VOL. 66, NO. 2, FEBRUARY 2017
 
 # 4. Vehicle mathematical model for path-tracking problem 
 * * *
+이 Section에서는 control design을 사용하기 위한 차량과 타이어의 모델링에 대해 설명한다. path-tracking 문제에서 차량 모델링에서의 가정은
+다음과 같다.
+- longitudinal 속도는 일정하다.
+- 앞축과 뒤축에서 왼쪽, 오른쪽 바퀴는 single wheel 하나로 묶는다.
+- 서스펜션 운동과 미끄러짐, 공기역학의 효과는 무시한다.
+이러한 가정들을 통해 그린 일반 차량의 선형 동적 모델은 **(Fig 9)** 와 같다. 이는 뉴턴의 법칙에 따라 구해진 것이다.
+차체의 sideslip angle β 와 차체의 yaw rate ψ˙은 상태 변수로 간주되며, 차량의 lateral 방향 역학은 다음과 같이 쓸 수 있다. 
+
+Iz는 yaw 축에 관한 차량의 Inertia이다.
+lf와 lr은 각각 Center of gravity(CG)로 부터 각각 앞과 뒤 바퀴 간의 거리이다.   
+코너링하는 타이어의 힘에 대한 여러가지 모델이 존재한다. 타이어의 slip angle이 작을 때, lateral tire force는 slip angle의 선형함수로
+근사된다. 앞바퀴, 뒷바퀴의 tire force와 tire slip angle은 다음과 같이 정의된다.
+
+여기서 delta는 앞바퀴의 조향각이다. Cf와 Cr은 각각 앞바퀴 뒷바퀴의 선형화된 cornering stiffness를 나타낸다.
+
+```
+📝NOTE
+
+```
+
+
+
 
 # 5. Design fo multiconstrained model predictive control
 * * *
