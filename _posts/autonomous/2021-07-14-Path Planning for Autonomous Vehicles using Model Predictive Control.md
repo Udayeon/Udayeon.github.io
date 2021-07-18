@@ -14,7 +14,7 @@ published: true
 
 # (Review) Path Planning for Autonomous Vehicles using Model Predictive Control
 
-[Path Planning for Autonomous Vehicles using Model Predictive Control](https://ieeexplore.ieee.org/document/7995716/metrics#metrics)
+[Path Planning for Autonomous Vehicles using Model Predictive Control](https://ieeexplore.ieee.org/document/7995716/metrics#metrics)   
 **Author** Chang Liu1, Seungho Lee2, Scott Varnhagen2, H. Eric Tseng2   
 2017 IEEE Intelligent Vehicles Symposium (IV), June 11-14, 2017, Redondo Beach, CA, USA
 {:.message}
