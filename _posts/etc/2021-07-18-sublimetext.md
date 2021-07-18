@@ -2,7 +2,6 @@
 layout: post
 title: Sublime text
 description: |
-  Sublime text로 pdf줄 바꿈 없애기
 tags:
   - etc
 author: Udayeon
