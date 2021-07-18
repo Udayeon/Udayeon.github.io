@@ -12,11 +12,10 @@ author: Udayeon
 published: true
 ---
 
-# [(Review) Path Planning and Tracking for Vehicle Collision Avoidance Based on Model Predictive Control With Multiconstraints]
+# (Review) Path Planning and Tracking for Vehicle Collision Avoidance Based on Model Predictive Control With Multiconstraints
 
 [Path Planning and Tracking for Vehicle Collision Avoidance Based on Model Predictive Control With Multiconstraints](https://ieeexplore.ieee.org/document/7458179)   
-
-Author : Jie Ji, Amir Khajepour, Wael William Melek, Senior Member, IEEE, and Yanjun Huang
+Author : Jie Ji, Amir Khajepour, Wael William Melek, Senior Member, IEEE, and Yanjun Huang   
 IEEE TRANSACTIONS ON VEHICULAR TECHNOLOGY, VOL. 66, NO. 2, FEBRUARY 2017
 {:.message}
 
@@ -28,6 +27,7 @@ IEEE TRANSACTIONS ON VEHICULAR TECHNOLOGY, VOL. 66, NO. 2, FEBRUARY 2017
   - Design fo multiconstrained model predictive control
   - Simulations of path tracking in different scenarios using carsim and simulink
   - Conclusion
+
 * * *
 
 # Abstract
