@@ -5,7 +5,7 @@ description: |
   경로계획 관련 논문 조사 및 MPC 실습과제
   
 tags:
-  - projects
+  - autonomous
 use_math : true
 comments : true
 author: Udayeon
@@ -13,7 +13,7 @@ author: Udayeon
 published: true
 ---
 
-# Path Planning paper & MPC practice
+# Path Planning for Autonomous Vehicles using Model Predictive Control
 - 개요
 - 논문 선정 기준
 - 논문
