@@ -1,1 +1,36 @@
+---
+layout: post
+title: Matlab 
+description: >
+  Matlab결과 출력 Tip
+tags: [programming]
+author: Udayeon
+---
 
+# 표 형태로 출력하기
+* * *
+
+```
+disp('    t            v')  ⬅ disp로 for문 전에 lable 먼저 설정(띄어쓰기 반영됨)
+t= -5:0.5:50; 
+a=12;
+b=0.1;
+
+for i = 1:length(t) 
+    X=sprintf('%7.4f %13.4f',t(i),RocketVel(t(i),a,b)); ⬅for문으로 얻은 결과값 정렬해줌
+    disp(X);                                         7.4f는 총 7자리 할당, 소수점이하 4자리까지
+end                                           13.4f는 앞의 문자 이후로 13자리 할당에 소수점이하 4자리
+```
+
+결과는 다음과 같이 나옴
+
+```
+    t            v
+-5.0000        0.0000
+-4.5000        0.0000
+-4.0000        0.0000
+-3.5000        0.0000
+-3.0000        0.0000
+-2.5000        0.0000
+-2.0000        0.0000
+```
