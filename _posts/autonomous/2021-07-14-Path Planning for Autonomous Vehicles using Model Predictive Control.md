@@ -1,8 +1,7 @@
 ---
 layout: post
-title: Semminar1 - Path Planning paper & MPC practice
+title: Semminar1 - Path Planning paper 
 description: |
-  경로계획 관련 논문 조사 및 MPC 실습과제
   
 tags:
   - autonomous
@@ -13,7 +12,7 @@ author: Udayeon
 published: true
 ---
 
-# Path Planning for Autonomous Vehicles using Model Predictive Control
+# (Review)Path Planning for Autonomous Vehicles using Model Predictive Control
 - 개요
 - 논문 선정 기준
 - 논문
