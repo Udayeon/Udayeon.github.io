@@ -90,7 +90,7 @@ path planning 시뮬레이션과 path tracking 시뮬레이션의 Sample time은
 앞서 언급한 정보를 제안된 3D dangerous potential field에 적용하면 충돌 회피를 위해 계획된 trajectory가 **(Fig 13-c)** 처럼 생성될 것이다.
 ![fig13](https://user-images.githubusercontent.com/69246778/126058726-b6af4124-6463-4298-aa25-eebadbc5ccd9.png)
 
-**📝NOTE** 
+**📝NOTE**   
 선두차량의 초기속도 20m/s인데  2s부터 4s에 감속하여 10m/s까지 내려갔다가 다시 가속하여 30m/s로 주행한다.   
 - time 0s~2s : obstacle 만나기 전 직선 주행( 0~40m 구간)  
 - time 2s~4s : obstacle 회피 위해 감속하며 좌측 차선으로 ( 40m~70m 구간 )
@@ -100,7 +100,7 @@ path planning 시뮬레이션과 path tracking 시뮬레이션의 Sample time은
 
 ## 7.B. Simulation Results
 
-**📝NOTE**
+**📝NOTE**   
 위에서 정의한 시나리오 설명을 기반으로 실험한 결과
 {:.message}
 
@@ -111,7 +111,7 @@ Table 1에 차량 모델의 parameters이 정의되어 있다.
 선두 차량이 10m/s의 속도로 달릴 때, 20m/s의 일정한 속도로 달리고 있는 host 차량은 **(Fig 12)** 의 빨간색으로 나타낸 궤적을 따라가게 제어되고
 차량이 obstacle과 충돌하지 않는지 계속해서 확인한다.   
 
-**📝NOTE** 
+**📝NOTE**   
 왜 빨간색???빨간색은 V=0일 때 아닌가
 {:.message}
 
@@ -124,14 +124,15 @@ Table 1에 차량 모델의 parameters이 정의되어 있다.
 **(Fig 14)** 에서, 컨트롤러B는 컨트롤러 A보다 더 나은 path-tracking 성능을 나타낸다.(Planned Trajectory를 더 잘따라가고 tracking error적음)   
    
    
-![fig15](https://user-images.githubusercontent.com/69246778/126059613-c851c09f-7c56-4ead-b81b-180119042e17.png)   
+
 컨트롤러A 보다 더 많은 constraint를 가진 컨트롤러B는 **(Fig 15)** 에서 처럼, 차량 제어시 더 작은 Steering input command를 사용하고 동시에  더 작은 조향 각속도를 발생시킨다.
 
-**📝NOTE** 
+**📝NOTE**   
 컨트롤러B는 A보다 많은 Constraint를 가지고 있어서 경로 추적도 더 잘하고 tarcking error도 적고 조향각속도도 크게 발생하지 않아서 흔들림이 덜함
 {:.message}
-   
-   
+
+![fig15](https://user-images.githubusercontent.com/69246778/126060358-1d42c1b4-9949-4cbf-9bb9-dff891ae08e3.png)
+
 컨트롤러B는 또한 컨트롤러A에 비해 더 낮은 [yaw rate(ψ)]와 [side-slip angl(β)]을 보인다.   
 조작을 하고난 이후(obstacle을 pass한 2.5s 이후)에, (그림16)에서 보이다시피 컨트롤러A는 최대 [steering rate]로 차량을 다시 선형 영역으로 
 조종하고 차량을 안정화한다. 컨트롤러B는 steering angle, steering rate, yaw rate, side slip angle등에 constraint 덕에 차량을 항상 선형 영
@@ -141,7 +142,7 @@ Table 1에 차량 모델의 parameters이 정의되어 있다.
 시뮬레이션 결과는 두 컨트롤러가 차량을 계획한 trajectory를 따르도록 하는 걸 보여준다.   
 그러나, 컨트롤러B를 사용하여 더 부드러운 front steering angle, yaw rate, side slip angle와 함께 좋은 path trakcing을 할 수 있음에 유념해야한다.
 
-**📝NOTE** 
+**📝NOTE**      
 컨트롤러A는 차량을 선형 영역에 두기 위해 큰 steering rate가 필요.(yaw rate, sideslip angle도 크게 발생함)   
 반면, 컨트롤러B는 A보다 많은 Constraint를 가지고 있어서 차량을 항상 선형 영역에 구속시킬 수 있음. 
 {:.message}
@@ -159,12 +160,17 @@ path planning 프로그램과 MMPC path tracking 컨트롤러의 성능을 평�
 
 컨트롤러A는 충돌 전까지는 차량을 계획된 경로를 따르게 해준다. 그러나 차량이 일단 reference에서 멀리 벗어나게 되면 컨트롤러는 더이상 시스템을 
 계획된 trajectory로 끌어올 수 없고 그 시스템은 제어할 수 없게 된다. 이러 유형의 동작은 [tire Saturation]에 의해 유도되고 이건 **(Fig 19)** 처럼 안정성의 threshold를 초과하는 side slip angle과 yaw rate를 유발한다.   
+ ![fig19](https://user-images.githubusercontent.com/69246778/126060584-ba2fd035-e6e3-48f3-8070-4b392c1e6abc.png)
    
-우리는 prediction horizon N_p=20, control horizon N_c=5를 확장함으로써 컨트롤러A의 성능을 향상시킬 수 있다. 
+   
+우리는 prediction horizon Np=20, control horizon Nc=5를 확장함으로써 컨트롤러A의 성능을 향상시킬 수 있다. 
 그러나, 계산시간이 많이 들고 설명된 실험 platform에서 런타임 오류를 발생시킨다.
-   
-t=4s보다 큰 테스트의 조작이후, (그림18)에 나타난 것 처럼 컨트롤러A는 planned trajectory를 따라가기 위해 차량을 조종하거나, 최대 steering angle과 rate에서도 안정성을 유지하지도 못한다.   
-컨트롤러B는 항상 차량을 선형 영역에 구속하고 컨트롤러A 보다  차량의 tracking 성능을 더 좋게 해준다.
+
+![image](https://user-images.githubusercontent.com/69246778/126060689-74573dee-726f-4eda-a973-bb0e76861bfa.png)
+
+t=4s 이후의 조작(obstacle 회피 이후 가속하여 우측 차선으로 돌아오고 직선 주행)은 **(Fig 18)** 에 나타난 것과 같다. 
+컨트롤러A는 planned trajectory를 따라가기 위해 차량을 조종하지도 못하고, 최대 steering angle과 steering rate로도 안정성을 유지하지도 못한다. 
+컨트롤러B는 항상 차량을 선형 영역에 구속하고 컨트롤러A 보다 차량의 tracking 성능을 더 좋게 해준다.
 
 ##### [Input command]
 ##### [Tire saturation]
