@@ -55,9 +55,11 @@ IEEE TRANSACTIONS ON VEHICULAR TECHNOLOGY, VOL. 66, NO. 2, FEBRUARY 2017
 
 ![fig11](https://user-images.githubusercontent.com/69246778/126057072-0a4934ca-a9af-4668-8ff2-28366a614b20.png)   
 
-**📝NOTE** : Lateral Position, Yaw rate, Sideslip angle정보와 미리 결정했던 Trajectory 정보를 MPC 컨트롤러가 받아 Front Wheel angle을 조작한다.
+
+**📝NOTE**   
+Lateral Position, Yaw rate, Sideslip angle정보와 미리 결정했던 Trajectory 정보를 MPC 컨트롤러가 받아 Front Wheel angle을 조작한다.
 계속해서 업데이트 되는 정보를 바탕으로 조향을 결정한다.
-{:.message}
+{:.read}
 
 이 아키텍쳐에서는 Carsim의 고성능 "big sedan"모델을 사용한다. MATLAB Simulink에 내장된 MMPC는 [Section 3]에서 소개한 Planned trajectory를 tracking하기 
 위해 [closed-loop] 스티어링 조작을 실행하는데 사용된다. 상황이 달라도 같은 컨트롤러를 이용해 차량을 제어할 수 있음에 유념해야 한다. 이 시뮬레이션 set는 초기 
@@ -66,11 +68,12 @@ IEEE TRANSACTIONS ON VEHICULAR TECHNOLOGY, VOL. 66, NO. 2, FEBRUARY 2017
 위의 obstacle을 식별하고 완전히 자율적인 조향 시스템으로 원하는 trajectory를 따를 것이라 생각한다.   
 [Section A]는 시뮬레이션 시나리오의 상세 내용을 설명하고 [Section B]에서는 시뮬레이션의 가장 중요한 결과와 발견을 설명한다. 
 
-**📝NOTE** : 도로 위의 obstacle과의 충돌을 긴급히 회피하는 시나리오를 소개한다. 유념할 것은
+**📝NOTE**   
+도로 위의 obstacle과의 충돌을 긴급히 회피하는 시나리오를 소개한다. 유념할 것은
 - 여러 상황에서도 같은 controller를 사용한다는 것
 - control input : 앞바퀴의 steering angle
 - 목표 : 계획된 경로를 추종하는 것
-{:.message}
+{:.read}
 
 ## 7.A. Scenario Description
 이번 section에서는 front steering angle에 제약이 있는 일반적인 MPC시스템을 컨트롤러 A라 하고, front steering angle에 constraint가 input되어 lateral
