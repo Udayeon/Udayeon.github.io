@@ -13,14 +13,19 @@ published: true
 ---
 
 # (Review) Path Planning for Autonomous Vehicles using Model Predictive Control
-- 개요
-- 논문 선정 기준
-- 논문
+
+[Path Planning for Autonomous Vehicles using Model Predictive Control](https://ieeexplore.ieee.org/document/7995716/metrics#metrics)
+**Author** Chang Liu1, Seungho Lee2, Scott Varnhagen2, H. Eric Tseng2   
+2017 IEEE Intelligent Vehicles Symposium (IV), June 11-14, 2017, Redondo Beach, CA, USA
+{:.message}
+
   - Abstract
   - Introduction
   - Problem formulation
   - Path planning algorithm
   - Simulation results 
+
+* * *
 
 # 개요
 * * *
@@ -46,7 +51,7 @@ published: true
 * 2017 IEEE Intelligent Vehicles Symposium (IV), June 11-14, 2017, Redondo Beach, CA, USA
 
 
-## Abstract
+# Abstract
 * * *
 MPC에 기반한, mode에 따른 효율적인 자동전환 기술의 제안
 {:.message}
@@ -59,7 +64,7 @@ MPC에 기반한, mode에 따른 효율적인 자동전환 기술의 제안
 안전하고 자연스러운 조작을 위해 MPC의 목적함수에 차선과 관련한 잠재적인 영역을 포함한다.   
 제안된 방법을 다양한 test 시나리오에서 시뮬레이션했고, 그 결과는 안전을 보장하면서 자동으로 합리적인 조작을 제공하는 이 접근법이 효율적임을 증명한다. 
 
-## Introduction
+# Introduction
 * * *
 MPC 기반 어프로치가 각광받는 이유
 {:.message}
@@ -111,7 +116,7 @@ RRT* 는 심지어, 발생한 경로의 점근적인 최적화를 보장하고 �
 이건 같은 차선에 있는 주변 차량에 적용되어 안전하고 자연스러운 조작을 가능케함.   
 제안된 방법은 시뮬레이션에서 평가되었고 그 결과는 안전을 보장하면서 자동으로 합리적인 조작을 제공하는 이 접근법이 효율적임을 증명함.   
 
-## Problem formulation
+# Problem formulation
 ![image](https://user-images.githubusercontent.com/69246778/125569455-170111fb-984a-4021-b15a-c996df87724c.png)
 
 첫 번째 사진이 이 연구에서 고려된 자율주행 시나리오를 보여줌.
@@ -131,8 +136,8 @@ RRT* 는 심지어, 발생한 경로의 점근적인 최적화를 보장하고 �
 이 절차는 차량이 목적지에 도달할 때 까지 receding horizon 방식으로 이루어짐.
 In the planning horizon, 도로 기하학은 오프라인에 맵핑된 waypoint와 차선표시에 근거한 4차 다항식에 의해 온라인에 근사됨.
 
-## Path planning algorithm
-### Vehicle and Environment Modeling
+# Path planning algorithm
+## Vehicle and Environment Modeling
 본 연구에서, 우리는 도로 좌표계(그림3)을 사용함.
 _???unicycle kinematic model을 가정했으므로 속도와 x축 방향 같음(side-slip 발생X) 맞냐???_
 
@@ -148,7 +153,7 @@ theta는 차량의 heading angle(선수각), v는 차량의 속도임.
 도로 Waypoint, 차선표시 그리고 주변 차량의 현재상태를 포함한 환경정보를 모두 알고 있다고 가정한다.
 또한 주변 차량의 예측 상태도 정확하게 예측되었다고 가정한다.
 
-### MPC Formulation 
+## MPC Formulation 
 MPC를 이용한 접근법은 Receding horizon 방식을 이용해 제한적인 시간을 제약으로 하는 최적제어 문제이다. (너무 먼 미래까지는 예측 X)   
 식은 다음과 같다.
 N을 prediction horizon으로 두자.    
@@ -166,7 +171,7 @@ N을 prediction horizon으로 두자.
 이 목적함수는 자차의 행동을 규정하기 위해 여러 다양한 term으로 구성되어 있음.
 먼저 각 항마다 곱해진 w는 가중치를 나타내는 것임   
 
-#### Lane Selection
+### Lane Selection
 MPC식을 보면 h(x_k,y_k,p_c^j)^2로 정의 된 항이 있음.
 이는 k시간에 (xk,yk)에 존재하는 차량과 j번째 차로의 중심선 사이의 lateral 거리를 나타낸다.
 이때, pcj는 4차 다항식으로 정의할 수 있다.
@@ -183,7 +188,7 @@ M * N 행렬로 λ를 정의하고, 설계 변수는 λ_j,k(j,k항목)임.
 λ는 Λ_M * N 에 속하고 이건 R_MN으로 정의된 단위 simplex 집합이다.
    식   
    
-#### Lane-Associated Potential Field
+### Lane-Associated Potential Field
 **안정적이고 자연스러운 조작을 위해 우리는 lane-associated potential field를 소개한다.**
 이것은 다음과 같이 나타내고, 이 식은 차량의 현재 차선의 종방향에 있는 주변 차량에 적용(?) 한다.
 (이때, 주변차량의 index 집합은 V로 표현됨)   
@@ -197,7 +202,7 @@ s는 potential field의 maximum magnitude
 Longitudinal = ego vehicle - surrounding vehicle
 주변 차량이 자차보다 앞에 있으면 음수값. 
 
-#### Collison Avoidance
+### Collison Avoidance
 potential field가 차량과 다른 것들 간의 특정 거리를 유지하도록 돕지만 추가적으로 충돌회피를 보장하는 매카니즘이 필요함
 우리는 종/횡 방향 모두에서 ego 차량의 안전을 보장하기 위해 MPC에서 일종의 제약 조건을 가지고 충돌 회피를 시행함.   
 자차와 주변 차량을 흔히 사용하는 원이나 타원 대신 사각형으로 모델링함. 
