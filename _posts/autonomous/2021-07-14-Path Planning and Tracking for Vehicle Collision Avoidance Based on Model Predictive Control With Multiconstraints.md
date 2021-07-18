@@ -54,7 +54,7 @@ MATLAB Simulink에 내장된 MMPC는 [Section 3]에서 소개한 Planned traject
 원하는 trajectory를 따를 것이라 생각한다.   
 [Section A]는 시뮬레이션 시나리오의 상세 내용을 설명하고 [Section B]에서는 시뮬레이션의 가장 중요한 결과와 발견을 설명한다. 
 
-**NOTE📝**
+**NOTE📝**      
 도로 위의 obstacle과의 충돌을 긴급히 회피하는 시나리오를 소개한다. 유념할 것은
 1. 여러 상황에서도 같은 controller를 사용한다는 것
 2. control input : 앞바퀴의 steering angle
@@ -68,7 +68,7 @@ lateral tracking error, yaw rate, sideslip angle에 대한 constraint를 가진 
 컨트롤러 A의 시뮬레이션 결과를 report하고 컨트롤러 B의 시뮬레이션 결과와 비교한다.
 path planning 시뮬레이션과 path tracking 시뮬레이션의 Sample time은 각각 0.2, 0.1이다.
 
-**NOTE📝**
+**NOTE📝**      
 Controller A : front steering angle에 constraint가 있는 일반적인 MPC   
 Controller B : front steering angle에 input constraint가 있고, lateral tracking error,yaw rate, sideslip angle에 state constraint가 있는 MPC   
 
