@@ -166,11 +166,18 @@ path planning 프로그램과 MMPC path tracking 컨트롤러의 성능을 평�
 우리는 prediction horizon Np=20, control horizon Nc=5를 확장함으로써 컨트롤러A의 성능을 향상시킬 수 있다. 
 그러나, 계산시간이 많이 들고 설명된 실험 platform에서 런타임 오류를 발생시킨다.
 
-![image](https://user-images.githubusercontent.com/69246778/126060689-74573dee-726f-4eda-a973-bb0e76861bfa.png)
-
+![fig18](https://user-images.githubusercontent.com/69246778/126060761-a45bb84a-09a2-4dbc-8d10-e53ac79518e5.png)
 t=4s 이후의 조작(obstacle 회피 이후 가속하여 우측 차선으로 돌아오고 직선 주행)은 **(Fig 18)** 에 나타난 것과 같다. 
 컨트롤러A는 planned trajectory를 따라가기 위해 차량을 조종하지도 못하고, 최대 steering angle과 steering rate로도 안정성을 유지하지도 못한다. 
 컨트롤러B는 항상 차량을 선형 영역에 구속하고 컨트롤러A 보다 차량의 tracking 성능을 더 좋게 해준다.
+
+
+**📝NOTE** 
+컨트롤러A는 충돌 회피 이후에 다시 제자리로 돌아와 안정적인 주행을 하기가 어렵지만 컨트롤러 B는 안정적인 주행이 가능하고 tracking 성능도 더 좋다
+{:message}
+
+
+* * *
 
 ##### [Input command]
 ##### [Tire saturation]
