@@ -60,7 +60,6 @@ IEEE TRANSACTIONS ON VEHICULAR TECHNOLOGY, VOL. 66, NO. 2, FEBRUARY 2017
 Lateral Position, Yaw rate, Sideslip angle정보와 미리 결정했던 Trajectory 정보를   
 MPC 컨트롤러가 받아 Front Wheel angle을 조작한다.   
 계속해서 업데이트 되는 정보를 바탕으로 조향을 결정한다.
-{:.read}
 ```
 
 이 아키텍쳐에서는 Carsim의 고성능 "big sedan"모델을 사용한다. MATLAB Simulink에 내장된 MMPC는 [Section 3]에서 소개한 Planned trajectory를 tracking하기 
@@ -76,7 +75,6 @@ MPC 컨트롤러가 받아 Front Wheel angle을 조작한다.
 - 여러 상황에서도 같은 controller를 사용한다는 것
 - control input : 앞바퀴의 steering angle
 - 목표 : 계획된 경로를 추종하는 것
-{:.message}
 ```
 
 ## 7.A. Scenario Description
