@@ -55,11 +55,12 @@ IEEE TRANSACTIONS ON VEHICULAR TECHNOLOGY, VOL. 66, NO. 2, FEBRUARY 2017
 
 ![fig11](https://user-images.githubusercontent.com/69246778/126057072-0a4934ca-a9af-4668-8ff2-28366a614b20.png)   
 
-
+```
 **📝NOTE**   
 Lateral Position, Yaw rate, Sideslip angle정보와 미리 결정했던 Trajectory 정보를 MPC 컨트롤러가 받아 Front Wheel angle을 조작한다.
 계속해서 업데이트 되는 정보를 바탕으로 조향을 결정한다.
 {:.read}
+```
 
 이 아키텍쳐에서는 Carsim의 고성능 "big sedan"모델을 사용한다. MATLAB Simulink에 내장된 MMPC는 [Section 3]에서 소개한 Planned trajectory를 tracking하기 
 위해 [closed-loop] 스티어링 조작을 실행하는데 사용된다. 상황이 달라도 같은 컨트롤러를 이용해 차량을 제어할 수 있음에 유념해야 한다. 이 시뮬레이션 set는 초기 
@@ -80,11 +81,11 @@ Lateral Position, Yaw rate, Sideslip angle정보와 미리 결정했던 Trajecto
 tracking error, yaw rate, sideslip angle에 대한 constraint를 가진 시스템을 컨트롤러 B라 한다. 컨트롤러 A의 시뮬레이션 결과를 report하고 컨트롤러 B의 시
 뮬레이션 결과와 비교한다. path planning 시뮬레이션과 path tracking 시뮬레이션의 Sample time은 각각 0.2, 0.1이다.
 
-**📝NOTE** : 
+**📝NOTE**   
 - Controller A : front steering angle에 constraint가 있는 일반적인 MPC   
 - Controller B : front steering angle에 input constraint가 있고, lateral tracking error,yaw rate, sideslip angle에 state constraint가 있는 MPC  
 - Sample time : Path planning 0.2s / Path Tracking 0.1s 
-{:.message}
+{:.read}
 
 **첫 번째 시나리오**에서는 선두 차량이 일정속도(15m/s, 10m/s, 0m/s)로 직선 도로를 달린다고 가정한다. 즉, host 차량의 속도인 20m/s보다 느리기 때문에 충돌하게 된
 다. **(Fig 12)** 에서 보이는 것 처럼, 선두 차량의 현재 위치와 속도에 따라 3차원 가상위험 potential field를 바탕으로 한 path planning 프로그램이 대안적인 
@@ -92,9 +93,10 @@ trajectory를 생성할 수 있다.
 
 ![fig12](https://user-images.githubusercontent.com/69246778/126023276-4f13fad1-5f32-4a74-8f2e-3fd88ba3ea61.png)   
 
-**📝NOTE** : 내 차량보다 선두 차량의 속도가 느리면 당연히 충돌하게 됨. 따라서 이를 피해야 하는데 선두 차량의 속도가 어떠냐에 따라 피하는 경로가 다름.   
+**📝NOTE**   
+내 차량보다 선두 차량의 속도가 느리면 당연히 충돌하게 됨. 따라서 이를 피해야 하는데 선두 차량의 속도가 어떠냐에 따라 피하는 경로가 다름.   
 예를 들어, 앞선 차량의 속도가 느릴수록 더 빨리 꺾어줘야 충돌을 피할 수 있음
-{:.message}
+{:.read}
 
 **두 번째 시나리오**에서는, host 차량의 초기 속도가 20m/s이고 선두차량이 host차량보다 17.5m 앞에 위치해 있다.
 **(Fig 13-a)** 은 미리 정의된 선두 차량의 가속도를 보여준다. 
@@ -103,12 +105,13 @@ trajectory를 생성할 수 있다.
 
 ![fig13](https://user-images.githubusercontent.com/69246778/126058726-b6af4124-6463-4298-aa25-eebadbc5ccd9.png)   
 
-**📝NOTE** : 선두차량의 초기속도 20m/s인데  2s부터 4s에 감속하여 10m/s까지 내려갔다가 다시 가속하여 30m/s로 주행한다.   
+**📝NOTE**   
+선두차량의 초기속도 20m/s인데  2s부터 4s에 감속하여 10m/s까지 내려갔다가 다시 가속하여 30m/s로 주행한다.   
 - time 0s ~ 2s : obstacle 만나기 전 직선 주행( 0~40m 구간)  
 - time 2s ~ 4s : obstacle 회피 위해 감속하며 좌측 차선으로 ( 40m~70m 구간 )
 - time 4s ~ 6s : obstacle 회피 이후 가속하여 우측 차선으로 돌아옴 ( 70m~100m 구간)
 - time 6s~   : 초기 속도보다 빨라진 속도로 직선주행 ( 100m이후 구간)
-{:.message}
+{:.read}
 
 ## 7.B. Simulation Results
 
