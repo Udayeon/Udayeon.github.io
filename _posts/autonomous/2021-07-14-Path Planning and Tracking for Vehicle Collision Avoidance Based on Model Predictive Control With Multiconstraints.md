@@ -69,23 +69,26 @@ Lateral Position, Yaw rate, Sideslip angle정보와 미리 결정했던 Trajecto
 위의 obstacle을 식별하고 완전히 자율적인 조향 시스템으로 원하는 trajectory를 따를 것이라 생각한다.   
 [Section A]는 시뮬레이션 시나리오의 상세 내용을 설명하고 [Section B]에서는 시뮬레이션의 가장 중요한 결과와 발견을 설명한다. 
 
+```
 **📝NOTE**   
 도로 위의 obstacle과의 충돌을 긴급히 회피하는 시나리오를 소개한다. 유념할 것은
 - 여러 상황에서도 같은 controller를 사용한다는 것
 - control input : 앞바퀴의 steering angle
 - 목표 : 계획된 경로를 추종하는 것
-{:.read}
+{:.message}
+```
 
 ## 7.A. Scenario Description
 이번 section에서는 front steering angle에 제약이 있는 일반적인 MPC시스템을 컨트롤러 A라 하고, front steering angle에 constraint가 input되어 lateral
 tracking error, yaw rate, sideslip angle에 대한 constraint를 가진 시스템을 컨트롤러 B라 한다. 컨트롤러 A의 시뮬레이션 결과를 report하고 컨트롤러 B의 시
 뮬레이션 결과와 비교한다. path planning 시뮬레이션과 path tracking 시뮬레이션의 Sample time은 각각 0.2, 0.1이다.
 
+```
 **📝NOTE**   
 - Controller A : front steering angle에 constraint가 있는 일반적인 MPC   
 - Controller B : front steering angle에 input constraint가 있고, lateral tracking error,yaw rate, sideslip angle에 state constraint가 있는 MPC  
 - Sample time : Path planning 0.2s / Path Tracking 0.1s 
-{:.read}
+```
 
 **첫 번째 시나리오**에서는 선두 차량이 일정속도(15m/s, 10m/s, 0m/s)로 직선 도로를 달린다고 가정한다. 즉, host 차량의 속도인 20m/s보다 느리기 때문에 충돌하게 된
 다. **(Fig 12)** 에서 보이는 것 처럼, 선두 차량의 현재 위치와 속도에 따라 3차원 가상위험 potential field를 바탕으로 한 path planning 프로그램이 대안적인 
