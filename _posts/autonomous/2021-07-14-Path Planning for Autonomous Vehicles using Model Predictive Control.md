@@ -12,7 +12,7 @@ author: Udayeon
 published: true
 ---
 
-# (Review)Path Planning for Autonomous Vehicles using Model Predictive Control
+# (Review) Path Planning for Autonomous Vehicles using Model Predictive Control
 - 개요
 - 논문 선정 기준
 - 논문
