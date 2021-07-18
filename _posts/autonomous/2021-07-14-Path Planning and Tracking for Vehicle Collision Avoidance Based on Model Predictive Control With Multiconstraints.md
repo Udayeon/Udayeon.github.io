@@ -12,9 +12,12 @@ author: Udayeon
 published: true
 ---
 
-# (Review) Path Planning and Tracking for Vehicle Collision Avoidance Based on Model Predictive Control With Multiconstraints
-- 개요
-- 논문
+# [(Review) Path Planning and Tracking for Vehicle Collision Avoidance Based on Model Predictive Control With Multiconstraints](https://ieeexplore.ieee.org/document/7458179)
+* * *
+- Author : Jie Ji, Amir Khajepour, Wael William Melek, Senior Member, IEEE, and Yanjun Huang
+- IEEE TRANSACTIONS ON VEHICULAR TECHNOLOGY, VOL. 66, NO. 2, FEBRUARY 2017
+{:.message}
+
   - Abstract
   - Introduction
   - Description of collision avoidance system
@@ -24,22 +27,17 @@ published: true
   - Simulations of path tracking in different scenarios using carsim and simulink
   - Conclusion
 
-# 논문
-* * *
-[Path Planning and Tracking for Vehicle Collision Avoidance Based on Model Predictive Control With Multiconstraints](https://ieeexplore.ieee.org/document/7458179)
-- Author : Jie Ji, Amir Khajepour, Wael William Melek, Senior Member, IEEE, and Yanjun Huang
-- IEEE TRANSACTIONS ON VEHICULAR TECHNOLOGY, VOL. 66, NO. 2, FEBRUARY 2017
 
-## Abstract
+# Abstract
 path planning과 tracking은 자율주행 차량을 충돌로부터 자유롭게 해준다.
 
-## Simulations of path tracking in different scenarios using carsim and simulink
+# Simulations of path tracking in different scenarios using carsim and simulink
 **Section 2**에서 설명한 제안된 framgework의 성능을 조사하기 위해 MMPC를 이용한 수치 시뮬레이션이 진행됐다.   
 이는 carsim, MATLAB/Simulink 같은 소프트웨어를 사용했다.
 
 그림 11)은 구현된 것의 블럭 다이어그램이다. 이 구조에는 Carsim의 고성능 "big sedan"이 사용되었다. 
 
-### A. Scenario Description
+## A. Scenario Description
 우리는 front steering angle에 제약이 있는 일반 MPC시스템을 컨트롤러 A라 하고
 앞바퀴의 조향각에 제약이 가해져 lateral tracking error, yaw rate, sideslip angle에 대한 상태 제약이 있는 시스템을 컨트롤러 B라 한다.   
 컨트롤러 A의 시뮬레이션 결과를 report해 컨트롤러 B의 시뮬레이션 결과와 비교한다.
@@ -56,7 +54,7 @@ sample time은 path planning 시뮬레이션과 path tracking 시뮬레이션에
 (그림13-b)는 leading 차량의 미리 정의된 Speed command와 command에 대한 Carsim소프트웨어의 속도 응답을 나타낸다.
 앞서 언급한 정보를 제안된 3D dangerous potential field에 적용하면 충돌 회피를 위해 계획된 trajectory가 (그림13-c)처럼 생성될 것이다.
 
-### B. Simulation Results
+## B. Simulation Results
 Table 1에 차량 모델의 parameters이 정의되어 있다.
 ![table1](https://user-images.githubusercontent.com/69246778/126023542-fdddd7c4-2554-47a1-917f-a9d63ab34946.png)
 
