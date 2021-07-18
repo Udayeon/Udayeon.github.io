@@ -19,27 +19,30 @@ published: true
 IEEE TRANSACTIONS ON VEHICULAR TECHNOLOGY, VOL. 66, NO. 2, FEBRUARY 2017
 {:.message}
 
-  - Abstract
-  - Introduction
-  - Description of collision avoidance system
-  - Path Planning for collision avoidance using 3-D virtual dangerous potential field
-  - Vehicle mathematical model for path-tracking problem 
-  - Design fo multiconstrained model predictive control
-  - Simulations of path tracking in different scenarios using carsim and simulink
-  - Conclusion
+  -  Abstract
+  - 1. Introduction
+  - 2. Description of collision avoidance system
+  - 3. Path Planning for collision avoidance using 3-D virtual dangerous potential field
+  - 4. Vehicle mathematical model for path-tracking problem 
+  - 5. Design fo multiconstrained model predictive control
+  - 6. Simulations of path tracking in different scenarios using carsim and simulink
+  - 7. Conclusion
 
 * * *
 
 # Abstract
 path planning과 tracking은 자율주행 차량을 충돌로부터 자유롭게 해준다.
 
-# Simulations of path tracking in different scenarios using carsim and simulink
-**Section 2**에서 설명한 제안된 framgework의 성능을 조사하기 위해 MMPC를 이용한 수치 시뮬레이션이 진행됐다.   
+# 2. Description of collision avoidance system
+
+
+# 7.Simulations of path tracking in different scenarios using carsim and simulink
+[Section 2]에서 소개했던 famework의 성능을 조사하기 위해 MMPC를 이용한 수치 시뮬레.   
 이는 carsim, MATLAB/Simulink 같은 소프트웨어를 사용했다.
 
 그림 11)은 구현된 것의 블럭 다이어그램이다. 이 구조에는 Carsim의 고성능 "big sedan"이 사용되었다. 
 
-## A. Scenario Description
+## 7.A. Scenario Description
 우리는 front steering angle에 제약이 있는 일반 MPC시스템을 컨트롤러 A라 하고
 앞바퀴의 조향각에 제약이 가해져 lateral tracking error, yaw rate, sideslip angle에 대한 상태 제약이 있는 시스템을 컨트롤러 B라 한다.   
 컨트롤러 A의 시뮬레이션 결과를 report해 컨트롤러 B의 시뮬레이션 결과와 비교한다.
