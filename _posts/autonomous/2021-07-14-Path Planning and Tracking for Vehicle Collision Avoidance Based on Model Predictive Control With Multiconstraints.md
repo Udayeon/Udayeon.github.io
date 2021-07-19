@@ -118,7 +118,8 @@ C     : cornering stiffness
 ## 4.B. Discrete linear vehicle model for MPC
 ```
 📝NOTE
-Section A에서 lateral 및 yaw를 다루는 식을 유도했고 이 식으로부터 MMPC최적화를 위한 discrete state-space식을 유도한다.
+Section A에서 lateral 및 yaw를 다루는 식을 유도했고
+이 식으로부터 MMPC최적화를 위한 discrete state-space식을 유도한다.
 ```
 여기서, 우리는 MMPC최적화를 위해 이산 상태-공간 차량 모델을, 이전 section에서 얻은 수학적 모델로부터 유도한다. 새로운 차량 모델에서, 상태
 공간 벡터는 차량 CG의 lateral 위치 ![X_v](https://user-images.githubusercontent.com/69246778/126088231-a9e77bcb-958a-4935-b150-c6cb4eef7b8a.gif), 차량의 side slip angle β, yaw angle ψ, yaw rate ψ'로 구성된다. input은 앞 바퀴의 steering angle δ로 주어진다. 이런 정의에 의해,  state-space 벡터는 다음과 같다.   
