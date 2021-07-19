@@ -233,8 +233,8 @@ path tracking 은 차량 역학과 운동학에서 발생한 constraint에 대�
 차량 충돌회피 application에 적합하도록 조정된다. 
 
 ## 5.A. Prediction of State and Output Variables
-path tracking을 위한 MPC의 디자인에 있어서 각 시간마다 차랴의 미래 행동을 예측하는 것으 중요한 단계이다. 이 미래 예측은 특정한
-prediction horizon 내에서 control input을 결정해주고 이 미래 상태에 기초하여, 최적화된 control input을 계산하기 위해 성능지수가 최소화
+path tracking을 위한 MPC의 디자인에 있어서 각 시간마다 차량의 미래 행동을 예측하는 것은 중요한 단계이다. 이 미래 예측은 특정한
+prediction horizon 내에서 control input을 결정해주고 이 미래 상태에 기초하여, 최적화된 control input을 계산하기 위하여 성능지수가 최소화
 된다.
 
 ```
@@ -243,11 +243,54 @@ performance index가 최소화 된다는게 뭐임?
 ```
 
 여기에 우리가 현재 시간 k를 가정했고 이는 항상 양수이다. prediction horizon은 optimization window의 길이인 Np=10이고,
-control horizon Nc=5이다. 상태 변수 벡터 Xa(k)는 현재의 plant 정보를 제공하고, 이는 측정을 통해 사용할 수 있다.   
-주어진 정보 Xa(k)를 통해 Np단계에 대해 다음과 같이 미래 상태 변수를 예측할 수 있다. 
+control horizon Nc=5이다. 상태 변수 벡터 X_a(k)는 현재의 plant 정보를 제공하고, 이는 측정을 통해 사용할 수 있다.   
 
-여기서 Xa(k+m)은 현재의 plant 정보 Xa(k)를 통해 k+m에어싀 예측된 상태 변수이다.   
-우리는 ΔUm으로 현재 관측상태에 대해 시간 k에서 계산한 미래 input 증분의 순서를 다음과 같이 나타낸다.
+```
+📝NOTE
+Section 4에서 구한 상태변수벡터 X_a(k)를 이용해 MMPC를 디자인한다
+```
+
+주어진 정보 X_a(k)를 통해 Np단계에 미래 상태의 변수를 다음과 같이 예측할 수 있다. 
+
+![image](https://user-images.githubusercontent.com/69246778/126094305-0d296d3c-a82d-421a-8a8c-f599279bb58d.png)
+
+X_a(k + m)은, 현재의 plant정보 X_a(k)를 통해서 예측한 k+m에서의 상태 변수이다.   
+우리는 ΔU_m으로 현재 관측상태에 대해 시간 k에서 계산한 미래 input 증분의 시퀀스를 다음과 같이 나타낸다.   
+![image](https://user-images.githubusercontent.com/69246778/126094555-2dd82bac-de7c-47ee-b357-812348e21114.png)
+ 
+```
+📝NOTE
+현재 상태(k)의 정보가 주어졌을 때 이를 이용해 k+m의 상태를 예측한다.
+ΔU_m : 현재 상태(k)에서 미래의 input을 계산한 것
+```
+
+미래 예측 파라미터 ΔU_m와 state-space model (A_a,B_a,C_a)를 사용하여, **(식 33)** 에 대한 반복적인 계산을 통해
+차량의 상태 변수가 차례로 계산된다. 계산 과정은 다음과 같다.   
+
+![image](https://user-images.githubusercontent.com/69246778/126094782-424e9e13-8c82-4bc8-9aa8-d47992ef6a54.png)   
+
+연속적인 대입에 의해, control input은 오직 N_c(the control horizon) time step에서만 변화하고, 이후(preview,prediction horizon)까지 
+일정하게 유지된다고 가정한다.   
+   
+그리고나서 우리는 predictive state-space model을 위해 상태 벡터(X_m(k))와 예측된 output(Y_m(k))을 다음과 같이 정의할 수 있다.   
+![image](https://user-images.githubusercontent.com/69246778/126095130-0e4a0914-153b-4141-904e-54a39682fe73.png)   
+
+```
+📝NOTE
+ΔU_m와 state-space model을 이용해 식33을 반복 계산한다.
+그리고 predictive state-space model을 위한 state(X_m(k)), output(y_m(k)) 벡터를 정의한다.
+```
+
+이런 상황에서 다음과 같은 간단한 매트릭스 형태로 N_p에 대한 성능을 출력하는 예측모델을 유도하는 것은 간단하다.   
+
+![image](https://user-images.githubusercontent.com/69246778/126095699-b2b711fe-eb01-42a8-9e8a-42e1073b9026.png)
+
+이 때 F_m과 G_m은 다음과 같다.   
+
+![image](https://user-images.githubusercontent.com/69246778/126095743-7bd6d036-7aba-410a-ae37-0d2e1e8e176d.png)
+
+
+## 5.B. Developent of Cost Function With Vehicle Dynamics
 
 
 
