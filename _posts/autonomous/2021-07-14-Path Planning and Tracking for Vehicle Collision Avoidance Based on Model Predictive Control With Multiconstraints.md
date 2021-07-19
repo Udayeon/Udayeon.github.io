@@ -291,9 +291,26 @@ X_a(k + m)은, 현재의 plant정보 X_a(k)를 통해서 예측한 k+m에서의 
 
 
 ## 5.B. Developent of Cost Function With Vehicle Dynamics
+[section 3]에서 설명한 것 처럼, N_p 이내의 도로와 obstacle의 보편적인 potential field에 의해 계산된 MMPC의 set-point 정보로 
+시각 k에서 계획된 trajectory P_r(k), sideslip angle β_r(k), yaw rate ψ˙_r(k)의 reference location정보가 선택된다.
+reference signal은 다음과 같다.   
 
+![image](https://user-images.githubusercontent.com/69246778/126099850-749145ab-f5d4-4db8-8b36-715e14671629.png)
 
+```
+📝NOTE 
+P_r(k) : 시각 k에서 계획된 trajectory
+β_r(k) : 시각 k에서 계획된 sideslip angle
+ψ˙r(k) : 시각 k에서 계획된 yaw rate
+```
+MMPC의 목적은 예측되는 outputs(P_v(k),β_r(k),ψ˙r(k))을 set-point에 최대한 가깝게 만드는 것이다. 우리는 비용 함수 J_E를 control objective를 반영해 다음과 같이 정의한다.
 
+![image](https://user-images.githubusercontent.com/69246778/126100432-21ab8b4a-3ed0-4bfb-8b1a-210a6c5a4db1.png)
+
+이때, MMPC표기에서 P_v(k),β_r(k),ψ˙r(k)는 고정된 지구 좌표계에서 lateral position, sideslip angle, yaw rate의 예측된 시퀀스를 나타낸다. 이는, 시각 k에서 N_p의 time step으로 계산가능하고 ΔU_m은 예측 최적화 벡터이다.   
+
+![image](https://user-images.githubusercontent.com/69246778/126100886-09c545ab-c045-40ab-94a7-407e31e25072.png)
+위 식은 steet input의 future value와 관련된 비용함수 매트릭스를 나타낸다.
 
 
 ```
