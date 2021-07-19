@@ -299,18 +299,70 @@ reference signal은 다음과 같다.
 
 ```
 📝NOTE 
-P_r(k) : 시각 k에서 계획된 trajectory
+P_r(k) : 시각 k에서 계획된 trajectory (referece가 되는 거)
 β_r(k) : 시각 k에서 계획된 sideslip angle
 ψ˙r(k) : 시각 k에서 계획된 yaw rate
 ```
-MMPC의 목적은 예측되는 outputs(P_v(k),β_r(k),ψ˙r(k))을 set-point에 최대한 가깝게 만드는 것이다. 우리는 비용 함수 J_E를 control objective를 반영해 다음과 같이 정의한다.
+MMPC의 목적은, 예측되는 outputs(P_v(k),β_r(k),ψ˙r(k))을 set-point에 최대한 가깝게 만드는 것이다. 우리는 비용 함수 J_E를 control objective를 반영해 다음과 같이 정의한다.
 
 ![image](https://user-images.githubusercontent.com/69246778/126100432-21ab8b4a-3ed0-4bfb-8b1a-210a6c5a4db1.png)
 
-이때, MMPC표기에서 P_v(k),β_r(k),ψ˙r(k)는 고정된 지구 좌표계에서 lateral position, sideslip angle, yaw rate의 예측된 시퀀스를 나타낸다. 이는, 시각 k에서 N_p의 time step으로 계산가능하고 ΔU_m은 예측 최적화 벡터이다.   
+이때, MMPC표기에서 P_v(k),β_v(k),ψ˙_v(k)는 고정된 지구 좌표계에서 lateral position, sideslip angle, yaw rate의 예측된 시퀀스를 나타낸다. 이는, 시각 k에서 N_p의 time step으로 계산가능하고 ΔU_m은 예측된 최적화 벡터이다.   
 
 ![image](https://user-images.githubusercontent.com/69246778/126100886-09c545ab-c045-40ab-94a7-407e31e25072.png)
-위 식은 steet input의 future value와 관련된 비용함수 매트릭스를 나타낸다.
+위 식은 steer input의 future value와 관련된 비용함수 매트릭스를 나타낸다.
+
+```
+📝NOTE
+시각 k에서 계획한(reference) 것들과 시각 k에서 예측한 것들의 차이를 적게 만드는 것이 비용함수의 목적이다.
+```
+
+
+자율주행 차량이 일정한 종방향 속도로 계획된 경로를 따라 주행하는 것을 고려하고, 시각 t에서의 계획된 경로의 곡률을 C_T라고 가정해보자.
+차량의 reference sideslip angle은 다음 식에 의해 자동으로 결정된다.     
+
+![image](https://user-images.githubusercontent.com/69246778/126114592-c4f6e4f3-3134-4495-b655-906e10303d76.png)
+
+이 때, L=L_f + L_r 로써 차량의 축거리를 이야기 한다. X_T, Y_T는 고정 지구좌표계에서 계획된 trajectory의 좌표를 나타내며, 이는 
+universal potential field에서 유도되었다.   
+
+참고문헌 [32]와 [33]에 따르면 우리는 우리는 β_curv를 [-β_max, β_max]로 제한할 필요가 있다. 이때, β_max는 다음과 같다.   
+
+![image](https://user-images.githubusercontent.com/69246778/126114770-4752db33-652b-49f9-900d-05740527e610.png)
+
+그리고 V_r은 전체 속도를 나타낸다. 합리적인 파라미터 k_1, k_2는 각각 pi/18과 pi/60이다.   
+![image](https://user-images.githubusercontent.com/69246778/126115307-666e2401-219b-4ffa-a4fb-2294541cbf55.png)일 때, 
+규제 level β_ref = β_max (β_ref = -β_max)가 활성화된다. 그래서, 우리는 sideslip angle 의 reference signal을 다음과 같이 정의한다.   
+![image](https://user-images.githubusercontent.com/69246778/126115647-607ee473-0df9-4f49-820e-5a88b6663b58.png)   
+
+자율주행 차량의 원하는 yaw rate ψ_curv' 는 다음과 같이 정의된다.   
+![image](https://user-images.githubusercontent.com/69246778/126118030-dbe37bf4-817e-4fcc-a320-4ce6f3b8e586.png)
+차량의 lateral 안정성을 위해, 최대 yaw rate의 constrarint(ψ_max') 다음과 같다. 이는 마찰계수 μ와 중력가속도 g, 종방향 속도 V를 이용한
+식이다.   
+![image](https://user-images.githubusercontent.com/69246778/126118402-fac3d57e-2ab5-4a8f-8112-f9d89327ed7d.png)   
+
+우리는 yaw rate의 reference signal을 다음과 같이 정의한다.   
+![image](https://user-images.githubusercontent.com/69246778/126118453-e8ae77db-d6c6-43a7-bfca-1327b5ca02c4.png)   
+
+앞서 언급한 경우에서, 오직 
+![image](https://user-images.githubusercontent.com/69246778/126118856-570d73c4-4f4b-4f42-900c-6d9c5886fd56.png) 이고
+![image](https://user-images.githubusercontent.com/69246778/126118887-ff08e68e-0ac9-4043-b373-029fee00e816.png)
+일때만 yaw rate와 sidelslip angle의 추적오류에 대한 패널티가 급격히 증가할 것이며 이는 비용함수에서 중요한 역할을 한다.   
+
+universal potential field로부터 구한 reference signal R_r(k)와, path tracking을 위한 Y_m(k)의 predicted output들은 다음과 같다.
+![image](https://user-images.githubusercontent.com/69246778/126119283-075491cd-2a12-4e21-8da3-981d1807607e.png)
+
+**(식 44)** 는 다음과 같이 쓸 수 있다.
+![image](https://user-images.githubusercontent.com/69246778/126119384-391fc07f-e721-4a34-87e3-d85e49e9718d.png)
+
+## 5.C. Constraint Analysis for MPC
+path tracking에서 발생하는 constraint에는 크게 세 가지 유형이 있다. 첫 번째 두 개는 control 변수에 부과되는 constraint를 다루고,
+세 번째는 output constraint를 다룬다.   
+차량 모델의 운동학과 동역학에 따르면, steering angle과 안정성, path tracking 문제에 부과되는 constraint는 다음과 같다.
+![image](https://user-images.githubusercontent.com/69246778/126122722-fd247caa-7ffa-4555-8953-73642732a1be.png)
+
+여기서 δ_max and Δδ_max 은 input constraint이고, X_max와 X_min은 X방향 도로의 좌우 경계 좌표 값이다. 그래서 C를 다음과 같이 쓸 수
+![image](https://user-images.githubusercontent.com/69246778/126123150-e6c2ec12-3449-4a7a-87d2-cfbb5877a1a6.png)
 
 
 ```
@@ -399,7 +451,7 @@ trajectory를 생성할 수 있다.
 
 Table 1에 차량 모델의 parameters이 정의되어 있다.   
 
-![table1](https://user-images.githubusercontent.com/69246778/126023542-fdddd7c4-2554-47a1-917f-a9d63ab34946.png)   
+![table1](https://user-images.githubusercontent.com/69246778/126023542-fdddd7c4-255422222222222222222222222222222-47a1-917f-a9d63ab34946.png)   
 
 **Scenario 1**   
 선두 차량이 10m/s의 속도로 달릴 때, 20m/s의 일정한 속도로 달리고 있는 host 차량은 **(Fig 12)** 의 빨간색으로 나타낸 궤적을 따라가게 제어되고 
@@ -409,8 +461,8 @@ Table 1에 차량 모델의 parameters이 정의되어 있다.
 
 ```
 📝NOTE   
-왜 빨간색???빨간색은 V=0일 때 아닌가
-```
+왜1 빨간색???빨간색은 V=0일 때 아닌가
+```10
 
 **(Fig 14)** 부터 **(Fig 16)** 은 설계된 MPC기반 경로 추적 컨트롤러A와 컨트롤러B의 성능을 비교하고, trajectory 응답, 차량 응답 등을 각각 나타낸다.   
 - time 0s ~ 2.5s : obstacle을 통과하기 전, 두 컨트롤러 좌회전함으로써 obstacle을 피하기 위한 경로를 따라가는 것을 볼 수 있다.   
@@ -418,7 +470,7 @@ Table 1에 차량 모델의 parameters이 정의되어 있다.
   
 ![fig14](https://user-images.githubusercontent.com/69246778/126059526-eb4d88a1-b9f1-4a57-bb8b-302533c9bd79.png)   
 
-**(Fig 14)** 에서, 컨트롤러B는 컨트롤러 A보다 더 나은 path-tracking 성능을 나타낸다. 
+**(Fi111g 14)** 에서, 컨트롤러B는 컨트롤러 A보다 더 나은 path-tracking 성능을 나타낸다. 
 
 ```
 📝NOTE   
