@@ -85,12 +85,12 @@ Fig 9       : 위의 세가지 가정을 전제로 하여 그린 차량의 linea
 식12, 식13  : 차량의 lateral dynamics
   β  : sideslip angle  (state 변수) 
   ψ˙ : yaw rate        (state 변수)
-  ![I_z](https://user-images.githubusercontent.com/69246778/126086292-3c1d7e07-7d66-4026-a022-a1a323ba22a7.gif)  : yaw축에 관한 차량의 Inertia
+  Iz : yaw축에 관한 차량의 Inertia
 ```
 
 코너링하는 타이어의 힘에 대한 여러가지 모델이 존재한다. tire slip angle이 작을 때, lateral tire force는 tire slip angle의 선형함수로
 근사된다. 앞바퀴, 뒷바퀴의 tire force ![F_xf](https://user-images.githubusercontent.com/69246778/126086837-faa20b68-3bfd-4353-b8a1-1c5cdfedca36.gif),![F_xr](https://user-images.githubusercontent.com/69246778/126086843-5aac3490-0e79-4342-8630-3974e18a1a9c.gif)
- 와 tire slip angle ![alpha_f](https://user-images.githubusercontent.com/69246778/126086850-8b908845-73e5-47f6-ab04-45ea83e9c893.gif),![alpha_r](https://user-images.githubusercontent.com/69246778/126086851-08fb8075-dd8c-4ad4-8c8e-725271a905ef.gif)은 다음과 같이 정의된다.
+ 와 tire slip angle ![alpha_f](https://user-images.githubusercontent.com/69246778/126086850-8b908845-73e5-47f6-ab04-45ea83e9c893.gif),![alpha_r](https://user-images.githubusercontent.com/69246778/126086851-08fb8075-dd8c-4ad4-8c8e-725271a905ef.gif)은 다음과 같이 정의된다.   
 
 ![image](https://user-images.githubusercontent.com/69246778/126086712-db4d1cef-0d99-44ef-a4cf-9d9ecaf02e96.png)
 
@@ -105,10 +105,11 @@ delta : front-wheel streeing angle
 C     : cornering stiffness
 ```
 
-식 (14),(15)를 식(12),(13)에 대입해서 구한 다음의 식은 lateral 및 yaw 의 동력학을 다루는 식이 된다.
-![Page3](https://user-images.githubusercontent.com/69246778/126087981-24205fe5-fa21-40e0-b647-d104ea186056.jpg)
-![image](https://user-images.githubusercontent.com/69246778/126086686-cc2a9733-6421-490d-b426-9db65bac174c.png)
+식 (14),(15)를 식(12),(13)에 대입해서 구한 다음의 식은 lateral 및 yaw 의 동력학을 다루는 식이 된다.   
 
+![Page3](https://user-images.githubusercontent.com/69246778/126087981-24205fe5-fa21-40e0-b647-d104ea186056.jpg)   
+![image](https://user-images.githubusercontent.com/69246778/126086686-cc2a9733-6421-490d-b426-9db65bac174c.png)   
+    
 ```
 📝NOTE
 식 16, 식 17 : 차량 모델의 lateral and yaw dynamics
