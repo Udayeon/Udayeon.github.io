@@ -107,13 +107,15 @@ C     : cornering stiffness
 
 식 (14),(15)를 식(12),(13)에 대입해서 구한 다음의 식은 lateral 및 yaw 의 동력학을 다루는 식이 된다.   
 
-![Page3](https://user-images.githubusercontent.com/69246778/126087981-24205fe5-fa21-40e0-b647-d104ea186056.jpg)   
-![image](https://user-images.githubusercontent.com/69246778/126086686-cc2a9733-6421-490d-b426-9db65bac174c.png)   
-    
+![image](https://user-images.githubusercontent.com/69246778/126086686-cc2a9733-6421-490d-b426-9db65bac174c.png) 
+![Page3](https://user-images.githubusercontent.com/69246778/126087981-24205fe5-fa21-40e0-b647-d104ea186056.jpg) 
 ```
 📝NOTE
 식 16, 식 17 : 차량 모델의 lateral and yaw dynamics
 ```
+  
+    
+
 
 ## 4.B. Discrete linear vehicle model for MPC
 ```
