@@ -201,14 +201,29 @@ constrain된 제어 문제를 실시간 최적화 문제로 생각해 푸는 것
 
 **(식 27)~(식 29)** 를 **(식 22)** 와 **(식 25)** 에 대입하면 다음과 같이 쓸 수 있고, 이는 변수 Xd(k)와 u(k)의 증분을 갖는 discrete
 state-space model이다.   
-   
-state-space model과 output방정식에 대한 input은 delta_u(k)이다. delta_Xd(k)를 output인 Y(k)와 연결하기 위해 새로운 상태 변수 벡터를
-다음과 같이 설정한다.
-   
-**(식 32)** 를 **(식 30)** 과 **(식 31)** 에 결합하면 다음과 같은 state-space model이 만들어진다.
 
-여기서 (Aa,Ba,Ca)는 augmented model(증강모형)이라 불리고 다음과 같이 쓸 수 있다.
+![image](https://user-images.githubusercontent.com/69246778/126092679-8dae6c72-c36f-47f0-b903-84748c0167cc.png)
 
+state-space model과 output방정식에 대한 input은 Δu(k)이다. ΔXd(k)를 output인 Y(k)와 연결하기 위해 새로운 상태 변수 벡터를
+다음과 같이 설정한다.   
+
+![image](https://user-images.githubusercontent.com/69246778/126092694-e31ad49b-ed3a-4f06-8ec9-4d22a23648df.png)
+
+**(식 32)** 를 **(식 30)** 과 **(식 31)** 에 결합하면 다음과 같은 state-space model이 만들어진다.   
+
+![image](https://user-images.githubusercontent.com/69246778/126092718-15a86e0e-07a5-4205-b4d6-556992f2f15d.png)
+
+여기서 (Aa,Ba,Ca)는 augmented model(증강모형)이라 불리고 다음과 같이 쓸 수 있다.   
+![image](https://user-images.githubusercontent.com/69246778/126092727-ea85f757-af98-41e3-a18e-136f0771e7af.png)
+
+```
+📝NOTE
+식30, 식31 : ΔXd(k),Δu(k)로 표현한 discrete stae-space model
+u(k) : state-space model과 output방정식에 대한 input
+X_a : ΔXd(k)를 output인 Y(k)와 연결하기 위해 새롭게 설정한 상태변수
+식33, 식34 : 새롭게 설정한 X_a를 이용해 구한 state-sapce model
+A_a, B_a, C_a : augmented model
+```
 
 # 5. Design fo multiconstrained model predictive control
 * * *
