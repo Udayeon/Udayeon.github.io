@@ -116,40 +116,66 @@ C     : cornering stiffness
 ```
 
 ## 4.B. Discrete linear vehicle model for MPC
+```
+📝NOTE
+Section A에서 lateral 및 yaw를 다루는 식을 유도했고 이 식으로부터 MMPC최적화를 위한 discrete state-space식을 유도한다.
+```
 여기서, 우리는 MMPC최적화를 위해 이산 상태-공간 차량 모델을, 이전 section에서 얻은 수학적 모델로부터 유도한다. 새로운 차량 모델에서, 상태
-공간 벡터는 차량 CG의 lateral 방향 Vx, 차량의 side slip angle β, yaw angle ψ, yaw rate ψ'로 구성된다. input은 앞 바퀴의 steering angle δ로 주어진다. 이런 정의에 의해,  state-space 벡터는 다음과 같다.
+공간 벡터는 차량 CG의 lateral 위치 ![X_v](https://user-images.githubusercontent.com/69246778/126088231-a9e77bcb-958a-4935-b150-c6cb4eef7b8a.gif), 차량의 side slip angle β, yaw angle ψ, yaw rate ψ'로 구성된다. input은 앞 바퀴의 steering angle δ로 주어진다. 이런 정의에 의해,  state-space 벡터는 다음과 같다.   
 
-이 상태 방정식은 이전 section에서 유도된 **(식16)** 과 **(식17)** 에 기반해 다음과 같이 쓸 수 있다. 
-이 때 Ac, Bc, Cc는 다음과 같다.   
-앞에서 언급한 차량 모델은 선형화 된 연속시간 및 단일입력, 다중출력 시스템이다. 그러나, 제어될 시스템은 일반적으로 MPC literatue의 discrete
-state-space model에 의해 모델링된다. 따라서, **(식19)** 와 **(식20)** 은 다음의 식을 얻기 위해 discrete state-space 모델로 변환되어야 한다.
+![image](https://user-images.githubusercontent.com/69246778/126088279-dfc09e92-3595-4fbd-9369-2092f0243825.png)
 
+상태 방정식은 이전 section에서 유도된 **(식16)** 과 **(식17)** 에 기반해 다음과 같이 쓸 수 있다.   
+
+![image](https://user-images.githubusercontent.com/69246778/126088300-81dca464-3706-4f6d-904e-dbbac2357633.png)
+
+이 때 ![A_c](https://user-images.githubusercontent.com/69246778/126088351-bf48ad0e-da72-441a-9bf2-cdafbf14ad49.gif), ![B_c](https://user-images.githubusercontent.com/69246778/126088354-52df69cc-162c-49e1-b54a-611bcb27faef.gif), ![C_c](https://user-images.githubusercontent.com/69246778/126088357-e7ddd61b-bb42-4aac-bbe0-17bef4491b26.gif)는 다음과 같다.
+
+![image](https://user-images.githubusercontent.com/69246778/126088319-7515207b-0ea8-4620-8604-7a8342efc3a3.png)
 
 ```
 📝NOTE
-MPC literaure ? 
+Xc : lateral position, sideslip angle, yaw angle, yaw rate로 구성된 state-space 벡터
+이 상태 벡터와 앞서 구한 식16,식17에 기반해 상태방정식 식19,식20 을 쓸 수 있음.
+```
+
+앞에서 언급한 차량 모델은 선형화 된 연속시간 및 단일입력, 다중출력 시스템이다. 그러나, 제어될 시스템은 일반적으로 MPC [literatue 29]의
+discrete state-space model에 의해 모델링된다. 따라서, **(식 19)** 와 **(식 20)** 은 **(식 22)** 을 얻기 위해 discrete state-space 모
+델로 변환되어야 한다.   
+
+![image](https://user-images.githubusercontent.com/69246778/126089046-275d70a2-804e-486c-a610-25848954305c.png)
+
+여기서 ![A_d](https://user-images.githubusercontent.com/69246778/126089152-4ce2a816-f125-4d67-98fb-2451e52027b0.gif)와 ![B_d]
+(https://user-images.githubusercontent.com/69246778/126089156-5b62ca79-080c-4bbe-a282-8b8470b20dc3.gif)는 각각 discrete state-
+space equation을 설명하기 위한 state 매트릭스와 control 매트릭스를 나타내고 이는 다음과 같이 [오일러 method]로 계산될 수 있다.
+
+![image](https://user-images.githubusercontent.com/69246778/126089228-edaea7ed-59cc-4225-8b09-447b314181c7.png)
+
+이 때, ΔT 는 discrete state-space 모델의 샘플링 간격을 의미한다.  
+```
+📝NOTE
+식 19, 식 20은 선형화, 연속시간, 단일입력, 다중출력 시스템이다.
+그러나 제어될 시스템은 discrete state-space model이므로 변환해주어야 한다.
+그럼 식22를 구할 수 있는데 이를 구성하는 계수인 Ad(State),Bd(control)는 오일러 방식으로 구할 수 있다.
 Discrete state-space model : 29번 문헌 174page
 ```
 
-여기서 Ad와 Bd는 각각 discrete state-sapce 방정식을 위한 상태 매트릭스와 제어 매트릭스이다. 이 둘은 다음과 같이 오일러 방정식으로
-계산할 수 있다.   
+lateral 위치, sideslip angle, 그리고 yaw rate는 다음의 식을 사용하여 output으로 정의할 수 있다.   
 
-```
-📝NOTE
-Ad : state 매트릭스
-Bd : control 매트릭스
-```
-
-이 때, delta T 는 discrete state-space 모델의 샘플링 간격을 의미한다.   
-lateral 위치, sideslip angle, 그리고 yaw rate는 다음의 식을 사용하여 출력할 수 있다.
+![image](https://user-images.githubusercontent.com/69246778/126089544-36931240-e6ac-4436-a116-e8f05c18251b.png)
 
 
 여기서
-Yd(k)와 Cd는 다음과 같다.
+![Y_d(k)](https://user-images.githubusercontent.com/69246778/126089692-e0250dda-0841-40cb-a4e9-bb891d4b0ae9.gif)와
+![C_d](https://user-images.githubusercontent.com/69246778/126089732-4c8f858d-3453-4154-ba30-81904354b433.gif)는 다음과 같다.   
+
+![image](https://user-images.githubusercontent.com/69246778/126089764-bafc6d47-0d61-46be-b8a9-35a98a8d7897.png)
 
 ```
 📝NOTE
-Cc=Cd
+output으로 lateral,sideslip angle, yaw rate를 얻기 위해 식25를 사용한다.
+output을 나타내는 벡터 Yd는 Xv(lateral),β(sideslip angle),Ψ(yaw rate) 로 구성되어 있다.
+우항의 Xd(k)는 식22에서 구했고 Cd는 Cc와 같다.
 ```
 
 MMPC를 사용한 Path tracking에서 [plant]변수에 의한 하드웨어 constraint와 output에 의한 소프트웨어 constraint에 의해 constrained 
@@ -160,9 +186,20 @@ control problem 을 실시간 최적화 문제로 공식화하는 것은 일반�
 📝NOTE
 하드웨어, 소프트웨어 모두 constraint이 있으므로 
 constrain된 제어 문제를 실시간 최적화 문제로 생각해 푸는 것은 당연..
+식 22 : discrete state-space model를 계산하는 식
+식 23 : output출력하는 식
 ```
+
 상태변수와 제어변수의 차이를 다음과 같이 표시해보자.
-   
+
+![image](https://user-images.githubusercontent.com/69246778/126090282-274c43f9-69bc-4853-a62d-62081b0702da.png)
+
+```
+📝NOTE
+
+```
+
+
 **(식 27)~(식 29)** 를 **(식 22)** 와 **(식 25)** 에 대입하면 다음과 같이 쓸 수 있고, 이는 변수 Xd(k)와 u(k)의 증분을 갖는 discrete
 state-space model이다.   
    
