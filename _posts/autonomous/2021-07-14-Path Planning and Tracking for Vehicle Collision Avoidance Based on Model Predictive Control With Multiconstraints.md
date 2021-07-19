@@ -73,7 +73,7 @@ lateral 및 yaw를 고려한 모델 개발
 
 ![fig9](https://user-images.githubusercontent.com/69246778/126086178-1ff13692-8dd8-4b54-9d24-7c62f6a8093b.png)
 
-차체의 sideslip angle β 와 차체의 yaw rate ψ˙은 상태 변수로 간주되며, 차량의 lateral dynamics는 다음과 같이 쓸 수 있다. 
+차체의 sideslip angle β 와 차체의 yaw rate ψ˙은 상태 변수로 간주되며, 차량의 lateral dynamics는 다음과 같이 쓸 수 있다.   
 ![image](https://user-images.githubusercontent.com/69246778/126086210-ffad5d77-0948-426c-b1fe-ac9533ace72f.png)
 
 ![I_z](https://user-images.githubusercontent.com/69246778/126086292-3c1d7e07-7d66-4026-a022-a1a323ba22a7.gif) 는 yaw 축에 관한 차량의 Inertia이다. ![l_f](https://user-images.githubusercontent.com/69246778/126086315-0d6a8c4b-51d8-4272-9cee-2c468bb66ab5.gif)와 ![l_r](https://user-images.githubusercontent.com/69246778/126086319-48a6cc62-a10c-4db6-a21c-4df7d3a93945.gif)은 각각 Center of gravity(CG)로 부터 앞, 뒤 바퀴 간의 거리이다.   
