@@ -76,11 +76,8 @@ lateral 및 yaw를 고려한 모델 개발
 차체의 sideslip angle β 와 차체의 yaw rate ψ˙은 상태 변수로 간주되며, 차량의 lateral dynamics는 다음과 같이 쓸 수 있다.   
 ![image](https://user-images.githubusercontent.com/69246778/126086210-ffad5d77-0948-426c-b1fe-ac9533ace72f.png)
 
-I_{i}
-![I_z](https://user-images.githubusercontent.com/69246778/126086292-3c1d7e07-7d66-4026-a022-a1a323ba22a7.gif)는 yaw 축에 관한 차량의 Inertia이다. 
-![l_f](https://user-images.githubusercontent.com/69246778/126086315-0d6a8c4b-51d8-4272-9cee-2c468bb66ab5.gif)와 
-![l_r](https://user-images.githubusercontent.com/69246778/126086319-48a6cc62-a10c-4db6-a21c-4df7d3a93945.gif)은 각각 Center of gravity(CG)로 부터 앞, 뒤 바퀴 간의 거리이다. 
 
+Iz는 yaw 축에 관한 차량의 Inertia이다. lf와 lr은 각각 Center of gravity(CG)로 부터 앞, 뒤 바퀴 간의 거리이다. 
 
 ```
 📝NOTE
@@ -93,12 +90,11 @@ Fig 9       : 위의 세가지 가정을 전제로 하여 그린 차량의 linea
 ```
 
 코너링하는 타이어의 힘에 대한 여러가지 모델이 존재한다. tire slip angle이 작을 때, lateral tire force는 tire slip angle의 선형함수로
-근사된다. 앞바퀴, 뒷바퀴의 tire force ![F_xf](https://user-images.githubusercontent.com/69246778/126086837-faa20b68-3bfd-4353-b8a1-1c5cdfedca36.gif),![F_xr](https://user-images.githubusercontent.com/69246778/126086843-5aac3490-0e79-4342-8630-3974e18a1a9c.gif)
- 와 tire slip angle ![alpha_f](https://user-images.githubusercontent.com/69246778/126086850-8b908845-73e5-47f6-ab04-45ea83e9c893.gif),![alpha_r](https://user-images.githubusercontent.com/69246778/126086851-08fb8075-dd8c-4ad4-8c8e-725271a905ef.gif)은 다음과 같이 정의된다.   
+근사된다. 앞바퀴, 뒷바퀴의 tire force F_{xf}, F_{xr}와 tire slip angle α_f, α_r은 다음과 같이 정의된다.   
 
 ![image](https://user-images.githubusercontent.com/69246778/126086712-db4d1cef-0d99-44ef-a4cf-9d9ecaf02e96.png)
 
-여기서 δ는 앞바퀴의 조향각이다. ![C_f](https://user-images.githubusercontent.com/69246778/126086919-7f18cfea-6f14-487a-a6c4-eda9f6ddd794.gif)와 ![C_r](https://user-images.githubusercontent.com/69246778/126086927-41a8e60f-78b9-405d-8e37-cf9822788db0.gif)은 각각 앞바퀴,뒷바퀴의 선형화된 cornering stiffness를 나타낸다.  
+여기서 δ는 앞바퀴의 조향각이다.C_f와 C_r은 각각 앞바퀴,뒷바퀴의 선형화된 cornering stiffness를 나타낸다.  
 
 ```
 📝NOTE
@@ -126,7 +122,8 @@ Section A에서 lateral 및 yaw를 다루는 식을 유도했고
 이 식으로부터 MMPC최적화를 위한 discrete state-space식을 유도한다.
 ```
 여기서, 우리는 MMPC최적화를 위해 이산 상태-공간 차량 모델을, 이전 section에서 얻은 수학적 모델로부터 유도한다. 새로운 차량 모델에서, 상태
-공간 벡터는 차량 CG의 lateral 위치 ![X_v](https://user-images.githubusercontent.com/69246778/126088231-a9e77bcb-958a-4935-b150-c6cb4eef7b8a.gif), 차량의 side slip angle β, yaw angle ψ, yaw rate ψ'로 구성된다. input은 앞 바퀴의 steering angle δ로 주어진다. 이런 정의에 의해,  state-space 벡터는 다음과 같다.   
+공간 벡터는 차량 CG의 lateral 위치 X_v, 차량의 side slip angle β, yaw angle ψ, yaw rate ψ'로 구성된다. 
+input은 앞 바퀴의 steering angle δ로 주어진다. 이런 정의에 의해,  state-space 벡터는 다음과 같다.   
 
 ![image](https://user-images.githubusercontent.com/69246778/126088279-dfc09e92-3595-4fbd-9369-2092f0243825.png)
 
@@ -134,7 +131,7 @@ Section A에서 lateral 및 yaw를 다루는 식을 유도했고
 
 ![image](https://user-images.githubusercontent.com/69246778/126088300-81dca464-3706-4f6d-904e-dbbac2357633.png)
 
-이 때 ![A_c](https://user-images.githubusercontent.com/69246778/126088351-bf48ad0e-da72-441a-9bf2-cdafbf14ad49.gif), ![B_c](https://user-images.githubusercontent.com/69246778/126088354-52df69cc-162c-49e1-b54a-611bcb27faef.gif), ![C_c](https://user-images.githubusercontent.com/69246778/126088357-e7ddd61b-bb42-4aac-bbe0-17bef4491b26.gif)는 다음과 같다.
+이 때 A_C, B_c, C_c 는 다음과 같다.
 
 ![image](https://user-images.githubusercontent.com/69246778/126088319-7515207b-0ea8-4620-8604-7a8342efc3a3.png)
 
@@ -150,9 +147,8 @@ discrete state-space model에 의해 모델링된다. 따라서, **(식 19)** �
 
 ![image](https://user-images.githubusercontent.com/69246778/126089046-275d70a2-804e-486c-a610-25848954305c.png)
 
-여기서 ![A_d](https://user-images.githubusercontent.com/69246778/126089152-4ce2a816-f125-4d67-98fb-2451e52027b0.gif)와 ![B_d]
-(https://user-images.githubusercontent.com/69246778/126089156-5b62ca79-080c-4bbe-a282-8b8470b20dc3.gif)는 각각 discrete state-
-space equation을 설명하기 위한 state 매트릭스와 control 매트릭스를 나타내고 이는 다음과 같이 [오일러 method]로 계산될 수 있다.
+여기서 A_d와 B_d는 각각 discrete state-space equation을 설명하기 위한 state 매트릭스와 control 매트릭스를 나타내고 
+이는 다음과 같이 [오일러 method]로 계산될 수 있다.
 
 ![image](https://user-images.githubusercontent.com/69246778/126089228-edaea7ed-59cc-4225-8b09-447b314181c7.png)
 
@@ -170,9 +166,7 @@ lateral 위치, sideslip angle, 그리고 yaw rate는 다음의 식을 사용하
 ![image](https://user-images.githubusercontent.com/69246778/126089544-36931240-e6ac-4436-a116-e8f05c18251b.png)
 
 
-여기서
-![Y_d(k)](https://user-images.githubusercontent.com/69246778/126089692-e0250dda-0841-40cb-a4e9-bb891d4b0ae9.gif)와
-![C_d](https://user-images.githubusercontent.com/69246778/126089732-4c8f858d-3453-4154-ba30-81904354b433.gif)는 다음과 같다.   
+여기서 Y_d(k)와 C_d 는 다음과 같다.   
 
 ![image](https://user-images.githubusercontent.com/69246778/126089764-bafc6d47-0d61-46be-b8a9-35a98a8d7897.png)
 
@@ -201,7 +195,7 @@ constrain된 제어 문제를 실시간 최적화 문제로 생각해 푸는 것
 
 ```
 📝NOTE
-
+증분을 나타냄
 ```
 
 
