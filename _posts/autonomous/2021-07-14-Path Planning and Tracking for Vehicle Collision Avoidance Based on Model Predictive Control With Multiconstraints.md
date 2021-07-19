@@ -46,25 +46,73 @@ IEEE TRANSACTIONS ON VEHICULAR TECHNOLOGY, VOL. 66, NO. 2, FEBRUARY 2017
 * * *
 Path tracking 문제는 차량 모델링에 의존한다. 왜냐하면 모델링은 MMPC법 설계에 필요한 요소이기 때문이다. 본 논문에서 사용하는 모델은 차량의 
 운동학적 및 동적 측면을 고려해야 한다. 여기서, 우리는 충돌 회피 시스템 개발에 사용되는 차량의 확장적 수학 모델을 제안한다. [Section 4-A]에
-서는 lateral 및 yaw dynamic을 고려한 차량 dynamic 모델을 개발하고 [Section 4-B]에서는 MMPC개발에 사용되는 이산 상태 공간 차량 모델을 
+서는 lateral 및 yaw dynamic을 고려한 차량 dynamic 모델을 개발하고 [Section 4-B]에서는 MMPC개발에 사용되는 이산적인 상태 공간 차량 모델을 
 소개한다.   
 
+```
+📝NOTE
+MMPC법을 설계하기 위해선 차량 모델링이 필요하다.
+이 논문에선 차량의 운동학적 및 동적 측면을 고려한 모델이 필요하다.
+그래서 충돌 회피 시스템 개발에 사용되는 augmented mathematical model을 제안한다.
+section A : lateral 및 yaw를 고려한 모델 개발
+section B : MMPC개발에 사용되는 discrete state-space 모델 소개
+```
+
 ## 4.A. Vehicle Dynamic Model for Path Tracking
-이 Section에서는 control design을 사용하기 위한 차량과 타이어의 모델링에 대해 설명한다. path-tracking 문제에서 차량 모델링에서의 가정은
+```
+📝NOTE
+lateral 및 yaw를 고려한 모델 개발
+```
+
+이 Section에서는 control design에 사용될 차량과 타이어의 모델링에 대해 설명한다. path-tracking 문제에서 차량 모델링에서의 가정은
 다음과 같다.
 - longitudinal 속도는 일정하다.
 - 앞축과 뒤축에서 왼쪽, 오른쪽 바퀴는 single wheel 하나로 묶는다.
 - 서스펜션 운동과 미끄러짐, 공기역학의 효과는 무시한다.
-이러한 가정들을 통해 그린 일반 차량의 선형 동적 모델은 **(Fig 9)** 와 같다. 이는 뉴턴의 법칙에 따라 구해진 것이다.
-차체의 sideslip angle β 와 차체의 yaw rate ψ˙은 상태 변수로 간주되며, 차량의 lateral 방향 역학은 다음과 같이 쓸 수 있다. 
+이러한 가정들을 통해 그린 일반 차량의 선형 동적 모델은 **(Fig 9)** 와 같다. 이는 뉴턴의 법칙에 따라 구해진 것이다.   
 
-Iz는 yaw 축에 관한 차량의 Inertia이다.
-lf와 lr은 각각 Center of gravity(CG)로 부터 각각 앞과 뒤 바퀴 간의 거리이다.   
-코너링하는 타이어의 힘에 대한 여러가지 모델이 존재한다. 타이어의 slip angle이 작을 때, lateral tire force는 slip angle의 선형함수로
-근사된다. 앞바퀴, 뒷바퀴의 tire force와 tire slip angle은 다음과 같이 정의된다.
+![fig9](https://user-images.githubusercontent.com/69246778/126086178-1ff13692-8dd8-4b54-9d24-7c62f6a8093b.png)
 
-여기서 delta는 앞바퀴의 조향각이다. Cf와 Cr은 각각 앞바퀴 뒷바퀴의 선형화된 cornering stiffness를 나타낸다.   
+차체의 sideslip angle β 와 차체의 yaw rate ψ˙은 상태 변수로 간주되며, 차량의 lateral dynamics는 다음과 같이 쓸 수 있다. 
+![image](https://user-images.githubusercontent.com/69246778/126086210-ffad5d77-0948-426c-b1fe-ac9533ace72f.png)
+
+![I_z](https://user-images.githubusercontent.com/69246778/126086292-3c1d7e07-7d66-4026-a022-a1a323ba22a7.gif) 는 yaw 축에 관한 차량의 Inertia이다. ![l_f](https://user-images.githubusercontent.com/69246778/126086315-0d6a8c4b-51d8-4272-9cee-2c468bb66ab5.gif)와 ![l_r](https://user-images.githubusercontent.com/69246778/126086319-48a6cc62-a10c-4db6-a21c-4df7d3a93945.gif)은 각각 Center of gravity(CG)로 부터 앞, 뒤 바퀴 간의 거리이다.   
+
+```
+📝NOTE
+Fig 9       : 위의 세가지 가정을 전제로 하여 그린 차량의 linear dynamic model
+
+식12, 식13  : 차량의 lateral dynamics
+  β  : sideslip angle  (state 변수) 
+  ψ˙ : yaw rate        (state 변수)
+  ![I_z](https://user-images.githubusercontent.com/69246778/126086292-3c1d7e07-7d66-4026-a022-a1a323ba22a7.gif)  : yaw축에 관한 차량의 Inertia
+```
+
+코너링하는 타이어의 힘에 대한 여러가지 모델이 존재한다. tire slip angle이 작을 때, lateral tire force는 tire slip angle의 선형함수로
+근사된다. 앞바퀴, 뒷바퀴의 tire force ![F_xf](https://user-images.githubusercontent.com/69246778/126086837-faa20b68-3bfd-4353-b8a1-1c5cdfedca36.gif),![F_xr](https://user-images.githubusercontent.com/69246778/126086843-5aac3490-0e79-4342-8630-3974e18a1a9c.gif)
+ 와 tire slip angle ![alpha_f](https://user-images.githubusercontent.com/69246778/126086850-8b908845-73e5-47f6-ab04-45ea83e9c893.gif),![alpha_r](https://user-images.githubusercontent.com/69246778/126086851-08fb8075-dd8c-4ad4-8c8e-725271a905ef.gif)은 다음과 같이 정의된다.
+
+![image](https://user-images.githubusercontent.com/69246778/126086712-db4d1cef-0d99-44ef-a4cf-9d9ecaf02e96.png)
+
+여기서 δ는 앞바퀴의 조향각이다. ![C_f](https://user-images.githubusercontent.com/69246778/126086919-7f18cfea-6f14-487a-a6c4-eda9f6ddd794.gif)와 ![C_r](https://user-images.githubusercontent.com/69246778/126086927-41a8e60f-78b9-405d-8e37-cf9822788db0.gif)은 각각 앞바퀴,뒷바퀴의 선형화된 cornering stiffness를 나타낸다.  
+
+```
+📝NOTE
+식 14, 식 15 : tire force를 tire side slip angle에 선형 근사한 식
+F     : tire force
+alpha : tire slip angle
+delta : front-wheel streeing angle
+C     : cornering stiffness
+```
+
 식 (14),(15)를 식(12),(13)에 대입해서 구한 다음의 식은 lateral 및 yaw 의 동력학을 다루는 식이 된다.
+![Page3](https://user-images.githubusercontent.com/69246778/126087981-24205fe5-fa21-40e0-b647-d104ea186056.jpg)
+![image](https://user-images.githubusercontent.com/69246778/126086686-cc2a9733-6421-490d-b426-9db65bac174c.png)
+
+```
+📝NOTE
+식 16, 식 17 : 차량 모델의 lateral and yaw dynamics
+```
 
 ## 4.B. Discrete linear vehicle model for MPC
 여기서, 우리는 MMPC최적화를 위해 이산 상태-공간 차량 모델을, 이전 section에서 얻은 수학적 모델로부터 유도한다. 새로운 차량 모델에서, 상태
@@ -103,18 +151,59 @@ Yd(k)와 Cd는 다음과 같다.
 Cc=Cd
 ```
 
-MMPC를 사용한 Path tracking에서 [plant]변수에 의한 하드웨어 constraint와 output에 의한 소프트웨어 constraint에 의해 constrained control problem 을 실시간 최적화 문제로 공식화하는 것은 일반적이다. 
+MMPC를 사용한 Path tracking에서 [plant]변수에 의한 하드웨어 constraint와 output에 의한 소프트웨어 constraint에 의해 constrained 
+control problem 을 실시간 최적화 문제로 공식화하는 것은 일반적이다. discrete state-space 모델인 **(식22)**와 **(식25)** 를 통합해 
+단일화된 모델로 확장시킬 수 있다.
 
 ```
 📝NOTE
 하드웨어, 소프트웨어 모두 constraint이 있으므로 
 constrain된 제어 문제를 실시간 최적화 문제로 생각해 푸는 것은 당연..
 ```
+상태변수와 제어변수의 차이를 다음과 같이 표시해보자.
+   
+**(식 27)~(식 29)** 를 **(식 22)** 와 **(식 25)** 에 대입하면 다음과 같이 쓸 수 있고, 이는 변수 Xd(k)와 u(k)의 증분을 갖는 discrete
+state-space model이다.   
+   
+state-space model과 output방정식에 대한 input은 delta_u(k)이다. delta_Xd(k)를 output인 Y(k)와 연결하기 위해 새로운 상태 변수 벡터를
+다음과 같이 설정한다.
+   
+**(식 32)** 를 **(식 30)** 과 **(식 31)** 에 결합하면 다음과 같은 state-space model이 만들어진다.
 
+여기서 (Aa,Ba,Ca)는 augmented model(증강모형)이라 불리고 다음과 같이 쓸 수 있다.
 
 
 # 5. Design fo multiconstrained model predictive control
 * * *
+path tracking 은 차량 역학과 운동학에서 발생한 constraint에 대한 예측제어 문제로 제기될 수 있다. 여기에 제시된 분석은 [29]에 기초하지만
+차량 충돌회피 application에 적합하도록 조정된다. 
+
+## 5.A. Prediction of State and Output Variables
+path tracking을 위한 MPC의 디자인에 있어서 각 시간마다 차랴의 미래 행동을 예측하는 것으 중요한 단계이다. 이 미래 예측은 특정한
+prediction horizon 내에서 control input을 결정해주고 이 미래 상태에 기초하여, 최적화된 control input을 계산하기 위해 성능지수가 최소화
+된다.
+
+```
+📝NOTE
+performance index가 최소화 된다는게 뭐임?
+```
+
+여기에 우리가 현재 시간 k를 가정했고 이는 항상 양수이다. prediction horizon은 optimization window의 길이인 Np=10이고,
+control horizon Nc=5이다. 상태 변수 벡터 Xa(k)는 현재의 plant 정보를 제공하고, 이는 측정을 통해 사용할 수 있다.   
+주어진 정보 Xa(k)를 통해 Np단계에 대해 다음과 같이 미래 상태 변수를 예측할 수 있다. 
+
+여기서 Xa(k+m)은 현재의 plant 정보 Xa(k)를 통해 k+m에어싀 예측된 상태 변수이다.   
+우리는 ΔUm으로 현재 관측상태에 대해 시간 k에서 계산한 미래 input 증분의 순서를 다음과 같이 나타낸다.
+
+
+
+
+
+```
+📝NOTE   
+plant information??
+future increment??
+```
 
 # 6. Simulations of path tracking in different scenarios using carsim and simulink
 * * *
