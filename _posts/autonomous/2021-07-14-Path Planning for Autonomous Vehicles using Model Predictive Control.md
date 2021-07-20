@@ -119,41 +119,41 @@ RRT* 는 심지어, 발생한 경로의 점근적인 최적화를 보장하고 �
 # Problem formulation
 ![image](https://user-images.githubusercontent.com/69246778/125569455-170111fb-984a-4021-b15a-c996df87724c.png)
 
-첫 번째 사진이 이 연구에서 고려된 자율주행 시나리오를 보여줌.
-두 개의 차로와 도심주행 환경을 포함하여 구성된 이 환경에서, 자율주행차량(자차)은 도로가 규정한 속도로 주어진 목적지를 향해 달림.
-차량은 주변의 차량과의 충돌을 회피하고 안전한 주행을 할 필요가 있음
-우리는 동작 제어의 2가지 단계를 다음에서 살펴봄.   
-
+이 연구에서 고려된 자율주행 시나리오는 다음의 사진과 같음. 두 개의 차로와 도심주행 환경을 포함하여 구성된 이 환경에서, 자율주행차량은 규정된 속도로 주어진 목적지를 향해 달림.
+주변 차량과의 충돌을 회피하고 안전한 주행을 할 필요가 있음.   
+먼저 동작 제어의 2가지 단계를 다음에서 살펴봄.   
 ![image](https://user-images.githubusercontent.com/69246778/125569525-245a4a77-c063-4b8b-9b78-deac49eddd10.png)   
-상위 단계의 컨트롤러는 **Path planner**임. path planner는 환경과 운전자에 관련한 정보를 받아들여 자율주행차량을 위한 Reference Trajectory(기준궤적)을 생성.   
-하위 단계의 컨트롤러는 **Path Tracker**로, 위에서 구한 기준궤적을 정확하게 추종하도록 차량에 직접적인 제어를 적용하는 부분임.
-효율의 목표치 달성을 위해 path planner는 단순화된 차량 운동역학 모델을 사용하고 Path tracker는 충실도가 높은 동력학적 모델을 활용함.
-이 논문은 Path planner에 초점을 맞춤.
+상위 단계의 컨트롤러는 **Path planner**로 환경과 운전자에 관련한 정보를 받아들여 자율주행차량을 위한 Reference Trajectory(기준궤적)을 생성.   
+하위 단계의 컨트롤러는 **Path Tracker**로 위에서 구한 trajectory를 정확하게 추종하도록 차량에 직접적인 control input을 적용.
+목표한 효율의 달성을 위해 Path planner는 단순화된 kinematic model을 사용하고 Path tracker는 high-fidelity (충실도가 높은) dynamic model을 활용함.
+이 논문은 Path planner에 초점을 맞춤.   
+각각의 time step에서 차량은 MPC를 사용해 finite-horizon을 위한 경로를 계획함. 각 time step에서 차량이 최적의 control sequence를 계산한 다음 현재 time step에 해당하는 control input을 
+시행함. 그리고 나서 업데이트된 차량 상태에서 시작해 위의 순서를 반복. 이 절차는 차량이 목적지에 도달할 때 까지 receding horizon 방식으로 이루어짐.
+planning horizon에서 도로 기하학은 오프라인에 맵핑된 waypoint와 차선표시에 근거한 4차 다항식에 의해 온라인에 근사됨.   
 
-각각의 time step에서 차량은 finite-horizon을 위한 경로를 MPC를 사용하여 계획함.
-뭔 소리냐면, 각 time step에서 차량이 최적의 control sequence를 계산한 다음 현재 time step에 해당하는 control input을 구현함.
-그리고 나서 업데이트된 차량 상태에서 시작해 위의 순서를 반복.
-이 절차는 차량이 목적지에 도달할 때 까지 receding horizon 방식으로 이루어짐.
-In the planning horizon, 도로 기하학은 오프라인에 맵핑된 waypoint와 차선표시에 근거한 4차 다항식에 의해 온라인에 근사됨.
+# 3. Path planning algorithm
+* * *
 
-# Path planning algorithm
-## Vehicle and Environment Modeling
-본 연구에서, 우리는 도로 좌표계(그림3)을 사용함.
-_???unicycle kinematic model을 가정했으므로 속도와 x축 방향 같음(side-slip 발생X) 맞냐???_
+## 3.A. Vehicle and Environment Modeling
+본 연구에서 다음과 같은 도로 좌표계(그림3)을 사용함.
+![image](https://user-images.githubusercontent.com/69246778/126291865-72a5f9a6-25c4-4f7a-92e8-b5ac6c9e0193.png)   
+   
+x : longitudinal position   
+y : lateral position   
+θ : heading angle   
+v : speed   
+   
+차량과 주변 차량을 unicycle kinematic model을 사용해 modeling한 식은 다음과 같음.   
+![image](https://user-images.githubusercontent.com/69246778/126292806-ebe2bb54-272f-4468-a73e-1f71b3903e83.png)   
+   
+z_k : 시각k와 f(z_k,u_k)일 때 차량의 state   
+u_k : u_k=(α_k,ω_k),control input   
+α_k : 선형가속도   
+ω_k : 각속도   
+   
+도로 Waypoint, 차선표시 그리고 주변 차량의 현재상태를 포함한 환경정보를 모두 알고 있다고 가정한다. 또한 주변 차량의 future state도 정확하게 예측되었다고 가정한다.   
 
-그 좌표계에는 x와 y로, 차량의 종적과 측위(lateral position)를 나타냄.
-theta는 차량의 heading angle(선수각), v는 차량의 속도임.
-단일 사이클 동역학적 모델은 자차와 주변 차량을 모델링하는데 사용한다.
-
-그 식은 다음과 같다.
-![CodeCogsEqn (4)](https://user-images.githubusercontent.com/69246778/125578663-d6ef4ec9-0796-48ff-983c-f370f6c3b6bf.gif)
-**?????상태공간방정식**
-시간 k+1일 때 차량의 상태는 시간 k일 때의 차량의 상태로부터 예측할 수 있다. 
-시간 k일 떄 차량의 상태(종적,측위,선수각,속도)에 k일 때 차량의 상태,가속도,각속도를 parameter로 갖는 함수 f를 더한 값이다.   
-도로 Waypoint, 차선표시 그리고 주변 차량의 현재상태를 포함한 환경정보를 모두 알고 있다고 가정한다.
-또한 주변 차량의 예측 상태도 정확하게 예측되었다고 가정한다.
-
-## MPC Formulation 
+## 3.B. MPC Formulation 
 MPC를 이용한 접근법은 Receding horizon 방식을 이용해 제한적인 시간을 제약으로 하는 최적제어 문제이다. (너무 먼 미래까지는 예측 X)   
 식은 다음과 같다.
 N을 prediction horizon으로 두자.    
