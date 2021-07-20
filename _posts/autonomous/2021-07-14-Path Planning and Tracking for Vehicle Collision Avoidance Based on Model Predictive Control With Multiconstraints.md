@@ -221,70 +221,81 @@ X_a(k+m)과 ΔU_m을 이용해 식33을 반복계산하면 state variables를 �
 predictive state-space model을 위한 state vector 와 output을 정의할 수 있고
 그에 따라, 이 prediction model의 성능을 평가하는 식도 간단하게 표현할 수 있음
 ```
+
 ## 5.B. Developent of Cost Function With Vehicle Dynamics
-[section 3]에서 설명한 것 처럼, N_p 이내의 도로와 obstacle의 보편적인 potential field에 의해 계산된 MMPC의 set-point 정보로 
-시각 k에서 계획된 trajectory P_r(k), sideslip angle β_r(k), yaw rate ψ˙_r(k)의 reference location정보가 선택된다.
-reference signal은 다음과 같다.   
+[section 3]에서 설명한 것 처럼, N_p 이내의 도로와 obstacle의 universal potential field에 의해 계산된 MMPC의 set-point 정보로써,
+시각 k에서 계획된 trajectory P_r(k), sideslip angle β_r(k), yaw rate ψ˙_r(k)의 reference location정보가 선택됨.   
+reference signal은 다음과 같음.   
+![image](https://user-images.githubusercontent.com/69246778/126099850-749145ab-f5d4-4db8-8b36-715e14671629.png)   
+    
+P_r(k) : 시각 k에서 계획된 trajectory (referece가 되는 거)   
+β_r(k) : 시각 k에서 계획된 sideslip angle   
+ψ˙r(k) : 시각 k에서 계획된 yaw rate   
+   
+MMPC의 목적은, 예측되는 outputs(P_v(k),β_r(k),ψ˙r(k))을 set-point에 최대한 가깝게 만드는 것. 비용 함수 J_E를 control objective를 
+반영해 다음과 같이 정의. 
+![image](https://user-images.githubusercontent.com/69246778/126100432-21ab8b4a-3ed0-4bfb-8b1a-210a6c5a4db1.png)   
 
-![image](https://user-images.githubusercontent.com/69246778/126099850-749145ab-f5d4-4db8-8b36-715e14671629.png)
+P_v(k) : 지구좌표계, 시각 k에서 N_p의 time step으로 예측되는 lateral position   
+β_r(k) : 지구좌표계, 시각 k에서 N_p의 time step으로 예측되는 sideslip angle   
+ψ˙r(k) : 지구좌표계, 시각 k에서 N_p의 time step으로 예측되는 yaw rate   
+ΔU_m : predicted optimization vector   
+![image](https://user-images.githubusercontent.com/69246778/126100886-09c545ab-c045-40ab-94a7-407e31e25072.png):steer input의
+future value와 관련된 cost function 매트릭스.  
 
-```
-📝NOTE 
-P_r(k) : 시각 k에서 계획된 trajectory (referece가 되는 거)
-β_r(k) : 시각 k에서 계획된 sideslip angle
-ψ˙r(k) : 시각 k에서 계획된 yaw rate
-```
-MMPC의 목적은, 예측되는 outputs(P_v(k),β_r(k),ψ˙r(k))을 set-point에 최대한 가깝게 만드는 것이다. 우리는 비용 함수 J_E를 control objective를 반영해 다음과 같이 정의한다.
+reference sideslip angle은 다음과 같음.   
+![image](https://user-images.githubusercontent.com/69246778/126114592-c4f6e4f3-3134-4495-b655-906e10303d76.png)   
+   
+V : 자율주행 차량의 일정한 종방향 속도   
+C_T : 시각 t에서의 계획된 경로의 곡률   
+L=L_f + L_r  : 차량 축거리
+X_T : 고정 지구 좌표계에서 계획된 trajectory의 x좌표(universal potential field에서 유도)
+Y_T : 고정 지구 좌표계에서 계획된 trajectory의 x좌표(universal potential field에서 유도)
 
-![image](https://user-images.githubusercontent.com/69246778/126100432-21ab8b4a-3ed0-4bfb-8b1a-210a6c5a4db1.png)
+참고문헌 [32]와 [33]에 따르면 β_curv를 [-β_max, β_max]로 제한해야 함. 이때, β_max는 다음과 같음.   
+![image](https://user-images.githubusercontent.com/69246778/126114770-4752db33-652b-49f9-900d-05740527e610.png)   
+   
+V_r : 전체 속도   
+k_1 : pi/18, [32]에서 참조한 reasonable한 parameter   
+k_2 : pi/60, [32]에서 참조한 reasonable한 parameter   
 
-이때, MMPC표기에서 P_v(k),β_v(k),ψ˙_v(k)는 고정된 지구 좌표계에서 lateral position, sideslip angle, yaw rate의 예측된 시퀀스를 나타낸다. 이는, 시각 k에서 N_p의 time step으로 계산가능하고 ΔU_m은 예측된 최적화 벡터이다.   
-
-![image](https://user-images.githubusercontent.com/69246778/126100886-09c545ab-c045-40ab-94a7-407e31e25072.png)
-위 식은 steer input의 future value와 관련된 비용함수 매트릭스를 나타낸다.
-
-```
-📝NOTE
-시각 k에서 계획한(reference) 것들과 시각 k에서 예측한 것들의 차이를 적게 만드는 것이 비용함수의 목적이다.
-```
-
-
-자율주행 차량이 일정한 종방향 속도로 계획된 경로를 따라 주행하는 것을 고려하고, 시각 t에서의 계획된 경로의 곡률을 C_T라고 가정해보자.
-차량의 reference sideslip angle은 다음 식에 의해 자동으로 결정된다.     
-
-![image](https://user-images.githubusercontent.com/69246778/126114592-c4f6e4f3-3134-4495-b655-906e10303d76.png)
-
-이 때, L=L_f + L_r 로써 차량의 축거리를 이야기 한다. X_T, Y_T는 고정 지구좌표계에서 계획된 trajectory의 좌표를 나타내며, 이는 
-universal potential field에서 유도되었다.   
-
-참고문헌 [32]와 [33]에 따르면 우리는 우리는 β_curv를 [-β_max, β_max]로 제한할 필요가 있다. 이때, β_max는 다음과 같다.   
-
-![image](https://user-images.githubusercontent.com/69246778/126114770-4752db33-652b-49f9-900d-05740527e610.png)
-
-그리고 V_r은 전체 속도를 나타낸다. 합리적인 파라미터 k_1, k_2는 각각 pi/18과 pi/60이다.   
-![image](https://user-images.githubusercontent.com/69246778/126115307-666e2401-219b-4ffa-a4fb-2294541cbf55.png)일 때, 
-규제 level β_ref = β_max (β_ref = -β_max)가 활성화된다. 그래서, 우리는 sideslip angle 의 reference signal을 다음과 같이 정의한다.   
+sideslip angle 의 reference signal은 다음과 같음   
 ![image](https://user-images.githubusercontent.com/69246778/126115647-607ee473-0df9-4f49-820e-5a88b6663b58.png)   
+   
+β(k)가 [-β_max, β_max]를 벗어나면 β_r(k)의 크기는 β_max로 규제됨.   
+   
+자율주행 차량의, 원하는 yaw rate 는 다음과 같이 정의.   
+![image](https://user-images.githubusercontent.com/69246778/126118030-dbe37bf4-817e-4fcc-a320-4ce6f3b8e586.png)   
 
-자율주행 차량의 원하는 yaw rate ψ_curv' 는 다음과 같이 정의된다.   
-![image](https://user-images.githubusercontent.com/69246778/126118030-dbe37bf4-817e-4fcc-a320-4ce6f3b8e586.png)
-차량의 lateral 안정성을 위해, 최대 yaw rate의 constrarint(ψ_max') 다음과 같다. 이는 마찰계수 μ와 중력가속도 g, 종방향 속도 V를 이용한
-식이다.   
+Ψ'_ curv : 원하는 yaw rate (reference)   
+V : 속도   
+C_T : 곡률   
+β_curv : 그때의 sideslip angle   
+   
 ![image](https://user-images.githubusercontent.com/69246778/126118402-fac3d57e-2ab5-4a8f-8112-f9d89327ed7d.png)   
-
-우리는 yaw rate의 reference signal을 다음과 같이 정의한다.   
+   
+μ : 마찰계수   
+g : 중력가속도
+V : 종방향 속도
+   
+yaw rate의 reference signal은 다음과 같음.
 ![image](https://user-images.githubusercontent.com/69246778/126118453-e8ae77db-d6c6-43a7-bfca-1327b5ca02c4.png)   
+   
+앞서 언급한 경우에서, yaw rate와 sideslip angle이 범위를 벗어날 때 yaw rate와 sidelslip angle의 추적오류에 대한 패널티가 
+급격히 증가할 것이며 이는 비용함수에서 중요한 역할을 한다.   
+  
+**(식 44)** 는 다음과 같이 쓸 수 있다.   
+![image](https://user-images.githubusercontent.com/69246778/126119384-391fc07f-e721-4a34-87e3-d85e49e9718d.png)   
+![image](https://user-images.githubusercontent.com/69246778/126119283-075491cd-2a12-4e21-8da3-981d1807607e.png)    
+   
+R_r(k) : universal potential field로부터 구한 reference signal   
+Y_m(k) : path tracking을 위한 predicted output   
 
-앞서 언급한 경우에서, 오직 
-![image](https://user-images.githubusercontent.com/69246778/126118856-570d73c4-4f4b-4f42-900c-6d9c5886fd56.png) 이고
-![image](https://user-images.githubusercontent.com/69246778/126118887-ff08e68e-0ac9-4043-b373-029fee00e816.png)
-일때만 yaw rate와 sidelslip angle의 추적오류에 대한 패널티가 급격히 증가할 것이며 이는 비용함수에서 중요한 역할을 한다.   
+```
+NOTE📝
 
-universal potential field로부터 구한 reference signal R_r(k)와, path tracking을 위한 Y_m(k)의 predicted output들은 다음과 같다.
-![image](https://user-images.githubusercontent.com/69246778/126119283-075491cd-2a12-4e21-8da3-981d1807607e.png)
+```
 
-**(식 44)** 는 다음과 같이 쓸 수 있다.
-![image](https://user-images.githubusercontent.com/69246778/126119384-391fc07f-e721-4a34-87e3-d85e49e9718d.png)
 
 ## 5.C. Constraint Analysis for MPC
 path tracking에서 발생하는 constraint에는 크게 세 가지 유형이 있다. 첫 번째 두 개는 control 변수에 부과되는 constraint를 다루고,
