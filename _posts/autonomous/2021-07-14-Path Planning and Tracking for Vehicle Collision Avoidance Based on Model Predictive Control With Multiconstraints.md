@@ -44,18 +44,18 @@ IEEE TRANSACTIONS ON VEHICULAR TECHNOLOGY, VOL. 66, NO. 2, FEBRUARY 2017
 
 # 4. Vehicle mathematical model for path-tracking problem 
 * * *
-Path tracking 문제는 차량 모델링에 의존한다. 왜냐하면 모델링은 MMPC법 설계에 필요한 요소이기 때문이다. 본 논문에서 사용하는 모델은 차량의 
-운동학적 및 동적 측면을 고려해야 한다. 여기서, 우리는 충돌 회피 시스템 개발에 사용되는 차량의 확장적 수학 모델을 제안한다. [Section 4-A]에
-서는 lateral 및 yaw dynamic을 고려한 차량 dynamic 모델을 개발하고 [Section 4-B]에서는 MMPC개발에 사용되는 이산적인 상태 공간 차량 모델을 
-소개한다.   
+
+MMPC설계법에 modeling이 필요하므로 Path tracking 문제는 차량 modeling에 의존함. 본 논문에서는 차량의 kinematic 및 dynamic한 측면을
+고려한 model이 필요함. 여기서 제안되는 것은 collsion avoidance system 개발에 사용되는 augmented mathematical model임. 
+[Section 4.A.] 에서는 lateral 및 yaw dynamic을 고려한 vehicle dynamic model을 개발하고, [Section 4.B.]에서는 MMPC 개발에 사용되는 
+discrete state-space model을 소개함.
 
 ```
 📝NOTE
-MMPC법을 설계하기 위해선 차량 모델링이 필요하다.
-이 논문에선 차량의 운동학적 및 동적 측면을 고려한 모델이 필요하다.
-그래서 충돌 회피 시스템 개발에 사용되는 augmented mathematical model을 제안한다.
-section A : lateral 및 yaw를 고려한 모델 개발
-section B : MMPC개발에 사용되는 discrete state-space 모델 소개
+MMPC를 설명하기 위해 차량의 운동학적 및 동적 측면을 고려한 모델인 augmented mathematical mode를 제안함.
+이는  collsion avoidance system 개발에 사용되는 model임.
+section A : lateral 및 yaw를 고려한 vehicle dynamic model개발
+section B : MMPC개발에 사용되는 discrete state-space model 소개
 ```
 
 ## 4.A. Vehicle Dynamic Model for Path Tracking
@@ -64,167 +64,104 @@ section B : MMPC개발에 사용되는 discrete state-space 모델 소개
 lateral 및 yaw를 고려한 모델 개발
 ```
 
-이 Section에서는 control design에 사용될 차량과 타이어의 모델링에 대해 설명한다. path-tracking 문제에서 차량 모델링에서의 가정은
-다음과 같다.
-- longitudinal 속도는 일정하다.
-- 앞축과 뒤축에서 왼쪽, 오른쪽 바퀴는 single wheel 하나로 묶는다.
-- 서스펜션 운동과 미끄러짐, 공기역학의 효과는 무시한다.
-이러한 가정들을 통해 그린 일반 차량의 선형 동적 모델은 **(Fig 9)** 와 같다. 이는 뉴턴의 법칙에 따라 구해진 것이다.   
+Control design에 사용될 차량과 타이어 modeling을 설명함. 먼저 path tracking 문제에서 vehicle modeling은 다음의 가정을 전제로 함.
+- longitudinal velocity는 일정.
+- 앞축과 뒤축에서 좌우 바퀴는 single wheel 하나로 묶음.
+- suspensions movement, slip 현상, 공기역학의 효과는 없다고 가정.   
+   
+이러한 가정을 통해 **(Fig 19)** 와 같은 linear dynamic model을 그릴 수 있고 이는 뉴턴의 법칙에 따라 구해진 것임.   
+![fig9](https://user-images.githubusercontent.com/69246778/126086178-1ff13692-8dd8-4b54-9d24-7c62f6a8093b.png)   
+차체의 sideslip angle β 와 차체의 yaw rate ψ˙를 state variable로 보고, 차량의 lateral dynamics는 다음과 같이 쓸 수 있음.      
+![image](https://user-images.githubusercontent.com/69246778/126086210-ffad5d77-0948-426c-b1fe-ac9533ace72f.png)   
+   
+Iz : yaw 축에 관한 차량의 Inertia 
+β  : sideslip angle
+ψ˙ : yaw rate
+lf : CG(Center of Gravity)로 부터 앞 바퀴까지의 거리   
+lr : CG(Center of Gravity)로 부터 뒤 바퀴까지의 거리      
 
-![fig9](https://user-images.githubusercontent.com/69246778/126086178-1ff13692-8dd8-4b54-9d24-7c62f6a8093b.png)
+cornering tire force에 대해 다양한 model이 많이 존재함. tire slip angle(α_f, α_r)이 작을 때, lateral tire force(F_{xf}, F_{xr})
+는 tire slip angle의 선형함수로 근사할 수 있음. 따라서 다음과 같이 쓸 수 있음.   
+![image](https://user-images.githubusercontent.com/69246778/126086712-db4d1cef-0d99-44ef-a4cf-9d9ecaf02e96.png)   
+   
+F_{xf} : front tire force   
+F_{xr} : rear tire force   
+α_f : front tire slip angle   
+α_r : rear tire slip angle   
+δ : front wheel streeing angle   
+C_f : cornering stiffness of front    
+C_r : cornering stiffness of rear   
 
-차체의 sideslip angle β 와 차체의 yaw rate ψ˙은 상태 변수로 간주되며, 차량의 lateral dynamics는 다음과 같이 쓸 수 있다.   
-![image](https://user-images.githubusercontent.com/69246778/126086210-ffad5d77-0948-426c-b1fe-ac9533ace72f.png)
-
-
-Iz는 yaw 축에 관한 차량의 Inertia이다. lf와 lr은 각각 Center of gravity(CG)로 부터 앞, 뒤 바퀴 간의 거리이다. 
-
+식 (14),(15)를 식(12),(13)에 대입해서 구한 다음의 식은 lateral 및 yaw dynamics을 다루는 식.   
+![image](https://user-images.githubusercontent.com/69246778/126086686-cc2a9733-6421-490d-b426-9db65bac174c.png)    
+![Page3](https://user-images.githubusercontent.com/69246778/126087981-24205fe5-fa21-40e0-b647-d104ea186056.jpg)   
+   
 ```
 📝NOTE
-Fig 9       : 위의 세가지 가정을 전제로 하여 그린 차량의 linear dynamic model
-
-식12, 식13  : 차량의 lateral dynamics
-  β  : sideslip angle  (state 변수) 
-  ψ˙ : yaw rate        (state 변수)
-  Iz : yaw축에 관한 차량의 Inertia
+MMPC를 설명하기 위해 차량의 kinematic과 dynamic을 고려한 차량 model이 필요하므로 
+collison avoidance system 개발에 사용되는 augmented mathematical model을 제안함.
+이 모델의 latera dynamic(식12,13)과 tire force(식14,15)에 관한 식을 연립해
+lateral과 yaw dynamic를 다루는 방정식을 표현할 수 있음(식 16,17)
 ```
-
-코너링하는 타이어의 힘에 대한 여러가지 모델이 존재한다. tire slip angle이 작을 때, lateral tire force는 tire slip angle의 선형함수로
-근사된다. 앞바퀴, 뒷바퀴의 tire force F_{xf}, F_{xr}와 tire slip angle α_f, α_r은 다음과 같이 정의된다.   
-
-![image](https://user-images.githubusercontent.com/69246778/126086712-db4d1cef-0d99-44ef-a4cf-9d9ecaf02e96.png)
-
-여기서 δ는 앞바퀴의 조향각이다.C_f와 C_r은 각각 앞바퀴,뒷바퀴의 선형화된 cornering stiffness를 나타낸다.  
-
-```
-📝NOTE
-식 14, 식 15 : tire force를 tire side slip angle에 선형 근사한 식
-F     : tire force
-alpha : tire slip angle
-delta : front-wheel streeing angle
-C     : cornering stiffness
-```
-
-식 (14),(15)를 식(12),(13)에 대입해서 구한 다음의 식은 lateral 및 yaw 의 동력학을 다루는 식이 된다.   
-
-![image](https://user-images.githubusercontent.com/69246778/126086686-cc2a9733-6421-490d-b426-9db65bac174c.png) 
-![Page3](https://user-images.githubusercontent.com/69246778/126087981-24205fe5-fa21-40e0-b647-d104ea186056.jpg) 
-```
-📝NOTE
-식 16, 식 17 : 차량 모델의 lateral and yaw dynamics
-```
-  
-    
-
 
 ## 4.B. Discrete linear vehicle model for MPC
 ```
 📝NOTE
 Section A에서 lateral 및 yaw를 다루는 식을 유도했고
-이 식으로부터 MMPC최적화를 위한 discrete state-space식을 유도한다.
+이 식으로부터 MMPC최적화를 위한 discrete state-space식을 유도.
 ```
-여기서, 우리는 MMPC최적화를 위해 이산 상태-공간 차량 모델을, 이전 section에서 얻은 수학적 모델로부터 유도한다. 새로운 차량 모델에서, 상태
-공간 벡터는 차량 CG의 lateral 위치 X_v, 차량의 side slip angle β, yaw angle ψ, yaw rate ψ'로 구성된다. 
-input은 앞 바퀴의 steering angle δ로 주어진다. 이런 정의에 의해,  state-space 벡터는 다음과 같다.   
+MMPC최적화를 위해 이전 section에서 얻은 mathematical model로부터 discrete-state-space model을 유도.
+새로운 vehicle model에서, state-space vector는 CG의 lateral position, side slip angle, yaw angle, yaw rate로 구성됨.
+그리고 input은 front wheel streeing angle임. 따라서 다음과 같이 표기할 수 있음.   
+![image](https://user-images.githubusercontent.com/69246778/126088279-dfc09e92-3595-4fbd-9369-2092f0243825.png)   
+   
+X_c : state-space vector   
+X_v : CG의 lateral position   
+β  : sideslip angle   
+ψ  : yaw angle   
+ψ˙ : yaw rate   
+   
+상태 방정식은 이전 section에서 유도된 **(식16)** 과 **(식17)** 에 기반해 다음과 같이 쓸 수 있음.   
+![image](https://user-images.githubusercontent.com/69246778/126088300-81dca464-3706-4f6d-904e-dbbac2357633.png)   
+![image](https://user-images.githubusercontent.com/69246778/126088319-7515207b-0ea8-4620-8604-7a8342efc3a3.png)   
+   
 
-![image](https://user-images.githubusercontent.com/69246778/126088279-dfc09e92-3595-4fbd-9369-2092f0243825.png)
-
-상태 방정식은 이전 section에서 유도된 **(식16)** 과 **(식17)** 에 기반해 다음과 같이 쓸 수 있다.   
-
-![image](https://user-images.githubusercontent.com/69246778/126088300-81dca464-3706-4f6d-904e-dbbac2357633.png)
-
-이 때 A_C, B_c, C_c 는 다음과 같다.
-
-![image](https://user-images.githubusercontent.com/69246778/126088319-7515207b-0ea8-4620-8604-7a8342efc3a3.png)
-
-```
-📝NOTE
-Xc : lateral position, sideslip angle, yaw angle, yaw rate로 구성된 state-space 벡터
-이 상태 벡터와 앞서 구한 식16,식17에 기반해 상태방정식 식19,식20 을 쓸 수 있음.
-```
-
-앞에서 언급한 차량 모델은 선형화 된 연속시간 및 단일입력, 다중출력 시스템이다. 그러나, 제어될 시스템은 일반적으로 MPC [literatue 29]의
-discrete state-space model에 의해 모델링된다. 따라서, **(식 19)** 와 **(식 20)** 은 **(식 22)** 을 얻기 위해 discrete state-space 모
-델로 변환되어야 한다.   
-
-![image](https://user-images.githubusercontent.com/69246778/126089046-275d70a2-804e-486c-a610-25848954305c.png)
-
-여기서 A_d와 B_d는 각각 discrete state-space equation을 설명하기 위한 state 매트릭스와 control 매트릭스를 나타내고 
-이는 다음과 같이 [오일러 method]로 계산될 수 있다.
+앞에서 언급한 차량 모델은 선형화 된 *연속시간 및 단일입력, 다중출력 시스템*. 그러나, 제어될 시스템은 일반적으로 [literatue 29]의
+discrete state-space model에 의해 modeling. 따라서, **(식 19)** 와 **(식 20)** discrete state-space model로 변환되어 다음과 같은 식을 얻음.   
+![image](https://user-images.githubusercontent.com/69246778/126089046-275d70a2-804e-486c-a610-25848954305c.png)   
+   
+A_d : state matrices   
+B_d : control matrices   
+이는 다음과 같이 [오일러 method]로 계산될 수 있음.
 
 ![image](https://user-images.githubusercontent.com/69246778/126089228-edaea7ed-59cc-4225-8b09-447b314181c7.png)
 
-이 때, ΔT 는 discrete state-space 모델의 샘플링 간격을 의미한다.  
-```
-📝NOTE
-식 19, 식 20은 선형화, 연속시간, 단일입력, 다중출력 시스템이다.
-그러나 제어될 시스템은 discrete state-space model이므로 변환해주어야 한다.
-그럼 식22를 구할 수 있는데 이를 구성하는 계수인 Ad(State),Bd(control)는 오일러 방식으로 구할 수 있다.
-Discrete state-space model : 29번 문헌 174page
-```
-
-lateral 위치, sideslip angle, 그리고 yaw rate는 다음의 식을 사용하여 output으로 정의할 수 있다.   
-
-![image](https://user-images.githubusercontent.com/69246778/126089544-36931240-e6ac-4436-a116-e8f05c18251b.png)
-
-
-여기서 Y_d(k)와 C_d 는 다음과 같다.   
-
-![image](https://user-images.githubusercontent.com/69246778/126089764-bafc6d47-0d61-46be-b8a9-35a98a8d7897.png)
-
-```
-📝NOTE
-output으로 lateral,sideslip angle, yaw rate를 얻기 위해 식25를 사용한다.
-output을 나타내는 벡터 Yd는 Xv(lateral),β(sideslip angle),Ψ(yaw rate) 로 구성되어 있다.
-우항의 Xd(k)는 식22에서 구했고 Cd는 Cc와 같다.
-```
-
-MMPC를 사용한 Path tracking에서 [plant]변수에 의한 하드웨어 constraint와 output에 의한 소프트웨어 constraint에 의해 constrained 
-control problem 을 실시간 최적화 문제로 공식화하는 것은 일반적이다. discrete state-space 모델인 **(식22)**와 **(식25)** 를 통합해 
-단일화된 모델로 확장시킬 수 있다.
+ΔT : discrete state-space model의 sampling 간격   
+lateral displacement(변위), sideslip angle, yaw rate는 다음의 식을 사용해 output으로 정의됨.   
+![image](https://user-images.githubusercontent.com/69246778/126089544-36931240-e6ac-4436-a116-e8f05c18251b.png)   
+![image](https://user-images.githubusercontent.com/69246778/126089764-bafc6d47-0d61-46be-b8a9-35a98a8d7897.png)   
+   
+MMPC를 사용한 Path tracking에서 constrained control 문제를 실시간 최적화 문제로 공식화하는 것이 일반적. discrete state-space model인
+**(식22)**와 **(식25)** 를 통합해 단일화된 model로 확장시킬 수 있음.   
+상태변수와 제어변수의 차이를 다음과 같이 표현   
+![image](https://user-images.githubusercontent.com/69246778/126090282-274c43f9-69bc-4853-a62d-62081b0702da.png)   
+   
+**(식 27)~(식 29)** 를 **(식 22)** 와 **(식 25)** 에 대입하면 다음과 같이 쓸 수 있음. 이는 변수 Xd(k)와 u(k)의 증분으로 표현된 discrete
+state-space model.   
+![image](https://user-images.githubusercontent.com/69246778/126092679-8dae6c72-c36f-47f0-b903-84748c0167cc.png)   
+   
+Δu(k) : state-space model과 output 방정식에 대한 input   
+ΔX_d(k)를 output인 Y(k)와 연결하기 위해 새로운 state variable vector X_a(k)를 다음과 같이 설정.   
+![image](https://user-images.githubusercontent.com/69246778/126092694-e31ad49b-ed3a-4f06-8ec9-4d22a23648df.png)   
+   
+**(식 32)** 를 **(식 30)** 과 **(식 31)** 에 결합하면 다음과 같은 state-space model이 만들어짐.      
+![image](https://user-images.githubusercontent.com/69246778/126092718-15a86e0e-07a5-4205-b4d6-556992f2f15d.png)   
+![image](https://user-images.githubusercontent.com/69246778/126092727-ea85f757-af98-41e3-a18e-136f0771e7af.png)   
+여기서 (Aa,Ba,Ca)는 augmented model(증강모형)이라 부른다. 
 
 ```
 📝NOTE
-하드웨어, 소프트웨어 모두 constraint이 있으므로 
-constrain된 제어 문제를 실시간 최적화 문제로 생각해 푸는 것은 당연..
-식 22 : discrete state-space model를 계산하는 식
-식 23 : output출력하는 식
-```
 
-상태변수와 제어변수의 차이를 다음과 같이 표시해보자.
-
-![image](https://user-images.githubusercontent.com/69246778/126090282-274c43f9-69bc-4853-a62d-62081b0702da.png)
-
-```
-📝NOTE
-증분을 나타냄
-```
-
-
-**(식 27)~(식 29)** 를 **(식 22)** 와 **(식 25)** 에 대입하면 다음과 같이 쓸 수 있고, 이는 변수 Xd(k)와 u(k)의 증분을 갖는 discrete
-state-space model이다.   
-
-![image](https://user-images.githubusercontent.com/69246778/126092679-8dae6c72-c36f-47f0-b903-84748c0167cc.png)
-
-state-space model과 output방정식에 대한 input은 Δu(k)이다. ΔXd(k)를 output인 Y(k)와 연결하기 위해 새로운 상태 변수 벡터를
-다음과 같이 설정한다.   
-
-![image](https://user-images.githubusercontent.com/69246778/126092694-e31ad49b-ed3a-4f06-8ec9-4d22a23648df.png)
-
-**(식 32)** 를 **(식 30)** 과 **(식 31)** 에 결합하면 다음과 같은 state-space model이 만들어진다.   
-
-![image](https://user-images.githubusercontent.com/69246778/126092718-15a86e0e-07a5-4205-b4d6-556992f2f15d.png)
-
-여기서 (Aa,Ba,Ca)는 augmented model(증강모형)이라 불리고 다음과 같이 쓸 수 있다.   
-![image](https://user-images.githubusercontent.com/69246778/126092727-ea85f757-af98-41e3-a18e-136f0771e7af.png)
-
-```
-📝NOTE
-식30, 식31 : ΔXd(k),Δu(k)로 표현한 discrete stae-space model
-u(k) : state-space model과 output방정식에 대한 input
-X_a : ΔXd(k)를 output인 Y(k)와 연결하기 위해 새롭게 설정한 상태변수
-식33, 식34 : 새롭게 설정한 X_a를 이용해 구한 state-sapce model
-A_a, B_a, C_a : augmented model
 ```
 
 # 5. Design fo multiconstrained model predictive control
