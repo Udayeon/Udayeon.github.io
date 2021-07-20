@@ -154,32 +154,25 @@ u_k : u_k=(α_k,ω_k),control input
 도로 Waypoint, 차선표시 그리고 주변 차량의 현재상태를 포함한 환경정보를 모두 알고 있다고 가정한다. 또한 주변 차량의 future state도 정확하게 예측되었다고 가정한다.   
 
 ## 3.B. MPC Formulation 
-MPC를 이용한 접근법은 Receding horizon 방식을 이용해 제한적인 시간을 제약으로 하는 최적제어 문제이다. (너무 먼 미래까지는 예측 X)   
-식은 다음과 같다.
-N을 prediction horizon으로 두자.    
-경로 계획은 **비선형**의 최적화 문제로써 공식화할 수 있다.   
-위 식에서 M은 차로의 수.   
-(1b) 차량 운동학에 의한 제한조건 (상태공간방정식) : k의 상태를 통해 k+1의 상태를 예측할 수 있음.      
-(1c) 차량의 Actuator(선형 가속도 및 회전 속도)한계를 고려하여 **실현가능한 set**를 제한해줌.   
-- 차량의 상태를 나타내는 z로 가능한 것들은 Z에,   
-- 차량의 가속도와 각속도를 나타내는 u로 가능한 것들은 U에,   
-- 차선의 선택을 위한 행렬 λ는 Λ에.
+MPC를 이용한 접근법은 receding horizon방식으로 유한시간의 constrained optimal control을 해결한다. path planning은 다음과 같은 비선형 최적화 문제로 공식화 될 수 있다.   
+![image](https://user-images.githubusercontent.com/69246778/126293664-a23e7829-bdf6-4e09-a104-bec5d20e6ebe.png)   
+   
+M : 차로의 수   
+N : prediction horizon     
+(1b) : vehicle kinematic에 의한 constraint (상태공간방정식) : k의 상태를 통해 k+1의 상태를 예측할 수 있음.         
+(1c) : 차량의 actuator(linear acceleration, turning rate) 한계를 고려하여 실현가능한 set를 제한함.   
+(1d) : 주변 차량과의 충돌 회피를 강제해줌.   
 
-(1d) 자차와 주변 차량 간의 충돌을 회피하도록 해주는 제약조건: __g function멀까?__
-나중에 설명함.   
+이 목적함수는 차량의 거동을 설명하기 위해 다양한 term으로 구성되어 있음.먼저 각 항마다 곱해진 w는 가중치를 나타내는 것임   
 
-이 목적함수는 자차의 행동을 규정하기 위해 여러 다양한 term으로 구성되어 있음.
-먼저 각 항마다 곱해진 w는 가중치를 나타내는 것임   
+### 3.B.1 Lane Selection
+h(x_k,y_k,p_c^j)^2 : k시간에 (xk,yk)에 존재하는 차량과 j번째 차로의 중심선 사이의 lateral 거리.
+이 때, pcj는 4차 다항식으로 정의할 수 있다. 차량이 머물 차선을 MPC를 이용해 결정하기 위해 차량이 차선 선택을 반영한 변수가 포함된 혼합정수문제를 정의함. 
+그러나, 이 문제를 non-convex programming으로 풀기에는 (1b)와 (1d)의 계산이 매우 버거우므로 실제 구현에는 적합하지 않음. 그러므로 이 문제를 convex relaxtion로 전환하고 
+그걸 비선형의 프로그래밍 문제로 바꿨음.   
+![image](https://user-images.githubusercontent.com/69246778/126295652-8a572ca2-483b-4998-bc05-6c5eef65e3ad.png)   
+![image](https://user-images.githubusercontent.com/69246778/126295723-da99a5ae-c310-47f3-9fd5-9616ff25869f.png)
 
-### Lane Selection
-MPC식을 보면 h(x_k,y_k,p_c^j)^2로 정의 된 항이 있음.
-이는 k시간에 (xk,yk)에 존재하는 차량과 j번째 차로의 중심선 사이의 lateral 거리를 나타낸다.
-이때, pcj는 4차 다항식으로 정의할 수 있다.
-
-   식 
-차량이 머물 차선을 결정하기 위해 MPC를 이용해 **혼합정수문제**를 정의하고, 이 때 정수 변수들은 차선의 선택을 반영함.
-그러나, 이 문제를 **non-convex programming**으로 풀기에는 (1b)와 (1d)가 계산하기 매우 버거우므로 실제 구현에는 적합하지 않음.
-그러므로 우리는 이 문제를 **convex relaxtion**로 전환하고 그걸 비선형의 프로그래밍 문제로 바꿨음.
 M * N 행렬로 λ를 정의하고, 설계 변수는 λ_j,k(j,k항목)임.
 λ의 진짜 목적은 prediction horizon에서 차량이 어떤 차선에 있어야하는지 결정하기 위한 것.
 λ 행렬의 
@@ -188,28 +181,30 @@ M * N 행렬로 λ를 정의하고, 설계 변수는 λ_j,k(j,k항목)임.
 λ는 Λ_M * N 에 속하고 이건 R_MN으로 정의된 단위 simplex 집합이다.
    식   
    
-### Lane-Associated Potential Field
-**안정적이고 자연스러운 조작을 위해 우리는 lane-associated potential field를 소개한다.**
-이것은 다음과 같이 나타내고, 이 식은 차량의 현재 차선의 종방향에 있는 주변 차량에 적용(?) 한다.
-(이때, 주변차량의 index 집합은 V로 표현됨)   
-위 식에서 d는 시간k일 때 j번째 차선에 함꼐 있는 주변 차량과 자차 간의 종방향 거리를 나타냄.   
-s는 potential field의 maximum magnitude
-감마는 potential field 의 기울기를 결정함. 
-낮은 속도의 차량보다 빠른 속도의 차량에도 광범위하게 이를 적용하기 위해 감마는 j번째 고속도로의 차량 속도 v와 비례하게 설정한다.
-그 증명은 다음과 같다.
-**Firg 4**
-속도v0=10일 때 주변차량에 적용되는 Lane-Associated Potential Field의 형태.
-Longitudinal = ego vehicle - surrounding vehicle
-주변 차량이 자차보다 앞에 있으면 음수값. 
+### 3.B.2 Lane-Associated Potential Field
+안정적이고 자연스러운 조작을 위해 lane-associated potential field를 소개함. 이 식은 차량과 같은 차선에서 달리는 차량에 적용됨. potential field의 식은 다음과 같음.
+![image](https://user-images.githubusercontent.com/69246778/126296297-78e2d0f3-b511-459e-a8e7-95945b536d0b.png)
+![image](https://user-images.githubusercontent.com/69246778/126296377-1797ea5c-b980-41cb-98b2-c036acffa4f9.png)   
+   
+V : index set of surroundin vehicles   
+d_j,k : 시각 k일 때, j번째 차선에 함꼐 있는 주변 차량과 자차 간의 종방향 거리를 나타냄.    
+s : potential field의 maximum magnitude   
+Γ : potential field 의 slope.   
+   
+potential field의 범위를 더 빠른 차량까지 확대하기 위해 감마는 j번째 고속도로의 차량 속도 v와 비례하게 설정하고 이를 **(Fig 4)** 에서 확인할 수 있다.
+![image](https://user-images.githubusercontent.com/69246778/126297647-4eccdb3a-3b9e-4f9b-9e49-443cfb19fd52.png)   
+   
 
-### Collison Avoidance
-potential field가 차량과 다른 것들 간의 특정 거리를 유지하도록 돕지만 추가적으로 충돌회피를 보장하는 매카니즘이 필요함
-우리는 종/횡 방향 모두에서 ego 차량의 안전을 보장하기 위해 MPC에서 일종의 제약 조건을 가지고 충돌 회피를 시행함.   
-자차와 주변 차량을 흔히 사용하는 원이나 타원 대신 사각형으로 모델링함. 
-왜냐하면 사각형이 차량의 모양을 더 잘 나타낼 수 있으니까
-게다가, 주행 환경에서 만나는 obstacle은 주로 바리게이트나 공사장 이므로 다면체로 나타내기 더 좋음.
-그러므로 우리는 바람직하게 MPC를 이용해 다면체 충돌 회피 전략을 개발함.
-다면체는 A_c<b로 표현할 수 있음. 이때, A와 비는 적절한 차원을 나타냄. 
+### 3.B.3 Collison Avoidance
+potential field가 차량과 다른 것들 간의 특정 거리를 유지하도록 돕지만 추가적으로 충돌회피를 보장하는 매카니즘이 필요. 종/횡 방향 모두에서 차량의 안전을 보장하기 위해 MPC에서 일종의 
+constraints를 가지고 충돌 회피를 시행함.   
+자차와 주변 차량을 흔히 사용하는 원이나 타원 대신 차량의 모양을 더 잘 나타내는 사각형으로 모델링함. 게다가, 주행 환경에서 만나는 obstacle은 주로 바리게이트나 공사장 이므로 다면체로 나타내기 
+더 좋음. 그러므로 이건 바람직한 MPC를 활용 다면체 충돌 회피 전략 개발임.   
+충돌회피의 조건을 다음과 같이 쓸 수 있음.  
+
+
+
+다면체는 A_<b로 표현할 수 있음. 이때, A와 비는 적절한 차원을 나타냄. 
 충돌회피는 두 다면체가 교차하지 않아야하며 이는 다음의 조건에 해당함.   
 
 
