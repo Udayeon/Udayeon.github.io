@@ -74,14 +74,14 @@ Control design에 사용될 차량과 타이어 modeling을 설명함. 먼저 pa
 차체의 sideslip angle β 와 차체의 yaw rate ψ˙를 state variable로 보고, 차량의 lateral dynamics는 다음과 같이 쓸 수 있음.      
 ![image](https://user-images.githubusercontent.com/69246778/126086210-ffad5d77-0948-426c-b1fe-ac9533ace72f.png)   
    
-Iz : yaw 축에 관한 차량의 Inertia 
-β  : sideslip angle
-ψ˙ : yaw rate
-lf : CG(Center of Gravity)로 부터 앞 바퀴까지의 거리   
+Iz : yaw 축에 관한 차량의 Inertia   
+β  : sideslip angle   
+ψ˙ : yaw rate   
+lf : CG(Center of Gravity)로 부터 앞 바퀴까지의 거리      
 lr : CG(Center of Gravity)로 부터 뒤 바퀴까지의 거리      
 
-cornering tire force에 대해 다양한 model이 많이 존재함. tire slip angle(α_f, α_r)이 작을 때, lateral tire force(F_{xf}, F_{xr})
-는 tire slip angle의 선형함수로 근사할 수 있음. 따라서 다음과 같이 쓸 수 있음.   
+cornering tire force에 대해 다양한 model이 많이 존재함. tire slip angle이 작을 때, lateral tire force는 
+tire slip angle의 선형함수로 근사할 수 있음. 따라서 다음과 같이 쓸 수 있음.   
 ![image](https://user-images.githubusercontent.com/69246778/126086712-db4d1cef-0d99-44ef-a4cf-9d9ecaf02e96.png)   
    
 F_{xf} : front tire force   
@@ -92,7 +92,7 @@ F_{xr} : rear tire force
 C_f : cornering stiffness of front    
 C_r : cornering stiffness of rear   
 
-식 (14),(15)를 식(12),(13)에 대입해서 구한 다음의 식은 lateral 및 yaw dynamics을 다루는 식.   
+식 (14),(15)를 식(12),(13)에 대입해서 구한 다음의 식은 lateral 및 yaw dynamics을 다루는 식을 정의.   
 ![image](https://user-images.githubusercontent.com/69246778/126086686-cc2a9733-6421-490d-b426-9db65bac174c.png)    
 ![Page3](https://user-images.githubusercontent.com/69246778/126087981-24205fe5-fa21-40e0-b647-d104ea186056.jpg)   
    
@@ -161,71 +161,56 @@ state-space model.
 
 ```
 📝NOTE
+앞에서 얻은  mathematical model로 부터 discrete state-space model을 유도함.
+이전 section에서 유도된 식16,17을 통해 상태방정식 식19,식20을 유도할 수 있음.
+이때, X_c는 state-space vector로 lateral position, sideslip angle, yaw angle, yaw rate로 구성되어 있고
+steering angle(δ)은 input으로 받음.
 
+그런데 discrete state-space modeling된 시스템을 다뤄야하므로 식19,20을 변환하여 식22,25를 유도함.
+식 22는 state matrices와 control matrices를 포함하고
+식 25는 lateral displacement, sideslip angle, yaw rate를 output으로 정의하게 해줌.
+state variables과 control variables의 차이를 표현한 식27,28,29를 식 22,25에 적용하여
+식 30,31을 유도하고 이때 새로운 state varible ventor X_a(k)를 설정하면
+최종적으로 식33,34같은 state-space model이 만들어짐. 
 ```
 
 # 5. Design fo multiconstrained model predictive control
 * * *
-path tracking 은 차량 역학과 운동학에서 발생한 constraint에 대한 예측제어 문제로 제기될 수 있다. 여기에 제시된 분석은 [29]에 기초하지만
-차량 충돌회피 application에 적합하도록 조정된다. 
-
+path tracking 은 차량 역학과 운동학에서 발생한 constraint에 대한 예측제어 문제가 될 수 있음. 
+여기에 제시된 분석은 차량 collison avoidance application에 적합하도록 조정된다. 
+   
 ## 5.A. Prediction of State and Output Variables
-path tracking을 위한 MPC의 디자인에 있어서 각 시간마다 차량의 미래 행동을 예측하는 것은 중요한 단계이다. 이 미래 예측은 특정한
-prediction horizon 내에서 control input을 결정해주고 이 미래 상태에 기초하여, 최적화된 control input을 계산하기 위하여 성능지수가 최소화
-된다.
-
-```
-📝NOTE
-performance index가 최소화 된다는게 뭐임?
-```
-
-여기에 우리가 현재 시간 k를 가정했고 이는 항상 양수이다. prediction horizon은 optimization window의 길이인 Np=10이고,
-control horizon Nc=5이다. 상태 변수 벡터 X_a(k)는 현재의 plant 정보를 제공하고, 이는 측정을 통해 사용할 수 있다.   
-
-```
-📝NOTE
-Section 4에서 구한 상태변수벡터 X_a(k)를 이용해 MMPC를 디자인한다
-```
-
-주어진 정보 X_a(k)를 통해 Np단계에 미래 상태의 변수를 다음과 같이 예측할 수 있다. 
-
-![image](https://user-images.githubusercontent.com/69246778/126094305-0d296d3c-a82d-421a-8a8c-f599279bb58d.png)
-
-X_a(k + m)은, 현재의 plant정보 X_a(k)를 통해서 예측한 k+m에서의 상태 변수이다.   
-우리는 ΔU_m으로 현재 관측상태에 대해 시간 k에서 계산한 미래 input 증분의 시퀀스를 다음과 같이 나타낸다.   
-![image](https://user-images.githubusercontent.com/69246778/126094555-2dd82bac-de7c-47ee-b357-812348e21114.png)
- 
-```
-📝NOTE
-현재 상태(k)의 정보가 주어졌을 때 이를 이용해 k+m의 상태를 예측한다.
-ΔU_m : 현재 상태(k)에서 미래의 input을 계산한 것
-```
-
-미래 예측 파라미터 ΔU_m와 state-space model (A_a,B_a,C_a)를 사용하여, **(식 33)** 에 대한 반복적인 계산을 통해
-차량의 상태 변수가 차례로 계산된다. 계산 과정은 다음과 같다.   
-
+path tracking을 위한 MPC의 디자인에 있어서 각 시간마다 차량의 미래 행동을 예측하는 것이 중요함.
+이 미래 예측은 특정한 prediction horizon 내에서 control input을 결정해주고 미래 상태에 기초하여, 최적화된 control input을 계산하기 위하여 
+performance index가 최소화 됨. 
+주어진 정보 X_a(k)를 이용한 future state variable은 N_p step에서 다음과 같이 예측.   
+![image](https://user-images.githubusercontent.com/69246778/126094305-0d296d3c-a82d-421a-8a8c-f599279bb58d.png)   
+   
+X_a(k) : state variable vector, 현재 plant 정보를 제공하고 측정을 통해 사용할 수 있음.
+k : 현재 시각 (k>0)   
+N_p : 10, prediction horizon(length of optimization window)   
+N_c : 5, control horizon      
+X_a(k + m) : 현재의 plant정보 X_a(k)를 통해서 예측한 k + m 에서의 state variable.
+   
+현재 관측된 상태에 대해 시간 k에서 계산된 future input increment의 시퀀스를 다음과 같이 나타냄.   
+![image](https://user-images.githubusercontent.com/69246778/126094555-2dd82bac-de7c-47ee-b357-812348e21114.png)   
+ΔU_m : set of future control parameters
+   
+state variables은 다음의 식처럼 **(식 33)** 의 반복계산을 통해 차례로 계산됨.
 ![image](https://user-images.githubusercontent.com/69246778/126094782-424e9e13-8c82-4bc8-9aa8-d47992ef6a54.png)   
+   
+A_a,B_a,C_a : state-space model(식 35에 표현되어 있는 augmented model)   
 
 연속적인 대입에 의해, control input은 오직 N_c(the control horizon) time step에서만 변화하고, 이후(preview,prediction horizon)까지 
-일정하게 유지된다고 가정한다.   
-   
-그리고나서 우리는 predictive state-space model을 위해 상태 벡터(X_m(k))와 예측된 output(Y_m(k))을 다음과 같이 정의할 수 있다.   
+일정하게 유지된다고 가정.   
+그리고나서 predictive state-space model을 위해 state 벡터와 predicted output을 다음과 같이 정의.   
 ![image](https://user-images.githubusercontent.com/69246778/126095130-0e4a0914-153b-4141-904e-54a39682fe73.png)   
-
-```
-📝NOTE
-ΔU_m와 state-space model을 이용해 식33을 반복 계산한다.
-그리고 predictive state-space model을 위한 state(X_m(k)), output(y_m(k)) 벡터를 정의한다.
-```
-
-이런 상황에서 다음과 같은 간단한 매트릭스 형태로 N_p에 대한 성능을 출력하는 예측모델을 유도하는 것은 간단하다.   
-
-![image](https://user-images.githubusercontent.com/69246778/126095699-b2b711fe-eb01-42a8-9e8a-42e1073b9026.png)
-
-이 때 F_m과 G_m은 다음과 같다.   
-
-![image](https://user-images.githubusercontent.com/69246778/126095743-7bd6d036-7aba-410a-ae37-0d2e1e8e176d.png)
-
+X_m(k) : state vector for predictive state-space model   
+Y_m(k) : predicted output   
+   
+이런 상황에서 N_p에 대한 성능을 출력하는 예측모델을 다음과 같이 유도할 수 있음.   
+![image](https://user-images.githubusercontent.com/69246778/126095699-b2b711fe-eb01-42a8-9e8a-42e1073b9026.png)   
+![image](https://user-images.githubusercontent.com/69246778/126095743-7bd6d036-7aba-410a-ae37-0d2e1e8e176d.png)   
 
 ## 5.B. Developent of Cost Function With Vehicle Dynamics
 [section 3]에서 설명한 것 처럼, N_p 이내의 도로와 obstacle의 보편적인 potential field에 의해 계산된 MMPC의 set-point 정보로 
