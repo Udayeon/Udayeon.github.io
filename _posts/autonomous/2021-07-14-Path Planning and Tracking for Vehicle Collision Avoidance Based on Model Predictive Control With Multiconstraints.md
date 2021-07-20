@@ -212,6 +212,15 @@ Y_m(k) : predicted output
 ![image](https://user-images.githubusercontent.com/69246778/126095699-b2b711fe-eb01-42a8-9e8a-42e1073b9026.png)   
 ![image](https://user-images.githubusercontent.com/69246778/126095743-7bd6d036-7aba-410a-ae37-0d2e1e8e176d.png)   
 
+```
+📝NOTE
+시각 k에서의 주어진 plant 정보를 바탕으로 k+m에서의 상태 X_a(k+m)를 예측할 수 있음.
+future input의 증분은 ΔU_m으로 나타내게 됨.
+
+X_a(k+m)과 ΔU_m을 이용해 식33을 반복계산하면 state variables를 차례로 계산할 수 있음.
+predictive state-space model을 위한 state vector 와 output을 정의할 수 있고
+그에 따라, 이 prediction model의 성능을 평가하는 식도 간단하게 표현할 수 있음
+```
 ## 5.B. Developent of Cost Function With Vehicle Dynamics
 [section 3]에서 설명한 것 처럼, N_p 이내의 도로와 obstacle의 보편적인 potential field에 의해 계산된 MMPC의 set-point 정보로 
 시각 k에서 계획된 trajectory P_r(k), sideslip angle β_r(k), yaw rate ψ˙_r(k)의 reference location정보가 선택된다.
