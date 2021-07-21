@@ -183,15 +183,17 @@ M * N 행렬로 λ를 정의하고, 설계 변수는 λ_j,k(j,k항목)임.
    
 ### 3.B.2 Lane-Associated Potential Field
 안정적이고 자연스러운 조작을 위해 lane-associated potential field를 소개함. 이 식은 차량과 같은 차선에서 달리는 차량에 적용됨. potential field의 식은 다음과 같음.
-![image](https://user-images.githubusercontent.com/69246778/126296297-78e2d0f3-b511-459e-a8e7-95945b536d0b.png)   
-![image](https://user-images.githubusercontent.com/69246778/126296377-1797ea5c-b980-41cb-98b2-c036acffa4f9.png)   
-   
-V : index set of surroundin vehicles   
+![image](https://user-images.githubusercontent.com/69246778/126446444-0c3703c6-9a27-4634-865f-c1f43a01fef4.png)
+![image](https://user-images.githubusercontent.com/69246778/126446526-f920448e-6d04-40e4-aa9c-bd84127692df.png)
+
+V : index set of surrounding vehicles   
 d_j,k : 시각 k일 때, j번째 차선에 함꼐 있는 주변 차량과 자차 간의 종방향 거리를 나타냄.    
 s : potential field의 maximum magnitude   
 Γ : potential field 의 slope.   
    
-potential field의 범위를 더 빠른 차량까지 확대하기 위해 감마는 j번째 고속도로의 차량 속도 v와 비례하게 설정하고 이를 **(Fig 4)** 에서 확인할 수 있다.
+   
+Γ는 j번째 고속도로의 차량 속도 v와 비례하게 설정.(속도 빠를수록 potential field magnitude기 빠르게 증가) 그럼 더 빠른 차량의 potential
+까지 범위가 확대 가능.
 ![image](https://user-images.githubusercontent.com/69246778/126297647-4eccdb3a-3b9e-4f9b-9e49-443cfb19fd52.png)   
    
 
@@ -206,7 +208,38 @@ obstacle은 주로 바리게이트나 공사장 이므로 다면체로 나타내
 ![image](https://user-images.githubusercontent.com/69246778/126411964-c2c4adbe-b762-47df-b092-88d085beb413.png)   
    
 A, b : 적절한 차원   
-그러나 이 상태에서 적절하지 않은 MPC공ㅅ
+   
+그러나 이 조건은 변수가 없어야 하므로 MPC 공식에는 적절하지 않음. 대신, MPC는 특정 condition을 만족하는 변수를 찾는데
+적절함. 이 문제를 해결하기 위해 [25]에서 제안한 접근방식을 따름. 이 접근 방식은, 충돌회피 조건을 MPC 공식과 호환되는 
+dual form형태로 변화시킴.   
+구체적으로, Farka의 부명제(?)에 따르면 **(식 3)** 의 등가조건은 다음과 같음   
+![image](https://user-images.githubusercontent.com/69246778/126448321-d044eddf-9652-4f39-9ea7-e7d1fd357297.png)   
+   
+그러므로, MPC의 constraint로써 **(식 3)** 을 사용하기 보다 새로운 변수β와 **(식 4)** 을 포함한 충돌 회피 constraint
+식을 제안. 이게 위에서 설명한 비선형 최적화 문제 식의 **(식 1d)** 임.   
+다음과 같은 상태로 표현되는 사각형의 두 차량을 고려함.   
+![image](https://user-images.githubusercontent.com/69246778/126449014-74bf292d-b1b7-4fda-8759-3947362787f8.png)   
+   
+i : =1,2 해당하는 차량과 관련된 index   
+W_i : 차량의 width   
+H_i : 차량의 length   
+![image](https://user-images.githubusercontent.com/69246778/126449512-d7c7ea69-683e-4670-a5c3-2ae53b1ff673.png)   
+   
+회피해야 하는 주변 차량 q를 가정함. **(식 1d)** 는 다음과 같이 표현됨.   
+![image](https://user-images.githubusercontent.com/69246778/126449748-7329d8b4-7748-46ce-a04d-748140de4cc5.png)   
+   
+ABar : 
+bBar :
+m
+
+## 3.C. Fail-safe Strategy
+차량 kinematic model과 충돌회피 constraint때문에 MPC문제는 비선형의 nonconvex문제임. 따라서 solver가 실현가능한 
+solution의 계산에 실패할 수도 있음. 실현 가능한 초기 해결책(initial solution)은 이 문제를 제거하는데 도움이 될 것.
+문제 해결을 위해 두 가지 완화된 MPC문제를 제안함. 첫 번째 완화 MPC문제는 목표 함수가 상수로 설정된다는 것 외엔 기존
+MPC와 동일함. 이 MPC문제가 실현 가능한 solution을 성공적으로 계산하면 그 solution은 기존 MPC가 seed solution으로 
+사용. 그러나, 만약 첫 MPC가 실패하면 두번째 문제로 넘어감. 두번째 문제에서는 충돌회피 constraint를 추가로 제거하게 됨.
+시뮬레이션을 통해 이 두가지 완화된 MPC 문제가 항상 실현가능한 solution을 계산해 실현 불가능한 문제를 제거하고 성능을 향상
+시킨다는 것을 발견.
 
 ##### [Heading angle:Bicycle Model](https://archit-rstg.medium.com/two-to-four-bicycle-model-for-car-898063e87074)
 ##### [prediction horizon](https://www.igi-global.com/dictionary/prediction-horizon/23230)
