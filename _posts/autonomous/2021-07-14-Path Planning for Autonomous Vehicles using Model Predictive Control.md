@@ -241,6 +241,9 @@ MPC와 동일함. 이 MPC문제가 실현 가능한 solution을 성공적으로 
 시뮬레이션을 통해 이 두가지 완화된 MPC 문제가 항상 실현가능한 solution을 계산해 실현 불가능한 문제를 제거하고 성능을 향상
 시킨다는 것을 발견.
 
+# 4. Simulation results
+MPC path planner는 normal highway driving, ramp merging, intersection crossing을 포함한다. MPC formulation   
+**(식 1a) ~ (식 1d)**는 
 ##### [Heading angle:Bicycle Model](https://archit-rstg.medium.com/two-to-four-bicycle-model-for-car-898063e87074)
 ##### [prediction horizon](https://www.igi-global.com/dictionary/prediction-horizon/23230)
 예측 모델이 얼마나 멀리까지 미래를 예측하는지를 나타냄. Predictino Horizon이 입력과 출력 사이의 지연과 잘 맞으면 보다 빠르게 제어할 수 있고
