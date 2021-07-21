@@ -282,7 +282,7 @@ yaw rate의 reference signal은 다음과 같음.
 ![image](https://user-images.githubusercontent.com/69246778/126118453-e8ae77db-d6c6-43a7-bfca-1327b5ca02c4.png)   
    
 앞서 언급한 경우에서, yaw rate와 sideslip angle이 범위를 벗어날 때 yaw rate와 sidelslip angle의 추적오류에 대한 패널티가 
-급격히 증가할 것이며 이는 비용함수에서 중요한 역할을 한다.   
+급격히 증가할 것이며 이는 비용함수에서 중요한 역할.   
   
 **(식 44)** 는 다음과 같이 쓸 수 있다.   
 ![image](https://user-images.githubusercontent.com/69246778/126119384-391fc07f-e721-4a34-87e3-d85e49e9718d.png)   
@@ -298,20 +298,47 @@ NOTE📝
 
 
 ## 5.C. Constraint Analysis for MPC
-path tracking에서 발생하는 constraint에는 크게 세 가지 유형이 있다. 첫 번째 두 개는 control 변수에 부과되는 constraint를 다루고,
-세 번째는 output constraint를 다룬다.   
-차량 모델의 운동학과 동역학에 따르면, steering angle과 안정성, path tracking 문제에 부과되는 constraint는 다음과 같다.
-![image](https://user-images.githubusercontent.com/69246778/126122722-fd247caa-7ffa-4555-8953-73642732a1be.png)
+path tracking에서 발생하는 constraint에는 크게 세 가지 유형이 있음. 첫 번째 두 개는 control 변수에 부과되는 constraint를 다루고,
+세 번째는 output constraint를 다룸.   
+차량 모델의 운동학과 동역학에 따르면, steering angle과 안정성, path tracking 문제에 부과되는 constraints는 다음과 같음.
+![image](https://user-images.githubusercontent.com/69246778/126122722-fd247caa-7ffa-4555-8953-73642732a1be.png)   
 
-여기서 δ_max and Δδ_max 은 input constraint이고, X_max와 X_min은 X방향 도로의 좌우 경계 좌표 값이다. 그래서 C를 다음과 같이 쓸 수
-![image](https://user-images.githubusercontent.com/69246778/126123150-e6c2ec12-3449-4a7a-87d2-cfbb5877a1a6.png)
+δ_max, Δδ_max : input constraint   
+X_max, X_min은 X방향 도로의 좌우 경계 좌표 값   
+   
+![image](https://user-images.githubusercontent.com/69246778/126123150-e6c2ec12-3449-4a7a-87d2-cfbb5877a1a6.png)   
 
+불균등한 constraints를 받는다.
+![image](https://user-images.githubusercontent.com/69246778/126435341-c9e8a23e-416a-4d9c-b37e-8a759b5942ce.png)   
+![image](https://user-images.githubusercontent.com/69246778/126435378-3edbd5f3-2335-4582-8bb6-4de688b9d6b3.png)   
 
-```
-📝NOTE   
-plant information??
-future increment??
-```
+## 5.D. Numerous solution using Hildreth's Quadratic programming procedure   
+다음 단계는 차량의 path tracking 응답을 최적화하는 future steering input을 계산하는 것. **(식 41),(식 53),(식 58)** 을 이용한
+목적함수 J_E와 constraints를 나타냄.
+![image](https://user-images.githubusercontent.com/69246778/126435855-506fb28d-9b5f-4ebd-aee7-15c9c1f274ec.png)   
+![image](https://user-images.githubusercontent.com/69246778/126435885-aa39be6a-f25d-4b14-bdd7-7f2e224f9149.png)   
+![image](https://user-images.githubusercontent.com/69246778/126435910-da82f2f3-316e-4b23-ba14-7a4624a5bdbb.png)   
+   
+E_m, F_m : quadratic 문제에 호환되는 matrice와 vector   
+   
+불평등 제약을 받는 목적함수를 최소화하기 위해 다음과 같은 라그랑주 식을 고려.
+![image](https://user-images.githubusercontent.com/69246778/126436165-8a2209cb-f443-45e8-b90d-65315c81bda4.png)
+
+original primal 문제에서의 이중적인 문제는, 비용함수 J_L의 1차 도함수로부터 발생하는데, 그 최소화는
+ΔU_m에 대해 unconstrain되어 있고 다음의 식에서 얻을 수 있다.   
+![image](https://user-images.githubusercontent.com/69246778/126437149-7f9b9496-8821-4ad4-86d9-817ee9f4b42b.png)   
+이 식을 **(식 65)** 에 대입하면   
+![image](https://user-images.githubusercontent.com/69246778/126437210-c302ad11-1844-4d00-87d8-354c5cff646d.png)   
+   
+이중적인 문제는 decision variable λ를 포함한 quadratic programming 문제로 바뀜.
+![image](https://user-images.githubusercontent.com/69246778/126437352-92d06cc4-cec0-4d2a-989e-030135c37bc3.png)
+![image](https://user-images.githubusercontent.com/69246778/126437366-1a750762-2fae-4af1-8320-7df7efc99695.png)   
+   
+Hildreth's quadratic 프로그래밍 절차는 이중 목적함수를 최소화하는 optimal한 라그랑주 multiplier를 해결하기 위해 선택됨.
+process의 주어진 단계에서 벡터 λ* 의 단일 구성 요소 λ_i를 조정하여 목적함수를 최소화. λ* 의 계산 절차는 **(Fig 10)**.
+**(식 66)** 의 decision variable λ를 라그랑주 multiplier λ* 로 대체한 결과는 아래 식.
+![image](https://user-images.githubusercontent.com/69246778/126438149-0de0420c-f3c3-4ec0-904b-2b197f714d77.png)
+
 
 # 6. Simulations of path tracking in different scenarios using carsim and simulink
 * * *
