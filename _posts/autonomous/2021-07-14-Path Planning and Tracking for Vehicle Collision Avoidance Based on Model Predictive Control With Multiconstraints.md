@@ -20,13 +20,13 @@ IEEE TRANSACTIONS ON VEHICULAR TECHNOLOGY, VOL. 66, NO. 2, FEBRUARY 2017
 {:.message}
 
   -  Abstract
-    - 1.Introduction
-    - 2.Description of collision avoidance system
-    - 3.Path Planning for collision avoidance using 3-D virtual dangerous potential field
-    - 4.Vehicle mathematical model for path-tracking problem 
-    - 5.Design fo multiconstrained model predictive control
-    - 6.Simulations of path tracking in different scenarios using carsim and simulink
-    - 7.Conclusion
+    - Introduction
+    - Description of collision avoidance system
+    - Path Planning for collision avoidance using 3-D virtual dangerous potential field
+    - Vehicle mathematical model for path-tracking problem 
+    - Design fo multiconstrained model predictive control
+    - Simulations of path tracking in different scenarios using carsim and simulink
+    - Conclusion
 
 * * *
 
