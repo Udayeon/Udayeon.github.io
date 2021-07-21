@@ -183,7 +183,7 @@ M * N 행렬로 λ를 정의하고, 설계 변수는 λ_j,k(j,k항목)임.
    
 ### 3.B.2 Lane-Associated Potential Field
 안정적이고 자연스러운 조작을 위해 lane-associated potential field를 소개함. 이 식은 차량과 같은 차선에서 달리는 차량에 적용됨. potential field의 식은 다음과 같음.
-![image](https://user-images.githubusercontent.com/69246778/126296297-78e2d0f3-b511-459e-a8e7-95945b536d0b.png)
+![image](https://user-images.githubusercontent.com/69246778/126296297-78e2d0f3-b511-459e-a8e7-95945b536d0b.png)   
 ![image](https://user-images.githubusercontent.com/69246778/126296377-1797ea5c-b980-41cb-98b2-c036acffa4f9.png)   
    
 V : index set of surroundin vehicles   
@@ -196,17 +196,17 @@ potential field의 범위를 더 빠른 차량까지 확대하기 위해 감마�
    
 
 ### 3.B.3 Collison Avoidance
-potential field가 차량과 다른 것들 간의 특정 거리를 유지하도록 돕지만 추가적으로 충돌회피를 보장하는 매카니즘이 필요. 종/횡 방향 모두에서 차량의 안전을 보장하기 위해 MPC에서 일종의 
-constraints를 가지고 충돌 회피를 시행함.   
-자차와 주변 차량을 흔히 사용하는 원이나 타원 대신 차량의 모양을 더 잘 나타내는 사각형으로 모델링함. 게다가, 주행 환경에서 만나는 obstacle은 주로 바리게이트나 공사장 이므로 다면체로 나타내기 
-더 좋음. 그러므로 이건 바람직한 MPC를 활용 다면체 충돌 회피 전략 개발임.   
-충돌회피의 조건을 다음과 같이 쓸 수 있음.  
+potential field가 차량과 다른 것들 간의 특정 거리를 유지하도록 돕지만 추가적으로 충돌회피를 보장하는 매카니즘이 필요. 
+종/횡 방향 모두에서 차량의 안전을 보장하기 위해 MPC에서 일종의 constraints를 가지고 충돌 회피를 시행함.   
+자차와 주변 차량을 흔히 사용하는 원이나 타원 대신 차량의 모양을 더 잘 나타내는 사각형으로 모델링함. 게다가, 주행 환경에서 만나는 
+obstacle은 주로 바리게이트나 공사장 이므로 다면체로 나타내기 더 좋음. 그러므로 이건 바람직한 MPC를 활용 다면체 충돌 회피 전략 개발임.
+충돌회피는 두 다면체가 교차하지 않아야하며 이를 다음과 같이 쓸 수 있음.   
 
-
-
-다면체는 A_<b로 표현할 수 있음. 이때, A와 비는 적절한 차원을 나타냄. 
-충돌회피는 두 다면체가 교차하지 않아야하며 이는 다음의 조건에 해당함.   
-
+![image](https://user-images.githubusercontent.com/69246778/126411913-e767ef56-33a8-4206-87a2-e55d558b3cef.png)   
+![image](https://user-images.githubusercontent.com/69246778/126411964-c2c4adbe-b762-47df-b092-88d085beb413.png)   
+   
+A, b : 적절한 차원   
+그러나 이 상태에서 적절하지 않은 MPC공ㅅ
 
 ##### [Heading angle:Bicycle Model](https://archit-rstg.medium.com/two-to-four-bicycle-model-for-car-898063e87074)
 ##### [prediction horizon](https://www.igi-global.com/dictionary/prediction-horizon/23230)
