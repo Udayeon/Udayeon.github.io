@@ -1,4 +1,4 @@
----
+21---
 layout: post
 title: Semminar1 - Path Planning paper 
 description: |
@@ -243,7 +243,44 @@ MPC와 동일함. 이 MPC문제가 실현 가능한 solution을 성공적으로 
 
 # 4. Simulation results
 MPC path planner는 normal highway driving, ramp merging, intersection crossing을 포함한다. MPC formulation   
-**(식 1a) ~ (식 1d)**는 
+**(식 1a) ~ (식 1d)** 는 Matlab의 YALMIP toolbox를 통해 Ipopt 비선형 프로그래밍 solver로 해결됨.
+
+## 4.A. Normal Highway Driving
+**(Fig 5)** 는 noraml한 고속도로 주행환경의 계획된 경로를 캡처한 것임.   
+![image](https://user-images.githubusercontent.com/69246778/126575211-477f4fb1-3c86-4237-8eb7-cee9979bcd40.png)   
+파란색 상자 안의 차선은 4차 다항식으로 근사됨. 빨간색 직사각형은 주변차량, 파란색 사각형은 ego vehicle. ego 차량의 future
+trajetory는 일련의 파란 점으로 표현.   
+**(Fig 5(a))** : ego 차량은 중간 차선에 있고 앞쪽에는 다섯 대의 차량이 있고 왼쪽에 한 대가 있음   
+**(Fig 5(b))** : ego 차량의 원하는 속도가 앞에 있는 obstacle의 속도보다 빠르지만 ego vehicle이 속도를 감소 시키면서 
+일정한 간격을 유지하고 있는걸 알 수 있음.   
+**(Fig 5(c))** : 차선 변경이 가능해지자마자 ego vehicle은 속도를 증가시켜 왼쪽 차선으로 부드럽게 바꿈.   
+**(Fig 5(d))** : 그리고 왼쪽 차선을 계속 유지함.   
+도로의 곡률은 일정하고 view point가 그에 따라 회전. 
+
+## 4.B. Merging in Highway Driving
+**(Fig 6)** 은 ramp merging시나리오를 보여줌. 
+![image](https://user-images.githubusercontent.com/69246778/126576141-e7710672-d622-456f-a176-5e0bea1adb89.png)   
+**(Fig 6(a))** : 주변 차량 3대가 병합 차선에 있음.
+**(Fig 6(b))** : ego차량은 안전한  longitudinal(세로) 방향의 안전한 경로를 생성하여 인접한 두 차량 
+사이의 간격을 맞춤. ego vehicle은 gap을 따라잡기 위해 먼저 가속함.
+**(Fig 6(c))** : 그리고나서 앞차와의 편안한 거리 유지를 위해 감속.
+**(Fig 6(d))** : 그러면 ego vehicle이 성공적으로 차선에 병합됨.
+
+## 4.C. Intersection Crossing
+**(Fig 7)** 은 4방향 교차로를 건너는 시나리오.   
+![image](https://user-images.githubusercontent.com/69246778/126576393-805a9ec6-282a-42ce-85c6-ce60e64746d2.png)   
+**(Fig 7(a))** : **(식 1a)** D(y_k)항 설정을 통해 target은 'stop'으로 선택된다.   
+**(Fig 7(b)~7(d)** : ego 차량은 먼저 stop 표시에 접근해 거기서 멈추고 교차로를 건너는 것이 안전해질 
+때까지 'stop'상태를 유지한다. 
+
+# 5.Conclusion
+본 연구에서는, 구조화된 주행 환경에서 자율주행 차량을 위한 MPC기반의 경로 계획을 제안함. 제안된 planner는
+통일된 최적화 프레인워크에서 기동 mode를 자동으로 결정함. Convex relaxtion 접근법은 차선을 변경하고
+유지하는데 사용됨. 우리는 다각형 형태의 차량에 대한 충돌 회피 조건을 개발했음. 그리고 안정적이고 
+자연스러운 주행을 위한 차선관련 potential field도 소개함. 시뮬레이션은 차선 변경, 차선 유지, ramp 병합,
+그리고 교차로 횡단의 경우에서 수행됨. 결과는 제안된 path planner가 자율주행 차량을 위한 안전하고 편안한 경로 만들어내는 것을 보여줌. 미래의 연구는 실제 경험에서의 path plnner의 수행에 초점을 맞출 것. 
+주변 차량의 움직임에 대한 예측 또한 다음 단계의 과제임. 
+
 ##### [Heading angle:Bicycle Model](https://archit-rstg.medium.com/two-to-four-bicycle-model-for-car-898063e87074)
 ##### [prediction horizon](https://www.igi-global.com/dictionary/prediction-horizon/23230)
 예측 모델이 얼마나 멀리까지 미래를 예측하는지를 나타냄. Predictino Horizon이 입력과 출력 사이의 지연과 잘 맞으면 보다 빠르게 제어할 수 있고
