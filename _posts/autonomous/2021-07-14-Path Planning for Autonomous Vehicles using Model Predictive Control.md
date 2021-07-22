@@ -109,34 +109,24 @@ planning horizon에서 **도로 형태**는 오프라인에 맵핑된 **waypoint
 * * *
 
 ## 3.A. Vehicle and Environment Modeling
-본 연구에서 다음과 같은 도로 좌표계(그림3)을 사용함.   
-![image](https://user-images.githubusercontent.com/69246778/126582596-556f2e6e-4a07-416b-94a6-9b090a9ebe06.png)
-
-x : longitudinal position   
-y : lateral position   
-θ : heading angle   
-v : speed   
+본 연구에서 다음과 같은 **도로 좌표계(Fig 3)**을 사용함.   
+![image](https://user-images.githubusercontent.com/69246778/126582596-556f2e6e-4a07-416b-94a6-9b090a9ebe06.png)   
+![road_coord](https://user-images.githubusercontent.com/69246778/126582910-35c7bd99-7129-4c36-8f6c-937ca774a34e.gif)   
    
-차량과 주변 차량을 unicycle kinematic model을 사용해 modeling한 식은 다음과 같음.   
-![image](https://user-images.githubusercontent.com/69246778/126292806-ebe2bb54-272f-4468-a73e-1f71b3903e83.png)   
+차량과 주변 차량을 **unicycle kinematic model**을 사용해 modeling한 식은 다음과 같음.   
+![image](https://user-images.githubusercontent.com/69246778/126292806-ebe2bb54-272f-4468-a73e-1f71b3903e83.png)      
+![image](https://user-images.githubusercontent.com/69246778/126583084-940f7e46-0715-40fe-839c-7c28b013ef35.png)   
+![2](https://user-images.githubusercontent.com/69246778/126586373-68cee803-5c8f-4df5-8963-32b8591fdfb9.gif)   
    
-z_k : 시각k와 f(z_k,u_k)일 때 차량의 state   
-u_k : u_k=(α_k,ω_k),control input   
-α_k : 선형가속도   
-ω_k : 각속도   
-   
-도로 Waypoint, 차선표시 그리고 주변 차량의 현재상태를 포함한 환경정보를 모두 알고 있다고 가정한다. 또한 주변 차량의 future state도 정확하게 예측되었다고 가정한다.   
+도로의 Waypoint, lane marking 그리고 주변 차량의 현재상태를 포함한 환경정보를 모두 알고 있다고 가정.
+또한 주변 차량의 future state도 정확하게 예측된다고 가정.   
 
 ## 3.B. MPC Formulation 
-MPC를 이용한 접근법은 receding horizon방식으로 유한시간의 constrained optimal control을 해결한다. path planning은 다음과 같은 비선형 최적화 문제로 공식화 될 수 있다.   
-![image](https://user-images.githubusercontent.com/69246778/126293664-a23e7829-bdf6-4e09-a104-bec5d20e6ebe.png)   
+MPC를 이용한 접근법은 **receding horizon방식**으로 **유한시간의 constrained optimal control을 해결.**
+path planning은 다음과 같은 **비선형 최적화 문제**로 공식화 될 수 있다.   
+![image](https://user-images.githubusercontent.com/69246778/126586535-63edf054-fabf-4364-acb5-299a6b0484b9.png)   
+![3](https://user-images.githubusercontent.com/69246778/126587181-a63f798b-6f68-4af1-914d-ec362ffdf336.gif)   
    
-M : 차로의 수   
-N : prediction horizon     
-(1b) : vehicle kinematic에 의한 constraint (상태공간방정식) : k의 상태를 통해 k+1의 상태를 예측할 수 있음.         
-(1c) : 차량의 actuator(linear acceleration, turning rate) 한계를 고려하여 실현가능한 set를 제한함.   
-(1d) : 주변 차량과의 충돌 회피를 강제해줌.   
-
 이 목적함수는 차량의 거동을 설명하기 위해 다양한 term으로 구성되어 있음.먼저 각 항마다 곱해진 w는 가중치를 나타내는 것임   
 
 ### 3.B.1 Lane Selection
