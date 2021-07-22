@@ -123,11 +123,11 @@ planning horizon에서 **도로 형태**는 오프라인에 맵핑된 **waypoint
 
 ## 3.B. MPC Formulation 
 MPC를 이용한 접근법은 **receding horizon방식**으로 **유한시간의 constrained optimal control을 해결.**
-path planning은 다음과 같은 **비선형 최적화 문제**로 공식화 될 수 있다.   
+path planning은 다음과 같은 **비선형 최적화 문제**로 공식화 될 수 있다.
+이 목적함수는 차량의 거동을 설명하기 위해 다양한 term으로 구성되어 있음
 ![image](https://user-images.githubusercontent.com/69246778/126586535-63edf054-fabf-4364-acb5-299a6b0484b9.png)   
 ![3](https://user-images.githubusercontent.com/69246778/126587181-a63f798b-6f68-4af1-914d-ec362ffdf336.gif)   
-   
-이 목적함수는 차량의 거동을 설명하기 위해 다양한 term으로 구성되어 있음.먼저 각 항마다 곱해진 w는 가중치를 나타내는 것임   
+![4](https://user-images.githubusercontent.com/69246778/126588453-99782389-cd32-443a-b9ef-d0cd0cb2ca99.gif)
 
 ### 3.B.1 Lane Selection
 h(x_k,y_k,p_c^j)^2 : k시간에 (xk,yk)에 존재하는 차량과 j번째 차로의 중심선 사이의 lateral 거리.
