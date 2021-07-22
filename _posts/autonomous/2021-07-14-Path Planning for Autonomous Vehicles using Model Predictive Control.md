@@ -114,8 +114,7 @@ planning horizon에서 **도로 형태**는 오프라인에 맵핑된 **waypoint
 ![road_coord](https://user-images.githubusercontent.com/69246778/126582910-35c7bd99-7129-4c36-8f6c-937ca774a34e.gif)   
    
 차량과 주변 차량을 **unicycle kinematic model**을 사용해 modeling한 식은 다음과 같음.   
-![image](https://user-images.githubusercontent.com/69246778/126292806-ebe2bb54-272f-4468-a73e-1f71b3903e83.png)      
-![image](https://user-images.githubusercontent.com/69246778/126583084-940f7e46-0715-40fe-839c-7c28b013ef35.png)   
+![image](https://user-images.githubusercontent.com/69246778/126588591-2ba9400d-ffa4-42a2-a2f4-5498977e1bc4.png)
 ![2](https://user-images.githubusercontent.com/69246778/126586373-68cee803-5c8f-4df5-8963-32b8591fdfb9.gif)   
    
 도로의 Waypoint, lane marking 그리고 주변 차량의 현재상태를 포함한 환경정보를 모두 알고 있다고 가정.
