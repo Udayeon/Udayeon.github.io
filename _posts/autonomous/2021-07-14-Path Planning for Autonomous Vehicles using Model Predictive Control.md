@@ -19,19 +19,18 @@ published: true
 2017 IEEE Intelligent Vehicles Symposium (IV), June 11-14, 2017, Redondo Beach, CA, USA
 {:.message}
 
-  - Abstract
-  - Introduction
-  - Problem formulation
-  - Path planning algorithm
-  - Simulation results 
+  - [Abstract](https://udayeon.github.io/2021/07/14/Path-Planning-for-Autonomous-Vehicles-using-Model-Predictive-Control/#abstract)
+  - [Introduction](https://udayeon.github.io/2021/07/14/Path-Planning-for-Autonomous-Vehicles-using-Model-Predictive-Control/#introduction)
+  - [Problem formulation](https://udayeon.github.io/2021/07/14/Path-Planning-for-Autonomous-Vehicles-using-Model-Predictive-Control/#problem-formulation)
+  - [Path planning algorithm](https://udayeon.github.io/2021/07/14/Path-Planning-for-Autonomous-Vehicles-using-Model-Predictive-Control/#3-path-planning-algorithm)
+  - [Simulation results](https://udayeon.github.io/2021/07/14/Path-Planning-for-Autonomous-Vehicles-using-Model-Predictive-Control/#4-simulation-results)
 
 * * *
 
 # 개요
 * * *
-자율주행 차량이 목적지까지 가는 동안 주변을 인식하고 정보를 처리해 적절한 판단을 하여 가야할 경로를 생성하고(Path generation), 
-정확한 제어를 통해 길을 따라가는(Path following) 일련의 과정을 경로 계획(Paht planning)이라 한다. 
-특히, 자율주행 차량은 주변의 정보를 실시간으로 처리하여 주행 중 마주할 수 있는 다양한 상황에 대처할 수 있어야 하므로 **지역경로계획**의 중요성이 두드러진다. 
+자율주행 차량이 목적지까지 가는 동안 주변을 인식하고 정보를 처리해 적절한 판단을 하여 가야할 **경로를 생성하고(Path generation)**, 
+정확한 **제어를 통해 길을 따라가는(Path following)** 일련의 과정을 **경로 계획(Paht planning)** 이라 한다.
 본 프로젝트는 2주에 한 번씩 진행하는 Lab seminar에 대비한 것으로 첫 번째 주제는 경로 계획과 관련된 논문을 하나 선정해 조사하고 15분간 발표하는 것이다.
 또한, 경로추종 기술 중 하나인 MPC를 직접 실습해본다.
 
