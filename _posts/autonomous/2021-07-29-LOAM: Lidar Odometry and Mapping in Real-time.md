@@ -59,10 +59,9 @@ odometry measurement를 사용하여 레이저 포인트를 register하는 것. 
 이러한 성능 수준을 달성하기 위한 핵심적인 아이디어는 SLAM문제를 두 개의 알고리즘으로 나누는 것임. SLAM은 다수의 변수를
 동시에 최적화하는 복잡한 문제임. 하나의 알고리즘은 Lidar의 속도 추정을 위해 high frequency, low fidelity의 odometry를 수행한다.
 또 다른 하나는 point cloud의 fine matching과 registration을 위해 더 낮은 magnitude의 frequency를 사용한다. 
-
-
-
-
+필요하진 않지만, 만약 IMU를 사용한다면, high frequency mothon을 설명하기 위한 motion prior가 제공될 수 있음.
+특히, 두 알고리즘은 sharp한 모서리 및 평면에 위치한 feature point를 extract할 수 있고, 그 feature point를 각각 edge line segment와 
+평면 패치에 match시킬 수 있음.
 
 
    
