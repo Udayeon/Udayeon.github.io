@@ -1,0 +1,59 @@
+---
+layout: post
+title: Semminar2 - SLAM paper 
+description: |
+  
+tags:
+  - autonomous
+use_math : true
+comments : true
+author: Udayeon
+
+published: true
+---
+
+# (Review) LOAM: Lidar Odometry and Mapping in Real-time
+
+[LOAM: Lidar Odometry and Mapping in Real-time](https://ieeexplore.ieee.org/document/7995716/metrics#metrics)   
+- **Author** J. Zhang and S. Singh
+- Robotics: Science and Systems Conference (RSS), July 2014.
+{:.message}
+
+**논문 선정 기준**   
+* Camera SLAM이 아닌 것
+* 인용 횟수 많은 것
+* 분량이 적당한 것   
+SLAM에 관한 (얕지만...)넓은 이해를 돕기 위해 실습에서 다루게 될 Camera SLAM이 아닌 다른 SLAM 관련 논문을 리뷰하고자 함.
+구글 학술검색 기준 1084회 인용 되었음.
+
+  - [Abstract]
+  - [1.Introduction]
+  - [2. Related work]
+  - [3. Notation and task description]
+  - [4. System overview]
+  - [5. Lidar odometry]
+  - [6. Lidar Mapping]
+  - [7. Experiments]
+  - [8. Conclusion and future work]
+
+# Abstract
+[6-DOF]로 움직이는 [2축 Lidar]의 range 측정을 이용한 odometry와 mapping의 real-time method를 제안.
+range측정 값은 수신되는 시간이 다르고 motion estimation의 에러가 Point cloud 결과에 [misregistration]을 야기 하므로 어려운 문제임.
+지금까지는 오프라인 [batch method]로 일관성 있는 3D map을 구축할 수 있었고 [loop closure]를 이용해 시간에 따른 [drift]를 줄였음.
+제안할 method는 높은 정확도의 범위나 inertial(관성)의 측정이 필요없는 low-drift, low-computational complexity한 방법임. 
+이러한 성능을 얻을 수 있는 핵심적인 아이디어는 SLAM의 복잡한 문제를 두개의 알고리즘으로 나누는 것임.
+하나는 Lidar의 velocity 측정을 위해 high frequency, low fidelity에서 odometry를 수행. 다른 하나는, Point cloud의 fine matching과
+registration을 위해 더 낮은 magnitude의 frequency를 수행. 두 알고리즘을 결합함으로써 실시간 mapping가능.
+이 Method는 KITTI odometry benchmark뿐만 아니라 많은 실험에 의해 평가되어 왔음. 결과는 이 Method가 최첨단 오프라인 batch method
+수준에서 정확성을 달성할 수 있음을 보여줌.
+
+# 1. Introduction
+3D mapping은 여전히 널리 사용되는 기술임. Lidar는 측정 거리에 상관없이 error가 상대적으로 일정한 high frquency의 range 측정을 
+제공하므로 흔히 쓰이는 방식임. 레이저 빔 회전이 Lidar의 유일한 motion
+
+
+
+
+
+
+   
