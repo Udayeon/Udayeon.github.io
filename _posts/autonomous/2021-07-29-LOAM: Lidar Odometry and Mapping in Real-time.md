@@ -110,4 +110,4 @@ point cloud 분산을 사용한다. Feature matching은 odometry와 mapping알�
 Lidar cloud P_k에서 feature를 extraction하는 것부터 시작. Lidar는 자연스럽게 P_k에 불균일한 point를 생성.
 레이저 스캐너의 return은 스캔 내에서  0.25◦ 의 resolution을 가짐. 이 point들은 scan plane에 위치함.
 그러나, laser scanner가 180◦/s의 각속도로 회전하고 40Hz에서 scan을 생성할 때, scan plane의 수직방향 resolution은
-180◦/40=4.5◦. 이러한 사실을 고려하면서
+180◦/40=4.5◦. 이러한 사실을 고려하면서, 개별적인 scan의 정보만을 이용하여  P_k로부터 feature point를 extract
