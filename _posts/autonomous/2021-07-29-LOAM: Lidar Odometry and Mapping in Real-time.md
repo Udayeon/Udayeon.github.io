@@ -70,6 +70,21 @@ Lidar는 환경을 traverse하는 다니거나 소형 항공기에도 탑재할 
 
 필요하진 않지만, 만약 IMU를 사용한다면, high frequency mothon을 설명하기 위한 motion prior가 제공될 수 있음.
 특히, 두 알고리즘은 sharp한 모서리 및 평면에 위치한 feature point를 extract할 수 있고, 그 feature point를 각각 edge line segment와 
-평면 패치에 match시킬 수 있음. Odometry 알고리즘에서는, 빠른 계산을 통해 feature point의 대응관계가 얻어진다. 
-mapping알고리즘에서는, 고유값 및 고유벡터에 의한 Local point cluster의 기하학적 분산으로부터 대응관계가 얻어진다. 
+평면 패치에 match시킬 수 있음. Odometry 알고리즘에서는, 빠른 계산을 통해 feature point의 대응관계가 얻어지고
+mapping알고리즘에서는, 고유값 및 고유벡터에 의한 Local point cluster의 기하학적 분산으로부터 대응관계가 얻어짐. 
    
+original한 문제를 분석해 online motion estimation같은 보다 더 쉬운 문제가 해결됨. 그 후, mapping은 batch optimization으로써 
+수행되어 고정밀 motion추정과 map을 생성. 이 parallel한 알고리즘 구조는, 실시간으로 문제해결을 가능케 하고 게다가, motion추정이
+더 높은 frequency에서 수행되므로 mapping은 정확도를 위해 충분한 시간이 주어짐. 더 낮은 frequency에서 실행할 떄, mapping 알고리즘은
+많은 feature point를 포함할 수 있고 convergence를 위해 충분히 많은 반복을 수행함. 
+   
+# 2. Related work
+Lidar는 robot navigation에서 유용한 range sensor임. localization과 mapping을 위해 대부분의 application은 2D Lidar를 사용함. 
+Lidar의 스캔 속도가 외부 움직임보다 빠를 때, 스캔에서 발생하는 움직임의 distortion은 무시되는 경우가 많음
+이러한 경우에, Standard ICP method를 사용해 다른 scan간의 laser return을 match 시킬 수 있고 왜곡을 제거하기 위해 Two-step method가
+제안됨. velocity를 ICP로 추정하고 계산된 velocity로 distortion을 보상해줌. 비슷한 기술은 단축 3D Lidar에 의한 distortion을 
+보상하는데에 쓰임. 그러나, 만약 scanning 속도가 상대적으로 느리다면, motion distortion이 극심할 수 있음. 
+이는 특히 2축 Lidar에서 발생하는데, 2축 라이다의 한쪽 축이 다른 쪽 축보다 훨씬 느리기 때문. 
+종종, 다른 센서를 사용해 속도를 추정해 distortion을 제거할 수 있음. 예를  들어, Lidar cloud는 IMU와 통합된 Visual Odometry에 의한
+상태 추정으로부터 register될 수 있음. GPS/INS같은 여러 센서가 동시에 사용될 경우 확장된 Kalman filter나 Particle filter로 문제가 
+해결됨. 이러한 방법은 실시간으로 지도를 만들어 path planning과 충돌 회피를 도움. 
