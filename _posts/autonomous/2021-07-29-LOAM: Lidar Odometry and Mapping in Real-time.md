@@ -91,4 +91,18 @@ Lidar의 스캔 속도가 외부 움직임보다 빠를 때, 스캔에서 발생
    
 다른 센서의 도움없이 2축 Lidar를 사용한다면 motion 추정과 distortion의 보정이 문제가 됨. 이를 해결하는 Barfoot등에 의해 사용된 method는
 laser intensity return으로 부터 visual image를 만들고, 이미지 간의 시각적으로 구별되는 features를 match하여 groud vehicle의 
-motion을 다루는 방법임. vehicle의 motion 은 일정한 속도로 모델링되고 Gaussian process를 사용함. 
+motion을 다루는 방법임. vehicle의 motion 은 일정한 속도로 모델링되고 Gaussian process를 사용함. 본 논문의 method는 visual odometry
+알고리즘에서 이와 비슷한 선형 운동 모델을 사용하지만, feature의 유형이 다름. 전자는 intensity image의 visual feature와
+밀집된 point cloud가 필요함. 후자(out method)는 데카르트 공간에서의 기하학적 feature를 extract하고 matching하며, cloud의 밀도가
+낮아도 ㄱㅊ.
+   
+우리의 approach는 Bosse와 Zlot이랑 가장 유사함. 그들은 2축 Lidar를 사용해 local point cluster의 기하학적 구조를 매칭시켜서 
+point cloud를 register함. 게다가, 그들은 다수의 2축 Lidar를 사용해 underground mine을 지도화함. 이 방법은 IMU를 포함하고 있고
+loop closure를 이용해 거대한 map을 만드는 것임. 같은 저자가 제안한 **Zebedee**는 spring으로 hand-bar에 부착된  IMU와 2D Lidar로
+구성된 mapping 장치임. Mapping은 이 장치를 손으로 움직여 수행함. Trajectory는 batch optimization method로 recover되는데, 
+이는 segment간에 constraint가 추가된 dataset을 처리하는 방법임. 이 method에서, IMU의 측정은 레이저 포인트를 register하고 
+IMU의 biasd를 수정하는데 사용. 본질적으로, Bosse와 Zlot의 방법은, 정확한 지도를 위한 batch processing이 필요하므로 실시간으로
+지도가 필요한 application에는 부적합. 이에 대해, 제안된 실시간성의 method는 질적으로 Bosse와 Zlot의 method와 유사핟.
+차이점은, 우리의 method가 자율주행차량 안내를 위한 motion 추정을 제공한다는 것이다. 게다가, 이 방법은 Lidar scan pattern과
+point cloud 분산을 사용한다. Feature matching은 odometry와 mapping알고리즘에서의 계산속도와 정확도를 보장한다.
+
