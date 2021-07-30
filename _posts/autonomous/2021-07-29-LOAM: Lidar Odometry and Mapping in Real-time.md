@@ -51,17 +51,25 @@ registration을 위해 더 낮은 magnitude의 frequency를 수행. 두 알고�
 3D mapping은 여전히 널리 사용되는 기술임. Lidar를 이용한 Maapping은 측정 거리에 상관없이 error가 상대적으로 일정한 high frquency의 
 range 측정을 제공하므로 흔히 쓰이는 방식임. 레이저 빔 회전이 Lidar의 유일한 motion인 경우 Point Cloud의 register는 심플함. 
 근데 Lidar자체가 움직일 때는 Lidar의 Pose에 대한 정보가 필요함. 이 문제를 해결하기 위한 일반적인 방법 중 하나는 독자적인 
-Position estimation을 사용해 레이저 포이트를 고정된 좌표계에 register하는 것임. 또 다른 방법은, wheel encoder나 
+Position estimation을 사용해 레이저 포인트를 고정된 좌표계에 register하는 것임. 또 다른 방법은, wheel encoder나 
 Visual odometry system과 같은 odometry measurement를 사용하여 레이저 포인트를 register하는 것. odometry는 시간에 따른 
 작은 incremental한 움직임을 통합하기 때문에 drift가 발생할 수 있으며 drift 감소에 집중해야함.   
    
+여기서 고려하는 것은, 6-DOF에서 이동하는 2축 Lidar를 사용한 low-drift odometry를 통해 map을 제작하는 것.
+Lidar사용의 주요 장점은 주변 불빛과 Scene의 optical texture에 예민하지 않다는 것임. 최근 Lidar의 발달로 크기와 무게가 줄었음.
+Lidar는 환경을 traverse하는 다니거나 소형 항공기에도 탑재할 수 있음. 
+본 방법은 odometry estimation에서의 drift를 최소화하는 것에 주목하고 있으므로 loop closure는 포함X.
+   
 이 method는 높은 정확도의 ranging이나 inertial의 측정 없이도 low-drift, low-computational complexity를 이룰 수 있음.
-이러한 성능 수준을 달성하기 위한 핵심적인 아이디어는 SLAM문제를 두 개의 알고리즘으로 나누는 것임. SLAM은 다수의 변수를
-동시에 최적화하는 복잡한 문제임. 하나의 알고리즘은 Lidar의 속도 추정을 위해 high frequency, low fidelity의 odometry를 수행한다.
-또 다른 하나는 point cloud의 fine matching과 registration을 위해 더 낮은 magnitude의 frequency를 사용한다. 
+이러한 성능 수준을 달성하기 위한 핵심적인 아이디어는 다수의 변수를 동시에 최적화하는 복잡한 문제인 SLAM을, 
+다음과 같은 두 개의 알고리즘으로 나누는 것.
+
+|Lidar의 속도 측정|High frequency , Low fidelity|
+|:---------------|:----------------------------|
+|Point Cloud의 fine matching and registration|Frequency of an order of magnitude lower|
+
 필요하진 않지만, 만약 IMU를 사용한다면, high frequency mothon을 설명하기 위한 motion prior가 제공될 수 있음.
 특히, 두 알고리즘은 sharp한 모서리 및 평면에 위치한 feature point를 extract할 수 있고, 그 feature point를 각각 edge line segment와 
-평면 패치에 match시킬 수 있음.
-
-
+평면 패치에 match시킬 수 있음. Odometry 알고리즘에서는, 빠른 계산을 통해 feature point의 대응관계가 얻어진다. 
+mapping알고리즘에서는, 고유값 및 고유벡터에 의한 Local point cluster의 기하학적 분산으로부터 대응관계가 얻어진다. 
    
