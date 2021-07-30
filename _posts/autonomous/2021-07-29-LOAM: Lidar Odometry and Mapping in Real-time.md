@@ -48,12 +48,12 @@ registration을 위해 더 낮은 magnitude의 frequency를 수행. 두 알고�
 수준에서 정확성을 달성할 수 있음을 보여줌.
 
 # 1. Introduction
-3D mapping은 여전히 널리 사용되는 기술임. Lidar는 측정 거리에 상관없이 error가 상대적으로 일정한 high frquency의 range 측정을 
-제공하므로 흔히 쓰이는 방식임. 레이저 빔 회전이 Lidar의 유일한 motion인 경우 Point Cloud의 register는 심플함. 근데 Lidar자체가
-움직일 때는 Lidar의 Pose에 대한 정보가 필요함. 이 문제를 해결하기 위한 일반적인 방법 중 하나는 독자적인 Position estimation을 
-사용해 레이저 포이트를 고정된 좌표계에 register하는 것임. 또 다른 방법은, wheel encoder나 Visual odometry system과 같은
-odometry measurement를 사용하여 레이저 포인트를 register하는 것. odometry는 시간에 따른 작은 incremental한 움직임을 통합하기
-때문에 drift가 발생할 수 있으며 drift 감소에 집중해야함.   
+3D mapping은 여전히 널리 사용되는 기술임. Lidar를 이용한 Maapping은 측정 거리에 상관없이 error가 상대적으로 일정한 high frquency의 
+range 측정을 제공하므로 흔히 쓰이는 방식임. 레이저 빔 회전이 Lidar의 유일한 motion인 경우 Point Cloud의 register는 심플함. 
+근데 Lidar자체가 움직일 때는 Lidar의 Pose에 대한 정보가 필요함. 이 문제를 해결하기 위한 일반적인 방법 중 하나는 독자적인 
+Position estimation을 사용해 레이저 포이트를 고정된 좌표계에 register하는 것임. 또 다른 방법은, wheel encoder나 
+Visual odometry system과 같은 odometry measurement를 사용하여 레이저 포인트를 register하는 것. odometry는 시간에 따른 
+작은 incremental한 움직임을 통합하기 때문에 drift가 발생할 수 있으며 drift 감소에 집중해야함.   
    
 이 method는 높은 정확도의 ranging이나 inertial의 측정 없이도 low-drift, low-computational complexity를 이룰 수 있음.
 이러한 성능 수준을 달성하기 위한 핵심적인 아이디어는 SLAM문제를 두 개의 알고리즘으로 나누는 것임. SLAM은 다수의 변수를
