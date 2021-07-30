@@ -88,3 +88,7 @@ Lidar의 스캔 속도가 외부 움직임보다 빠를 때, 스캔에서 발생
 종종, 다른 센서를 사용해 속도를 추정해 distortion을 제거할 수 있음. 예를  들어, Lidar cloud는 IMU와 통합된 Visual Odometry에 의한
 상태 추정으로부터 register될 수 있음. GPS/INS같은 여러 센서가 동시에 사용될 경우 확장된 Kalman filter나 Particle filter로 문제가 
 해결됨. 이러한 방법은 실시간으로 지도를 만들어 path planning과 충돌 회피를 도움. 
+   
+다른 센서의 도움없이 2축 Lidar를 사용한다면 motion 추정과 distortion의 보정이 문제가 됨. 이를 해결하는 Barfoot등에 의해 사용된 method는
+laser intensity return으로 부터 visual image를 만들고, 이미지 간의 시각적으로 구별되는 features를 match하여 groud vehicle의 
+motion을 다루는 방법임. vehicle의 motion 은 일정한 속도로 모델링되고 Gaussian process를 사용함. 
