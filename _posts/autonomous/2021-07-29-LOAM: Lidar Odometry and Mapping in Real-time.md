@@ -140,4 +140,23 @@ feature point를 선택하는 동안, 주변 point가 선택되거나 레이저 
 S가 레이저 빔과 평행한 surface patch를 형성하지 않고, 레이저 빔 방향의 간격에 의해서 i가 분리되고, 동시에 lidar에 더 가까운 점이
 S에 없을 경우에만 선택할 수 있음. (그림 (b)의 점 B같은 경우)   
    
-요약하면 
+요약하면, feature point는 최대 c값일 때 edge point로, 최소 c값일 때 planar point로 선택됨.
+* 선택된 edge point나 planar point의 수는 subregion의 최대를 초과할 수 없음.
+* 어떤 surrounding point도 선택될 수 없음.
+* 레이저 빔에 평행한 surface 패치 또는 occlude영역의 경계에 있을 수 없음.
+   
+corridor scene으로부터 추출된 feature point의 예시는 Fig5임. edge point는 노란색, planar point는 빨간색으로 표현됨.
+![image](https://user-images.githubusercontent.com/69246778/127807189-e57ebcfc-bc79-458b-9c2f-5c8d4f9874a4.png)
+
+
+## 5.B. Finding Feature Point Correspondence
+odometry 알고리즘은 sweep내의 Lidar의 움직임을 추정함. t_k를 sweep k의 시작 시간으로 둠. 각 sweep가 종료될 때, sweep동안 인식된
+point cloud P_k는, time stamp t_k+1에 재투사됨. 그림6과 같음.   
+![image](https://user-images.githubusercontent.com/69246778/127807210-36d00611-7831-4277-8c6e-c7b47ddb5bb6.png)   
+   
+재투사된 point cloud를 Pbar_k로 나타냄. 다음 sweep k+1동안 Pbar_k는 새롭게 받은 point cloud P_k+1과 합께 Lidar의 motion 추정에
+사용됨.   
+   
+Pbar_k와 P_k+1을 둘다 사용할 수 있고 두 lidar cloud사이의 대응관계를 찾는 것부터 시작함. P_k+1을 이용해, 마지막 section에서
+언급한 방법론을 사용하여 edge point와 planar point를 찾음. E_k+1과 H_k+1을 각각 edge point와 planar point의 집합으로 봄. 
+Pbar_k로 부터 edge line을 
