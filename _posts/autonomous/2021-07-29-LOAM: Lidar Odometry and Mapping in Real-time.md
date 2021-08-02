@@ -107,12 +107,37 @@ IMU의 biasd를 수정하는데 사용. 본질적으로, Bosse와 Zlot의 방법
 point cloud 분산을 사용한다. Feature matching은 odometry와 mapping알고리즘에서의 계산속도와 정확도를 보장한다.
 
 # 5. Lidar odometry
+* * *
+
+## 5.A. Feature Point Extraction
+* * *
 Lidar cloud P_k에서 feature를 extraction하는 것부터 시작. Lidar는 자연스럽게 P_k에 불균일한 point를 생성.
 레이저 스캐너의 return은 스캔 내에서  0.25◦ 의 resolution을 가짐. 이 point들은 scan plane에 위치함.
 그러나, laser scanner가 180◦/s의 각속도로 회전하고 40Hz에서 scan을 생성할 때, scan plane의 수직방향 resolution은
 180◦/40=4.5◦. 이러한 사실을 고려하면서, 동일평면산의 기하학적 관계를 가진 개별적인 scan의 정보만을 이용하여 
 P_k로부터 feature point를 extract.   
    
+sharp한 edge와 평면 표면 패치에 있는 feature point를 선택. i는 P_k에 속하는 점이고, S는 같은 scan으로 레이저 스캐너에 의해 반환되는
+연속적인 점의 집합임. 레이저 스캐너는 시계방향 또는 반시계방향의 순서로 point return를 생성하므로 S는 i의 각 side에
+point의 절반을 포함함. 두 point간의 간격은 0.25◦임. local surface의 smoothness를 평가하기 위한 term을 다음과 같이 정의함.
+![image](https://user-images.githubusercontent.com/69246778/127791880-8f1f2af2-b7d3-4fe5-af8a-b18ce7c29c62.png)
 
-sharp edge와 평면 패치에 있는 feature point를 선택. i를 P_k의 point라 하고, S
-
+scan에 있어서 point는 c값에 의해 분류됨. 그리고나서, point는 최대c(edge poiints)와 최소c(planar points)로 선택됨.
+환경 내에 균등하게 feature point를 균등하게 분배하기 위해서 scan을 4개의 하위 영역으로 나눌 수 있음.
+각각의 하위 영역은 최대 2개의 edge point와 4개의 planar point를 제공할 수 있음.
+point i는 오직 c값이 threshold보다 크냐 작냐에 따라 edge point와 planar point로 선택될 수 있고 선택된 point의 수가
+최대치를 넘지 않음.   
+   
+feature point를 선택하는 동안, 주변 point가 선택되거나 레이저 빔과 rough하게 평행한 local planar위의 point는 피하고자 함.
+![image](https://user-images.githubusercontent.com/69246778/127792429-116e5a48-86de-445b-92b6-d99b4215a3cc.png)
+마치 위의 그림에서 B와 같은 경우. 이 Point들은 신뢰할 수 없는 점으록 간주됨.   
+   
+또한, occluded region의 경계에 있는 점도 피하고 싶음. 
+![image](https://user-images.githubusercontent.com/69246778/127792417-497bbffe-de33-4e04-96ed-4011908d0a40.png)
+위의 그림에서 점 A는 연결된 surface(점선)가 다른 object에 의해 차단되기 때문에 Lidar cloud에서 edge영역임. 
+그러나, 만약 Lidar가 다른 시점으로 이동하면, occlude된 region은 observable하게 변함. 
+앞서 언급한 point들이 선택되지 않도록 Point set S를 다시 설정함.
+S가 레이저 빔과 평행한 surface patch를 형성하지 않고, 레이저 빔 방향의 간격에 의해서 i가 분리되고, 동시에 lidar에 더 가까운 점이
+S에 없을 경우에만 선택할 수 있음. (그림 (b)의 점 B같은 경우)   
+   
+요약하면 
