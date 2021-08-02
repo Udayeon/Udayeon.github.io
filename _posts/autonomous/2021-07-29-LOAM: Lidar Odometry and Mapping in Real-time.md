@@ -165,3 +165,6 @@ sweep k+1의 시작에서 P_k+1은 비어있는 set이고, 더 많은 point를 �
 sweep동안 6-DOF의 motion을 재귀적으로 추정하고 P_k+1이 증가할수록 점차 더 많은 점을 포함함. 각 반복 시 E_K+1과 H_k+1은
 현재 추정된 transform(변환)을 사용하여 sweep의 시작 부분에 다시 투영됨. Ebar_k+1과 Hbar_k+1을 point set에 재투사된 point집합으로 보자.
 각각의 Ebar_k+1과 Hbar_k+1에 있어서, Pbar_k와 가장 가깝게 인접한 점을 찾고자 함. 여기서, Pbar_k는 빠른 index를 위해 3D KD-tree에 저장됨
+   
+그림(7-a)는 edge point의 대응으로 edge line을 찾는 과정을 나타냄.  
+![image](https://user-images.githubusercontent.com/69246778/127809626-86c7a061-a473-49dc-9895-0795449c59de.png)
