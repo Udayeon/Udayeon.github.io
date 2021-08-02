@@ -159,4 +159,9 @@ point cloud P_k는, time stamp t_k+1에 재투사됨. 그림6과 같음.
    
 Pbar_k와 P_k+1을 둘다 사용할 수 있고 두 lidar cloud사이의 대응관계를 찾는 것부터 시작함. P_k+1을 이용해, 마지막 section에서
 언급한 방법론을 사용하여 edge point와 planar point를 찾음. E_k+1과 H_k+1을 각각 edge point와 planar point의 집합으로 봄. 
-Pbar_k로 부터 edge line을 
+E_k+1의 점들에 대한 대응으로 Pbar_k를 찾고, H_k=1에 대한 대응으로 Planar patch를 찾을 것.    
+   
+sweep k+1의 시작에서 P_k+1은 비어있는 set이고, 더 많은 point를 받을수록 sweep의 과정 중에 증가하게 됨. Lidar odomerty는
+sweep동안 6-DOF의 motion을 재귀적으로 추정하고 P_k+1이 증가할수록 점차 더 많은 점을 포함함. 각 반복 시 E_K+1과 H_k+1은
+현재 추정된 transform(변환)을 사용하여 sweep의 시작 부분에 다시 투영됨. Ebar_k+1과 Hbar_k+1을 point set에 재투사된 point집합으로 보자.
+각각의 Ebar_k+1과 Hbar_k+1에 있어서, Pbar_k와 가장 가깝게 인접한 점을 찾고자 함. 여기서, Pbar_k는 빠른 index를 위해 3D KD-tree에 저장됨
