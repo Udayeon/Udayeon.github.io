@@ -21,7 +21,7 @@ published: true
 
 **논문 선정 기준**   
 * LeGO-LOAM의 reference가 되는 LOAM: Lidar Odometry and Mapping in Real-time(2014) 논문과 내용이 비슷한데
-2017년에 출판했고 LeGO-LOAM에서 여러번 언급하므로 한번 살펴봄
+2017년에 출판했고 LeGO-LOAM에서 여러번 언급하므로 LeGO-LOAM과의 차이점을 기준으로 한번 살펴봄
 
   - [Abstract]
   - [1. Introduction]
