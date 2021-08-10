@@ -47,9 +47,27 @@ ANN을 이루는 기본 구조.
 ![image](https://user-images.githubusercontent.com/69246778/128829953-054dd8e4-ac24-4fb0-b9e7-bc2b8bd5f5a0.png)   
 x1부터 xd까지 d차원의 input을 받을 때, 이 각각의 d차원 input에 곱해지는 가중치가 w1부터 wd까지 존재함.
 이 w와 x를 곱한 것들의 합이(즉, 벡터w와 벡터x의 내적) Threshold value보다 크면 1, 작으면 0으로 y값을 결정.
-이렇게 결정해주는 함수를 활성화함수 h라 함. h는 set function임.
+이렇게 결정해주는 함수를 활성화함수 h라 함. h는 step function임.
 ![image](https://user-images.githubusercontent.com/69246778/128831273-22eea691-0cd3-4721-a956-e2146604c578.png)
 
-### 1.2.1.A. 논리gate의 구현
+#### 1.2.1.A. 퍼셉트론의 기능 - 논리gate 구현
+* AND gate   
+![image](https://user-images.githubusercontent.com/69246778/128832716-d0ce3485-9907-4f32-b533-0827709b0cd1.png)   
+input(x1,x2) 2개가 주어지는 경우 1,1이 들어오는 경우에만 1이 나오는 operator. weight값을 어떻게 설정하느냐로 결정됨.   
+   
+* OR gate   
+![image](https://user-images.githubusercontent.com/69246778/128832679-44c939c6-e670-4ee9-8ffb-21dbb2ff6ed7.png)   
+input 2개가 주어지는 경우 하나라도 1이면 1이 나오는 operator.   
+
+이 퍼셉트론이 다층 퍼셉트론으로 그리고 딥러닝으로 이어졌음
+
+#### 1.2.1.B. 퍼셉트론의 한계 - Exclusive OR (XOR)
+같은 input이 들어오는 경우에만 1이 나오는 operator.
+![image](https://user-images.githubusercontent.com/69246778/128833771-eaf4d5cb-de44-42bd-b894-970006320144.png)
+퍼셉트론은 선형분류기(Threshold보다 크냐 작냐로 분류)인데 이런 경우는 선형 분리가 안됨. 대신 퍼셉트론 층을 쌓으면 가능
+
+
+
+
 
 
