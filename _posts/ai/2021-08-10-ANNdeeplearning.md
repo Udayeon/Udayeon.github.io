@@ -45,5 +45,7 @@ ANN은 Weight의 수가 많아 이를 모두 학습시키기에는 많은 양의
 ANN을 이루는 기본 구조를 **퍼셉트론**이라 함.
 ![image](https://user-images.githubusercontent.com/69246778/128829953-054dd8e4-ac24-4fb0-b9e7-bc2b8bd5f5a0.png)   
 x1부터 xd까지 d차원의 input을 받을 때, 이 각각의 d차원 input에 곱해지는 가중치가 w1부터 wd까지 존재함.
-이 w와 x를 곱한 것들의 합을 벡터로 표현하면 w와 x의 내적임.
+이 w와 x를 곱한 것들의 합이(즉, 벡터w와 벡터x의 내적) Threshold value보다 크면 1, 작으면 0으로 y값을 결정.
+이렇게 결정해주는 함수를 활성화함수 h라 함. h는 set function임.
+![image](https://user-images.githubusercontent.com/69246778/128831273-22eea691-0cd3-4721-a956-e2146604c578.png)
 
