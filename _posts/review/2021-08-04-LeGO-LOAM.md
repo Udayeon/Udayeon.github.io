@@ -4,7 +4,7 @@ title: Semminar2 - SLAM paper
 description: |
   
 tags:
-  - autonomous
+  - review
 use_math : true
 comments : true
 author: Udayeon
