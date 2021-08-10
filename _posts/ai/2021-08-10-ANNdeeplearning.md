@@ -70,7 +70,25 @@ input 2개가 주어지는 경우 하나라도 1이면 1이 나오는 operator.
 ![image](https://user-images.githubusercontent.com/69246778/128834062-1d1e7529-7f2d-4a77-a757-07e62dd0ed05.png)
 1. 첫 번째 퍼셉트론 : NAND(Not AND, 선형분류기)   
 2. 두 번째 퍼셉트론 : OR(선형분류기)   
-1,2를 첫 번째 Hidden layer로, AND를 두 번째 Hidden layer로 삼으면 1과2의 결과를 AND처리한 것.
+1,2를 첫 번째 Hidden layer로, AND를 두 번째 Hidden layer로 삼으면 1과2의 결과를 AND처리한 것.   
+1,2 모두 +1이면 검정색으로 분류, 그렇지 않으면 흰색으로 분류.   
+즉, 공간변환이 일어난 평면상에서 선형분리를 통해 XOR function을 구현하는 것.
+
+### 1.2.2. 활성화함수
+퍼셉트론은 Step function을 활성화함수로 사용.
+![image](https://user-images.githubusercontent.com/69246778/128834985-f7de7130-5186-4698-8714-3f6d98fc9f3f.png)
+0을 중심으로 -1과 1을 구분하는 function. 신경망 학습에는 미분값이 필요한데, 이 함수의 미분값은 대부분 0이 되고 심지어 0에서는 미분값을
+구할수도 없음. 좋은 함수는 아님. 그래서 이 함수를 좀 부드러운 function으로 전환해줄 필요가 있음. 다음에 나오는 활성화 함수들이
+step function을 대체할 수 있는 함수들임.
+
+#### 1.2.2.A. Sigmoid
+![image](https://user-images.githubusercontent.com/69246778/128835541-5ec23809-37e2-4630-9cd6-80c53bd283ed.png)
+
+#### 1.2.2.B. Hyperbolic tangent
+![image](https://user-images.githubusercontent.com/69246778/128835563-eb17a31a-25b8-419c-a1ac-50705f2e36b8.png)
+
+#### 1.2.2.C. ReLU(Rectified Linear Unit
+![image](https://user-images.githubusercontent.com/69246778/128835588-6f728a25-a592-49ee-8278-2b47f8b31182.png)
 
 
 
