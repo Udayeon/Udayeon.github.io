@@ -38,3 +38,12 @@ over-fitting과 Vanishing Gradient(기울기 소실)을 해결.
 ### 1.2.3. 빅데이터의 등장
 ANN은 Weight의 수가 많아 이를 모두 학습시키기에는 많은 양의 data가 필요. Big data의 등장으로 인공신경망이 deep할 때도 충분히 학습시킬 수
 있어서 성능 향상됨.
+
+## 1.2. ANN의 구조
+![image](https://user-images.githubusercontent.com/69246778/128829602-13a7ba4a-02cc-4c98-99b4-b0c2f6d41f2c.png)
+
+ANN을 이루는 기본 구조를 **퍼셉트론**이라 함.
+![image](https://user-images.githubusercontent.com/69246778/128829953-054dd8e4-ac24-4fb0-b9e7-bc2b8bd5f5a0.png)   
+x1부터 xd까지 d차원의 input을 받을 때, 이 각각의 d차원 input에 곱해지는 가중치가 w1부터 wd까지 존재함.
+이 w와 x를 곱한 것들의 합을 벡터로 표현하면 w와 x의 내적임.
+
