@@ -66,6 +66,13 @@ input 2개가 주어지는 경우 하나라도 1이면 1이 나오는 operator.
 ![image](https://user-images.githubusercontent.com/69246778/128833771-eaf4d5cb-de44-42bd-b894-970006320144.png)
 퍼셉트론은 선형분류기(Threshold보다 크냐 작냐로 분류)인데 이런 경우는 선형 분리가 안됨. 대신 퍼셉트론 층을 쌓으면 가능
 
+#### 1.2.1.C. 퍼셉트론의 한계 극복 - 2개의 퍼셉트론으로 XOR 해결
+![image](https://user-images.githubusercontent.com/69246778/128834062-1d1e7529-7f2d-4a77-a757-07e62dd0ed05.png)
+1. 첫 번째 퍼셉트론 : NAND(Not AND, 선형분류기)   
+2. 두 번째 퍼셉트론 : OR(선형분류기)   
+1,2를 첫 번째 Hidden layer로, AND를 두 번째 Hidden layer로 삼으면 1과2의 결과를 AND처리한 것.
+
+
 
 
 
