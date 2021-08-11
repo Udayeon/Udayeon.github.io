@@ -110,7 +110,7 @@ step function을 대체할 수 있는 함수들임.
 #### 1.3.2.C. ReLU(Rectified Linear Unit
 ![image](https://user-images.githubusercontent.com/69246778/128835588-6f728a25-a592-49ee-8278-2b47f8b31182.png)
 
-### 1.4. 신경망에서의 신호전달
+## 1.4. 신경망에서의 신호전달
 ![image](https://user-images.githubusercontent.com/69246778/128836197-934ffcae-35dc-4ff8-8715-092e01b98cf2.png)   
    
 * 입력층 -> 1층
@@ -131,6 +131,8 @@ input x1에 가중치 1이 곱해지고, x2에는 가중치 2가 곱해져서 �
 ![image](https://user-images.githubusercontent.com/69246778/128959714-dc0c3b94-890e-40ae-8929-2bd7868ee924.png)
    
 이런 과정을 거쳐 3층까지 가게되면 결국 출력층에 도달하는데, 출력층에서 주로 쓰는 함수는 **Softmax**함수임
+![image](https://user-images.githubusercontent.com/69246778/128959869-3661ef38-863e-436b-be1f-d816c7327f9b.png)
 
-
+### 1.5. one-hot encoding
+출력층의 자리를 가지고 분류하고자 하는 카테고리를 나타내는 방식
 
