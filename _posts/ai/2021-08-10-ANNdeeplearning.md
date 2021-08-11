@@ -32,6 +32,12 @@ published: true
     - 1.3.2.B. Hyperbolic tangent
     - 1.3.2.C. ReLU(Rectified Linear Unit
 - 1.4. 신경망에서의 신호전달
+  - 1.4.1. 입력층 -> 1층
+  - 1.4.2. 1층 -> 2층
+  - 1.4.3. 출력층 설계 - one-hot encoding
+- 1.5. Batch processing (일괄처리)
+- 1.6. 신경망 학습
+
 ## 1.1. ANN(Artificial Neural Network)
 인간의 신경망(뇌)에서 영감을 얻은 통계학적 학습 알고리즘. 시냅스의 결합으로 네트워크를 형성한 인공 뉴런(node)이 학습을 통해
 시냅스의 결합 세기를 변화시켜 문제 해결 능력을 가지는 모델 전반을 말함.   
@@ -112,8 +118,8 @@ step function을 대체할 수 있는 함수들임.
 
 ## 1.4. 신경망에서의 신호전달
 ![image](https://user-images.githubusercontent.com/69246778/128836197-934ffcae-35dc-4ff8-8715-092e01b98cf2.png)   
-   
-* 입력층 -> 1층
+
+### 1.4.1. 입력층 -> 1층
 ![image](https://user-images.githubusercontent.com/69246778/128836311-66949873-e09f-4e2f-a501-5163eac1a8e3.png)
 input x1에 가중치 1이 곱해지고, x2에는 가중치 2가 곱해져서 서로 더함. 이 더해진 결과를 a라 할때 각 결과 들이 hidden layer의
 노드에 각각 전달. 이 때, weight의 집합을 W(1) 매트릭스로 표현할 수 있는데, Threshold가 되는 bias도 매트릭스에 넣어서 
@@ -126,13 +132,28 @@ input x1에 가중치 1이 곱해지고, x2에는 가중치 2가 곱해져서 �
 위의 결과를 활성화함수 h에 통과시키면 첫번째 hidden layer에 최종적인 결과 z가 구해짐. 이때, 활성화함수는 가장 많이 사용되는 sigmoid가 
 될 수도 있고 다른 함수가 될 수도 있음. Deep Learning으로 deep해지면 ReLU함수를 많이 사용함.
 
-* 1층 -> 2층
+### 1.4.2. 1층 -> 2층
 전과 비슷한 과정을 거침. weight vector를 설정하고 그 weight를 z1의 결과와 곱하면 hidden layer 2층의 결과가 됨. 
 ![image](https://user-images.githubusercontent.com/69246778/128959714-dc0c3b94-890e-40ae-8929-2bd7868ee924.png)
    
 이런 과정을 거쳐 3층까지 가게되면 결국 출력층에 도달하는데, 출력층에서 주로 쓰는 함수는 **Softmax**함수임
 ![image](https://user-images.githubusercontent.com/69246778/128959869-3661ef38-863e-436b-be1f-d816c7327f9b.png)
 
-### 1.5. one-hot encoding
-출력층의 자리를 가지고 분류하고자 하는 카테고리를 나타내는 방식
+### 1.4.3. 출력층 설계 - one-hot encoding
+출력층의 자리를 가지고 분류하고자 하는 카테고리를 나타내는 방식. 표현하고자 하는 단어의 인덱스 위치에 1을 부여하고, 다른 단어의 인덱스 
+위치에는 0을 부여. 
+
+### 1.5. Batch processing (일괄처리)
+input 벡터 여러 개를 모아서 한꺼번에 학습하면 computing효율이 좋아짐. 
+
+### 1.6. 신경망 학습
+training data로 부터 weight매개변수의 최적값을 자동으로 획득하는 것. 이 때 사용하는 함수가 loss function. 이 loss function을 이용해
+결과값을 목표치에 가깝게 만드는 방법이 **Gradient desecent method**. 가중치 값을 미분해서 
+
+### 1.6.1. Mini batch
+batch를 만들되 모든 training set으로 만드는게 아니라 그 중 일부를 선택해서 작은 set을 만들고 이를 한 번에 통과시키면서 신경망을 훈련.
+![image](https://user-images.githubusercontent.com/69246778/128960974-d20f471d-a412-419a-ae63-b84111eb5b8c.png)
+   
+![image](https://user-images.githubusercontent.com/69246778/128960996-c1fbfe42-5323-4562-8d75-e5d78ff1ee9b.png)
+학습과정이 진행됨에 따라 위와같이 손실함수가 감소함. 따라서 정확도는 증가함. 이렇게 되면 학습이 잘 되고 있는 것.
 
