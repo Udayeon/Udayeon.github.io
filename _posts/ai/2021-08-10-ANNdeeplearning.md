@@ -158,3 +158,7 @@ training data로 부터 weight매개변수의 최적값을 자동으로 획득�
 ![image](https://user-images.githubusercontent.com/69246778/128960996-c1fbfe42-5323-4562-8d75-e5d78ff1ee9b.png)
 학습과정이 진행됨에 따라 위와같이 손실함수가 감소함. 따라서 정확도는 증가함. 이렇게 되면 학습이 잘 되고 있는 것.
 
+### 1.6.2. Backpropagation(오차역전파법)
+학습을 위해서는 미분값이 필요. 이런 복잡한 미분은 보통 수치미분을 통해 수행하는데, 수치미분은 그 많은 weight를 일일히 계산해야 하므로
+시간이 매우 오래 걸림. 따라서 등장한 방법이 back propagation.
+이 방법은 weight parameter의 기울기를 아주 
