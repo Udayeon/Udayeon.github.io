@@ -12,6 +12,26 @@ published: true
 # 1. ANN과 Deep Learning
 * * *
 
+- 1.1. ANN(Artificial Neural Network)
+- 1.2. Deep Learning의 비약적 발전
+  - 1.2.1. Algorithm의 발전
+    - 1.2.1.A. 비지도학습을 이용한 전처리
+    - 1.2.1.B. Convolutional Neural Network(합성곱 신경망)
+    - 1.2.1.C. Rectified Linear Unit
+    - 1.2.1.D. Drop-out
+  - 1.2.2. Hardware의 발전
+    - 1.2.2.A. 범용 GPU
+  - 1.2.3. 빅데이터의 등장
+- 1.3. ANN의 구조
+  - 1.3.1. 퍼셉트론
+    - 1.3.1.A. 퍼셉트론의 기능 - 논리gate 구현
+    - 1.3.1.B. 퍼셉트론의 한계 - Exclusive OR (XOR)
+    - 1.3.1.C. 퍼셉트론의 한계 극복 - 2개의 퍼셉트론으로 XOR 해결
+  - 1.3.2. 활성화함수
+    - 1.3.2.A. Sigmoid
+    - 1.3.2.B. Hyperbolic tangent
+    - 1.3.2.C. ReLU(Rectified Linear Unit
+- 1.4. 신경망에서의 신호전달
 ## 1.1. ANN(Artificial Neural Network)
 인간의 신경망(뇌)에서 영감을 얻은 통계학적 학습 알고리즘. 시냅스의 결합으로 네트워크를 형성한 인공 뉴런(node)이 학습을 통해
 시냅스의 결합 세기를 변화시켜 문제 해결 능력을 가지는 모델 전반을 말함.   
@@ -23,12 +43,12 @@ Deep Learning은 인공신경망이 deep해지면서 레이어가 많아진 것.
 ### 1.2.1. Algorithm의 발전
 over-fitting과 Vanishing Gradient(기울기 소실)을 해결. 
 
-#### 1.2.1.A. Algorithm의 발전 - 비지도학습을 이용한 전처리
+#### 1.2.1.A. 비지도학습을 이용한 전처리
 가중치 감쇠 규제
-#### 1.2.1.B. Algorithm의 발전 - Convolutional Neural Network(합성곱 신경망)
-#### 1.2.1.C. Algorithm의 발전 - Rectified Linear Unit
+#### 1.2.1.B. Convolutional Neural Network(합성곱 신경망)
+#### 1.2.1.C. Rectified Linear Unit
 새로운 활성화함수 ReLU의 도입
-#### 1.2.1.D. Algorithm의 발전 - Drop-out
+#### 1.2.1.D. Drop-out
 어떤 신경망이 over-fitting을 피하기 위해 학습과정의 결과를 일부러 버리는 아니러니컬한 idea.
 
 ### 1.2.2. Hardware의 발전
