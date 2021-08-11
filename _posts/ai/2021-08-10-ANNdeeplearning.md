@@ -37,6 +37,18 @@ published: true
   - 1.4.3. 출력층 설계 - one-hot encoding
 - 1.5. Batch processing (일괄처리)
 - 1.6. 신경망 학습
+  - 1.6.1. 학습 알고리즘
+  - 1.6.2. Backpropagation(오차역전파법)
+  - 1.6.3. over-fitting방지
+    - 1.6.3.A. Early Stopping(조기종료)
+    - 1.6.3.B. Regularization(규제)
+    - 1.6.3.C. Drop-out 
+    - 1.6.3.D. data augmentation(데이터 증식)
+  - 1.6.4. Gradient vanishing과 Exploding방지
+    - 1.6.4.A. Weight Initialization(가중치 초기화)
+    - 1.6.4.B. 활성화 함수
+    - 1.6.4.C. Batch Normalization(배치 정규화)
+- 1.7. 딥러닝이 강력한 이유
 
 ## 1.1. ANN(Artificial Neural Network)
 인간의 신경망(뇌)에서 영감을 얻은 통계학적 학습 알고리즘. 시냅스의 결합으로 네트워크를 형성한 인공 뉴런(node)이 학습을 통해
@@ -161,4 +173,52 @@ training data로 부터 weight매개변수의 최적값을 자동으로 획득�
 ### 1.6.2. Backpropagation(오차역전파법)
 학습을 위해서는 미분값이 필요. 이런 복잡한 미분은 보통 수치미분을 통해 수행하는데, 수치미분은 그 많은 weight를 일일히 계산해야 하므로
 시간이 매우 오래 걸림. 따라서 등장한 방법이 back propagation.
-이 방법은 weight parameter의 기울기를 아주 
+x의 변화에 대해 z가 어느정도로 영향을 받는지를 나타낸 것이 미분임. 이를 다음과 같이 표기함.      
+![image](https://user-images.githubusercontent.com/69246778/128969221-8b9e7c0c-b61b-4d51-b177-28aa42a910af.png)
+   
+![image](https://user-images.githubusercontent.com/69246778/128969133-0b35f335-38e0-4079-b705-7ef2e5d8406c.png)
+위와 같은 연쇄법칙을 활용해 매개변수 y로 이를 계산할 수 있는데 이런 개념을 활용한 것이 back propagation의 핵심   
+   
+![image](https://user-images.githubusercontent.com/69246778/128969431-9bf74ee3-e1c8-4707-89b8-9c8d3de428e1.png)
+즉, 미분을 계산할 때 뒤에서부터 앞으로 오면서 오차와 미분 값들을 곱해주면서 전달. 그러면 중복된 계산을 반복하지 않고 
+한 번의 전파로 모든 매개변수에 대한 오차를 전부 계산할 수 있음.
+   
+Forward propagation은 input에 대한 예측치를 계산하는 거라면, back propagation은 반대로 오차를 가지고 미분값을 계산하는 것임.
+신경망 학습에는 forward propagation과 back propagation이 반복되면서 weight가 업데이트 되는 방식으로 학습됨. 
+이런 학습 과정에서 고려할 사항은 **over-fitting방지**와 **Gradient Vanishing,Gradient Exploding방지**문제임.
+
+### 1.6.3. over-fitting방지
+#### 1.6.3.A. Early Stopping(조기종료)
+손실함수가 더 이상 감소하지 않도록 손실 함수 값을 보고 early termination함.
+
+#### 1.6.3.B. Regularization(규제)
+가중치가 너무 크지 않도록 규제함
+
+#### 1.6.3.C. Drop-out 
+인공신경망에 있는 하나의 노드에서 계산 결과를 받아들인 다음에 그걸 output으로 내는 과정에서 결과 일부를 일부러 누락시킴. 가중치들을
+모두 사용하지 않고도 좋은 예측치를 만들어 내도록 학습하는 효과가 있음. 학습을 하고 test를 할 때는 여러 개의 결과는 종합적으로 
+판단하는 앙상블(ensemble)효과가 있음.
+
+#### 1.6.3.D. data augmentation(데이터 증식)
+데이터의 패턴을 유지하면서 여러가지 인위적으로 변화된 데이터를 만들어 내는 방식
+
+### 1.6.4. Gradient vanishing, exploding방지
+back propagation을 쓰면 미분값이 뒤에서 앞으로 계속 전달되므로 0에 가까운 값들이 계속 곱해지면서 결과가 매우 작아짐. 
+이러면 hidden layer중에서 weight들을 업데이트 하기 위한 미분값이 매우 작아져 학습이 어려워짐.
+
+#### 1.6.4.A. Weight Initialization(가중치 초기화)
+#### 1.6.4.B. 활성화함수
+LeakyReLU라든가 ELU같이 ReLU의 변형된 형태의 활성화 함수를 쓰면 미분값이 0이 아닌 존재할 수 있도록 해줌,
+#### 1.6.4.C. Batch Normalization(배치 정규화)
+Batch의 값들이 일정한 범위 내에 들어가도록 하는 방식
+
+## 1.7. 딥러닝이 강력한 이유
+![image](https://user-images.githubusercontent.com/69246778/128971623-fad1c0c6-6243-4eca-9676-0cf628e093d6.png)
+feature extraction 자체가 인간의 힘으로 이뤄지던 것이 딥러닝에서는 자체적으로 이뤄짐. layer가 깊어지면 깊어질수록 계층적인 구조를 가지고
+있는 특징을 추출할 가능성이 높아짐. '깊은'거 말고 '넓은(wide)'걸로도 생각해 볼 수 있음. wide하다는 것은 한 layer의 뉴런의 수가
+굉장히 많아지는 것을 의미함. 
+
+
+# 2. 합성곱 신경망(Convolutional Neural Network)
+* * *
+
