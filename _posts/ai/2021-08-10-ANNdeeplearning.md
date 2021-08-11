@@ -148,11 +148,12 @@ input 벡터 여러 개를 모아서 한꺼번에 학습하면 computing효율�
 
 ### 1.6. 신경망 학습
 training data로 부터 weight매개변수의 최적값을 자동으로 획득하는 것. 이 때 사용하는 함수가 loss function. 이 loss function을 이용해
-결과값을 목표치에 가깝게 만드는 방법이 **Gradient desecent method**. 가중치 값을 미분해서 
+결과값을 목표치에 가깝게 만드는 방법이 [Gradient desecent method](https://udayeon.github.io/2021/07/06/about-ai/#211a-%EA%B2%BD%EC%82%AC%ED%95%98%EA%B0%95%EB%B2%95gradient-descent-method)
 
-### 1.6.1. Mini batch
-batch를 만들되 모든 training set으로 만드는게 아니라 그 중 일부를 선택해서 작은 set을 만들고 이를 한 번에 통과시키면서 신경망을 훈련.
+### 1.6.1. 학습 알고리즘
 ![image](https://user-images.githubusercontent.com/69246778/128960974-d20f471d-a412-419a-ae63-b84111eb5b8c.png)
+* Mini batch : batch를 만들되 모든 training set으로 만드는게 아니라 그 중 일부를 선택해서 작은 set을 만들고 이를 한 번에 통과시키면서 
+신경망을 훈련.
    
 ![image](https://user-images.githubusercontent.com/69246778/128960996-c1fbfe42-5323-4562-8d75-e5d78ff1ee9b.png)
 학습과정이 진행됨에 따라 위와같이 손실함수가 감소함. 따라서 정확도는 증가함. 이렇게 되면 학습이 잘 되고 있는 것.
