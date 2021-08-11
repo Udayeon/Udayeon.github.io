@@ -115,10 +115,22 @@ step function을 대체할 수 있는 함수들임.
    
 * 입력층 -> 1층
 ![image](https://user-images.githubusercontent.com/69246778/128836311-66949873-e09f-4e2f-a501-5163eac1a8e3.png)
-input x1에 가중치 1이 곱해지고, x2에는 가중치 2가 곱해져서 서로 더함. 이 더해진 결과가 threshold보다 
+input x1에 가중치 1이 곱해지고, x2에는 가중치 2가 곱해져서 서로 더함. 이 더해진 결과를 a라 할때 각 결과 들이 hidden layer의
+노드에 각각 전달. 이 때, weight의 집합을 W(1) 매트릭스로 표현할 수 있는데, Threshold가 되는 bias도 매트릭스에 넣어서 
+한번에 생각할 수 있음.    
+   
 ![image](https://user-images.githubusercontent.com/69246778/128836337-7d7faa31-526c-40e6-bd6d-1ea586e2a24b.png)
+즉, a는 x와 W(1)의 곱으로 표현됨.   
+   
+![image](https://user-images.githubusercontent.com/69246778/128959070-689f7906-dad1-4c71-b998-201548b55e5a.png)
+위의 결과를 활성화함수 h에 통과시키면 첫번째 hidden layer에 최종적인 결과 z가 구해짐. 이때, 활성화함수는 가장 많이 사용되는 sigmoid가 
+될 수도 있고 다른 함수가 될 수도 있음. Deep Learning으로 deep해지면 ReLU함수를 많이 사용함.
 
-
+* 1층 -> 2층
+전과 비슷한 과정을 거침. weight vector를 설정하고 그 weight를 z1의 결과와 곱하면 hidden layer 2층의 결과가 됨. 
+![image](https://user-images.githubusercontent.com/69246778/128959714-dc0c3b94-890e-40ae-8929-2bd7868ee924.png)
+   
+이런 과정을 거쳐 3층까지 가게되면 결국 출력층에 도달하는데, 출력층에서 주로 쓰는 함수는 **Softmax**함수임
 
 
 
