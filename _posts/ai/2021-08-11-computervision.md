@@ -38,3 +38,4 @@ published: true
 ![image](https://user-images.githubusercontent.com/69246778/128992957-d5b64f4e-8101-431e-93c4-32d876adb463.png)
 또는 군집화를 이용해 단순적인 정량화 방법으로 분류. 근데 이 방법들은 결과가 좋지 않음. 이를 보완하는게 CNN.
 
+# 3. Convolution Neural Network기초
