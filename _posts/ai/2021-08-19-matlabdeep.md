@@ -19,5 +19,10 @@ Label은 여기서 '정답'에 해당하는 것이다. 그러니까, 정답을 �
 학습을 마치면 Test data를 이용해 학습이 잘 되었는지 평가하게 된다. 따라서, 학습의 첫 단계는 Training data에 정확한 labeling을 
 하는 것이라 할 수 있겠다.   
    
-Training Data를 학습시키기 위해 KITTI dataset을 활용.
+Training Data를 학습시키기 위해 KITTI의 left color images of object data set를 사용한다. image dataset을 다운로드받고
+training labels of object data set을 다운로드 한다.
 
+![image](https://user-images.githubusercontent.com/69246778/129994047-e0e7fda3-5777-4803-b022-f9808f6ae6ef.png)
+   
+![image](https://user-images.githubusercontent.com/69246778/129994099-0f54164e-7886-42ba-9696-d7462e5bb8df.png)
+이렇게 image data set을 저장했는데, 사정상 노트북으로 학습해야하고 project 기한이 짧아 이 중 일부 사진만 학습할 예정이다.
