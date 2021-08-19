@@ -56,5 +56,13 @@ image에 Pedestrian을 직접 라벨링 해보았다. 그리고 이걸 file로 E
 기존의 gTruth에 이미지 000013에 해당하는 label data가 추가되었다. image이름이 000013이지만 중간에 누락된 것들이 있어서 
 순서상으론 9번째 이미지라 9행에 입력되었다.
 
-그래서 든 생각이, 거꾸로 gTruth 파일을 만들어서 import하면 알아서 라벨링이 되지 않을까 싶었다. 
-txt file의 data들을 이용해 gTruth파일을 생성해봐야겠다.
+그래서 든 생각이, 거꾸로 gTruth 파일을 만들어서 import하면 알아서 라벨링이 되지 않을까 싶었다. 이 역과정이 되는지 확인하기 위해 
+Label Data를 먼저 저장하고 Image Labeler에서 import할 수 있는지 확인한다.
+![image](https://user-images.githubusercontent.com/69246778/129999829-2be6df8e-564e-463b-9bd5-16dcf238d4d7.png)
+   
+저장한 Label을 Import Lables로 불러오니까 data set에 Labeling이 되는 것을 확인할 수 있다.
+![image](https://user-images.githubusercontent.com/69246778/130000007-f29886f7-240c-4755-bc57-994e42be5212.png)
+   
+결론적으로, gTruth file을 수정해서 불러오면 Training data set에 labeling이 한번에 되겠다는 걸 알 수있다.
+그럼 이제 gTruth file의 나머지 부분도 label txt를 참고해서 수정해보자.
+   
