@@ -51,7 +51,7 @@ image에 Pedestrian을 직접 라벨링 해보았다. 그리고 이걸 file로 E
    
 하나만 더해보자.
 ![image](https://user-images.githubusercontent.com/69246778/129998907-88e9301a-1116-40c2-9130-75b59e30c144.png)
-000013 image에 car를 label하고 마찬가지로 file로 export 해본다.
+000013 image에 car를 labeling하고 마찬가지로 file로 export 해본다.
 ![image](https://user-images.githubusercontent.com/69246778/129999083-07a57bfe-2d2f-44ca-9340-10f6d170c7b9.png)
-기존의 gTruth에 이미지 000013에 해당하는 label data가 추가되었다. image명이 000013이지만 중간에 누락된 것들이 있어서 
-9번째 이미지라 9행에 입력되었다.
+기존의 gTruth에 이미지 000013에 해당하는 label data가 추가되었다. image이름이 000013이지만 중간에 누락된 것들이 있어서 
+순서상으론 9번째 이미지라 9행에 입력되었다.
