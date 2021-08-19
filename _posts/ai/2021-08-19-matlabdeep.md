@@ -71,5 +71,6 @@ gTruth file에 필요한 값은 [x position, y position, width, height]
 ![image](https://user-images.githubusercontent.com/69246778/130002874-5af81e12-4c58-40e8-a772-faac5aef08c4.png)
 gTruth table 첫번째 행에 [712.40, 143.00, 810.73-712.40, 307.92-143] 즉, [712.40, 143, 99, 165]를 입력하면 되는 것이다.
    
-노가다를 해야할 것 같다
+근데 문제가 이 gTruth file이 table형식이면 안되고 groung truth 형식이여야 하는데 형식 전환하는 법을 몰라 막혔다.
+
 
