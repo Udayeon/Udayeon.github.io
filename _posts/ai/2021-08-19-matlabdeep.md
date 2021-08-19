@@ -47,7 +47,7 @@ image에 Pedestrian을 직접 라벨링 해보았다. 그리고 이걸 file로 E
 그러면 이렇게 gTruth라는 data로 저장된다. 이렇게 직접 labeling하고 file로 export하면 ground truth가 된다는 걸 확인할 수 있다.
 이gTruth와 다운받았던 label txt를 비교해보면   
 ![image](https://user-images.githubusercontent.com/69246778/129998757-c490957a-5c53-410e-b1f8-832ee210b463.png)
-이 부분이 label의 위치?를 결정하는 어떤 유의미한 data란 걸 추측할 수 있겠다.   
+이 부분이 label의 위치?를 결정하는 어떤 유의미한 data란 걸 추측할 수 있겠다.
    
 하나만 더해보자.
 ![image](https://user-images.githubusercontent.com/69246778/129998907-88e9301a-1116-40c2-9130-75b59e30c144.png)
@@ -65,4 +65,11 @@ Label Data를 먼저 저장하고 Image Labeler에서 import할 수 있는지 �
    
 결론적으로, gTruth file을 수정해서 불러오면 Training data set에 labeling이 한번에 되겠다는 걸 알 수있다.
 그럼 이제 gTruth file의 나머지 부분도 label txt를 참고해서 수정해보자.
+gTruth file에 필요한 값은 [x position, y position, width, height]
+    
+예를들어, 000000 image의 label data가 이런식이면
+![image](https://user-images.githubusercontent.com/69246778/130002874-5af81e12-4c58-40e8-a772-faac5aef08c4.png)
+gTruth table 첫번째 행에 [712.40, 143.00, 810.73-712.40, 307.92-143] 즉, [712.40, 143, 99, 165]를 입력하면 되는 것이다.
    
+노가다를 해야할 것 같다
+
