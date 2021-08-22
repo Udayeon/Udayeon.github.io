@@ -32,45 +32,75 @@ Training Data에 Labeling을 해주기 위해 Matlab의 **Image Labeler**를 이
 Image Labeler를 실행하고 Data set을 Loading 해준다.
 ![image](https://user-images.githubusercontent.com/69246778/129996008-f59cd6d3-7c86-4d64-a93c-69767e1fbe6d.png)
 중간에 번호가 누락된게 있는데 대략 300개 정도 받아왔다. 이제 여기서 Labeling을 해주면 되는데 일일히 박스를 그릴 수도 있지만
-매우 시간이 오래 걸리기 때문에 아까 다운로드했던 training labels of object data set을 이용한다.
-   
-![image](https://user-images.githubusercontent.com/69246778/129996148-ec7dfdeb-3469-414a-afc9-c55692beacb0.png)
-사진마다의 Label이 이렇게 메모장 형식으로 저장되어 있다. 
-   
-![image](https://user-images.githubusercontent.com/69246778/129997808-0de27663-baa3-4932-868d-65ce83451d7c.png)
-이 txt들을 어떻게 활용할지 모르겠어서 일단 하나 열어보았다. Training data set의 000000 사진에 해당하는 label이 들어있는데 각 숫자가
-의미하는 바가 뭔지 확인할 필요가 있겠다.
-![image](https://user-images.githubusercontent.com/69246778/129997985-4c8ae3c7-c195-4214-9007-af427a049cf0.png)
-image에 Pedestrian을 직접 라벨링 해보았다. 그리고 이걸 file로 Export해본다.
-   
-![image](https://user-images.githubusercontent.com/69246778/129998531-350bb31e-fd28-4a35-8d29-b056cfd1cd5b.png)
-그러면 이렇게 gTruth라는 data로 저장된다. 이렇게 직접 labeling하고 file로 export하면 ground truth가 된다는 걸 확인할 수 있다.
-이gTruth와 다운받았던 label txt를 비교해보면   
-![image](https://user-images.githubusercontent.com/69246778/129998757-c490957a-5c53-410e-b1f8-832ee210b463.png)
-이 부분이 label의 위치?를 결정하는 어떤 유의미한 data란 걸 추측할 수 있겠다.
-   
-하나만 더해보자.
-![image](https://user-images.githubusercontent.com/69246778/129998907-88e9301a-1116-40c2-9130-75b59e30c144.png)
-000013 image에 car를 labeling하고 마찬가지로 file로 export 해본다.
-![image](https://user-images.githubusercontent.com/69246778/129999083-07a57bfe-2d2f-44ca-9340-10f6d170c7b9.png)
-기존의 gTruth에 이미지 000013에 해당하는 label data가 추가되었다. image이름이 000013이지만 중간에 누락된 것들이 있어서 
-순서상으론 9번째 이미지라 9행에 입력되었다.
+매우 시간이 오래 걸리기 때문에 GroundTruth 파일을 사용한다.
 
-그래서 든 생각이, 거꾸로 gTruth 파일을 만들어서 import하면 알아서 라벨링이 되지 않을까 싶었다. 이 역과정이 되는지 확인하기 위해 
-Label Data를 먼저 저장하고 Image Labeler에서 import할 수 있는지 확인한다.
-![image](https://user-images.githubusercontent.com/69246778/129999829-2be6df8e-564e-463b-9bd5-16dcf238d4d7.png)
+⭐여기서 약간의 난항을 겪었다. 
+Image labler에 Image를 불러와서 수동으로 labeling한 후, 이를 ground Truth로 export하는 것은 간단하다. 걍 Export label버튼을 누르고 gTruth형식으로 설정만 해주면
+되기 때문이다. 근데 내가 하고 싶은 것은 table로 주어진 ground Truth를 Image labeler로 불러와서 자동으로 챡챡 bbox가 그려지게 만드는 것인데 이 과정이 생각보다 어려웠다.   
+결론만 말하면, Image labeler에서 ground Turth를 챡챡 그리기 위해선 이 값을 **table이 아닌 groundTruth** 클래스로 불러와야만 한다. 따라서, 내가 갖고 있는 table로
+새로운 ground Truth 객체를 만들어야 한다. 다음의 [Matlab 도움말](https://kr.mathworks.com/help/vision/ref/groundtruth.html?s_tid=doc_ta)을 참고했다.
    
-저장한 Label을 Import Lables로 불러오니까 data set에 Labeling이 되는 것을 확인할 수 있다.
-![image](https://user-images.githubusercontent.com/69246778/130000007-f29886f7-240c-4755-bc57-994e42be5212.png)
-   
-결론적으로, gTruth file을 수정해서 불러오면 Training data set에 labeling이 한번에 되겠다는 걸 알 수있다.
-그럼 이제 gTruth file의 나머지 부분도 label txt를 참고해서 수정해보자.
-gTruth file에 필요한 값은 [x position, y position, width, height]
-    
-예를들어, 000000 image의 label data가 이런식이면
-![image](https://user-images.githubusercontent.com/69246778/130002874-5af81e12-4c58-40e8-a772-faac5aef08c4.png)
-gTruth table 첫번째 행에 [712.40, 143.00, 810.73-712.40, 307.92-143] 즉, [712.40, 143, 99, 165]를 입력하면 되는 것이다.
-   
-근데 문제가 이 gTruth file이 table형식이면 안되고 groung truth 형식이여야 하는데 형식 전환하는 법을 몰라 막혔다.
+![image](https://user-images.githubusercontent.com/69246778/130350038-b7a0c014-5d46-4e8e-9594-6478e64bb8e0.png)
+최종적으로 하고 싶은게 이렇게 gTruth class를 갖는 객체를 생성하는 것이다. 만들어진 **gTruth**를 Image labeler에서 **Import Labels**하면 bbox가 챡챡 그려질 것이다.
+gTruth를 만들 때 필요한 것들이 **dataSource, labelDefs, labelData**라는 것을 확인하고 하나씩 생성해보자.
+
+1. dataSource   
+dataSource는 각 image마다의 label값을 가지고 있는 data다. 내가 table 형태로 갖고있던 car와 pedestrian에 대한 ground Turth를 사용하면 된다.
+![tempsnip](https://user-images.githubusercontent.com/69246778/130350265-7f5212fe-d82a-47d0-8ae2-bc16242904aa.png)
+나는 KITTI dataset을 이용했는데 어쩐 일인지 다운받는 과정에서 이미지 몇 개가 누락되었다. 그래서 groundTruth도 수정해주었다. 
+(자세히보면 이미지가 000000,000001,000002,000003...이 아니라 000000,000003,000005... 로 띄엄띄엄임...)
+이미지가 저장되어 있는 경로도 잘 설정되었는지 확인하자. 수정을 마치고 groundTruth.mat로 저장한 후 다음과 같은 code를 작성한다.
+
+```
+>> data = load('groundTruth.mat');
+>> imageFilenames = data.groundTruth.imageFilename(1:184)
+>> dataSource = groundTruthDataSource(imageFilenames);
+
+```
+이 code는 imageFile을 **groundTruth.mat**에서 받아와서 이걸로 dataSource를 만들겠다는 의미. 
+![image](https://user-images.githubusercontent.com/69246778/130350446-465af634-8906-4584-a9f0-85ed09cb3a3e.png)
+이렇게 dataSource를 만들었다.
 
 
+2. labelDefs
+다음은 label을 정의할건데 다음의 code로 쉽게 작성가능 하다.
+
+```
+>> ldc = labelDefinitionCreator();
+>> addLabel(ldc,'Car',labelType.Rectangle);
+>> addLabel(ldc,'Pedestrian',labelType.Rectangle);
+>> labelDefs = create(ldc)
+```
+![image](https://user-images.githubusercontent.com/69246778/130350478-ae369501-e203-43bb-ba84-a735bcb45684.png)
+난 car랑 pedestrian만 사용했음.
+
+3. labelData
+마지막으로 labelData를 만들어주자.
+```
+>> CarTruth = data.groundTruth.Car(1:184)
+>> PedestrianTruth = data.groundTruth.Pedestrian(1:184)
+>> labelNames={'Pedestrian';'Car'}
+>> labelData=table(PedestrianTruth,CarTruth,'VariableNames',labelNames)
+```
+![image](https://user-images.githubusercontent.com/69246778/130350557-04ef16f3-0588-47e6-8711-4c58b58ce81c.png)
+
+4. gTruth
+위에서 만든 3가지를 이용해 최종적으로 gTruth를 만든다. 이 과정에서 오류가 발생했었는데 걍 첨부터 천천히 다시하니까 됐음.
+
+```
+>> gTruth = groundTruth(dataSource,labelDefs,labelData)
+```
+![image](https://user-images.githubusercontent.com/69246778/130350622-2d7bdf85-393c-4e19-82d3-9d00c33009ea.png)
+이렇게 되면 성공임   
+   
+![image](https://user-images.githubusercontent.com/69246778/130350639-e89857d3-3e39-40bf-b02c-122a76d48b96.png)
+작업 공간을 보면, 파란색으로 동그라미한 게 내가 기존에 갖고있던 table형식의 groundTruth(image labeler에서 사용 불가)이고   
+빨간색이 그로부터 새로만든 ground Truth형식의 data임.
+
+5. Image labeler
+Image labeler 앱을 실행하고 이미지를 불러온 후 **Import Labels -> From Workspace -> gTruth** 하면 다음과 같이 bbox가 챡챡 생성된다.
+   
+![image](https://user-images.githubusercontent.com/69246778/130349797-03b894fc-b497-4caf-ac75-843df345fe3c.png)
+![image](https://user-images.githubusercontent.com/69246778/130349805-e3f399c7-8992-4066-994e-a7ccf77ec01f.png)
+![image](https://user-images.githubusercontent.com/69246778/130350748-e614c600-c7e9-460b-b55d-1b007319097a.png)
+200장 정도되는 사진에 일일히 손으로 라벨링 했으면 매우 오래 걸리고 정확도도 떨어졌을텐데 이렇게 하니까 한번에 챠라락 완성
