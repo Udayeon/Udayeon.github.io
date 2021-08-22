@@ -44,7 +44,7 @@ Image labler에 Image를 불러와서 수동으로 labeling한 후, 이를 groun
 최종적으로 하고 싶은게 이렇게 gTruth class를 갖는 객체를 생성하는 것이다. 만들어진 **gTruth**를 Image labeler에서 **Import Labels**하면 bbox가 챡챡 그려질 것이다.
 gTruth를 만들 때 필요한 것들이 **dataSource, labelDefs, labelData**라는 것을 확인하고 하나씩 생성해보자.
 
-1. dataSource   
+* dataSource   
 dataSource는 각 image마다의 label값을 가지고 있는 data다. 내가 table 형태로 갖고있던 car와 pedestrian에 대한 ground Turth를 사용하면 된다.
 ![tempsnip](https://user-images.githubusercontent.com/69246778/130350265-7f5212fe-d82a-47d0-8ae2-bc16242904aa.png)
 나는 KITTI dataset을 이용했는데 어쩐 일인지 다운받는 과정에서 이미지 몇 개가 누락되었다. 그래서 groundTruth도 수정해주었다. 
@@ -62,9 +62,9 @@ dataSource는 각 image마다의 label값을 가지고 있는 data다. 내가 ta
 이렇게 dataSource를 만들었다.
 
 
-2. labelDefs
+* labelDefs   
 다음은 label을 정의할건데 다음의 code로 쉽게 작성가능 하다.
-
+   
 ```
 >> ldc = labelDefinitionCreator();
 >> addLabel(ldc,'Car',labelType.Rectangle);
@@ -74,22 +74,25 @@ dataSource는 각 image마다의 label값을 가지고 있는 data다. 내가 ta
 ![image](https://user-images.githubusercontent.com/69246778/130350478-ae369501-e203-43bb-ba84-a735bcb45684.png)
 난 car랑 pedestrian만 사용했음.
 
-3. labelData
+* labelData
 마지막으로 labelData를 만들어주자.
+
 ```
 >> CarTruth = data.groundTruth.Car(1:184)
 >> PedestrianTruth = data.groundTruth.Pedestrian(1:184)
 >> labelNames={'Pedestrian';'Car'}
 >> labelData=table(PedestrianTruth,CarTruth,'VariableNames',labelNames)
 ```
+
 ![image](https://user-images.githubusercontent.com/69246778/130350557-04ef16f3-0588-47e6-8711-4c58b58ce81c.png)
 
-4. gTruth
+* gTruth
 위에서 만든 3가지를 이용해 최종적으로 gTruth를 만든다. 이 과정에서 오류가 발생했었는데 걍 첨부터 천천히 다시하니까 됐음.
 
 ```
 >> gTruth = groundTruth(dataSource,labelDefs,labelData)
 ```
+
 ![image](https://user-images.githubusercontent.com/69246778/130350622-2d7bdf85-393c-4e19-82d3-9d00c33009ea.png)
 이렇게 되면 성공임   
    
@@ -97,7 +100,7 @@ dataSource는 각 image마다의 label값을 가지고 있는 data다. 내가 ta
 작업 공간을 보면, 파란색으로 동그라미한 게 내가 기존에 갖고있던 table형식의 groundTruth(image labeler에서 사용 불가)이고   
 빨간색이 그로부터 새로만든 ground Truth형식의 data임.
 
-5. Image labeler
+* Image labeler
 Image labeler 앱을 실행하고 이미지를 불러온 후 **Import Labels -> From Workspace -> gTruth** 하면 다음과 같이 bbox가 챡챡 생성된다.
    
 ![image](https://user-images.githubusercontent.com/69246778/130349797-03b894fc-b497-4caf-ac75-843df345fe3c.png)
