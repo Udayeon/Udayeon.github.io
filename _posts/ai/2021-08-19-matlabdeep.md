@@ -38,7 +38,7 @@ Image Labeler를 실행하고 Data set을 Loading 해준다.
 Image labler에 Image를 불러와서 수동으로 labeling한 후, 이를 ground Truth로 export하는 것은 간단하다. 걍 Export label버튼을 누르고 gTruth형식으로 설정만 해주면
 되기 때문이다. 근데 내가 하고 싶은 것은 table로 주어진 ground Truth를 Image labeler로 불러와서 자동으로 챡챡 bbox가 그려지게 만드는 것인데 이 과정이 생각보다 어려웠다.   
 결론만 말하면, Image labeler에서 ground Turth를 챡챡 그리기 위해선 이 값을 **table이 아닌 groundTruth** 클래스로 불러와야만 한다. 따라서, 내가 갖고 있는 table로
-새로운 ground Truth 객체를 만들어야 한다. 다음의 [Matlab 도움말](https://kr.mathworks.com/help/vision/ref/groundtruth.html?s_tid=doc_ta)을 참고했다.
+새로운 ground Truth 객체를 만들어야 한다. [Matlab 도움말](https://kr.mathworks.com/help/vision/ref/groundtruth.html?s_tid=doc_ta)을 참고했다.
    
 ![image](https://user-images.githubusercontent.com/69246778/130350038-b7a0c014-5d46-4e8e-9594-6478e64bb8e0.png)
 최종적으로 하고 싶은게 이렇게 gTruth class를 갖는 객체를 생성하는 것이다. 만들어진 **gTruth**를 Image labeler에서 **Import Labels**하면 bbox가 챡챡 그려질 것이다.
