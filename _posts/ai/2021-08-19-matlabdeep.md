@@ -34,7 +34,7 @@ Image Labeler를 실행하고 Data set을 Loading 해준다.
 중간에 번호가 누락된게 있는데 대략 300개 정도 받아왔다. 이제 여기서 Labeling을 해주면 되는데 일일히 박스를 그릴 수도 있지만
 매우 시간이 오래 걸리기 때문에 GroundTruth 파일을 사용한다.
 
-⭐여기서 약간의 난항을 겪었다. 
+⭐여기서 약간의 난항을 겪었다⭐   
 Image labler에 Image를 불러와서 수동으로 labeling한 후, 이를 ground Truth로 export하는 것은 간단하다. 걍 Export label버튼을 누르고 gTruth형식으로 설정만 해주면
 되기 때문이다. 근데 내가 하고 싶은 것은 table로 주어진 ground Truth를 Image labeler로 불러와서 자동으로 챡챡 bbox가 그려지게 만드는 것인데 이 과정이 생각보다 어려웠다.   
 결론만 말하면, Image labeler에서 ground Turth를 챡챡 그리기 위해선 이 값을 **table이 아닌 groundTruth** 클래스로 불러와야만 한다. 따라서, 내가 갖고 있는 table로
