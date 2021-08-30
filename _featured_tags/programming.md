@@ -3,7 +3,7 @@ layout: list
 title: Programming Languages
 slug: programming
 menu: true
-order: 3
+order: 2
 description: >
   C / C++ / Python / MATLAB
 # accent_color: '#268bd2'
