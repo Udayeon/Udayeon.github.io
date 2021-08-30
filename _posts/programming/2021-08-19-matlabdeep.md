@@ -5,7 +5,7 @@ description: |
   YOLOv2를 활용한 Multi objet Detector
 hide_image: true
 tags:
-  - ai
+  - programming
 published: true
 ---
 
