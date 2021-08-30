@@ -3,7 +3,7 @@ layout: list
 title:  Review
 slug: review
 menu: true
-order: 4
+order: 3
 description: >
   논문 리뷰를 업로드 합니다.
 # accent_color: '#268bd2'
