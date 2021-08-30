@@ -1,8 +1,8 @@
 ---
 layout: post
-title: Components of Autonomous Cars
+title: Week2. 자율주행 자동차 요소 기술
 description: |
-  자율 주행 자동차의 구조
+  자율주행 자동차의 구조, 자율주행 자동차의 핵심기술
 tags:
   - autonomous
 author: Udayeon
