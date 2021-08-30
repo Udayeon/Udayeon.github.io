@@ -5,7 +5,7 @@ description: |
   Vision Recognition
 hide_image: true
 tags:
-  - ai
+  - autonomous
 published: true
 ---
 
