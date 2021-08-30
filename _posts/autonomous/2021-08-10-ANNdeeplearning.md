@@ -5,7 +5,7 @@ description: |
   ANN(Artificial Neural Network)와 Deep learning
 hide_image: true
 tags:
-  - ai
+  - autonomous
 published: true
 ---
 
