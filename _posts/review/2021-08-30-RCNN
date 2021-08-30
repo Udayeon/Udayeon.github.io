@@ -11,3 +11,11 @@ author: Udayeon
 
 published: true
 ---
+
+# (Review) Rich feature hierarchies for accurate object detection and semantic segmentation(R-CNN)
+* * *
+
+[Rich feature hierarchies for accurate object detection and semantic segmentation](https://arxiv.org/pdf/1311.2524v5.pdf)
+- **Author** Ross Girshick, Jeff Donahue, Trevor Darrell, Jitendra Malik 
+- arXiv:1311.2524v5 [cs.CV] 22 Oct 2014
+{:.message}
