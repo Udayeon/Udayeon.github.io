@@ -8,3 +8,4 @@ tags:
 published: true
 ---
 
+cv2.TrackerMed 사용을 위해 추가적인 모듈을 설치할 필요가 있음
