@@ -45,3 +45,20 @@ $ pip3 install --upgrade pip
 
 ![스크린샷, 2021-09-24 15-15-35](https://user-images.githubusercontent.com/69246778/134627170-01a4f174-1d98-4072-94ee-44dd1214866c.png)
 설치완료임...;
+
+# 문제상황 3
+* * *
+이제 cv2의 다양한 tracker 모듈을 사용할 수 있게됨. 근데 Medianflow가 없음
+해결방법은 일단,opencv-python와 opencv-contrib-python 둘 다 삭제한 후에 opencv-contrib-python만 설치하는 것
+```
+$ pip3 uninstall opencv-python
+$ pip3 uninstall opencv-contrib-python
+$ pip3 install opencv-contrib-python
+```
+근데 이렇게 해서 설치된 opencv는 버전이 최신 버전인 4.5.3임. 나는 3.X 버전이 필요해서 다음과 같이 명시하고 다시 설치
+
+```
+$ pip3 install opencv-contrib-python==3.4.0.12
+```
+![스크린샷, 2021-09-24 15-50-58](https://user-images.githubusercontent.com/69246778/134630924-c53bd7ea-5595-4139-81a6-577a0e923e94.png)
+이제 에러 안뜸 
