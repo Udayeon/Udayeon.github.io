@@ -1,6 +1,8 @@
+
+
 ---
 layout: post
-title: [윈도우] Deep Learning 개발환경 구축하기
+title: 윈도우에서 Deep Learning 개발환경 구축하기
 description: |
 tags:
   - projects
