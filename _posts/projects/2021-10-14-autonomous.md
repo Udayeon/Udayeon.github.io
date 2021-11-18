@@ -1,6 +1,6 @@
 ---
 layout: post
-title: MATLAB으로 자율주행 구현하기
+title: [윈도우] Deep Learning 개발환경 구축하기
 description: |
 tags:
   - projects
@@ -11,9 +11,11 @@ author: Udayeon
 published: true
 ---
 
-MATLAB과 시뮬링크를 사용해 자율주행 구현하기
+윈도우에서 Deep Learning 개발환경 구축하기
 
 # 목차
 * * *
-
+1. Anaconda 설치
+2. Tensorflow 설치
+3. Pycharm 설치
 
