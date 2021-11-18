@@ -16,7 +16,8 @@ published: true
 
 # 목차
 * * *
-1. Anaconda
+
+# 1. Anaconda
 [아나콘다 설치페이지](https://www.anaconda.com/products/individual)
 ![image](https://user-images.githubusercontent.com/69246778/142382694-721a7f92-af02-4d2c-b1bf-557af4ae4334.png)
 윈도우 버전으로 다운로드. 이때, 32비트 버전은 텐서플로가 설치되지 않으므로 64비트를 선택한다.
@@ -31,7 +32,7 @@ C:\Users\유다연> conda
 이렇게 쳤을 때 에러 없이 다음과 같이 나오면 제대로 설치된 것
 ![image](https://user-images.githubusercontent.com/69246778/142383326-d3529959-6ae7-4bf2-9a5f-1e71221ab4b4.png)
 
-2.Tensorflow
+# 2.Tensorflow
 가상환경을 만들어 준다.
 ```
 (base) C:\Users\유다연> conda create --name tensorflow-gpu python=3.7
@@ -56,3 +57,14 @@ tensorflow 2.0버전으로 설치함
    
 다음과 같이 list에 tensorflow가 깔려있는 것을 확인할 수 있다.
 ![image](https://user-images.githubusercontent.com/69246778/142384119-9abcf9ed-fa52-4774-858d-3612a2e4cd6f.png)
+
+# 3.Pycharm
+새 project를 만들 때 **Base interpreter**를 다음과 같이 설정
+![image](https://user-images.githubusercontent.com/69246778/142384513-c793af11-9609-45fc-8d58-91380abe86b0.png)
+   
+**file > setting > Python interpreter**
+![image](https://user-images.githubusercontent.com/69246778/142384620-4bd571c3-fbaa-46d9-b0c0-4512df461451.png)
+![image](https://user-images.githubusercontent.com/69246778/142384723-6b324bab-2c93-4dbe-be71-926982704254.png)
+python interpreter 를 **conda Environment**로 변경하고
+![image](https://user-images.githubusercontent.com/69246778/142385183-cc42b8a8-15e7-4409-b7c5-f03efb5d6c81.png)
+위와 같이 체크해주면 끝
