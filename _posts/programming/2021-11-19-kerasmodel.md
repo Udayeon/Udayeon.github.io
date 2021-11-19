@@ -84,7 +84,7 @@ MaxPooling2D(kernel size=3x3)
 ![image](https://user-images.githubusercontent.com/69246778/142573000-3e2390cd-645f-438e-af79-00a89130018f.png)
 ![convpooling](https://user-images.githubusercontent.com/69246778/142574150-1799c52e-53e9-4050-bdc7-a6880cf813f0.jpg)
 
-# (python) keras Sequential model 컴파일하기
+## model.compile
 ```py
 #Compile the model
 opt =tf.keras.optimizers.Adam(learning_rate=0.005)
@@ -96,16 +96,16 @@ model.compile(optimizer=opt,
               metrics=[acc,mae])
 ```
 
-## adam
+* adam
 Adaptive Moment Estimation.
 [참고논문](https://arxiv.org/pdf/1609.04747.pdf)
 [참고](https://hiddenbeginner.github.io/deeplearning/2019/09/22/optimization_algorithms_in_deep_learning.html)
 
-## sparse_categorical_crossentropy
+* sparse_categorical_crossentropy
 [참고](https://www.tensorflow.org/api_docs/python/tf/keras/metrics/sparse_categorical_crossentropy)
 다중분류 손실함수. 정수 타입의 클래스를 one-hot encoding하지 않고 정수 형태 그대로 라벨링
 
-## metrics
+* metrics
 학습과 테스트 과정에서 모델이 평가할 측정항목의 리스트. 
 보통은 metrics=['accuracy']를 사용하면 됨.
 다중 아웃풋 모델의 각 아웃풋에 각기 다른 측정항목을 특정하려면, metrics={'output_a': 'accuracy'}사용.
