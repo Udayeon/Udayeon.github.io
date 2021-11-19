@@ -92,7 +92,7 @@ acc = tf.keras.metrics.SparseCategoricalAccuracy()
 mae = tf.keras.metrics.MeanAbsoluteError()
 
 model.compile(optimizer=opt,
-              loss='categorical_crossentropy',
+              loss='sparse_categorical_crossentropy',
               metrics=[acc,mae])
 ```
 
