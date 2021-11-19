@@ -1,6 +1,6 @@
 ---
 layout: post
-title: (python) keras Sequential model만들기
+title: (python) keras Sequential model
 description: >
   
 tags: [programming]
@@ -82,3 +82,10 @@ MaxPooling2D(kernel size=3x3)
 결과
 ![image](https://user-images.githubusercontent.com/69246778/142573000-3e2390cd-645f-438e-af79-00a89130018f.png)
 ![convpooling](https://user-images.githubusercontent.com/69246778/142574150-1799c52e-53e9-4050-bdc7-a6880cf813f0.jpg)
+
+# (python) keras Sequential model 컴파일하기
+```py
+model.compile(optimizer=opt,
+              loss='categorical_crossentropy',
+              metrics=[acc,mae])
+```
