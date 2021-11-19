@@ -86,6 +86,11 @@ MaxPooling2D(kernel size=3x3)
 
 # (python) keras Sequential model 컴파일하기
 ```py
+#Compile the model
+opt =tf.keras.optimizers.Adam(learning_rate=0.005)
+acc = tf.keras.metrics.SparseCategoricalAccuracy()
+mae = tf.keras.metrics.MeanAbsoluteError()
+
 model.compile(optimizer=opt,
               loss='categorical_crossentropy',
               metrics=[acc,mae])
