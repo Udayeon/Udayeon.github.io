@@ -1,6 +1,6 @@
 ---
 layout: post
-title: (Matlab) YOLOv2를 활용한 Multi objet Detector
+title: (Matlab) YOLOv2를 활용한 Multi objet Detector 1 - labeling
 description: |
   
 hide_image: true
@@ -9,7 +9,7 @@ tags:
 published: true
 ---
 
-(Matlab) YOLOv2를 활용한 Multi objet Detector
+(Matlab) YOLOv2를 활용한 Multi objet Detector 1 - labeling
 
 # Training Data labeling
 * * *
