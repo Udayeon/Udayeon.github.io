@@ -13,6 +13,6 @@ published: true
 ---
 
 # Deep Learning without Poor Local Minima
-[Kenji Kawaguch. arXiv:1605.07110.(2016)](https://arxiv.org/abs/1605.07110v3)
+[Kenji Kawaguch. arXiv:1605.07110 (2016).](https://arxiv.org/abs/1605.07110v3)
 * * *
 
