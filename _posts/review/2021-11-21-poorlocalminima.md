@@ -30,9 +30,5 @@ published: true
 ```
 이론적으로, deep model을 직접 훈련시키는 것이 얼마나 어려울까?
 ```
-그것은 deep model의 loss function이 non-convexity하므로 고전적인 기계학습 모델보다는 더 어렵지만, 
-**poor local minima**는 존재하지 않기 때문에 그래도 할만하다.
 
 # Introduction
-딥러닝은 컴퓨터비전, 머신러닝, 인공지능을 포함한 많은 분야에서 실질적인 성공을 거두었다. 딥러닝의 일반화 능력이 매우
-뛰어나단 사실도 알려지게 되었다. 딥러닝은 까다로운 최적화 문제를 처리해야 한다. 
