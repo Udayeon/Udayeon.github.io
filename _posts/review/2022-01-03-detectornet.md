@@ -16,11 +16,10 @@ published: true
 [Christian Szegedy Alexander Toshev Dumitru Erhan (2013)](https://storage.googleapis.com/pub-tools-public-publication-data/pdf/41457.pdf)
 * * *
 DetectorNet은 object detection에 CNN을 처음으로 도입한 network중 하나로써 one stage로 동작하는 모델이다. 
-
-two-stage : 분류와 위치파악을 따로 수행
-one-stage : 분류와 위치파악을 한 번에 수행
-{:message}
-
+   
+- two-stage : 분류와 위치파악을 따로 수행
+- one-stage : 분류와 위치파악을 한 번에 수행
+   
 DetectorNet은 AlexNet을 사용하는데 마지막 layer의 softmax 활성화함수를 regression layer로 변경해 사용하는 것이 특징이다.
 AlexNet의 구조는 다음과 같다. 
 ![image](https://user-images.githubusercontent.com/69246778/147906216-e5522d9e-693a-4689-9c34-126915da87b0.png)
