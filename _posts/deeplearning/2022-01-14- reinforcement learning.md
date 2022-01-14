@@ -32,13 +32,13 @@ agent는 또 걷는다 (두 번째 발을 뗀 state)→ env의 긍정적 피드�
 
    
 # 2. 강화학습 기본 개념들
-- Agent : 주어진 문제 상황에서 행동하는 주체
-- State : agent의 상태, 현재 시점에서 가능한 모든 상태의 집합을 **State Space,S**라 하고, 특정 시점 t에서의 상태를 **s_t**라 한다.
-- Reward : agent가 어떤 행동을 했을 때 따라오는 이득. 높을수록 좋다.
-- Environment: 문제 세팅 그 자체. agent가 할 수 있는 행동, 그에 따른 보상 등등 모든 규칙. 즉, Agent, State,Reward모두 환경의 구성요소이다.
-- Cost : Reward에 -1을 곱한 값으로 이땐 낮을수록 좋다. 
-- 정책 : agent의 판단 방식. 누적 보상이 최대가 되는 최적정책을 찾아야 한다.
-- MDP : Markov Decision Process,마르코프결정프로세스. 아래 그림으로 설명되는, 위에서 설명한 관계를 의미한다.
+* **Agent** : 주어진 문제 상황에서 행동하는 주체
+* **State** : agent의 상태, 현재 시점에서 가능한 모든 상태의 집합을 **State Space,S**라 하고, 특정 시점 t에서의 상태를 **s_t**라 한다.
+* **Reward** : agent가 어떤 행동을 했을 때 따라오는 이득. 높을수록 좋다.
+* **Environment** : 문제 세팅 그 자체. agent가 할 수 있는 행동, 그에 따른 보상 등등 모든 규칙. 즉, Agent, State,Reward모두 환경의 구성요소이다.
+* **Cost** : Reward에 -1을 곱한 값으로 이땐 낮을수록 좋다. 
+* **정책** : agent의 판단 방식. 누적 보상이 최대가 되는 최적정책을 찾아야 한다.
+* **MDP** : Markov Decision Process,마르코프결정프로세스. 아래 그림으로 설명되는, 위에서 설명한 관계를 의미한다.
 ![image](https://user-images.githubusercontent.com/69246778/149460651-bef8c696-0f1d-42a9-95ed-153a4ebfa443.png)
 
 # 3. 예제로 살펴보는 강화학습 원리
