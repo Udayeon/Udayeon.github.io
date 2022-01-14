@@ -28,4 +28,4 @@ published: true
 즉, **env의 피드백을 기반으로 agent는 보상이 최대가 되는 action을 취한다.**
    
 # 2. 예제로 살펴보는 강화학습 원리
-
+사용할 예제는 Matlab에서 제공하는 **[PPO예제](https://kr.mathworks.com/help/deeplearning/ug/train-ppo-agent-for-automatic-parking-valet.html)**
