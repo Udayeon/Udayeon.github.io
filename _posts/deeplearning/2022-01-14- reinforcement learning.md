@@ -129,3 +129,5 @@ Camera가 결정하게 된다.
 RL Controller 활성화에 연결되어 있는 **Vehicle model** subsystem을 열어보면  Pose를 input으로 받아 Camera가 
 goal을 찾도록 설계되어 있다. 
 
+정리하면, **Camera**알고리즘에 의해 **MPC controller**가 reference path를 tracking하고 빈자리가 발견되면 주차모드가 
+활성화 되어 **RL controller**가 주차 maneuver를 수행한다.
