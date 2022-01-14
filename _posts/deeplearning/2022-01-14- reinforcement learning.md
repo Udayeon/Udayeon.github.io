@@ -26,8 +26,8 @@ published: true
 **agent가 걸었다(agent는 첫 발떼기를 성공한 state) → env의 긍정적 피드백(뭐 표정이 좋다던가, 웃어준다던가) → 
 agent는 또 걷는다 (두 번째 발을 뗀 state)→ env의 긍정적 피드백 → 어쩌다 agent가 발을 헛디뎠다(넘어진 state) 
 → env의 부정적 피드백 → agent는 발을 헛디디기보다 잘 걷는 방향으로 action을 취한다.**   
-즉, **agent가 행동을 할수록 state가 바뀌고 이에 대해 env의 피드백도 달라짐. 긍정적 보상 또는 부정적 보상을 받게됨. 결론적으로 누적보상이 최대가 
-되는 action을 취하는 agent를 학습하는 것**
+즉, agent가 행동을 할수록 state가 바뀌고 이에 대해 env의 피드백도 달라짐. 긍정적 보상 또는 부정적 보상을 받게됨. 
+결론적으로 **누적보상이 최대가 되는 action을 취하는 agent를 학습하는 것**
 ![image](https://user-images.githubusercontent.com/69246778/149459768-8b924e67-6ea9-4f1e-b80c-e4a5375f509a.png)
 
    
