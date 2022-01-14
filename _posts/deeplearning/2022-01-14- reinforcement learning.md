@@ -60,6 +60,39 @@ Policy는 **Deterministic(결정적)**와 **Stochastic(확률적)** 으로 나�
 **TR(Trust Region)** 은 performance가 상승하는 방향으로 update를 보장할 수 있는 구간을 의미하며 TRPO는 이를 이용해 
 **performance가 더 나은 policy로 업데이트 하기 위한 optimization기법**이다. 이 performance를 평가하기 위해 
 **Performance function**을 이용한다. Performance function에는 **reward**가 반영된다.   
-
    
+([TRPO에 대한 설명](https://ropiens.tistory.com/82))
+   
+그러나, TRPO는 연산이 복잡하고 호환성이 떨어지는 문제가 있다. 따라서, TRPO만큼의 성능은 지키면서 위의 문제를 해결하기 위한
+**PPO**가 제안된다.
+   
+([PPO](https://ropiens.tistory.com/85))
+   
+## 3.2. Parking Lot
+주차장은 **ParkingLot** class로 표현할 수 있다. 각 주차 구역마다 녹색 또는 빨간 불빛으로 자리가 차있는지 비었는지 알 수 있다.
+주차된 차량은 검정색으로 표현된다. 다음의 예제에서는 7번 자리가 비어있는 주차장을 사용한다. **Ego vehicle**의 초기 위치를
+좌표로 설정한다. 그리고 ego vehicle이 주차 할 **target pose**는 앞에서 설정한 **freeSpotIdx**를 이용해 설정한다. 
+```
+freeSpotIdx = 7; %7번자리 비었음
+map = ParkingLot(freeSpotIdx); %7번자리가 비워진 ParkingLot class
 
+egoInitialPose = [20, 15, 0]; %현재 차량 위치
+
+egoTargetPose = createTargetPose(map,freeSpotIdx) %주차할 위치 = 비어있던 자리
+```
+
+## 3.3. Sensor Modules
+본 예제는 **Camera**와 **Lidar**를 사용한다. 
+
+* **Camera**
+Camera로 비어있는 주차공간을 탐지하고 비어있는 자리와 현재 차량 위치 간의 기하학적 관계를 이용해 동작을 수행한다. 
+![image](https://user-images.githubusercontent.com/69246778/149479306-ea037ca1-8a0b-4de2-ae55-f6e27e1bb631.png)
+- FOV(φ) = ±60 degrees, d_max = 10m   
+![image](https://user-images.githubusercontent.com/69246778/149479454-0112c064-eb6f-4126-9979-651c2de26d05.png)
+위와 같다면 d_i와 φ_i는 주차공간까지의 거리 및 각도가 될 수 있다.
+
+* **Lidar**
+강화학습 agent는 라이다 센서 결과를 읽어 ego vehicle과 다른 차량 간의 근접성을 평가한다. 라이다 센서도 카메라와 마찬가지로
+기하학적 관계를 사용한다. 라이더 거리는 ego vehicle의 중심에서 방사형으로 나오는 12개의 선이 장애물에 닿는 것을 통해 측정된다.
+측정 가능한 최대 거리는 6m이다.
+![image](https://user-images.githubusercontent.com/69246778/149481283-82ff4332-aad0-4212-a169-4fbcc323d343.png)
