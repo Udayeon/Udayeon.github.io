@@ -105,4 +105,5 @@ autoParkingValetParams  %parameter실행하고
 mdl = 'rlAutoParkingValet';
 open_system(mdl) %Simulink열어
 ```
+![image](https://user-images.githubusercontent.com/69246778/149486519-4cdc28fb-7c15-4bc9-a911-c0abdbe64d4b.png)
 
