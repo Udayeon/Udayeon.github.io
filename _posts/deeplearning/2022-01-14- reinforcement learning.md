@@ -37,7 +37,8 @@ agent는 또 걷는다 (두 번째 발을 뗀 state)→ env의 긍정적 피드�
 * **Reward** : agent가 어떤 행동을 했을 때 따라오는 이득. 높을수록 좋다.
 * **Environment** : 문제 세팅 그 자체. agent가 할 수 있는 행동, 그에 따른 보상 등등 모든 규칙. 즉, Agent, State,Reward모두 환경의 구성요소이다.
 * **Cost** : Reward에 -1을 곱한 값으로 이땐 낮을수록 좋다. 
-* **정책** : agent의 판단 방식. 누적 보상이 최대가 되는 최적정책을 찾아야 한다.
+* **정책** : agent의 행동패턴으로 주어진 State에서 어떤 Action을 취할지 말해줌. state를 action에 연결짓는 함수라고 보면 된다.
+누적 보상이 최대가 되는 최적정책을 찾아야 한다. 
 * **MDP** : Markov Decision Process,마르코프결정프로세스. 아래 그림으로 설명되는, 위에서 설명한 관계를 의미한다.
 ![image](https://user-images.githubusercontent.com/69246778/149460651-bef8c696-0f1d-42a9-95ed-153a4ebfa443.png)
 
@@ -45,4 +46,10 @@ agent는 또 걷는다 (두 번째 발을 뗀 state)→ env의 긍정적 피드�
 사용할 예제는 Matlab에서 제공하는 **[PPO예제](https://kr.mathworks.com/help/deeplearning/ug/train-ppo-agent-for-automatic-parking-valet.html)**
 
 ## 3.1. PPO란?
-[Proximal Policy Optimization Algorithms,John Schulman(2017)](https://arxiv.org/pdf/1707.06347.pdf)
+[Proximal Policy Optimization Algorithms,John Schulman(2017)](https://arxiv.org/pdf/1707.06347.pdf)   
+정책 최적화 알고리즘 기법 중 하나이다. PPO등장 이전엔
+TRPO[Trust Region Policy Optimization,John Schulman(2015)](https://arxiv.org/pdf/1502.05477.pdf)를 사용했다. 
+TROP는 **Stochastic Policy**기반의 최적화기법이다. Policy는 **Deterministic(결정적)**와 **Stochastic(확률적)** 으로 
+나눌 수 있는데, 전자는 주어진 state당 하나의 action을 취하는 것이고 후자는 **주어진 state에 대해 action들의 확률분포를 
+고려하는 것이다.**  
+
