@@ -43,3 +43,6 @@ agent는 또 걷는다 (두 번째 발을 뗀 state)→ env의 긍정적 피드�
 
 # 3. 예제로 살펴보는 강화학습 원리
 사용할 예제는 Matlab에서 제공하는 **[PPO예제](https://kr.mathworks.com/help/deeplearning/ug/train-ppo-agent-for-automatic-parking-valet.html)**
+
+## 3.1. PPO란?
+[Proximal Policy Optimization Algorithms,John Schulman(2017)](https://arxiv.org/pdf/1707.06347.pdf)
