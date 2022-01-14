@@ -140,4 +140,9 @@ createMPCForParking %MPC Controller개체 생성
 ## 3.6. Reinforcement Learning Environment
 ![image](https://user-images.githubusercontent.com/69246778/149490349-3e5bf11b-756b-43b6-989f-d0c9bd1aa059.png)
 이렇게 빨간 영역에서 **Training**을 할거임. 주차장이 대칭적이여서 전체에서 하지 않고 이 영역에서 훈련해서 다른 곳에 적응하면 됨.
-
+   
+Environment는 다음과 같다
+* Training region은 목표지점이 중앙에 위치한 22.5m x 20m 의 사각형이다.
+![image](https://user-images.githubusercontent.com/69246778/149491174-6203e0f1-8b2b-4730-a131-03f7d7efa86c.png)
+* Observation은 ego vehicle과 target pose의 **error**, 실제 **Heading angle의 sin,cosine**, **Lidar측정값**
+* 
