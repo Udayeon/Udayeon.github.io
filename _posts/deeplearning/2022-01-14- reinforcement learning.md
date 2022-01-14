@@ -115,7 +115,7 @@ Input으로 **Speed(m/s),Steering angle(rad)** 을 받는다.
 ![image](https://user-images.githubusercontent.com/69246778/149487773-24213b89-effa-4ddb-9ce7-61daefa91f5d.png)
 **Bicycle Model**임을 알 수 있다. 
 
-* **MPC Tracking Controller
+* **MPC Tracking Controller**
 ![image](https://user-images.githubusercontent.com/69246778/149487976-38ad09b0-3ec6-4639-92bd-e12d5d5d14f0.png)
 **state**에 따라 **Control**이 결정된다. 
 
@@ -131,3 +131,13 @@ goal을 찾도록 설계되어 있다.
 
 정리하면, **Camera**알고리즘에 의해 **MPC controller**가 reference path를 tracking하고 빈자리가 발견되면 주차모드가 
 활성화 되어 **RL controller**가 주차 maneuver를 수행한다.
+
+## 3.5. Adaptive Model Predictive Controller
+```
+createMPCForParking %MPC Controller개체 생성
+```
+
+## 3.6. Reinforcement Learning Environment
+![image](https://user-images.githubusercontent.com/69246778/149490349-3e5bf11b-756b-43b6-989f-d0c9bd1aa059.png)
+이렇게 빨간 영역에서 **Training**을 할거임. 주차장이 대칭적이여서 전체에서 하지 않고 이 영역에서 훈련해서 다른 곳에 적응하면 됨.
+
