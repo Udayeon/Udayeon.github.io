@@ -105,5 +105,27 @@ autoParkingValetParams  %parameter실행하고
 mdl = 'rlAutoParkingValet';
 open_system(mdl) %Simulink열어
 ```
-![image](https://user-images.githubusercontent.com/69246778/149486519-4cdc28fb-7c15-4bc9-a911-c0abdbe64d4b.png)
+![image](https://user-images.githubusercontent.com/69246778/149487182-df7cf201-6d50-454e-932f-82d6c56ab34b.png)
+
+* **Ego Vehicle Model
+![image](https://user-images.githubusercontent.com/69246778/149487464-9a03fc51-6cfd-4911-87ad-c713b8615e82.png)
+Input으로 **Speed(m/s),Steering angle(rad)** 을 받는다.   
+   
+**Vehicle Dynamics** subsystem을 보면
+![image](https://user-images.githubusercontent.com/69246778/149487773-24213b89-effa-4ddb-9ce7-61daefa91f5d.png)
+**Bicycle Model**임을 알 수 있다. 
+
+* **MPC Tracking Controller
+![image](https://user-images.githubusercontent.com/69246778/149487976-38ad09b0-3ec6-4639-92bd-e12d5d5d14f0.png)
+**state**에 따라 **Control**이 결정된다. 
+
+* **RL Controller**
+![image](https://user-images.githubusercontent.com/69246778/149488138-b5775809-00f0-4345-8873-35059ddc7b83.png)
+Vehicle의 현재 위치와 Lidar정보, Target pose(주차할 자리)를 input으로 받아 주차를 수행한다. 단 이를 활성화 할지 말지는
+Camera가 결정하게 된다. 
+
+* **Vehicle Model**
+![image](https://user-images.githubusercontent.com/69246778/149488664-f74d0d49-ab84-425a-962b-5f4b862cfc34.png)
+RL Controller 활성화에 연결되어 있는 **Vehicle model** subsystem을 열어보면  Pose를 input으로 받아 Camera가 
+goal을 찾도록 설계되어 있다. 
 
