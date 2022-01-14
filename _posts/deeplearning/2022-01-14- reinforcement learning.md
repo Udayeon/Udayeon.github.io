@@ -51,10 +51,15 @@ agent는 또 걷는다 (두 번째 발을 뗀 state)→ env의 긍정적 피드�
 ## 3.1. PPO란?
 [Proximal Policy Optimization Algorithms,John Schulman(2017)](https://arxiv.org/pdf/1707.06347.pdf)   
 정책 최적화 알고리즘 기법 중 하나이다. PPO등장 이전엔
-TRPO[Trust Region Policy Optimization,John Schulman(2015)](https://arxiv.org/pdf/1502.05477.pdf)를 사용했다. 
-TROP는 **Stochastic Policy**기반의 최적화기법이다. Policy는 **Deterministic(결정적)**와 **Stochastic(확률적)** 으로 
-나눌 수 있는데, 전자는 주어진 state당 하나의 action을 취하는 것이고 후자는 **주어진 state에 대해 action들의 확률분포를 
-고려하는 것이다.**  
+**TRPO**[Trust Region Policy Optimization,John Schulman(2015)](https://arxiv.org/pdf/1502.05477.pdf)를 사용했다.   
    
-Policy의 Performanc
+Policy는 **Deterministic(결정적)**와 **Stochastic(확률적)** 으로 나눌 수 있는데, 전자는 주어진 state당 하나의 action을 
+취하는 것이고 후자는 **주어진 state에 대해 action들의 확률분포를 고려하는 것이다.** TRPO는 **Stochastic Policy**기반의 
+최적화기법이다.   
+   
+**TR(Trust Region)** 은 performance가 상승하는 방향으로 update를 보장할 수 있는 구간을 의미하며 TRPO는 이를 이용해 
+performance가 더 나은 policy로 업데이트 하기 위한 optimization기법이다. 이 performance를 평가하기 위해 
+**Performance function**을 이용한다. Performance function에는 **reward**가 반영된다.   
+
+   
 
