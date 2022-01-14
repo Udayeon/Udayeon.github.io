@@ -52,4 +52,6 @@ TRPO[Trust Region Policy Optimization,John Schulman(2015)](https://arxiv.org/pdf
 TROP는 **Stochastic Policy**기반의 최적화기법이다. Policy는 **Deterministic(결정적)**와 **Stochastic(확률적)** 으로 
 나눌 수 있는데, 전자는 주어진 state당 하나의 action을 취하는 것이고 후자는 **주어진 state에 대해 action들의 확률분포를 
 고려하는 것이다.**  
+   
+Policy의 Performanc
 
