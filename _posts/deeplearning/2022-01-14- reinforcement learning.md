@@ -96,3 +96,13 @@ Camera로 비어있는 주차공간을 탐지하고 비어있는 자리와 현�
 기하학적 관계를 사용한다. 라이더 거리는 ego vehicle의 중심에서 방사형으로 나오는 12개의 선이 장애물에 닿는 것을 통해 측정된다.
 측정 가능한 최대 거리는 6m이다.
 ![image](https://user-images.githubusercontent.com/69246778/149481283-82ff4332-aad0-4212-a169-4fbcc323d343.png)
+
+## 3.4. Auto Parking Valet Model
+model의 시뮬링크를 확인해보장
+```
+autoParkingValetParams  %parameter실행하고
+
+mdl = 'rlAutoParkingValet';
+open_system(mdl) %Simulink열어
+```
+
