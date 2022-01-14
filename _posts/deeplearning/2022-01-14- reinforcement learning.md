@@ -107,7 +107,7 @@ open_system(mdl) %Simulink열어
 ```
 ![image](https://user-images.githubusercontent.com/69246778/149487182-df7cf201-6d50-454e-932f-82d6c56ab34b.png)
 
-* **Ego Vehicle Model
+* **Ego Vehicle Model**
 ![image](https://user-images.githubusercontent.com/69246778/149487464-9a03fc51-6cfd-4911-87ad-c713b8615e82.png)
 Input으로 **Speed(m/s),Steering angle(rad)** 을 받는다.   
    
