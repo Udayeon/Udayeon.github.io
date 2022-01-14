@@ -46,7 +46,7 @@ agent는 또 걷는다 (두 번째 발을 뗀 state)→ env의 긍정적 피드�
 사용할 예제는 Matlab에서 제공하는 **[PPO예제](https://kr.mathworks.com/help/deeplearning/ug/train-ppo-agent-for-automatic-parking-valet.html)**   
 이 예제는 자동 주차 알고리즘으로 **Adaptive MPC Controller**와 **강화학습**을 사용한다.
 **MPC controller**로 빈 주차 공간을 검색해 reference path를따라 일정한 속도로 이동하고 빈 자리에 도착하면 
-**강화학습 agent**가 사전 훈련된 주차 maneuver를 실행한다. 빈 공간 및 주차된 차량의 위치를 포함한 환경에 대한 사전 지식이 제공된다.
+**강화학습 agent**가 사전 훈련된 주차 maneuver를 실행한다. (빈 공간 및 주차된 차량의 위치를 포함한 환경에 대한 사전 지식은 제공된다.)
    
 ## 3.1. PPO란?
 [Proximal Policy Optimization Algorithms,John Schulman(2017)](https://arxiv.org/pdf/1707.06347.pdf)   
