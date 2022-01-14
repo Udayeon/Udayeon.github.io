@@ -58,7 +58,7 @@ Policy는 **Deterministic(결정적)**와 **Stochastic(확률적)** 으로 나�
 최적화기법이다.   
    
 **TR(Trust Region)** 은 performance가 상승하는 방향으로 update를 보장할 수 있는 구간을 의미하며 TRPO는 이를 이용해 
-performance가 더 나은 policy로 업데이트 하기 위한 optimization기법이다. 이 performance를 평가하기 위해 
+**performance가 더 나은 policy로 업데이트 하기 위한 optimization기법**이다. 이 performance를 평가하기 위해 
 **Performance function**을 이용한다. Performance function에는 **reward**가 반영된다.   
 
    
