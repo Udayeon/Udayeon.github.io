@@ -188,3 +188,23 @@ Training을 위한 **Reset function**을 설정한다. **autoParkingValetResetFc
 env.ResetFcn = @autoParkingValetResetFcn;
 ```
    
+# 3.7. Create Agent
+이 예제에서는 **PPO agent**를 사용한다. 
+   
+random seed를 생성
+```
+rng(0)
+```
+   
+**16개의 input과 1개의 output**을 가진 심층신경망 만들기
+```
+criticNetwork = [
+    featureInputLayer(numObservations,'Normalization','none','Name','observations')
+    fullyConnectedLayer(128,'Name','fc1')
+    reluLayer('Name','relu1')
+    fullyConnectedLayer(128,'Name','fc2')
+    reluLayer('Name','relu2')
+    fullyConnectedLayer(128,'Name','fc3')
+    reluLayer('Name','relu3')
+    fullyConnectedLayer(1,'Name','fc4')];
+```
