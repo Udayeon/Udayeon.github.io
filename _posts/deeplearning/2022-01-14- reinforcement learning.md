@@ -145,4 +145,46 @@ Environment는 다음과 같다
 * Training region은 목표지점이 중앙에 위치한 22.5m x 20m 의 사각형이다.
 ![image](https://user-images.githubusercontent.com/69246778/149491174-6203e0f1-8b2b-4730-a131-03f7d7efa86c.png)
 * Observation은 ego vehicle과 target pose의 **error**, 실제 **Heading angle의 sin,cosine**, **Lidar측정값**
-* 
+* 주차하는 동안 차량의 속도는 2m/s
+* action signal은 15도 단계에서 -45도 ~ +45도 사이의 이산적 steering angle이다.
+* 차량과 차량 구역과의 오류가 **0.75m이내, 각도는 10도 이내**일 경우에만 주차된 것으로 간주한다.
+* ego vehicle이 training region 밖으로 나가거나, 장애물과 충돌하거나, 주차에 성공하면 에피소드가 종료된다.
+* 시간 t에서의 보상 r_t는 다음과 같다.
+![image](https://user-images.githubusercontent.com/69246778/149719366-d70cef55-4b36-4038-b4fb-039c5b92359d.png)
+- X_e : X position error
+- Y_e : Y position error
+- θ_e : Heading angle error
+- δ : Steering angle
+- f_t : 시각t에서 차량이 주차를 성공하면 1, 실패하면 0
+- g_t : 시각t에서 차량이 장애물과 충돌하면 1, 충돌하지 않으면 0
+    
+정리하면, **Error가 클수록 보상이 작아진다. 차량이 주차를 성공하면 보상이 커진다. 장애물과 충돌하면 보상이 작아진다.**   
+
+주차 공간변 좌표 변환은 다음과 같다.
+![image](https://user-images.githubusercontent.com/69246778/149720136-20fc8df2-e273-43a2-8228-f32e4b626d0e.png)
+   
+Environment에 대한 **Observation**과 **Action specification**은 다음과 같다.
+```
+numObservations = 16;
+observationInfo = rlNumericSpec([numObservations 1]);
+observationInfo.Name = 'observations';
+
+steerMax = pi/4;
+discreteSteerAngles = -steerMax : deg2rad(15) : steerMax;
+actionInfo = rlFiniteSetSpec(num2cell(discreteSteerAngles));
+actionInfo.Name = 'actions';
+numActions = numel(actionInfo.Elements);
+```
+   
+Environment 인터페이스를 위한 simulink를 설정한다.
+```
+blk = [mdl '/RL Controller/RL Agent'];
+env = rlSimulinkEnv(mdl,blk,observationInfo,actionInfo);
+```
+  
+Training을 위한 **Reset function**을 설정한다. **autoParkingValetResetFcn**은 각 에피소드 시작 시에 ego vehicle의 초기값을 임의로
+재설정한다.
+```
+env.ResetFcn = @autoParkingValetResetFcn;
+```
+   
