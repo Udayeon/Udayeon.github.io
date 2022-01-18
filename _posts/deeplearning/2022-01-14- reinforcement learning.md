@@ -273,6 +273,8 @@ else
     load('rlAutoParkingValetAgent.mat','agent');
 end
 ```
+![image](https://user-images.githubusercontent.com/69246778/149876674-ab1a5194-e6f6-4f06-9e75-e3f4201add44.png)
+직접 훈련하는 모습을 볼 수 있음
 
 # 3.9. Simulate Agent
 ```
