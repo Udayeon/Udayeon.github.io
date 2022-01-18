@@ -264,3 +264,18 @@ trainOpts = rlTrainingOptions(...
     'StopTrainingCriteria','AverageReward',...
     'StopTrainingValue',80);
 ```
+
+```
+doTraining = false;    % 여길 true로 바꾸면 직접 교육을 시작함. false이면 사전 훈련된 agent가 load됨
+if doTraining
+    trainingStats = train(agent,env,trainOpts);
+else
+    load('rlAutoParkingValetAgent.mat','agent');
+end
+```
+
+# 3.9. Simulate Agent
+```
+freeSpotIdx = 7;  % free spot location
+sim(mdl);
+```
