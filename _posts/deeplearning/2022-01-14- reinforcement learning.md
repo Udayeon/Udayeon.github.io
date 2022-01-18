@@ -189,14 +189,18 @@ env.ResetFcn = @autoParkingValetResetFcn;
 ```
    
 # 3.7. Create Agent
-이 예제에서는 **PPO agent**를 사용한다. 
+이 예제에서는 **PPO agent**를 사용한 **Actor network**와 **ritic network**를 사용한다.
+- **Critic Network** : **policy**의 parameter를 update시킴. 학습대상의 성능을 평가.
+- **Actork Network** : **Action-value function**의 parameter를 update.
+![image](https://user-images.githubusercontent.com/69246778/149872047-0fde6073-0143-4d9b-acab-b5d116a8c3cc.png)
    
 random seed를 생성
 ```
 rng(0)
 ```
    
-**16개의 input과 1개의 output**을 가진 심층신경망 만들기
+**critic representation**,16개의 input과 1개의 output을 가진 심층신경망 만들기. critic network의 결과는 특정 observation에 대한
+**state function**이다.
 ```
 criticNetwork = [
     featureInputLayer(numObservations,'Normalization','none','Name','observations')
@@ -207,4 +211,56 @@ criticNetwork = [
     fullyConnectedLayer(128,'Name','fc3')
     reluLayer('Name','relu3')
     fullyConnectedLayer(1,'Name','fc4')];
+```
+   
+critic network option 설정
+```
+criticOptions = rlRepresentationOptions('LearnRate',1e-3,'GradientThreshold',1);
+critic = rlValueRepresentation(criticNetwork,observationInfo,...
+    'Observation',{'observations'},criticOptions);
+```
+   
+**Actor representation**, actor network의 output은 차량이 특정 state에 있을 때 **가능한 조향 동작을 취할 확률**이다.
+```
+actorNetwork = [
+    featureInputLayer(numObservations,'Normalization','none','Name','observations')
+    fullyConnectedLayer(128,'Name','fc1')
+    reluLayer('Name','relu1')
+    fullyConnectedLayer(128,'Name','fc2')
+    reluLayer('Name','relu2')
+    fullyConnectedLayer(numActions, 'Name', 'out')
+    softmaxLayer('Name','actionProb')];
+```
+   
+**Stochastic actor representation** option
+```
+actorOptions = rlRepresentationOptions('LearnRate',2e-4,'GradientThreshold',1);
+actor = rlStochasticActorRepresentation(actorNetwork,observationInfo,actionInfo,...
+    'Observation',{'observations'},actorOptions);
+```
+   
+**agent option**설정
+```
+agentOpts = rlPPOAgentOptions(...
+    'SampleTime',Ts,...
+    'ExperienceHorizon',200,...
+    'ClipFactor',0.2,... 
+    'EntropyLossWeight',0.01,...
+    'MiniBatchSize',64,...
+    'NumEpoch',3,...
+    'AdvantageEstimateMethod',"gae",...
+    'GAEFactor',0.95,...
+    'DiscountFactor',0.998);
+agent = rlPPOAgent(actor,critic,agentOpts);
+```
+
+# 3.8. Train Agent
+```
+trainOpts = rlTrainingOptions(...
+    'MaxEpisodes',10000,...
+    'MaxStepsPerEpisode',200,...
+    'ScoreAveragingWindowLength',200,...
+    'Plots','training-progress',...
+    'StopTrainingCriteria','AverageReward',...
+    'StopTrainingValue',80);
 ```
