@@ -275,10 +275,13 @@ end
 ```
 ![image](https://user-images.githubusercontent.com/69246778/149876674-ab1a5194-e6f6-4f06-9e75-e3f4201add44.png)
 직접 훈련하는 모습을 볼 수 있음
-![image](https://user-images.githubusercontent.com/69246778/149876800-2d4d865f-5045-429e-a01a-15da0c1c6158.png)
+![image](https://user-images.githubusercontent.com/69246778/149876885-2ef5bfe3-a14d-4094-a66b-cd388e59db18.png)
 
 # 3.9. Simulate Agent
 ```
 freeSpotIdx = 7;  % free spot location
 sim(mdl);
 ```
+
+# 4. Results
+# 
