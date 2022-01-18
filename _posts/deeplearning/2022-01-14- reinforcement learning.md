@@ -98,7 +98,7 @@ Camera로 비어있는 주차공간을 탐지하고 비어있는 자리와 현�
 ![image](https://user-images.githubusercontent.com/69246778/149481283-82ff4332-aad0-4212-a169-4fbcc323d343.png)
 
 ## 3.4. Auto Parking Valet Model
-model의 시뮬링크를 확인해보장
+model의 시뮬링크를 확인해보자
 ```
 autoParkingValetParams  %parameter실행하고
 
