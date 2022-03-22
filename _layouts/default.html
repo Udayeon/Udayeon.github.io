@@ -28,6 +28,11 @@ layout: base
   <header>
     <h1 class="page-title">{{ page.title | default:strings.home | default:"Home" }}</h1>
     {% include message.html text=page.description hide=page.hide_description %}
+    
+    {% if page.use_math %}
+      {% include mathjax_support.html %}
+    {% endif %}
+    
   </header>
 
   {{ content }}
@@ -43,9 +48,6 @@ layout: base
     </ul>
   {% endif %}
 
-  {% if page.use_math %}
-   {% include mathjax_support.html %}
-  {% endif %}
   
   {% assign pages = site.html_pages | where:"layout","page" | where_exp:"page","page.sitemap != false" %}
   {% if pages.size > 0 %}
