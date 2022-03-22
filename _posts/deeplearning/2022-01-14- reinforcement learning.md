@@ -7,6 +7,7 @@ hide_image: true
 tags:
   - deeplearning
 published: true
+use_math: true
 ---
 
 # 강화학습(Reinforcement Learning)
