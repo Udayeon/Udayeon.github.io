@@ -26,9 +26,14 @@ use_math: true
 다른 학습과 달리 강화학습은 어떤 행동을 해야할지 **정답을 배우는 것이 아니다.**    
 예를 들어, 아기가 첫 걸음마를 떼는 상황을 상상해보자. 이 때 행동을 하는 아기가 **agent**이고 아이에게 피드백을 제공하는 부모는 **환경**이 된다. 
 기계학습 과정에 비유하면 다음과 같다.   
-**agent가 걸었다(agent는 첫 발떼기를 성공한 state) → env의 긍정적 피드백(뭐 표정이 좋다던가, 웃어준다던가) → 
-agent는 또 걷는다 (두 번째 발을 뗀 state)→ env의 긍정적 피드백 → 어쩌다 agent가 발을 헛디뎠다(넘어진 state) 
-→ env의 부정적 피드백 → agent는 발을 헛디디기보다 잘 걷는 방향으로 action을 취한다.**   
+   
+**agent가 걸었다(agent는 첫 발떼기를 성공한 state)    
+→ env의 긍정적 피드백(뭐 표정이 좋다던가, 웃어준다던가)    
+→ agent는 또 걷는다 (두 번째 발을 뗀 state)→ env의 긍정적 피드백    
+→ 어쩌다 agent가 발을 헛디뎠다(넘어진 state)    
+→ env의 부정적 피드백    
+→ agent는 발을 헛디디기보다 잘 걷는 방향으로 action을 취한다.**      
+   
 즉, agent가 행동을 할수록 state가 바뀌고 이에 대해 env의 피드백도 달라짐. 긍정적 보상 또는 부정적 보상을 받게됨. 
 결론적으로 **누적보상이 최대가 되는 action을 취하는 agent를 학습하는 것**
 ![image](https://user-images.githubusercontent.com/69246778/149459768-8b924e67-6ea9-4f1e-b80c-e4a5375f509a.png)
@@ -39,9 +44,9 @@ agent는 또 걷는다 (두 번째 발을 뗀 state)→ env의 긍정적 피드�
 * **State** : agent의 상태, 현재 시점에서 가능한 모든 상태의 집합을 **State Space,S**라 하고, 특정 시점 t에서의 상태를 **s_t**라 한다.
 * **Reward** : agent가 어떤 행동을 했을 때 따라오는 이득. 높을수록 좋다.
 * **Environment** : 문제 세팅 그 자체. agent가 할 수 있는 행동, 그에 따른 보상 등등 모든 규칙. 즉, Agent, State,Reward모두 환경의 구성요소이다.
-* **Cost** : Reward에 -1을 곱한 값으로 이땐 낮을수록 좋다. 
-* **정책** : agent의 행동패턴으로 주어진 State에서 어떤 Action을 취할지 말해줌. state를 action에 연결짓는 함수라고 보면 된다.
-누적 보상이 최대가 되는 최적정책을 찾아야 한다. 
+* **Cost** : Reward에 -1을 곱한 값으로 낮을수록 좋다. 
+* **정책** : agent의 행동패턴. 주어진 State에서 어떤 Action을 취할지 말해준다. state를 action에 연결짓는 함수라고 보면 된다.
+누적 보상이 최대가 되는 **최적정책**을 찾아야 한다. 
 * **MDP** : Markov Decision Process,마르코프결정프로세스. 아래 그림으로 설명되는, 위에서 설명한 관계를 의미한다.
 ![image](https://user-images.githubusercontent.com/69246778/149460651-bef8c696-0f1d-42a9-95ed-153a4ebfa443.png)
 
@@ -57,18 +62,16 @@ agent는 또 걷는다 (두 번째 발을 뗀 state)→ env의 긍정적 피드�
 **TRPO**[Trust Region Policy Optimization,John Schulman(2015)](https://arxiv.org/pdf/1502.05477.pdf)를 사용했다.   
    
 Policy는 **Deterministic(결정적)**와 **Stochastic(확률적)** 으로 나눌 수 있는데, 전자는 주어진 state당 하나의 action을 
-취하는 것이고 후자는 **주어진 state에 대해 action들의 확률분포를 고려하는 것이다.** TRPO는 **Stochastic Policy**기반의 
+취하는 것이고 후자는 **주어진 state에 대해 action들의 확률분포를 고려하는 것이다.** **TRPO는 Stochastic Policy**기반의 
 최적화기법이다.   
    
-**TR(Trust Region)** 은 performance가 상승하는 방향으로 update를 보장할 수 있는 구간을 의미하며 TRPO는 이를 이용해 
-**performance가 더 나은 policy로 업데이트 하기 위한 optimization기법**이다. 이 performance를 평가하기 위해 
-**Performance function**을 이용한다. Performance function에는 **reward**가 반영된다.   
+**TR(Trust Region)** 은 performance가 상승하는 방향으로 업데이트를 보장할 수 있는 구간을 의미하며 TRPO는 이를 이용해 
+최적정책을 찾는 최적화기법이다. 이 performance를 평가하기 위해 
+**Performance function**을 이용한다. 그러나, **TRPO는 연산이 복잡하고 호환성이 떨어지는 문제**가 있다. 
+따라서, TRPO만큼의 성능은 지키면서 위의 문제를 해결하기 위한 **PPO**가 제안된다.
    
-([TRPO에 대한 설명](https://ropiens.tistory.com/82))
-   
-그러나, TRPO는 연산이 복잡하고 호환성이 떨어지는 문제가 있다. 따라서, TRPO만큼의 성능은 지키면서 위의 문제를 해결하기 위한
-**PPO**가 제안된다.
-   
+<참고>
+([TRPO](https://ropiens.tistory.com/82))
 ([PPO](https://ropiens.tistory.com/85))
    
 ## 3.2. Parking Lot
@@ -87,8 +90,8 @@ egoTargetPose = createTargetPose(map,freeSpotIdx) %주차할 위치 = 비어있�
 ## 3.3. Sensor Modules
 본 예제는 **Camera**와 **Lidar**를 사용한다. 
 
-* **Camera**
-Camera로 비어있는 주차공간을 탐지하고 비어있는 자리와 현재 차량 위치 간의 기하학적 관계를 이용해 동작을 수행한다. 
+* **Camera**   
+camera로 비어있는 주차공간을 탐지하고 비어있는 자리와 현재 차량 위치 간의 기하학적 관계를 이용해 동작을 수행한다. 
 ![image](https://user-images.githubusercontent.com/69246778/149479306-ea037ca1-8a0b-4de2-ae55-f6e27e1bb631.png)
 - FOV(φ) = ±60 degrees, d_max = 10m   
 ![image](https://user-images.githubusercontent.com/69246778/149479454-0112c064-eb6f-4126-9979-651c2de26d05.png)
