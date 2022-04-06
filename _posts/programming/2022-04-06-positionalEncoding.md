@@ -88,27 +88,30 @@ norma = np.linalg.norm(a)
 normb = np.linalg.norm(b)
 cos = dot / (norma * normb)
 
-aa = a.reshape(1,512) 
-ba = b.reshape(1,512)
+aa = a.reshape(1,512) 	#word similarity계산에 사용
+ba = b.reshape(1,512)	#word similarity계산에 사용
 cos_lib = cosine_similarity(aa, ba) #cosine 유사도
 ```
 
 
 ```py
-pe1=aa.copy()
-pe2=aa.copy()
+pe1=aa.copy()	#positional similarity계산에 사용
+pe2=aa.copy()	#positional similarity계산에 사용
 pe3=aa.copy()
-paa=aa.copy()
-pba=ba.copy()
+
+paa=aa.copy()	#"black"	
+pba=ba.copy()	#"brown"	
 d_model=512
 max_print=d_model
 max_length=20
 
+
 for i in range(0, max_print,2):
-                pe1[0][i] = math.sin(pos1 / (10000 ** ((2 * i)/d_model)))
-                paa[0][i] = (paa[0][i]*math.sqrt(d_model))+ pe1[0][i]
-                pe1[0][i+1] = math.cos(pos1 / (10000 ** ((2 * i)/d_model)))
-                paa[0][i+1] = (paa[0][i+1]*math.sqrt(d_model))+pe1[0][i+1]
+                pe1[0][i] = math.sin(pos1 / (10000 ** ((2 * i)/d_model)))	#positional similarity계산에 사용
+                paa[0][i] = (paa[0][i]*math.sqrt(d_model))+ pe1[0][i]		#positional encoding similarity계산에 사용
+		
+                pe1[0][i+1] = math.cos(pos1 / (10000 ** ((2 * i)/d_model)))	#positional similarity계산에 사용
+                paa[0][i+1] = (paa[0][i+1]*math.sqrt(d_model))+pe1[0][i+1]	#positional encoding similarity계산에 사용
                 if dprint==1:
                         print(i,pe1[0][i],i+1,pe1[0][i+1])
                         print(i,paa[0][i],i+1,paa[0][i+1])
@@ -128,22 +131,28 @@ pe[:, 1::2] = torch.cos(position * div_term)
 
 ```py
 for i in range(0, max_print,2):
-                pe2[0][i] = math.sin(pos2 / (10000 ** ((2 * i)/d_model)))
-                pba[0][i] = (pba[0][i]*math.sqrt(d_model))+ pe2[0][i]
+                pe2[0][i] = math.sin(pos2 / (10000 ** ((2 * i)/d_model)))	#positional similarity계산에 사용
+                pba[0][i] = (pba[0][i]*math.sqrt(d_model))+ pe2[0][i]		#positional encoding similarity계산에 사용
             
-                pe2[0][i+1] = math.cos(pos2 / (10000 ** ((2 * i)/d_model)))
-                pba[0][i+1] = (pba[0][i+1]*math.sqrt(d_model))+ pe2[0][i+1]
+                pe2[0][i+1] = math.cos(pos2 / (10000 ** ((2 * i)/d_model)))	#positional similarity계산에 사용
+                pba[0][i+1] = (pba[0][i+1]*math.sqrt(d_model))+ pe2[0][i+1]	#positional encoding similarity계산에 사용
                
                 if dprint==1:
                         print(i,pe2[0][i],i+1,pe2[0][i+1])
                         print(i,paa[0][i],i+1,paa[0][i+1])
                         print("\n")
+```
 
+
+**결과**
+```py
 print(word1,word2)
 cos_lib = cosine_similarity(aa, ba)
 print(cos_lib,"word similarity")
+
 cos_lib = cosine_similarity(pe1, pe2)
 print(cos_lib,"positional similarity")
+
 cos_lib = cosine_similarity(paa, pba)
 print(cos_lib,"positional encoding similarity")
 
