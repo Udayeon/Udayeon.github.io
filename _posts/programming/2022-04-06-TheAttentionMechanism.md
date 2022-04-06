@@ -190,6 +190,137 @@ attention_head1=np.random.random((3, 64))  #64차원 결과 3개를 갖는다고
 print(attention_head1)
 ```
 
+```py
+import numpy as np
+from scipy.special import softmax
+
+print("Step 1: 3 inputs, d_model=64")  #d_model : 64
+x =np.random.random((3,64)) 
+print(x)
+
+print("Step 2: weights 3 dimensions x d_model=4")  
+
+#쿼리
+print("w_query")
+w_query =np.random.random((64,3))
+print(w_query)
+
+
+#키
+print("w_key")
+w_key =np.random.random((64,3))
+print(w_key)
+
+
+#밸류
+print("w_value")
+w_value = np.random.random((64,3))
+print(w_value)
+
+#
+#쿼리
+print("Queries: x * w_query")
+Q=np.matmul(x,w_query)    
+print(Q)
+
+#키
+print("Keys: x * w_key")
+K=np.matmul(x,w_key)     
+print(K)
+
+#밸류
+print("Values: x * w_value")
+V=np.matmul(x,w_value)    
+print(V)
+
+print("Step 4: Scaled Attention Scores")
+k_d=1.73   #square root of k_d=3 rounded down to 1 for this example
+attention_scores = (Q @ K.transpose())/k_d
+print(attention_scores)
+
+attention_scores[0]=softmax(attention_scores[0])
+attention_scores[1]=softmax(attention_scores[1])
+attention_scores[2]=softmax(attention_scores[2])
+print(attention_scores[0])
+print(attention_scores[1])
+print(attention_scores[2])
+
+print("input1 Attention 1")
+input1_attention1=attention_scores[0].reshape(-1,1)
+input1_attention1=attention_scores[0][0]*V[0]
+print(input1_attention1)
+
+print("input1 Attention 2")
+input1_attention2=attention_scores[0][1]*V[1]
+print(input1_attention2)
+
+print("input1 Attention 3")
+input1_attention3=attention_scores[0][2]*V[2]
+print(input1_attention3)
+
+
+
+
+print("input2 Attention 1")
+input2_attention1=attention_scores[1].reshape(-1,1)
+input2_attention1=attention_scores[1][0]*V[0]
+print(input2_attention1)
+
+print("input2 Attention 2")
+input2_attention2=attention_scores[1][1]*V[1]
+print(input2_attention2)
+
+print("input2 Attention 3")
+input2_attention3=attention_scores[1][2]*V[2]
+print(input2_attention3)
+
+
+
+
+print("input3 Attention 1")
+input3_attention1=attention_scores[2].reshape(-1,1)
+input3_attention1=attention_scores[2][0]*V[0]
+print(input3_attention1)
+
+print("input3 Attention 2")
+input3_attention2=attention_scores[2][1]*V[1]
+print(input3_attention2)
+
+print("input3 Attention 3")
+input3_attention3=attention_scores[2][2]*V[2]
+print(input3_attention3)
+
+attention_input1=input1_attention1+input1_attention2+input1_attention3    #input1에 대한
+print(attention_input1)
+
+attention_input2=input2_attention1+input2_attention2+input2_attention3    #input2에 대한
+print(attention_input2)
+
+attention_input3=input3_attention1+input3_attention2+input3_attention3    #input3에 대한
+print(attention_input3)
+
+z0h1=np.random.random((3, 64))
+z1h2=np.random.random((3, 64))
+z2h3=np.random.random((3, 64))
+z3h4=np.random.random((3, 64))
+z4h5=np.random.random((3, 64))
+z5h6=np.random.random((3, 64))
+z6h7=np.random.random((3, 64))
+z7h8=np.random.random((3, 64))
+print("shape of one head",z0h1.shape,"dimension of 8 heads",64*8)
+
+#@title Transformer Installation
+!pip -qq install transformers
+
+
+
+
+######Step12. 영어를 프랑스어로 번역######
+from transformers import pipeline     #Transformer에서 pipeline모듈 import
+translator = pipeline("translation_en_to_fr") #en to fr옵션 선택
+#One line of code!
+print(translator("It is easy to translate languages with transformers", max_length=40)) 
+```
 
 
 **Step9. 어텐션 서브레이어 헤드들의 출력**
