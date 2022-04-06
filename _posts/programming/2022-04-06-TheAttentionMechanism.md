@@ -98,18 +98,19 @@ print(V)
 |input2|[2,2,2]|[4,4,0]|[2,8,0]|
 |input3|[2,1,3]|[2,3,1]|[2,6,3]|
 
+
+**Step4. 스케일링된 어텐션 점수**
+![image](https://user-images.githubusercontent.com/69246778/161914543-1b83e6f5-93fc-4ab5-b65d-7cb32da406b3.png)
+
 ```py
-######Step4.Attention Score계산######
 print("Step 4: Scaled Attention Scores")
 k_d=1   #square root of k_d=3 rounded down to 1 for this example
 attention_scores = (Q @ K.transpose())/k_d
 print(attention_scores)
 ```
 
-
+**Step5. 각 벡터에 대한 스케일링 된 softmax어텐션 점수(step4를 소프트맥스 함수에 대입) **
 ```py
-######Step5.Attention Score를 softmax함수에######
-print("Step 5: Scaled softmax attention_scores for each vector")
 attention_scores[0]=softmax(attention_scores[0])
 attention_scores[1]=softmax(attention_scores[1])
 attention_scores[2]=softmax(attention_scores[2])
@@ -117,33 +118,69 @@ print(attention_scores[0])
 print(attention_scores[1])
 print(attention_scores[2])
 ```
+
+**Step6. 최종 어텐션 표현(step5에 V곱하기), input1,2,3모두 **
 ```py
-######Step6. Attention값 구하기######
-print("Step 6: attention value obtained by score1/k_d * V")
-print(V[0])
-print(V[1])
-print(V[2])
-print("Attention 1")
-attention1=attention_scores[0].reshape(-1,1)
-attention1=attention_scores[0][0]*V[0]
-print(attention1)
+print("input1 Attention 1")
+input1_attention1=attention_scores[0].reshape(-1,1)
+input1_attention1=attention_scores[0][0]*V[0]
+print(input1_attention1)
 
-print("Attention 2")
-attention2=attention_scores[0][1]*V[1]
-print(attention2)
+print("input1 Attention 2")
+input1_attention2=attention_scores[0][1]*V[1]
+print(input1_attention2)
 
-print("Attention 3")
-attention3=attention_scores[0][2]*V[2]
-print(attention3)
+print("input1 Attention 3")
+input1_attention3=attention_scores[0][2]*V[2]
+print(input1_attention3)
+
+
+
+
+print("input2 Attention 1")
+input2_attention1=attention_scores[1].reshape(-1,1)
+input2_attention1=attention_scores[1][0]*V[0]
+print(input2_attention1)
+
+print("input2 Attention 2")
+input2_attention2=attention_scores[1][1]*V[1]
+print(input2_attention2)
+
+print("input2 Attention 3")
+input2_attention3=attention_scores[1][2]*V[2]
+print(input2_attention3)
+
+
+
+
+print("input3 Attention 1")
+input3_attention1=attention_scores[2].reshape(-1,1)
+input3_attention1=attention_scores[2][0]*V[0]
+print(input3_attention1)
+
+print("input3 Attention 2")
+input3_attention2=attention_scores[2][1]*V[1]
+print(input3_attention2)
+
+print("input3 Attention 3")
+input3_attention3=attention_scores[2][2]*V[2]
+print(input3_attention3)
 ```
 
 
+######Step7. 결과합산######
 ```py
-######Step7. output matrix 첫 줄을 위해 결과 계산 ######
-print("Step 7: summed the results to create the first line of the output matrix")
-attention_input1=attention1+attention2+attention3
+attention_input1=input1_attention1+input1_attention2+input1_attention3    #input1에 대한
+print(attention_input1)
+
+attention_input2=input2_attention1+input2_attention2+input2_attention3    #input1에 대한
+print(attention_input1)
+
+attention_input3=input3_attention1+input3_attention2+input3_attention3    #input1에 대한
 print(attention_input1)
 ```
+
+
 ```py
 ######Step8. input 3개에 대해 step1~step7적용하기######
 #We assume we have 3 results with learned weights (they were not trained in this example)
