@@ -6,7 +6,7 @@ description: |
 hide_image: true
 tags:
   - deeplearning
-published: false
+published: true
 ---
 
 # 자연어 처리를 위한 트랜스포머, Denis Rothman
