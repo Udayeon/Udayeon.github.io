@@ -9,7 +9,7 @@ tags:
 published: true
 ---
 
-# 자연어 처리를 위한 트랜스포머, Denis Rothman
+# 자연어 처리를 위한 트랜스포머, Denis Rothman - Chapter 01
 * * *
 
 # 1. 트랜스포머 모델 아키텍처
