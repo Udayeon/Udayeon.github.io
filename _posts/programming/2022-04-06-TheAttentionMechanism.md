@@ -15,67 +15,84 @@ published: true
 ```py
 import numpy as np
 from scipy.special import softmax  #출력층에서 softmax함수 사용
-
-
-######Step1.######
-print("Step 1: 3 inputs, d_model=4") #d_model : 몇 차원의 벡터로 만들어 줄지 결정. original에서는 512사용.
-x =np.array([[1.0, 0.0, 1.0, 0.0],   # Input 1 
-             [0.0, 2.0, 0.0, 2.0],   # Input 2
-             [1.0, 1.0, 1.0, 1.0]])  # Input 3   --> input마다 4차원의 벡터로 만들어준다. 
-print(x)
 ```
 
 
+**Step1.입력 표현하기**   
+모든 입력은 세 가지 표현(Key,Query,Value)를 가져야 한다.
 ```py
-######Step2.쿼리,키,밸류 가중치 설정하기######
-print("Step 2: weights 3 dimensions x d_model=4")
+print("Step 1: 3 inputs, d_model=4")  #d_model : 입력벡터 x의 차원 설정(원래는 512인데 4로 축소)
+x =np.array([[1.0, 0.0, 1.0, 0.0],    # Input 1 
+             [0.0, 2.0, 0.0, 2.0],    # Input 2
+             [1.0, 1.0, 1.0, 1.0]])   # Input 3   --> input마다 4차원의 벡터로 만들어준다. 
+print(x)
+```
+![image](https://user-images.githubusercontent.com/69246778/161908699-517a6b2c-a8bf-49e2-87c6-6cb5a7581bb8.png)
+![image](https://user-images.githubusercontent.com/69246778/161909189-51cbd4a1-0ac4-4cf8-8940-4af6bea8d52d.png)
+
+
+**Step2.가중치 행렬 초기화**  
+*Vaswani(2017)* 에서 기술된 가중치 행렬은 64차원이지만 3차원으로 축소한다.  
+```py
+print("Step 2: weights 3 dimensions x d_model=4")  #4차원 입력벡터 x의 각 요소마다 3차원의 가중치 행렬을 부여한다.
 
 #쿼리
 print("w_query")
-w_query =np.array([[1, 0, 1],
-                   [1, 0, 0],
-                   [0, 0, 1],
-                   [0, 1, 1]])
+w_query =np.array([[1, 0, 1],     #input 첫번째 요소에 대한 3차원 Query가중치
+                   [1, 0, 0],     #input 두번째 요소에 대한 3차원 Query가중치     
+                   [0, 0, 1],     #input 세번째 요소에 대한 3차원 Query가중치
+                   [0, 1, 1]])    #input 네번째 요소에 대한 3차원 Query가중치
 print(w_query)
 
 
 #키
 print("w_key")
-w_key =np.array([[0, 0, 1],
-                 [1, 1, 0],
-                 [0, 1, 0],
-                 [1, 1, 0]])
+w_key =np.array([[0, 0, 1],     #input 첫번째 요소에 대한 3차원 Key가중치
+                 [1, 1, 0],     #input 두번째 요소에 대한 3차원 Key가중치
+                 [0, 1, 0],     #input 세번째 요소에 대한 3차원 Key가중치
+                 [1, 1, 0]])    #input 네번째 요소에 대한 3차원 Key가중치
 print(w_key)
 
 
 #밸류
 print("w_value")
-w_value = np.array([[0, 2, 0],
-                    [0, 3, 0],
-                    [1, 0, 3],
-                    [1, 1, 0]])
+w_value = np.array([[0, 2, 0],     #input 첫번째 요소에 대한 3차원 value가중치
+                    [0, 3, 0],     #input 두번째 요소에 대한 3차원 value가중치
+                    [1, 0, 3],     #input 세번째 요소에 대한 3차원 value가중치
+                    [1, 1, 0]])    #input 네번째 요소에 대한 3차원 value가중치
 print(w_value)
 ```
 
-```py
-######Step3.쿼리,키,밸류 계산하기######
-#쿼리
-print("Step 3: Matrix multiplication to obtain Q,K,V")
+![image](https://user-images.githubusercontent.com/69246778/161910331-9a2b57b4-3c72-4a2a-9c2a-32467f9eadad.png)
+모델에 가중치 행렬 추가됨
 
-print("Keys: x * w_key")  #x:input matrix
-K=np.matmul(x,w_key)
-print(K)
+
+
+
+**Step3.Q,K,V를 얻기 위한 행렬 곱셈
+```py
+# x는 (3,1,4)차원을 갖고 w_query는 (4,1,3)차원을 가진다.
+# 결과는 (3,1,3)
+#쿼리
+print("Queries: x * w_query")
+Q=np.matmul(x,w_query)     #input(3x1x4)과 쿼리가중치행렬(4x1x3)을 곱한다. -->결과 (3x1x3)행렬
+print(Q)
 
 #키
 print("Keys: x * w_key")
-K=np.matmul(x,w_key)
+K=np.matmul(x,w_key)     #input(1x4)과 키가중치행렬(4x3)을 곱한다. -->결과 1x3행렬
 print(K)
 
 #밸류
 print("Values: x * w_value")
-V=np.matmul(x,w_value)
+V=np.matmul(x,w_value)     #input(1x4)과 밸류가중치행렬(4x3)을 곱한다. -->결과 1x3행렬
 print(V)
 ```
+![image](https://user-images.githubusercontent.com/69246778/161913463-858301a9-06b3-4f67-a754-896ba01008a6.png)
+![image](https://user-images.githubusercontent.com/69246778/161913509-1bb2da50-2ea1-4108-b724-e020b48c3da7.png)
+![image](https://user-images.githubusercontent.com/69246778/161913537-5ac95f67-f431-4e6b-a219-316f1bb4dff4.png)
+
+
 
 
 ```py
