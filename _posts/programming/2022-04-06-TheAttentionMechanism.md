@@ -99,7 +99,7 @@ print(V)
 |input3|[2,1,3]|[2,3,1]|[2,6,3]|
 
 
-**Step4. 스케일링된 어텐션 점수**
+**Step4. 스케일링된 어텐션 점수** 
 ![image](https://user-images.githubusercontent.com/69246778/161914543-1b83e6f5-93fc-4ab5-b65d-7cb32da406b3.png)
 
 ```py
@@ -109,7 +109,7 @@ attention_scores = (Q @ K.transpose())/k_d
 print(attention_scores)
 ```
 
-**Step5. 각 벡터에 대한 스케일링 된 softmax어텐션 점수(step4를 소프트맥스 함수에 대입) **
+**Step5. 각 벡터에 대한 스케일링 된 softmax어텐션 점수(step4를 소프트맥스 함수에 대입)**
 ```py
 attention_scores[0]=softmax(attention_scores[0])
 attention_scores[1]=softmax(attention_scores[1])
