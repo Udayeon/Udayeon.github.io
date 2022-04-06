@@ -27,7 +27,7 @@ x =np.array([[1.0, 0.0, 1.0, 0.0],    # Input 1
              [1.0, 1.0, 1.0, 1.0]])   # Input 3   --> input마다 4차원의 벡터로 만들어준다. 
 print(x)
 ```
-![image](https://user-images.githubusercontent.com/69246778/161908699-517a6b2c-a8bf-49e2-87c6-6cb5a7581bb8.png)
+![image](https://user-images.githubusercontent.com/69246778/161908699-517a6b2c-a8bf-49e2-87c6-6cb5a7581bb8.png)   
 ![image](https://user-images.githubusercontent.com/69246778/161909189-51cbd4a1-0ac4-4cf8-8940-4af6bea8d52d.png)
 
 
@@ -63,13 +63,13 @@ w_value = np.array([[0, 2, 0],     #input 첫번째 요소에 대한 3차원 val
 print(w_value)
 ```
 
-![image](https://user-images.githubusercontent.com/69246778/161910331-9a2b57b4-3c72-4a2a-9c2a-32467f9eadad.png)
+![image](https://user-images.githubusercontent.com/69246778/161910331-9a2b57b4-3c72-4a2a-9c2a-32467f9eadad.png)   
 모델에 가중치 행렬 추가됨
 
 
 
 
-**Step3.Q,K,V를 얻기 위한 행렬 곱셈
+**Step3.Q,K,V를 얻기 위한 행렬 곱셈**
 ```py
 # x는 (3,1,4)차원을 갖고 w_query는 (4,1,3)차원을 가진다.
 # 결과는 (3,1,3)
@@ -88,12 +88,15 @@ print("Values: x * w_value")
 V=np.matmul(x,w_value)     #input(1x4)과 밸류가중치행렬(4x3)을 곱한다. -->결과 1x3행렬
 print(V)
 ```
-![image](https://user-images.githubusercontent.com/69246778/161913463-858301a9-06b3-4f67-a754-896ba01008a6.png)
-![image](https://user-images.githubusercontent.com/69246778/161913509-1bb2da50-2ea1-4108-b724-e020b48c3da7.png)
-![image](https://user-images.githubusercontent.com/69246778/161913537-5ac95f67-f431-4e6b-a219-316f1bb4dff4.png)
+![image](https://user-images.githubusercontent.com/69246778/161913463-858301a9-06b3-4f67-a754-896ba01008a6.png)   
+![image](https://user-images.githubusercontent.com/69246778/161913509-1bb2da50-2ea1-4108-b724-e020b48c3da7.png)   
+![image](https://user-images.githubusercontent.com/69246778/161913537-5ac95f67-f431-4e6b-a219-316f1bb4dff4.png)   
 
-
-
+|input|Q|K|V|
+|-----|-|-|-|
+|input1|[1,0,2]|[0,1,1]|[1,2,3]|
+|input2|[2,2,2]|[4,4,0]|[2,8,0]|
+|input3|[2,1,3]|[2,3,1]|[2,6,3]|
 
 ```py
 ######Step4.Attention Score계산######
