@@ -168,28 +168,32 @@ print(input3_attention3)
 ```
 
 
-######Step7. 결과합산######
+**Step7. 결과합산**
 ```py
 attention_input1=input1_attention1+input1_attention2+input1_attention3    #input1에 대한
 print(attention_input1)
 
 attention_input2=input2_attention1+input2_attention2+input2_attention3    #input1에 대한
-print(attention_input1)
+print(attention_input2)
 
 attention_input3=input3_attention1+input3_attention2+input3_attention3    #input1에 대한
-print(attention_input1)
+print(attention_input3)
 ```
+![image](https://user-images.githubusercontent.com/69246778/161916678-87044908-79e6-4a11-9de0-4e23a380a1e8.png)
 
 
+**Step8. d_model을 64차원으로 확장**
 ```py
-######Step8. input 3개에 대해 step1~step7적용하기######
 #We assume we have 3 results with learned weights (they were not trained in this example)
 #We assume we are implementing the original Transformer paper. We will have 3 results of 64 dimensions each
 attention_head1=np.random.random((3, 64))  #64차원 결과 3개를 갖는다고 가정
 print(attention_head1)
 ```
+
+
+
+**Step9. 어텐션 서브레이어 헤드들의 출력**
 ```py
-######Step9. 8개의 어텐션 서브레이어 head를 훈련 ######
 z0h1=np.random.random((3, 64))
 z1h2=np.random.random((3, 64))
 z2h3=np.random.random((3, 64))
@@ -200,18 +204,20 @@ z6h7=np.random.random((3, 64))
 z7h8=np.random.random((3, 64))
 print("shape of one head",z0h1.shape,"dimension of 8 heads",64*8)
 ```
+
+
+**Step10. 헤드 출력 잇기**
 ```py
-######Step10. output 512차원을 얻기 위해 head 1부터 8까지 연결######
 print("Step 10: Concatenation of heads 1 to 8 to obtain the original 8x64=512 output dimension of the model")
 output_attention=np.hstack((z0h1,z1h2,z2h3,z3h4,z4h5,z5h6,z6h7,z7h8))
 print(output_attention)
 ```
+
 ```py
-######Step11. Transformer설치######
 #@title Transformer Installation
 !pip -qq install transformers
-```
-```py
+
+
 ######Step12. 영어를 프랑스어로 번역######
 from transformers import pipeline     #Transformer에서 pipeline모듈 import
 translator = pipeline("translation_en_to_fr") #en to fr옵션 선택
