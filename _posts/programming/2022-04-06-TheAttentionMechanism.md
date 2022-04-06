@@ -119,7 +119,7 @@ print(attention_scores[1])
 print(attention_scores[2])
 ```
 
-**Step6. 최종 어텐션 표현(step5에 V곱하기), input1,2,3모두 **
+**Step6. 최종 어텐션 표현(step5에 V곱하기), input1,2,3모두**
 ```py
 print("input1 Attention 1")
 input1_attention1=attention_scores[0].reshape(-1,1)
