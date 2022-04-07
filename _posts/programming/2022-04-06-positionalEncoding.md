@@ -72,8 +72,8 @@ for i in sent_tokenize(f):      #step2에서 만든 문자열데이터 f에 대�
 model2 = gensim.models.Word2Vec(data, min_count = 1, size = 512,window = 5, sg = 1) 
 
 # 1-The 2-black 3-cat 4-sat 5-on 6-the 7-couch 8-and 9-the 10-brown 11-dog 12-slept 13-on 14-the 15-rug.
-word1='black'
-word2='brown'
+word1='black'	#중심단어
+word2='brown'	#중심단어
 pos1=2		#'black'위치
 pos2=10		#'brown'위치
 a=model2[word1]	#model2를 이용해 word2vec적용
