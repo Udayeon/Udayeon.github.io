@@ -71,13 +71,14 @@ Policy는 **Deterministic(결정적)**와 **Stochastic(확률적)** 으로 나�
 따라서, TRPO만큼의 성능은 지키면서 위의 문제를 해결하기 위한 **PPO**가 제안된다.
    
 <참고>
-([TRPO](https://ropiens.tistory.com/82))
-([PPO](https://ropiens.tistory.com/85))
+[TRPO](https://ropiens.tistory.com/82)
+[PPO](https://ropiens.tistory.com/85)
    
 ## 3.2. Parking Lot
 주차장은 **ParkingLot** class로 표현할 수 있다. 각 주차 구역마다 녹색 또는 빨간 불빛으로 자리가 차있는지 비었는지 알 수 있다.
 주차된 차량은 검정색으로 표현된다. 다음의 예제에서는 7번 자리가 비어있는 주차장을 사용한다. **Ego vehicle**의 초기 위치를
 좌표로 설정한다. 그리고 ego vehicle이 주차 할 **target pose**는 앞에서 설정한 **freeSpotIdx**를 이용해 설정한다. 
+
 ```
 freeSpotIdx = 7; %7번자리 비었음
 map = ParkingLot(freeSpotIdx); %7번자리가 비워진 ParkingLot class
