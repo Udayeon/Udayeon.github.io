@@ -68,11 +68,10 @@ Policy는 **Deterministic(결정적)**와 **Stochastic(확률적)** 으로 나�
 **TR(Trust Region)** 은 performance가 상승하는 방향으로 업데이트를 보장할 수 있는 구간을 의미하며 TRPO는 이를 이용해 
 최적정책을 찾는 최적화기법이다. 이 performance를 평가하기 위해 
 **Performance function**을 이용한다. 그러나, **TRPO는 연산이 복잡하고 호환성이 떨어지는 문제**가 있다. 
-따라서, TRPO만큼의 성능은 지키면서 위의 문제를 해결하기 위한 **PPO**가 제안된다.
+따라서, TRPO만큼의 성능은 지키면서 위의 문제를 해결하기 위한 **PPO**가 제안된다.   
+[TRPO](https://ropiens.tistory.com/82)   
+[PPO](https://ropiens.tistory.com/85)   
    
-<참고>
-[TRPO](https://ropiens.tistory.com/82)
-[PPO](https://ropiens.tistory.com/85)
    
 ## 3.2. Parking Lot
 주차장은 **ParkingLot** class로 표현할 수 있다. 각 주차 구역마다 녹색 또는 빨간 불빛으로 자리가 차있는지 비었는지 알 수 있다.
