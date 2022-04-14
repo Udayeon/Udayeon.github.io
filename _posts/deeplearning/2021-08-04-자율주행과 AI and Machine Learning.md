@@ -6,7 +6,7 @@ description: |
 hide_image: true
 tags:
   - deeplearning
-published: false
+published: True
 ---
 
 # 자율주행과 AI & Machine Learning
