@@ -7,8 +7,8 @@ hide_image: true
 tags:
   - deeplearning
 published: true
-use_math: true
 ---
+
 
 # 강화학습(Reinforcement Learning)
 * * *
@@ -289,5 +289,3 @@ freeSpotIdx = 7;  % free spot location
 sim(mdl);
 ```
 
-# 4. Results
-# 
