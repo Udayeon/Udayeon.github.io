@@ -9,7 +9,7 @@ tags:
 published: true
 ---
 
-(Matlab) YOLOv2를 활용한 Multi objet Detector 1 - labeling
+# (Matlab) YOLOv2를 활용한 Multi objet Detector 1 - labeling
 
 # 1. Training Data labeling
 Machine Learning의 방법론 중 하나인 Deep Learning에서, 지도학습(Supervised Learning)을 하기 위해선, 주어지는 데이터에 대해 Label이 
