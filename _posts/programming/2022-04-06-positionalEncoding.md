@@ -5,7 +5,7 @@ description: |
   Positinal Encoding 예제
 hide_image: true
 tags:
-  - deeplearning
+  - programming
 published: true
 ---
 
