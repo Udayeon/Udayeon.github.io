@@ -12,7 +12,7 @@ author: Udayeon
 published: true
 ---
 
-# (Review) Low-drift and real-time lidar odometry and mapping
+# Low-drift and real-time lidar odometry and mapping
 
 [Low-drift and real-time lidar odometry and mapping](https://ieeexplore.ieee.org/document/7995716/metrics#metrics)   
 - **Author** Ji Zhang1 · Sanjiv Singh1
