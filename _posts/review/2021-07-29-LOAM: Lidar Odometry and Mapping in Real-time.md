@@ -12,7 +12,7 @@ author: Udayeon
 published: true
 ---
 
-# (Review) LOAM: Lidar Odometry and Mapping in Real-time
+# LOAM: Lidar Odometry and Mapping in Real-time
 
 [LOAM: Lidar Odometry and Mapping in Real-time](https://ieeexplore.ieee.org/document/7995716/metrics#metrics)   
 - **Author** J. Zhang and S. Singh
