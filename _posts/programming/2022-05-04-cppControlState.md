@@ -2,7 +2,7 @@
 layout: post
 title: 
 description: |
-  c++ 기본
+  c++ 제어문, if switch while for ...
 hide_image: true
 tags:
   - programming
