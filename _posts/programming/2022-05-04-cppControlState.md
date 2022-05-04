@@ -2,7 +2,7 @@
 layout: post
 title: 
 description: |
-  c++ 제어문, if switch while for ...
+  선택문, 반복문, 분기문
 hide_image: true
 tags:
   - programming
