@@ -10,10 +10,10 @@ published: true
 ---
 
 # Better plain ViT baselines for ImageNet-1k
-[https://arxiv.org/pdf/2205.01580v1.pdf]
+[링크](https://arxiv.org/pdf/2205.01580v1.pdf)
 * * *
 
-# 1. 본문제목
+# 1. 
 
 
 ## 1.1. 소제목
