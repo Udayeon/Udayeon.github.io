@@ -6,7 +6,7 @@ description: |
 hide_image: true
 tags:
   - review
-published: false
+published: true
 ---
 
 # Better plain ViT baselines for ImageNet-1k
