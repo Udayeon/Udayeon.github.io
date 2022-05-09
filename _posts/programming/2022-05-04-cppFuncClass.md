@@ -65,7 +65,27 @@ void main()
 자료형 함수이름(매개변수 리스트);
 ```
 
+**예제**
+```c++
+#include <iostream>
+using namespace std;
+int max(int,int);  //함수 선언. 정수형 변수 2개를 사용할 예정임을 알려줌.
 
+void main()
+{
+  int a, b;
+  cout<<"\n 정수값을 두 개 입력 : ";
+  cin >> a >> b;
+  cout << "최대값 : " << max(a,b) << "\n" ;
+}
+
+int max(int x, int y) //함수 정의
+{
+  return ((x>y) ? x:y); //x가 y보다 크면 x,그렇지 않으면 y출력
+}
+```
+
+## 1.3. 선행처리자
 
 
 
