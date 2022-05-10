@@ -196,13 +196,13 @@ print(a.num1)
 print(a.num2)
 >>2
 print(a.add())
->> num1 + num2
+>>7
 print(a.sub())
->> num1 - num2
+>>3
 print(a.div())
->> num1 / num2
+>>2.5
 print(a.mul())
->> num1 * num2
+>>10
 ```
 
     
