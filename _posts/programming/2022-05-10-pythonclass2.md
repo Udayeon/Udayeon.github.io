@@ -12,7 +12,7 @@ published: true
 # (python) Class 상속과 super()
 * * *
 
-# 파이썬 클래스 상속
+# 1.파이썬 클래스 상속
 ```py
 class Person:
   def __init__(self,name,age):
@@ -103,3 +103,39 @@ a.get_grade()
 제 나이는 27입니다.
 제 성적은 A입니다.
 ```
+
+# 2.다른 메서드 구현
+```py
+class Person:
+    def __init__(self, name, age):
+        self.name = name
+        self.age = age
+
+    def get_name(self):
+        print(f'제 이름은 {self.name}입니다.')
+
+    def get_age(self):
+        print(f'제 나이는 {self.age}입니다.')
+
+
+class Person_info(Person):
+    def __init__(self, name, age, grade):
+        super().__init__(name, age)
+        self.grade = grade
+
+    def get_name(self):
+        print(f'저는 {self.name}입니다.')
+        
+    def get_grade(self):
+        print(f'제 성적은 {self.grade}입니다.')
+
+aa = Person("dy",27)
+aa.get_name()
+a = Person_info("dy", 27, "A")
+a.get_name()
+```
+```
+제 이름은 dy입니다.
+저는 dy입니다.
+```
+메서드 이름은 같지만 class에 따라 다른 값이 출력되게 할 수 있음. 
