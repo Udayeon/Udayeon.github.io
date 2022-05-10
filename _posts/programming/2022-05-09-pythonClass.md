@@ -109,7 +109,7 @@ print(cal2.add(7))
 - 함수 실행 중에, 함수 자신을 다시 호출할 수 있다.
 
 
-# __init__과 self
+# 2. __init__과 self
 ```py
 class some_class:
   def __init__(self,something):
@@ -158,5 +158,8 @@ dy
 161
 48
 ```
+
+# 3. 예제
+
 
     
