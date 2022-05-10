@@ -146,6 +146,17 @@ class MyStatus:
     print(self.weight)
 
 a=MyStatus(27,"DY",161,48)
+a.print_age()
+a.print_name()
+a.print_height()
+a.print_weight()
+```
+
+```py
+27
+dy
+161
+48
 ```
 
     
