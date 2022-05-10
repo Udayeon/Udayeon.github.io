@@ -127,7 +127,7 @@ class some_class:
 
 ```py
 class MyStatus:
-  def __init__(self,age,name,height,weight):
+  def __init__(self,age,name,height,weight): 
     self.age = age
     self.name = name
     self.height = height
@@ -159,7 +159,50 @@ dy
 48
 ```
 
-# 3. 예제
+# 3. 예제: 사칙연산 계산기 만들기
+```py
+class Calculator:
+  def __init__(self, num1, num2): #초기화 메서드
+    self.num1 = num1
+    self.num2 = num2
+    
+  def setdata(self,num1,num2):  #num1,num2 변수를 각각 self.num1과 self.num2에 저장
+    self.num1 = num1
+    self.num2 = num2
+    
+  def add(self):
+    result = self.num1 + self.num2
+    return result
+    
+  def sub(self):
+    result = self.num1 - self.num2
+    return result
+    
+  def div(self):
+    result = self.num1 / self.num2
+    return result
+    
+  def mul(self):
+    result = self.num1 * self.num2
+    return result
+    
+```
 
+```
+a= Calculator(5,2)
+
+print(a.num1)
+>>5
+print(a.num2)
+>>2
+print(a.add())
+>> num1 + num2
+print(a.sub())
+>> num1 - num2
+print(a.div())
+>> num1 / num2
+print(a.mul())
+>> num1 * num2
+```
 
     
