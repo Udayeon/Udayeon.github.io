@@ -12,7 +12,7 @@ published: true
 # (python) Class 상속과 super()
 * * *
 
-# 1. 파이썬 클래스 상속
+# 파이썬 클래스 상속
 ```py
 class Person:
   def __init__(self,name,age):
