@@ -74,4 +74,16 @@ return 0;
 }
 ```
 
-# 1.2.
+## 1.2. Ros tutorial
+
+### 1.2.a. 
+```c++
+pcl::PointXYZ searchPoint; // set Search Point : (0, 0, 0)
+searchPoint.x = 0;
+searchPoint.y = 0;
+searchPoint.z = 0;
+float radius = 3;
+```
+![image](https://user-images.githubusercontent.com/69246778/170202788-53e1977f-860c-458e-a80b-6d40eb3d4bcb.png)
+
+
