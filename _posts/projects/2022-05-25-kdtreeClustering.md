@@ -53,7 +53,7 @@ for(int i = 0; i < pointIdxRadiusSearch.size (); ++i)
 filteredCloud.points.push_back(inputCloud.points[pointIdxRadiusSearch[i]]);
 sensor_msgs::PointCloud2 output;
 pcl::toROSMsg(filteredCloud, output);
-output.header.frame_id = "/map";
+output.header.frame_id = "/map";  //3m이내에 있는 점들 출력
 pub.publish(output);
 }
 
