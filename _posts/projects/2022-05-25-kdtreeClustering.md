@@ -2,20 +2,25 @@
 layout: post
 title: 
 description: |
-  voxel grid filter
+  ros튜토리얼 - kdtree , clustering
 hide_image: true
 tags:
   - projects
 published: true
 ---
 
-# (Ros) Point Cloud Filtering - Voxel , Passthrough
+# (Ros) Point Cloud Filtering - kdtree , clustering
 * * *
 
-# 1. Voxel grid filter
-![image](https://user-images.githubusercontent.com/69246778/170190024-9935ab51-95a7-4286-96ed-8d5f977fabe2.png)
-point 5개가 1개의 Voxel로 표현된다. 그리고 Voxel내 점들의 중심점 하나만 남기고 나머지 점은 제거한다. 즉, 데이터의 크기가 1/5로 줄어든 것. 
-voxel의 크기(=leaf size)를 크게 잡으면 더 많은 점을 하나의 데이터로 축소할 수 있다. 대신 물체 표현력도 낮아진다. 
-따라서, 물체표현력과 데이터 크기의 트레이드 오프를 잘 고려하여 적절한 voxel size 결정하는 것이 관건이다.
+# 1. kdtree
+![image](https://user-images.githubusercontent.com/69246778/170198765-297842ed-64d0-4fa3-b99d-f1ae48f633eb.png)
+![image](https://user-images.githubusercontent.com/69246778/170199064-9f947efa-7f20-4454-9d64-693b592b7e2d.png)
+K차원으로 공간상의 점들을 정리하는 자료구조.   
+   
+Point cloud에서는 두 가지 방법이 있다.
+* 초기에 점의 갯수를 설정하고 그 갯수가 만족될 때까지 영역을 탐색하는 방법.
+* 탐색 시작점을 기준으로 특정 반경 내에 있는 모든 포인트를 탐색하는 방법.
+원하는 영역만 segmentation할 수 있다. 
 
+ 
 ## 1.1. Code
