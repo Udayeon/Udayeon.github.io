@@ -184,10 +184,9 @@ ec.setMaxClusterSize (25000);
 ![image](https://user-images.githubusercontent.com/69246778/170208404-c62eef7b-e01a-408f-90e4-e54182f10d34.png)
 
 ### 1.2.b.
-아래와 같은 raw data이용.
+아래와 같은 raw data이용.   
 ![image](https://user-images.githubusercontent.com/69246778/170214759-89fb1549-5150-4fa9-a17f-523ade313c88.png)
 ```c++
-
 #include <ros/ros.h>
 #include <pcl/point_types.h>
 #include <pcl_conversions/pcl_conversions.h>
@@ -238,5 +237,70 @@ pub = nh.advertise<sensor_msgs::PointCloud2>("/passPC", 1);
 ros::spin();
 return 0;
 }
+```
 
+** 1.5m이내의 점들을 클러스터링. 군집 4개 나와야 함.
+```c++
+#include <ros/ros.h>
+#include <pcl/point_types.h>
+#include <pcl_conversions/pcl_conversions.h>
+#include <pcl/kdtree/kdtree.h>
+#include <pcl/segmentation/extract_clusters.h>
+#include <vector>
+ros::Publisher pub1;
+ros::Publisher pub2;
+void callbackFcn(const sensor_msgs::PointCloud2::ConstPtr& msg)
+{
+pcl::PointCloud<pcl::PointXYZ> inputCloud;
+pcl::fromROSMsg(*msg, inputCloud);
+pcl::search::KdTree<pcl::PointXYZ>::Ptr kdtree (new pcl::search::KdTree<pcl::PointXYZ>);
+kdtree->setInputCloud (inputCloud.makeShared());
+
+
+std::vector<pcl::PointIndices> clusterIndices;
+pcl::EuclideanClusterExtraction<pcl::PointXYZ> ec;
+ec.setClusterTolerance (1.5); // set distance threshold = 1.5m
+ec.setMinClusterSize (10); // set Minimum Cluster Size
+ec.setMaxClusterSize (25000); // set Maximum Cluster Size
+ec.setSearchMethod (kdtree);
+ec.setInputCloud (inputCloud.makeShared());
+ec.extract (clusterIndices);
+
+
+int clusterN = 1;
+std::vector<pcl::PointIndices>::const_iterator it;
+for (it = clusterIndices.begin (); it != clusterIndices.end (); ++it)
+{
+pcl::PointCloud<pcl::PointXYZ> filteredCloud;
+for (std::vector<int>::const_iterator pit = it->indices.begin (); pit != it->indices.end (); ++pit)
+filteredCloud.push_back (inputCloud[*pit]);
+sensor_msgs::PointCloud2 output;
+pcl::toROSMsg(filteredCloud, output);
+output.header.frame_id = "/map";
+clusterN == 1 ? pub1.publish(output) : pub2.publish(output); //clusterN==1이 참일 때 pub1.publish(output)반환, 아니면 pub2.publish(output)반환
+clusterN++;
+}
+}
+
+
+
+int main(int argc, char** argv)
+{
+ros::init(argc, argv, "clustering");
+ros::NodeHandle nh;
+// << Subscribe Topic >>
+// topic name : /passPC
+// topic type : sensor_msgs::PointCloud2
+ros::Subscriber sub = nh.subscribe<sensor_msgs::PointCloud2>("/passPC", 1, callbackFcn);
+// << Publish Topic >>
+// topic name : /cluster1PC
+// topic type : sensor_msgs::PointCloud2
+pub1 = nh.advertise<sensor_msgs::PointCloud2>("/cluster1PC", 1);
+// << Publish Topic >>
+// topic name : /cluster2PC
+// topic type : sensor_msgs::PointCloud2
+pub2 = nh.advertise<sensor_msgs::PointCloud2>("/cluster2PC", 1);
+ros::spin();
+return 0;
+}
 ```
