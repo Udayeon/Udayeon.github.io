@@ -2,7 +2,7 @@
 layout: post
 title: 
 description: |
-  voxel grid filter
+  ros튜토리얼 - Voxel filter, Passthrough filter
 hide_image: true
 tags:
   - projects
