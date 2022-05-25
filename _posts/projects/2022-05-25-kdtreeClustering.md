@@ -185,3 +185,58 @@ ec.setMaxClusterSize (25000);
 
 ### 1.2.b.
 아래와 같은 raw data이용.
+![image](https://user-images.githubusercontent.com/69246778/170214759-89fb1549-5150-4fa9-a17f-523ade313c88.png)
+```c++
+
+#include <ros/ros.h>
+#include <pcl/point_types.h>
+#include <pcl_conversions/pcl_conversions.h>
+#include <pcl/filters/passthrough.h>
+ros::Publisher pub;
+void callbackFcn(const sensor_msgs::PointCloud2::ConstPtr& msg)
+{
+//사용한 PointCloud 변수들을 미리 모두 선언한다.
+pcl::PointCloud<pcl::PointXYZ> inputCloud;
+pcl::PointCloud<pcl::PointXYZ> xfilteredCloud; 
+pcl::PointCloud<pcl::PointXYZ> xyfilteredCloud;
+
+
+pcl::fromROSMsg(*msg, inputCloud);
+
+//x방향 filter
+pcl::PassThrough<pcl::PointXYZ> xfilter;  //필터이름은 xfilter
+xfilter.setInputCloud (inputCloud.makeShared());  //xfilter를 inputCloud에 적용.
+xfilter.setFilterFieldName ("x"); // set Axis(x)  //x방향에 대해
+xfilter.setFilterLimits (-3.0, 4.0); // -3.0~4.0범위
+xfilter.setFilterLimitsNegative (true); // 범위를 제외한 나머지를 살린다
+xfilter.filter (xfilteredCloud);  //x범위가 -3.0~4.0인 data만 남음.
+pcl::PassThrough<pcl::PointXYZ> yfilter;  //필터이름 yfilter
+yfilter.setInputCloud (xfilteredCloud.makeShared());  //xfilter 적용한 결과물인 xfilteredCloud에 적용
+yfilter.setFilterFieldName ("y"); // y방향에 대해  
+yfilter.setFilterLimits (-2.0, 3.0); // -2.0~3.0범위
+yfilter.setFilterLimitsNegative (true); // 범위를 제외한 나머지를 살린다.
+yfilter.filter (xyfilteredCloud); 
+
+sensor_msgs::PointCloud2 output;
+pcl::toROSMsg(xyfilteredCloud, output);
+output.header.frame_id = "/map";
+pub.publish(output);
+}
+
+int main(int argc, char** argv)
+{
+ros::init(argc, argv, "passthrough");
+ros::NodeHandle nh;
+// << Subscribe Topic >>
+// topic name : /voxelPC
+// topic type : sensor_msgs::PointCloud2
+ros::Subscriber sub = nh.subscribe<sensor_msgs::PointCloud2>("/vLidarPC", 1, callbackFcn);
+// << Publish Topic >>
+// topic name : /passPC
+// topic type : sensor_msgs::PointCloud2
+pub = nh.advertise<sensor_msgs::PointCloud2>("/passPC", 1);
+ros::spin();
+return 0;
+}
+
+```
