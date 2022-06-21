@@ -40,4 +40,34 @@ def solve(a):
 6
 ```
    
-(2) 
+(2) BAEKJOON 4673번   
+![image](https://user-images.githubusercontent.com/69246778/174744743-cc3fec8e-542e-4db1-8d6c-3f0e766086fa.png)
+```py
+
+def d(n):
+    list_n = list(map(int,list(str(n))))
+    result = sum(list_n)+n
+    return result
+
+
+n_list=[]
+for n in range(1,10001):
+    n_list.append(d(n))
+    
+n_list.sort()
+n_list = set(n_list)
+
+k_list=[]
+for k in range(1,10001):
+    k_list.append(k)
+
+
+k_list = set(k_list)
+result = k_list - n_list
+
+result = list(result)
+result.sort()
+
+for j in range(0,len(result)):
+    print(result[j])
+```
