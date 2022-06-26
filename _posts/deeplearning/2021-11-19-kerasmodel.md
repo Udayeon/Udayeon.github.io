@@ -6,7 +6,7 @@ description: |
 hide_image: true
 tags:
   - deeplearning
-published: false
+published: true
 ---
 
 (python) keras Sequential model만들기
