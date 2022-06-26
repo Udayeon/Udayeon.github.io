@@ -3,7 +3,7 @@ layout: post
 title: (python) keras Sequential model
 description: >
   
-tags: [programming]
+tags: deeplearning
 author: Udayeon
 ---
 
