@@ -5,7 +5,7 @@ description: |
   Attention 구조 
 hide_image: true
 tags:
-  - programming
+  - deeplearning
 published: true
 ---
 
