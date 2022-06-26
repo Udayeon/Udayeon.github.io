@@ -1,17 +1,19 @@
 ---
 layout: post
-title: keras Sequential model 만들기
+title: 
 description: |
-  keras Sequential model 만들기
+  keras Sequential model
 hide_image: true
 tags:
   - deeplearning
 published: true
 ---
 
-(python) keras Sequential model만들기
 
-# tf.keras.models.Sequential 
+# (python) keras Sequential model만들기
+* * * 
+
+# 1. tf.keras.models.Sequential 
 ```py
 
 import os
@@ -26,7 +28,7 @@ model = tf.keras.models.Sequential([
 **unit=16, 활성화함수로 relu 함수를 사용하는 첫 번째 레이어 + unit=10,활성화함수로 softmax를 사용하는 두 번째 레이어**를 순차적으로
 더한 모델을 만든다.
 
-## Dense layer
+## 1.1. Dense layer
 ```py
 import os
 os.environ['TF_CPP_MIN_LOG_LEVEL'] = '2'
@@ -54,7 +56,7 @@ Dense(output크기=16, 활성화함수=relu, 이름=layer_1)
 그림으로 나타내면 다음과 같음
 ![parameter](https://user-images.githubusercontent.com/69246778/142571355-e62457fe-1f2d-4f8b-8711-a4dcc14a84bb.jpg)
 
-## Convo2D, MaxPooling2D
+## 1.2. Convo2D, MaxPooling2D
 ```py
 import os
 os.environ['TF_CPP_MIN_LOG_LEVEL'] = '2'
@@ -86,7 +88,7 @@ MaxPooling2D(kernel size=3x3)
 ![image](https://user-images.githubusercontent.com/69246778/142573000-3e2390cd-645f-438e-af79-00a89130018f.png)
 ![convpooling](https://user-images.githubusercontent.com/69246778/142574150-1799c52e-53e9-4050-bdc7-a6880cf813f0.jpg)
 
-# model.compile
+# 2. model.compile
 ```py
 #Compile the model
 opt =tf.keras.optimizers.Adam(learning_rate=0.005)
