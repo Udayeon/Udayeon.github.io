@@ -1,10 +1,12 @@
 ---
 layout: post
-title: (python) keras Sequential model
-description: >
-  
-tags: deeplearning
-author: Udayeon
+title: 
+description: |
+  keras Sequential model 만들기
+hide_image: true
+tags:
+  - deeplearning
+published: false
 ---
 
 (python) keras Sequential model만들기
