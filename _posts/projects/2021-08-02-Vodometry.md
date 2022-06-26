@@ -1,21 +1,12 @@
 ---
 layout: post
-title: (C++) 간단한 Visual Odometry
-description: >
-    
-tags: [programming]
-author: Udayeon
----
-
----
-layout: post
 title: 
 description: |
   간단한 mono VO를 실행해보고 성능 향상을 위해 파라미터를 바꿔가며 변화를 관찰
 hide_image: true
 tags:
-  - programming
-published: false
+  - projects
+published: true
 ---
 
 
