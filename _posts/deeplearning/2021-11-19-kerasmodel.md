@@ -1,6 +1,6 @@
 ---
 layout: post
-title: 
+title: keras Sequential model 만들기
 description: |
   keras Sequential model 만들기
 hide_image: true
