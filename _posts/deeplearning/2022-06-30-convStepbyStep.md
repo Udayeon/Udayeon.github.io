@@ -9,7 +9,7 @@ tags:
 published: true
 ---
 
-# (python) Convolutional Neural Networks: Step by Ste (1) padding
+# (python) Convolutional Neural Networks: Step by Step - padding
 * * *
 
 
