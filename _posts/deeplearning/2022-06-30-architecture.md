@@ -20,7 +20,6 @@ published: true
 Backbone과 head를 연결짓는 부분. feature map을 정제(refinement) 또는 재구성(reconfiguration)한다.      
 **FPN, PAN**
 
-
 # 3. Head
 Backbone에서 추출한 feature map의 locaton 작업을 수행하는 부분. predict classes와 bounding boxes 작업.   
 
@@ -39,3 +38,5 @@ Backbone에서 추출한 feature map의 locaton 작업을 수행하는 부분. p
 2) Neck : SPP(Spatial Pyramid Pooling), PAN(Path Aggregation Network)
 3) Head : YOLO-v3
 
+# 5. 요약
+![image](https://user-images.githubusercontent.com/69246778/176684168-b4bd1555-87e9-4719-8b04-c1182ae25845.png)
