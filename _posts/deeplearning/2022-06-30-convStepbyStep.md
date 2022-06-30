@@ -72,6 +72,6 @@ batch1의 결과
 batch2의 결과   
 ![image](https://user-images.githubusercontent.com/69246778/176629517-409d6722-d262-4189-8b21-28137a08cc32.png)
 
-size 
+size 비교, batch랑 채널수는 일정하고 크기만 
 ![image](https://user-images.githubusercontent.com/69246778/176629962-bfa302e2-551f-4d2b-8241-eb8e651a7a8b.png)
 
