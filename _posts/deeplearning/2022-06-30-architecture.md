@@ -13,21 +13,22 @@ published: true
 * * *
 
 # 1. Backbone
-입력 이미지를 feature map으로 변환시켜주는 부분
-**ResNet, Darknet, VGG**
+입력 이미지를 feature map으로 변환시켜주는 부분   
+**ResNet, Darknet, VGG, Swin transformer, ViT**
 
 # 2. Neck
-Backbone과 head를 연결짓는 부분. feature map을 정제(refinement) 또는 재구성(reconfiguration)한다.   
+Backbone과 head를 연결짓는 부분. feature map을 정제(refinement) 또는 재구성(reconfiguration)한다.      
 **FPN, PAN**
 
 
 # 3. Head
-Backbone에서 추출한 feature map의 locaton 작업을 수행하는 부분. predict classes와 bounding boxes 작업.
+Backbone에서 추출한 feature map의 locaton 작업을 수행하는 부분. predict classes와 bounding boxes 작업.   
+
 ## 3.1. Sparse Prediction head
-**2-stage detector**(predict classes와 bounding boxes 작업이 분리되어 있다.)에서 사용  
+**2-stage detector**(predict classes와 bounding boxes 작업이 분리되어 있다.)에서 사용     
 **Faster R-CNN**
 ## 3.2. Dense Prediction head
-**1-stage detector**(predict classes와 bounding boxes 작업이 통합되어 있다.)에서 사용
+**1-stage detector**(predict classes와 bounding boxes 작업이 통합되어 있다.)에서 사용   
 **YOLO, SSD**
 
 
