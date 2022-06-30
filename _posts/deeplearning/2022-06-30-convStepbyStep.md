@@ -9,22 +9,13 @@ tags:
 published: true
 ---
 
-# (python) Convolutional Neural Networks: Step by Step
+# (python) Convolutional Neural Networks: Step by Ste (1) padding
 * * *
-
-# 1. 개요
-1. 이미지에 zero padding 적용   
-2. Convolution   
-2.1. Convolution Forward
-2.2. Convolution Backward
-3. Pooling
-3.1. Pooling Forward
-3.2. Pooling Backward
 
 
 # 1. Zero padding
 ![image](https://user-images.githubusercontent.com/69246778/176624846-d6bd5dcb-ef2c-4460-a111-38a1e9c4c6c5.png)
-![image](https://user-images.githubusercontent.com/69246778/176624891-9baadcf7-9e1b-4398-9315-bd95b73f4b07.png)
+![image](https://user-images.githubusercontent.com/69246778/176632353-a23a1e1c-d52f-4089-823e-18aa171de282.png)
 ```py
 # GRADED FUNCTION: zero_pad
 
@@ -74,4 +65,5 @@ batch2의 결과
 
 size 비교, batch랑 채널수는 일정하고 크기만 
 ![image](https://user-images.githubusercontent.com/69246778/176629962-bfa302e2-551f-4d2b-8241-eb8e651a7a8b.png)
+
 
