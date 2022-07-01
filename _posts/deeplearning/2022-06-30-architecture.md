@@ -34,9 +34,9 @@ Backbone에서 추출한 feature map의 locaton 작업을 수행하는 부분. p
 # 4. 예시
 ## 4.1. YOLO v4
 ![image](https://user-images.githubusercontent.com/69246778/176678827-2753a244-f750-4154-b7ad-92374012730f.png)
-1) Backbone : CSP-Darknet53
-2) Neck : SPP(Spatial Pyramid Pooling), PAN(Path Aggregation Network)
-3) Head : YOLO-v3
+1) Backbone : CSP-Darknet53   
+2) Neck : SPP(Spatial Pyramid Pooling), PAN(Path Aggregation Network)   
+3) Head : YOLO-v3   
 
 # 5. 요약
 ![image](https://user-images.githubusercontent.com/69246778/176684168-b4bd1555-87e9-4719-8b04-c1182ae25845.png)
