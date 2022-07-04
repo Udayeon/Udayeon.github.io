@@ -13,7 +13,7 @@ published: true
 * * *
 
 
-# 1. Zero padding
+# Zero padding
 ![image](https://user-images.githubusercontent.com/69246778/176624846-d6bd5dcb-ef2c-4460-a111-38a1e9c4c6c5.png)
 ![image](https://user-images.githubusercontent.com/69246778/176632353-a23a1e1c-d52f-4089-823e-18aa171de282.png)
 ```py
