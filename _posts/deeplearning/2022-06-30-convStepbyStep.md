@@ -17,6 +17,21 @@ published: true
 ![image](https://user-images.githubusercontent.com/69246778/176624846-d6bd5dcb-ef2c-4460-a111-38a1e9c4c6c5.png)
 ![image](https://user-images.githubusercontent.com/69246778/176632353-a23a1e1c-d52f-4089-823e-18aa171de282.png)
 ```py
+import numpy as np
+import h5py
+import matplotlib.pyplot as plt
+
+%matplotlib inline
+plt.rcParams['figure.figsize'] = (5.0, 4.0) # set default size of plots
+plt.rcParams['image.interpolation'] = 'nearest'
+plt.rcParams['image.cmap'] = 'gray'
+
+%load_ext autoreload
+%autoreload 2
+
+np.random.seed(1)
+
+
 # GRADED FUNCTION: zero_pad
 
 def zero_pad(X, pad):  
