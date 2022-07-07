@@ -58,7 +58,52 @@ SwinTransformer 폴더 안에 github을 clone해 놓음.
 
 ### 2.2.3. 각종 version 확인
 ```py
-!python version
+import torch
+import torchvision
+
+!python --version
+print("Torch version:{}".format(torch.__version__))
+print("cuda version: {}".format(torch.version.cuda))
+print("cudnn version:{}".format(torch.backends.cudnn.version()))
+print("Torchvision version:{}".format(torchvision.__version__))
+```
+![image](https://user-images.githubusercontent.com/69246778/177754942-10b9bcc6-65b3-4fe0-8bba-00fe95442ea6.png)
+pytorch만 1.8이상으로 업데이트 해주면 되는 상황.   
+   
+```py
+pip install timm==0.4.12
+pip install opencv-python==4.4.0.46 termcolor==1.1.0 yacs==0.1.8
+```
+이렇게 설치를 다하면   
+![image](https://user-images.githubusercontent.com/69246778/177756402-beafde75-f5ce-4c3d-9515-f8a3ae0ea3de.png)
+런타임 다시 시작하라고 나옴. 
+
+## 2.3. Dataset준비
+ImageNet dataset을 사용한다. [dataset](http://image-net.org/)   
+근데 백만장으로 훈련하는 건 에바라서 걍 평가만 할거임.   
+```py
+URL = "https://raw.githubusercontent.com/SharanSMenon/swin-transformer-hub/main/imagenet_labels.json" # Imagenet labels
+!wget https://www.allaboutbirds.org/guide/assets/photo/306327661-480px.jpg -O house_finch.jpg
+```
+imageNet label jason파일이랑 새 사진 한 장 가져옴. house finch로 분류되는 사진임.
+
+## 2.4. Evaluation
+필요한 모듈 부르고
+```py
+import torch
+import torchvision
+import timm
+from PIL import Image
+```
+   
+timm의 model list에서 swin~이라는 이름을 가진 모델들의 리스트를 확인함.
+```py
+timm.list_models("swin*", pretrained=True) # This will list all the swin transformer models available
+```   
+   
+나는 이 중에 사전 훈련된 swin-T(swin_tiny_patch4_window7_224)를 사용할 거임.
+```py
+model = timm.create_model('swin_base_patch4_window7_224', pretrained=True)
 ```
 
 
