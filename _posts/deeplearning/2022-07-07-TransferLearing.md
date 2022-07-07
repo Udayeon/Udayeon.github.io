@@ -15,7 +15,7 @@ published: true
 # 1. Transfer Learning 이란
 정교한 딥 러닝 모델에는 수백만 개의 매개변수(가중치)가 있으며 이를 처음부터 훈련하려면 종종 많은 양의 컴퓨팅 리소스 데이터가 필요하다.    
 전이 학습은 관련 작업에 대해 이미 훈련된 모델의 일부를 가져와 새 모델에서 재사용함으로써 손쉽게 데이터를 구축하는 기술이다.   
-Computer Vision, Image classification분야에서는 torchvision이나 timm이 여러 SOTA 모델을 제공한다.   
+Computer Vision, Image classification분야에서는 **torchvision이나 timm**이 여러 SOTA 모델을 제공한다.   
 
 # 1.2. Transfer Learning vs fine tuning
 ![image](https://user-images.githubusercontent.com/69246778/177728647-c10127d3-7e53-44f5-b0ab-56cd46bf61b0.png)
