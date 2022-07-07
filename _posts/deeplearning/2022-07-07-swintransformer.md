@@ -100,7 +100,7 @@ timm의 model list에서 swin~이라는 이름을 가진 모델들의 리스트�
 ```py
 timm.list_models("swin*", pretrained=True) # This will list all the swin transformer models available
 ```   
-   
+![image](https://user-images.githubusercontent.com/69246778/177760305-62245044-4898-434b-8466-2f74abee0139.png)
 나는 이 중에 사전 훈련된 swin-T(swin_tiny_patch4_window7_224)를 사용할 거임.
 ```py
 model = timm.create_model('swin_base_patch4_window7_224', pretrained=True)
