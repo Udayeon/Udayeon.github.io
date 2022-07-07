@@ -60,5 +60,24 @@ fc layer를 바꿔주면 된다.
 >> torch.Size([1,10])
 ```
 
-## 3. timm
+# 3. timm
+## 3.1. 필요한 모듈 설치
+```py
+pip install timm
+```
+## 3.2. 모델 불러오기
+```py
+import timm
+model = timm.create_model('resnet18',pretrained=True)
+print(model)
+```
+![image](https://user-images.githubusercontent.com/69246778/177733332-0b64d41e-d879-4fd4-bea7-c6efa24d468d.png)
 
+
+## 3.3. class 10개로 분류하는 모델로 수정하기
+```py
+model=timm.create_model('resnet18',pretrained=True,num_classes=10)
+print(model)
+```
+![image](https://user-images.githubusercontent.com/69246778/177733422-18fbcdaf-cfe6-450e-b05c-e4861a7c508e.png)
+num_class가 10개임.
