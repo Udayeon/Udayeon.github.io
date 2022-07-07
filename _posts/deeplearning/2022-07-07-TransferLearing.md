@@ -21,6 +21,7 @@ Computer Vision, Image classification분야에서는 torchvision이나 timm이 �
 ![image](https://user-images.githubusercontent.com/69246778/177728647-c10127d3-7e53-44f5-b0ab-56cd46bf61b0.png)
 [출처](https://inhovation97.tistory.com/31)
 
+
 # 2. torchvision
 ## 2.1. 필요한 모듈 설치
 ```py
