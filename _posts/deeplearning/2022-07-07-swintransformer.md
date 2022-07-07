@@ -374,4 +374,4 @@ SwinTransformer(
   (head): Linear(in_features=768, out_features=1000, bias=True)
 )
 ```
-
+모델 아키텍쳐를 확인해보면 Swintransformr 블럭으로 구성된 총 4개의 stage(basic layer)가 있음.
