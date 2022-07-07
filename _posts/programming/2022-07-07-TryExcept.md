@@ -47,6 +47,9 @@ try:
 except ZeroDivisionError as e:
     print(e)
 ```
+```py
+>> division by zero #오류 메세지의 내용을 알 수 
+```
 4를 0으로 나누면 **ZeroDivisionError**이 발생. 그럼 except 블록이 수행됨.
 이 때, 오류 메세지 내용을 저장한 **e**를 print할 수 있음. 
 
