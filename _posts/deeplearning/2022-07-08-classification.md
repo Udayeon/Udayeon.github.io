@@ -98,6 +98,7 @@ tensor로 전환된 거에 배치를 추가해줌.
 
 ```py
 batch = transformed.unsqueeze(0) # The model accepts a batch of image, so we create a batch of 1 image.
+                                 # unsqueeze : 0번째 위치에 tensor 차원확장
 ```
 ```py
 >> batch.Size([1, 3, 224, 224]) #이제 model에 넣을 수 있다.
@@ -598,7 +599,7 @@ tensor([[-1.9016e-01,  1.9889e-01,  3.0785e-01,  5.0095e-01,  6.4167e-01,
 output은 이런 형태로 나오는데, 여기서 내가 제시한 이미지일 확률이 가장 높은 class가 큰 숫자를 가짐.
 
 ```py
-class_ = output.argmax(dim=1)
+class_ = output.argmax(dim=1) # argmax(dim=1) : 1행에서 최댓값 출력
 class_
 ```
 ```py
