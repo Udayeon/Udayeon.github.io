@@ -385,7 +385,7 @@ SwinTransformer(
 ```
 모델 아키텍쳐를 확인해보면 Swintransformr 블럭으로 구성된 총 4개의 stage(basic layer)가 있음.
 
-# 6. Evaluate
+# 6. Test
 ```py
 with torch.no_grad():
   output = model(batch) # torch.no_grad() incrases speed by disabling gradients.
