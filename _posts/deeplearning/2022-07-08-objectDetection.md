@@ -9,7 +9,7 @@ tags:
 published: true
 ---
 
-# (Python) Swin Transformer - Image Classification
+# (Python) Swin Transformer - Object Detection
 * * *
 
 # 1. get_started.md
