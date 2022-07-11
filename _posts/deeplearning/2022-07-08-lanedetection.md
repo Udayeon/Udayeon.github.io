@@ -13,7 +13,7 @@ published: True
 * * *
 
 # 1. 논문
-Towards End-to-End Lane Detection: an Instance Segmentation Approach
+[Towards End-to-End Lane Detection: an Instance Segmentation Approach](https://arxiv.org/abs/1802.05591)
 
 
 ## 1.1. 소제목
