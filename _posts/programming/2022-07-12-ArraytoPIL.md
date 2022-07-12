@@ -29,6 +29,6 @@ pil_image.show()
 import cv2
 image = cv2.imread('/content/image0.png', cv2.IMREAD_COLOR) # imread로 열면 type이 array
 
-pil_image = pil_image=Image.fromarray(image) # type = pil image
+pil_image=Image.fromarray(image) # type = pil image
 pil_image.show()
 ```
