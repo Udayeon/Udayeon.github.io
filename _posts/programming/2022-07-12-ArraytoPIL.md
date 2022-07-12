@@ -22,3 +22,7 @@ np_array = np.array(image) # array로 바꿔줌
 pil_image=Image.fromarray(np_array) # type = pil image
 pil_image.show()
 ```
+
+```py
+image = cv2.imread('/content/image0.png', cv2.IMREAD_COLOR) # 이렇게 열면 type이 array
+```
