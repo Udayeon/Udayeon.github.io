@@ -24,5 +24,5 @@ pil_image.show()
 ```
 
 ```py
-image = cv2.imread('/content/image0.png', cv2.IMREAD_COLOR) # 이렇게 열면 type이 array
+image = cv2.imread('/content/image0.png', cv2.IMREAD_COLOR) # imread로 열면 type이 array
 ```
