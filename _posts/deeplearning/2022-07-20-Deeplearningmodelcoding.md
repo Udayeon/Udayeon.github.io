@@ -55,5 +55,10 @@ stage2랑 똑같은데 블럭이 6개(MSA & SW-MSA 3쌍)
 
 # 3. Module
 ## Patch Partition
+## Linear Embedding
 ## Patch Merging
 ## Window shift
+## Attention
+## LN
+## MLP
+
