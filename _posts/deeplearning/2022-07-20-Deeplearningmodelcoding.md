@@ -49,4 +49,11 @@ stage1에서 쪼개놨던 patch를 다시 붙임. 바꿔말하면 patch size를 
 
 ## 2.3. stage3
 stage2랑 똑같은데 블럭이 6개(MSA & SW-MSA 3쌍)
+
+## 2.4. stage4
+다시 블럭 2개 됨. 
+
 # 3. Module
+## Patch Partition
+## Patch Merging
+## Window shift
