@@ -22,7 +22,7 @@ file_names = os.listdir(file_path)
 i = 891
 for name in file_names:
     img = Image.open(str('Label_')+str(i)+'.png') # 해당 폴더 내 파일명이 'Label_1.png'형식으로 되어 있음. 하나씩 연다.
-    area = (0,0,640,174)  # 해당 영역만 남기고 나머지 잘라냄.
+    area = (0,0,640,174) 
     cropped_img = img.crop(area)
     cropped_img.save(str('Label_')+str(i)+'.png')
     i+=1
