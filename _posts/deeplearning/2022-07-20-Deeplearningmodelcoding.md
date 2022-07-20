@@ -47,4 +47,6 @@ shift크기는 window size의 절반으로 설정한다. window size는 절대�
 stage1에서 쪼개놨던 patch를 다시 붙임. 바꿔말하면 patch size를 2배로 하는 셈. 4 * 4를 한 patch로 하던걸 8 * 8을 한 patch로 함.   
 즉, patch Merging은 patch size를 바꾸는 작업. 그 상태에서 Stage1처럼 window로 묶고 swin 블럭에 넣음. 이때, window크기는 처음에 지정한 값이 고정임.
 
+## 2.3. stage3
+stage2랑 똑같은데 블럭이 6개(MSA & SW-MSA 3쌍)
 # 3. Module
