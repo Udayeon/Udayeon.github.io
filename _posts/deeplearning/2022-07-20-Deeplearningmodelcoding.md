@@ -30,11 +30,11 @@ Linear Embedding을 진행하고 이를 Swin block에 넣어준다. 한 stage가
 ### Patch Size : p_H(patch height) * p_W(patch width)
 
 ## 2.1. Stage1
-### Input Image를 잘게 쪼갠 Patch들이 input으로 들어옴.
-![image](https://user-images.githubusercontent.com/69246778/179895906-1554ad01-8c32-4345-b216-db026c162f6a.png)
-patch들을 Window의 고정된 크기만큼 묶어준다.
-만약 patch가 56 * 56 개 있고, window 크기가 7이면 patch 7 * 7 개를 하나의 window로 묶어주는 것.   
-그럼 총 8 * 8개의 window 묶음이 생기는 셈. 만약 patch가 28 * 28 개 있으면, 4 * 4개의 window가 생김.    
+Input Image를 잘게 쪼갠 Patch들이 input으로 들어옴.
+![image](https://user-images.githubusercontent.com/69246778/179895906-1554ad01-8c32-4345-b216-db026c162f6a.png)   
+각 patch들에 대해 Linear Embedding을 진행하고 patch들을 Window의 고정된 크기만큼 묶어준다.   
+만약 patch가 56 * 56 개 있고, window 크기가 7이면 patch 7 * 7 개를 하나의 window로 묶어주는 것. 그럼 총 8 * 8개의 window 묶음이 생기는 셈.   
+만약 patch가 28 * 28 개 있으면, 4 * 4개의 window가 생김.   
 이 window에 대해 첫 block에서 MSA를 진행한다. 둘째 block에서는 window를 약간 shift해서 window내에 포함되는 patch가 달라지도록 한 후에 MSA를 진행(SW-MSA)  
 shift크기는 window size의 절반으로 설정한다. window size는 절대적인 크기를 말하는게 아니라 그 안에 몇 개의 patch가 포함될 수 있는지를 말하는 것임.   
 따라서, patch size가 크면 window의 절대적인 크기 자체도 커지게 됨. 큰 크기의 patch 7개 넣어놓은 window랑 작은 크기의 patch 7개 넣어놓은 window는
@@ -43,10 +43,8 @@ shift크기는 window size의 절반으로 설정한다. window size는 절대�
 ![image](https://user-images.githubusercontent.com/69246778/179896995-98629959-8b4f-4bc8-936a-3cc637b362e6.png)
 
 
-
-
-
 ## 2.2. Stage2
-
+stage1에서 쪼개놨던 patch를 다시 붙임. 바꿔말하면 patch size를 2배로 하는 셈. 4 * 4를 한 patch로 하던걸 8 * 8을 한 patch로 함.   
+즉, patch Merging은 patch size를 바꾸는 작업. 그 상태에서 Stage1처럼 window로 묶고 swin 블럭에 넣음. 이때, window크기는 처음에 지정한 값이 고정임.
 
 # 3. Module
