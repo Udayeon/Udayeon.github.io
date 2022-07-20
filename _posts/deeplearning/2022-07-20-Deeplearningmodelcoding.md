@@ -14,14 +14,14 @@ published: True
 
 # 1. 전체적인 Architecture
 ![image](https://user-images.githubusercontent.com/69246778/179893632-82cca084-8d7e-437b-b30b-869fab098fd8.png)
-swin transformer의 경우, 크게 4개의 stage로 구성되어 있다. 각 stage별로 swin transformer block이 2개 혹은
-6개 들어있는데 이 block은 기본적으로 2개가 연속적으로 붙어 있다. 첫 block은 W-MSA를 하고 둘째 block은
-sW-MSA를 하는 것이 차이점이다. 예를 들어, stage3의 경우 swin transformer block이 6개 들어있는데 이는
+swin transformer의 경우, 크게 **4개의 stage**로 구성되어 있다. 각 stage별로 swin transformer block이 2개 혹은
+6개 들어있는데 이 **block은 기본적으로 2개가 연속적**으로 붙어 있다. **첫 block은 W-MSA**를 하고 **둘째 block은
+sW-MSA**를 하는 것이 차이점이다. 예를 들어, stage3의 경우 swin transformer block이 6개 들어있는데 이는
 W-MSA를 하는 블럭과 SW-MSA를 하는 블럭이 연속되어 3쌍 있는 셈.   
    
-전체적인 플로우는, 먼저 3채널의 input 이미지를 Patch로 나누어 첫 번째 stage에 넣어줌. 각 Patch에 대해
-Linear Embedding을 진행하고 이를 Swin block에 넣어준다. 한 stage가 끝나면 다음 stage로 넘어가는데
-다음 stage의 블럭에 넣기 전에 잘려있던 patch를 Merging해준다.
+전체적인 플로우는, 먼저 3채널의 **input 이미지를 Patch로 나누어** 첫 번째 stage에 넣어줌. 각 **Patch에 대해
+Linear Embedding**을 진행하고 이를 **Swin block**에 넣어준다. 한 stage가 끝나면 다음 stage로 넘어가는데
+다음 stage의 블럭에 넣기 전에 잘려있던 **patch를 Merging**해준다.
 
 
 # 2. layer
