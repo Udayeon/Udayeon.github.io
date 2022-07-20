@@ -22,10 +22,11 @@ file_names = os.listdir(file_path)
 i = 891
 for name in file_names:
     img = Image.open(str('Label_')+str(i)+'.png') # 해당 폴더 내 파일명이 'Label_1.png'형식으로 되어 있음. 하나씩 연다.
-    area = (0,0,640,174) # 해당 범위 남기고 잘라냄
+    area = (30,0,640,175) # 해당 범위 남기고 잘라냄
     cropped_img = img.crop(area)
     cropped_img.save(str('Label_')+str(i)+'.png')
     i+=1
 
 ```
+![image](https://user-images.githubusercontent.com/69246778/179892483-469c2cbc-5038-48ab-91bb-0630bd2b2c72.png)
 
