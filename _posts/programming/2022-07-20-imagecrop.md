@@ -28,5 +28,4 @@ for name in file_names:
     i+=1
 
 ```
-![image](https://user-images.githubusercontent.com/69246778/179892483-469c2cbc-5038-48ab-91bb-0630bd2b2c72.png)
-
+![image](https://user-images.githubusercontent.com/69246778/179892585-36bd4182-475c-4e98-9689-a7345c9a7028.png)
