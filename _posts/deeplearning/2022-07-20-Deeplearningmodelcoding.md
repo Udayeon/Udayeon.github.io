@@ -2,10 +2,10 @@
 layout: post
 title: 
 description: |
-  Deep Learning Model 구현
+  Swin Transformer 구현하기
 hide_image: true
 tags:
-  - deeplearning
+  - projects
 published: True
 ---
 
