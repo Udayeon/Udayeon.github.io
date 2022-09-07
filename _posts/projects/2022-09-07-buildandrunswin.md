@@ -19,6 +19,7 @@ published: true
 2. [(Ubuntu 20.04) Using Docker containers in VS Code](https://udayeon.github.io/2022/09/07/dockerWithvscode/)
 
 # 2. Clone this repo
+@**new terminal**
 ```
 git clone https://github.com/microsoft/Swin-Transformer.git
 cd Swin-Transformer
