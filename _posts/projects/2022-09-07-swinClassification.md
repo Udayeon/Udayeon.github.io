@@ -2,14 +2,14 @@
 layout: post
 title: 
 description: |
-  Build and run Swin transformer
+  Swin Transformer for Classification
 hide_image: true
 tags:
   - projects
 published: true
 ---
 
-# Build and run Swin transformer
+# Swin Transformer for Classification
 * * *
 
 
