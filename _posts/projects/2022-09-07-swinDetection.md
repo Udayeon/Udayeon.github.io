@@ -12,52 +12,31 @@ published: true
 # Swin Transformer for Object Detection 
 * * *
 
-# 1. Cloning repo
-@ terminal
-```
-git clone https://github.com/open-mmlab/mmdetection.git
-```
-
-# 2. Install Docker
+# 1. Install Docker
 ```
 docker pull pytorch/pytorch:1.9.0-cuda11.1-cudnn8-devel
 ```
 ```
-apt-get update && apt-get install -y ffmpeg libsm6 libxext6 git ninja-build libglib2.0-0 libsm6 libxrender-dev libxext6 \
-    && apt-get clean \
-    && rm -rf /var/lib/apt/lists/*
-```
-```
-pip install --no-cache-dir --upgrade pip wheel setuptools
-RUN pip install mmcv-full==1.3.14 -f https://download.openmmlab.com/mmcv/dist/cu111/torch1.9.0/index.html
+docker run -it --gpus all --name detection pytorch/pytorch:1.9.0-cuda11.1-cudnn8-devel /bin/bash
 ```
 
+@vscode
 ```
-conda clean --all
-git clone https://github.com/open-mmlab/mmdetection.git /mmdetection
+2.1. ctrl + shift + p
+2.2. remote-Containers:Attach to Running Container
+2.3. choose container
+```
+
+# 2. Run demo
+
+@ terminal(vscode)
+```
+pip install torch==1.9.0+cu111 torchvision==0.10.0+cu111 -f https://download.pytorch.org/whl/torch_stable.html
+pip install mmcv-full -f https://download.openmmlab.com/mmcv/dist/cu111/torch1.9.0/index.html
+rm -rf mmdetection
+git clone https://github.com/open-mmlab/mmdetection.git
 cd mmdetection
-```
-
-```
-pip install --no-cache-dir -r requirements/build.txt
-pip install --no-cache-dir -e .
+pip install -e .
 ```
 
 
-RUN apt-get update && apt-get install -y ffmpeg libsm6 libxext6 git ninja-build libglib2.0-0 libsm6 libxrender-dev libxext6 \
-    && apt-get clean \
-    && rm -rf /var/lib/apt/lists/*
-
-# Install MMCV
-RUN pip install mmcv-full==1.3.14 -f https://download.openmmlab.com/mmcv/dist/cu111/torch1.9.0/index.html
-
-# Install MMDetection
-RUN conda clean --all
-WORKDIR /workspace
-ENV FORCE_CUDA="1"
-```
-
-@ Terminal(~/mmdetection/docker$)
-```
-docker build -t mmdetection .
-```
