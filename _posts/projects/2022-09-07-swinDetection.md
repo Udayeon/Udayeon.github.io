@@ -27,7 +27,7 @@ docker run -it --gpus all --name detection pytorch/pytorch:1.9.0-cuda11.1-cudnn8
 2.3. choose container
 ```
 
-# 2. Run demo
+# 2. Build
 
 @ terminal(vscode)
 ```
@@ -39,4 +39,12 @@ cd mmdetection
 pip install -e .
 ```
 
+# 3. Dataset Download
+[github](https://github.com/open-mmlab/mmdetection/blob/master/docs/en/useful_tools.md#dataset-download)
+@ terminal(cd mmdetection)
+```
+python tools/misc/download_dataset.py --dataset-name coco2017
+```   
+**output**   
+![image](https://user-images.githubusercontent.com/69246778/189033022-88f63321-b237-454d-a41e-7dbc41eac763.png)
 
