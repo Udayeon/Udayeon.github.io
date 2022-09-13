@@ -53,9 +53,9 @@ RUN pip install --no-cache-dir mmcv-full==1.3.17 -f https://download.openmmlab.c
 RUN conda clean --all
 WORKDIR /mmdetection
 ENV FORCE_CUDA="1"
-RUN pip install --no-cache-dir -r requirements/build.txt
-RUN pip install --no-cache-dir -e .
 ```
+
+
 
 # 2.2. Build
 @ /mmdetection/docker
@@ -63,9 +63,14 @@ RUN pip install --no-cache-dir -e .
 docker build -t mmdetection .
 ```
 
+
 # 2.3. Run
 ```
 docker run --gpus all --shm-size=8g -it -v {DATA_DIR}:/mmdetection/data mmdetection
+```
+{DATA_DRI} <-- directories that collect data in your environment.
+```
+docker run docker run --gpus all --shm-size=8g -it -v home:/mmdetection/data mmdetection
 ```
 
 # 2.4. Using Docker containers in VS Code
@@ -75,6 +80,25 @@ a. ctrl + shift + p
 b. remote-Containers:Attach to Running Container
 c. choose container
 ```
+
+# 2.4. Git clone in Container
+@ New Terminal in VScode
+```
+git clone https://github.com/open-mmlab/mmdetection.git
+```
+mmdetection folder OPEN
+
+@ New Terminal in VScode
+![image](https://user-images.githubusercontent.com/69246778/189846600-db3ec60d-57a6-405b-9c0a-f35a1ea305fb.png)
+```
+pip install --no-cache-dir -r requirements/build.txt
+pip install --no-cache-dir -e .
+```
+output   
+![image](https://user-images.githubusercontent.com/69246778/189846880-a05cd7f4-d47e-4f48-8b11-5756fa1c3a14.png)
+![image](https://user-images.githubusercontent.com/69246778/189847266-2e4d5020-ccc7-415c-be18-4168a1b34fe4.png)
+
+
 
 # 3. Dataset Download
 [github](https://github.com/open-mmlab/mmdetection/blob/master/docs/en/useful_tools.md#dataset-download)
