@@ -107,5 +107,28 @@ output
 python tools/misc/download_dataset.py --dataset-name coco2017
 ```   
 **output**   
-![image](https://user-images.githubusercontent.com/69246778/189033022-88f63321-b237-454d-a41e-7dbc41eac763.png)
+![image](https://user-images.githubusercontent.com/69246778/189033022-88f63321-b237-454d-a41e-7dbc41eac763.png)   
+
+**unzip install**   
+[unzip](https://command-not-found.com/unzip)   
+![image](https://user-images.githubusercontent.com/69246778/190091112-3f4897e9-df04-431f-b5a0-5b2765f64f57.png)   
+```
+apt-get update
+apt-get install -y unzip
+```
+   
+**unzip**   
+@ cd rm /mmdetection/data/coco
+```
+unzip annotations_trainval2017.zip
+unzip test2017.zip
+unzip train2017.zip
+unzip val2017.zip
+
+rm annotations_trainval2017.zip
+rm test2017.zip
+rm train2017.zip
+rm val2017.zip
+```
+
 
