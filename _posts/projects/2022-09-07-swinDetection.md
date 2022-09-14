@@ -133,3 +133,39 @@ rm val2017.zip
 
 ![image](https://user-images.githubusercontent.com/69246778/190093255-98f8a407-a4de-48e2-93f1-4e3f3c3d99c9.png)
 
+
+# 4. Tutorial
+## 4.1. directory 
+Create a **checkpoints** directory and get the next model file.
+[faster_rcnn_r50_fpn_1x_coco checkpoint file](https://download.openmmlab.com/mmdetection/v2.0/faster_rcnn/faster_rcnn_r50_fpn_1x_coco/faster_rcnn_r50_fpn_1x_coco_20200130-047c8118.pth)
+
+## 4.2. tutorial.py
+Create a tutorial_1.py file and paste the following code.   
+```
+from mmdet.apis import init_detector, inference_detector
+import mmcv
+
+# Specify the path to model config and checkpoint file
+config_file = 'configs/faster_rcnn/faster_rcnn_r50_fpn_1x_coco.py'
+checkpoint_file = 'checkpoints/faster_rcnn_r50_fpn_1x_coco_20200130-047c8118.pth'
+
+# build the model from a config file and a checkpoint file
+model = init_detector(config_file, checkpoint_file, device='cuda:0')
+
+# test a single image and show the results
+img = 'demo/demo.jpg'  # or img = mmcv.imread(img), which will only load it once
+result = inference_detector(model, img)
+# visualize the results in a new window
+model.show_result(img, result)
+# or save the visualization results to image files
+model.show_result(img, result, out_file='demo/demo_result.jpg')
+
+# test a video and show the results
+video = mmcv.VideoReader('demo/demo.mp4')
+for frame in video:
+    result = inference_detector(model, frame)
+    model.show_result(frame, result, wait_time=1)
+```
+
+## 4.3. Result
+/demo/demo_result.jpg 
