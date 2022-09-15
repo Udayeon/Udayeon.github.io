@@ -70,7 +70,7 @@ docker run --gpus all --shm-size=8g -it -v {DATA_DIR}:/mmdetection/data mmdetect
 ```
 {DATA_DRI} <-- directories that collect data in your environment.
 ```
-docker run --gpus all --shm-size=8g -it -v home:/mmdetection/data mmdetection
+docker run --gpus all --shm-size=8g -it -v home:/mmdetection mmdetection
 ```
 
 # 2.4. Using Docker containers in VS Code
