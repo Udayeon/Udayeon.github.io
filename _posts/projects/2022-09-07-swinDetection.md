@@ -171,3 +171,14 @@ for frame in video:
 /demo/demo_result.jpg 
 ![image](https://user-images.githubusercontent.com/69246778/190094953-11749b8c-ecd6-4340-85ca-b683f10bd911.png)
 
+# 5. Restart 
+```
+docker start [CONTAINER ID]
+```
+
+@ vscode
+```
+a. ctrl + shift + p
+b. remote-Containers:Attach to Running Container
+c. choose container
+```
