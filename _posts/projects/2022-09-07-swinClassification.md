@@ -6,7 +6,7 @@ description: |
 hide_image: true
 tags:
   - projects
-published: true
+published: false
 ---
 
 # Swin Transformer for Classification
