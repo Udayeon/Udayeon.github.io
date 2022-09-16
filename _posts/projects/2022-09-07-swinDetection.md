@@ -9,8 +9,9 @@ tags:
 published: true
 ---
 
-# Swin Transformer for Object Detection 
+# Docker for mmdetection 
 * * *
+
 # 1. Git Clone
 ```
 git clone https://github.com/open-mmlab/mmdetection.git
