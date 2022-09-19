@@ -136,6 +136,7 @@ for frame in video:
     model.show_result(frame, result, wait_time=1)
 ```
 
+## 3.5. tools/test.py
 ```
 python tools/test.py \
     configs/faster_rcnn/faster_rcnn_r50_fpn_1x_coco.py \
