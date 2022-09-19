@@ -2,14 +2,14 @@
 layout: post
 title: 
 description: |
-  Swin Transformer for Object Detection 
+  Swin Transformer for Object Detection - Demo Test
 hide_image: true
 tags:
   - projects
 published: true
 ---
 
-# Swin Transformer for Object Detection
+# Swin Transformer for Object Detection - Demo Test
 * * *
 
 # 1. Checkpoint
