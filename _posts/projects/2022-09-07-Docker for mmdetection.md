@@ -2,7 +2,7 @@
 layout: post
 title: 
 description: |
-  Swin Transformer for Object Detection 
+  Docker for mmdetection
 hide_image: true
 tags:
   - projects
