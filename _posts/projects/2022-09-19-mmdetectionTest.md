@@ -197,30 +197,33 @@ optimizer_config = dict(
 ```
 
 @ Tutorial.py
+[demo](https://github.com/SwinTransformer/Swin-Transformer-Object-Detection/blob/master/demo/image_demo.py)
 ```
-from mmdet.apis import init_detector, inference_detector
-import mmcv
+from argparse import ArgumentParser
+from mmdet.apis import inference_detector, init_detector, show_result_pyplot
 
-# Specify the path to model config and checkpoint file
-config_file = 'configs/swin/cascade_mask_rcnn_swin_tiny_patch4_window7_mstrain_480-800_giou_4conv1f_adamw_3x_coco.py'
-checkpoint_file = 'checkpoints/cascade_mask_rcnn_swin_tiny_patch4_window7/archive/data.pkl'
+def main():
+    parser = ArgumentParser()
+    parser.add_argument('img', help='Image file')
+    parser.add_argument('config', help='Config file')
+    parser.add_argument('checkpoint', help='Checkpoint file')
+    parser.add_argument(
+        '--device', default='cuda:0', help='Device used for inference')
+    parser.add_argument(
+        '--score-thr', type=float, default=0.3, help='bbox score threshold')
+    args = parser.parse_args()
 
-# build the model from a config file and a checkpoint file
-model = init_detector(config_file, checkpoint_file, device='cuda:0')
+    # build the model from a config file and a checkpoint file
+    model = init_detector(args.config, args.checkpoint, device=args.device)
+    # test a single image
+    result = inference_detector(model, args.img)
+    # show the results
+    show_result_pyplot(model, args.img, result, score_thr=args.score_thr)
 
-# test a single image and show the results
-img = 'demo/demo.jpg'  # or img = mmcv.imread(img), which will only load it once
-result = inference_detector(model, img)
-# visualize the results in a new window
-model.show_result(img, result)
-# or save the visualization results to image files
-model.show_result(img, result, out_file='demo/result_cascade_mask_rcnn_swin_tiny_patch4_window7_mstrain_480-800_giou_4conv1f_adamw_3x_coco.jpg')
 
-# test a video and show the results
-video = mmcv.VideoReader('demo/demo.mp4')
-for frame in video:
-    result = inference_detector(model, frame)
-    model.show_result(frame, result, wait_time=1)
+if __name__ == '__main__':
+    main()
 ```
-
-
+   
+error
+![image](https://user-images.githubusercontent.com/69246778/190973969-fcf4d9aa-2a4a-44d4-b0f2-78102d35f1bc.png)
