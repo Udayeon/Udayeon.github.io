@@ -26,6 +26,8 @@ Download configs and .pth file
 
 # 3. Tutorial
 ## 3.1. mask_rcnn_swin-s-p4-w7_fpn_fp16_ms-crop-3x_coco
+![image](https://user-images.githubusercontent.com/69246778/190961953-3109bdb1-a6cb-4830-9150-953d959666d6.png)
+
 ```
 from mmdet.apis import init_detector, inference_detector
 import mmcv
@@ -53,6 +55,7 @@ for frame in video:
 ```
 
 ## 3.2. mask_rcnn_swin-t-p4-w7_fpn_1x_coco
+![image](https://user-images.githubusercontent.com/69246778/190962000-75614a16-11b2-4ea8-a364-1e3c06446155.png)
 ```
 from mmdet.apis import init_detector, inference_detector
 import mmcv
@@ -79,6 +82,7 @@ for frame in video:
     model.show_result(frame, result, wait_time=1)
 ```
 ## 3.3. mask_rcnn_swin-t-p4-w7_fpn_fp16_ms-crop-3x_coco
+![image](https://user-images.githubusercontent.com/69246778/190961896-dd3733a6-88f3-40ce-9930-1f06ddca2d65.png)
 ```
 from mmdet.apis import init_detector, inference_detector
 import mmcv
@@ -105,6 +109,7 @@ for frame in video:
     model.show_result(frame, result, wait_time=1)
 ```
 ## 3.4. mask_rcnn_swin-t-p4-w7_fpn_ms-crop-3x_coco
+![image](https://user-images.githubusercontent.com/69246778/190962048-f83ffdc9-d0d3-4efb-82d6-d6b97694e6cf.png)
 ```
 from mmdet.apis import init_detector, inference_detector
 import mmcv
@@ -130,3 +135,5 @@ for frame in video:
     result = inference_detector(model, frame)
     model.show_result(frame, result, wait_time=1)
 ```
+
+
