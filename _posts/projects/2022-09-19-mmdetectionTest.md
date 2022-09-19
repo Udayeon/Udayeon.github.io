@@ -11,8 +11,12 @@ published: true
 
 # Swin Transformer for Object Detection - Test COCO dataset
 * * *
+# 1. Reference
+![image](https://user-images.githubusercontent.com/69246778/190968434-c13f7418-1785-4798-9c8a-4cb1f452244b.png)   
+![image](https://user-images.githubusercontent.com/69246778/190968519-77c89add-13d1-43f1-b65f-58015b8e3161.png)   
+[Cascade Mask R-CNN](https://github.com/SwinTransformer/Swin-Transformer-Object-Detection#mask-r-cnn)
 
-# 1. Configs gitclone
+# 2. Configs gitclone
 [git clone only some directories in git repository](https://infiduk.github.io/2022/02/09/git.html)   
 [SwinTransformer/Swin-Transformer-Object-Detection/configs/swin](https://github.com/SwinTransformer/Swin-Transformer-Object-Detection/tree/master/configs/swin)   
 ![image](https://user-images.githubusercontent.com/69246778/190962477-2dec06ad-3b27-4c84-b690-27ca1118b109.png)   
@@ -26,7 +30,7 @@ git pull origin master
 ```   
 ![image](https://user-images.githubusercontent.com/69246778/190964172-e232732e-44d3-4593-8748-917697d38888.png)   
    
-# 2. Base models gitclone
+# 3. Base models gitclone
 [SwinTransformer/Swin-Transformer-Object-Detection/configs/_base_/models](https://github.com/SwinTransformer/Swin-Transformer-Object-Detection/tree/master/configs/_base_/models)   
 ![image](https://user-images.githubusercontent.com/69246778/190964904-f711c036-c94b-4407-9a7e-78f6262e2cc0.png)   
 @ /mmdetection/mmdetection/configs/_base_/models   
@@ -39,7 +43,8 @@ git pull origin master
 ```
 ![image](https://user-images.githubusercontent.com/69246778/190965274-935cdfe9-5afa-44a1-85ee-5247b4ce9848.png)
 
-# 3. Checkpoints 
+# 4. Checkpoints 
+![image](https://user-images.githubusercontent.com/69246778/190967990-442c4b81-3731-433d-a99d-961d01807605.png)
 
 
 
