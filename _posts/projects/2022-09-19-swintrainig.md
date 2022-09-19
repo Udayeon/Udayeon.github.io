@@ -134,3 +134,9 @@ model = dict(
     ))
 
 ```
+## 1.3. training
+```
+python tools/train.py \
+    configs/faster_rcnn/faster_rcnn_r50_fpn_2x_coco.py 
+    --work-dir work_dir_tutorial_2
+```
