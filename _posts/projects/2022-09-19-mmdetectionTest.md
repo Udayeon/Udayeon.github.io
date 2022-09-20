@@ -54,7 +54,7 @@ Download the model and move them to @mmdetection/mmdetection/checkpoints
 
 # 5. cascade_mask_rcnn_swin_base_patch4_window7
 ## 5.1. Inference
-@ /mmdetection/mmdetection
+@ /mmdetection/mmdetection   
 ```
 # single-gpu testing
 python tools/test.py configs/cascade_mask_rcnn_swin_base_patch4_window7_mstrain_480-800_giou_4conv1f_adamw_3x_coco.py checkpoints/cascade_mask_rcnn_swin_base_patch4_window7.pth --eval bbox segm
@@ -64,17 +64,17 @@ tools/dist_test.sh configs/cascade_mask_rcnn_swin_base_patch4_window7_mstrain_48
 ```
 
 ## 5.2. Training
-@ tools/test.py
+@ tools/test.py   
 ![image](https://user-images.githubusercontent.com/69246778/191160822-9de9d600-02b1-4648-9af2-56f6ebb567ff.png)   
 ![image](https://user-images.githubusercontent.com/69246778/191160944-2efedc2d-0e8f-40dc-ad51-90eddac192bf.png)   
 **model** is build_detector from mmdet.models.   
    
-@ mmdet/models/swin.py
-![image](https://user-images.githubusercontent.com/69246778/191159983-5028ed8e-2269-405b-8490-bb0d060cb771.png)
-![image](https://user-images.githubusercontent.com/69246778/191160684-370c8ba6-5dcc-4deb-b7f0-8eda1c0fb2b2.png)
-Keyword for using SwinTransformer pre-trained model is **SwinTransformer**   
+@ mmdet/models/swin.py   
+![image](https://user-images.githubusercontent.com/69246778/191159983-5028ed8e-2269-405b-8490-bb0d060cb771.png)   
+![image](https://user-images.githubusercontent.com/69246778/191160684-370c8ba6-5dcc-4deb-b7f0-8eda1c0fb2b2.png)   
+Keyword for using SwinTransformer pre-trained model is **SwinTransformer**     
    
-To train a detector with pre-trained models, run:
+To train a detector with pre-trained models, run:   
 ```
 # single-gpu training
 python tools/train.py configs/cascade_mask_rcnn_swin_base_patch4_window7_mstrain_480-800_giou_4conv1f_adamw_3x_coco.py --cfg-options model.pretrained=SwinTransformer [model.backbone.use_checkpoint=True] [other optional arguments]
