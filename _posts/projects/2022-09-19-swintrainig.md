@@ -140,3 +140,6 @@ python tools/train.py \
     configs/faster_rcnn/faster_rcnn_r50_fpn_2x_coco.py 
     --work-dir work_dir_tutorial_2
 ```
+```
+bash tools/dist_train.sh 'configs/swin/cascade_mask_rcnn_swin_base_patch4_window7_mstrain_480-800_giou_4conv1f_adamw_3x_coco.py' 1 --cfg-options model.pretrained='chekpoints/swin_base_patch4_window7.pth'
+```
