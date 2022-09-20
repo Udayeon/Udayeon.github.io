@@ -62,6 +62,41 @@ python tools/test.py configs/swin/cascade_mask_rcnn_swin_base_patch4_window7_mst
 # multi-gpu testing
 tools/dist_test.sh configs/swin/cascade_mask_rcnn_swin_base_patch4_window7_mstrain_480-800_giou_4conv1f_adamw_3x_coco.py checkpoints/cascade_mask_rcnn_swin_base_patch4_window7.pth 1 --eval bbox segm
 ```
+   
+### 5.1.a. TypeError: CascadeRCNN: SwinTransformer: __init__() got an unexpected keyword argument 'embed_dim'
+![image](https://user-images.githubusercontent.com/69246778/191161714-2cfe490e-3ec2-47ac-a847-3c9e044ec118.png)
+@ configs/swin/cascade_mask_rcnn_swin_base_patch4_window7_mstrain_480-800_giou_4conv1f_adamw_3x_coco.py   
+@ configs/_base_/models/cascade_mask_rcnn_swin_fpn.py   
+```
+embed_dim --> embed_dims
+```
+
+### 5.1.b. TypeError: CascadeRCNN: SwinTransformer: __init__() got an unexpected keyword argument 'ape'
+![image](https://user-images.githubusercontent.com/69246778/191162135-05fc0b1b-f96a-44e3-998c-a5b8128f530d.png)   
+'ape' is not in here   
+@ mmdet/models/backbones/swin.py   
+@ mmdet/models/detectors/cascade_rcnn.py   
+   
+```
+@ configs/swin/cascade_mask_rcnn_swin_base_patch4_window7_mstrain_480-800_giou_4conv1f_adamw_3x_coco.py   
+@ configs/_base_/models/cascade_mask_rcnn_swin_fpn.py   
+delete 'ape'
+```
+
+### 5.1.c.TypeError: CascadeRCNN: SwinTransformer: __init__() got an unexpected keyword argument 'use_checkpoint'
+![image](https://user-images.githubusercontent.com/69246778/191163054-1fc0a55d-6fd6-4433-b675-d8735c262b46.png)
+'use_checkpoint' is not in here   
+@ mmdet/models/backbones/swin.py   
+@ mmdet/models/detectors/cascade_rcnn.py   
+   
+```
+@ configs/swin/cascade_mask_rcnn_swin_base_patch4_window7_mstrain_480-800_giou_4conv1f_adamw_3x_coco.py   
+@ configs/_base_/models/cascade_mask_rcnn_swin_fpn.py   
+delete 'use_checkpoint'
+```
+
+
+
 
 ## 5.2. Training
 @ tools/test.py   
@@ -82,3 +117,4 @@ python tools/train.py configs/swin/cascade_mask_rcnn_swin_base_patch4_window7_ms
 # multi-gpu training
 tools/dist_train.sh configs/swin/cascade_mask_rcnn_swin_base_patch4_window7_mstrain_480-800_giou_4conv1f_adamw_3x_coco.py 1 --cfg-options model.pretrained=SwinTransformer [model.backbone.use_checkpoint=True] [other optional arguments] 
 ```
+
