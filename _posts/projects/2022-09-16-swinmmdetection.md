@@ -139,8 +139,8 @@ for frame in video:
 ## 3.5. tools/test.py
 ```
 python tools/test.py \
-    configs/faster_rcnn/faster_rcnn_r50_fpn_1x_coco.py \
-    checkpoints/faster_rcnn_r50_fpn_1x_coco_20200130-047c8118.pth \
-    --show-dir faster_rcnn_r50_fpn_1x_results
+    configs/swin/mask_rcnn_swin-t-p4-w7_fpn_ms-crop-3x_coco.py \
+    checkpoints/mask_rcnn_swin-t-p4-w7_fpn_ms-crop-3x_coco_20210906_131725-bacf6f7b.pth \
+    --show-dir mask_rcnn_swin-t-p4-w7_fpn_ms-crop-3x_results
 ```
 
