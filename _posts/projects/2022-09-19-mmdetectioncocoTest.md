@@ -156,7 +156,7 @@ Perhaps that has not been implemented. But, anothe example is been implemented.
 python tools/test.py configs/swin/mask_rcnn_swin-t-p4-w7_fpn_ms-crop-3x_coco.py checkpoints/mask_rcnn_swin-t-p4-w7_fpn_ms-crop-3x_coco_20210906_131725-bacf6f7b.pth --eval bbox segm
 ```
    
-**result**
+**result**   
 ![image](https://user-images.githubusercontent.com/69246778/191197400-c6bb9a8a-ede1-4c2d-a1f5-57aff179d4bb.png)
 ![image](https://user-images.githubusercontent.com/69246778/191197432-eef663ad-c321-477e-8caf-3630d7e1051b.png)
 ![image](https://user-images.githubusercontent.com/69246778/191197578-3ec76b0e-a62b-4b20-87f8-2ed6568efa8a.png)
