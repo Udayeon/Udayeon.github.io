@@ -101,8 +101,8 @@ delete 'use_checkpoint'
 
 [Help](https://github.com/Udayeon/Udayeon.github.io/blob/main/_posts/projects/2022-09-07-TypeError:%20CascadeRCNN:%20SwinTransformer.md#typeerror-cascadercnn-swintransformer-empty-received-an-invalid-combination-of-arguments---got-tuple-dtypenonetype-devicenonetype)
 
-
-
+### 5.1.e. Results
+![image](https://user-images.githubusercontent.com/69246778/191181096-d8788cde-b17b-4921-9896-dc36c0238fd5.png)
 
 
 ## 5.2. Training
