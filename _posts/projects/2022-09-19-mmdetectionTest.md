@@ -52,180 +52,33 @@ Download the model and move them to @mmdetection/mmdetection/checkpoints
 ![image](https://user-images.githubusercontent.com/69246778/191157829-8b7181fd-0e6e-4bb9-817c-f57abf65377d.png)
 
 
-# 5. Test
-# 5.1. cascade_mask_rcnn_swin_tiny_patch4_window7_mstrain_480-800_giou_4conv1f_adamw_3x_coco
-cascade_mask_rcnn_swin_tiny_patch4_window7_mstrain_480-800_giou_4conv1f_adamw_3x_coco.py
+# 5. cascade_mask_rcnn_swin_base_patch4_window7
+## 5.1. Inference
+@ /mmdetection/mmdetection
 ```
-_base_ = [
-    '../_base_/models/cascade_mask_rcnn_swin_fpn.py',
-    '../_base_/datasets/coco_instance.py',
-    '../_base_/schedules/schedule_1x.py', '../_base_/default_runtime.py'
-]
+# single-gpu testing
+python tools/test.py configs/cascade_mask_rcnn_swin_base_patch4_window7_mstrain_480-800_giou_4conv1f_adamw_3x_coco.py checkpoints/cascade_mask_rcnn_swin_base_patch4_window7.pth --eval bbox segm
 
-model = dict(
-    backbone=dict(
-        embed_dims=96,  # embed_dim --> embed_dims
-        depths=[2, 2, 6, 2],
-        num_heads=[3, 6, 12, 24],
-        window_size=7,
-        ape=False,
-        drop_path_rate=0.2,
-        patch_norm=True,
-        use_checkpoint=False
-    ),
-    neck=dict(in_channels=[96, 192, 384, 768]),
-    roi_head=dict(
-        bbox_head=[
-            dict(
-                type='ConvFCBBoxHead',
-                num_shared_convs=4,
-                num_shared_fcs=1,
-                in_channels=256,
-                conv_out_channels=256,
-                fc_out_channels=1024,
-                roi_feat_size=7,
-                num_classes=80,
-                bbox_coder=dict(
-                    type='DeltaXYWHBBoxCoder',
-                    target_means=[0., 0., 0., 0.],
-                    target_stds=[0.1, 0.1, 0.2, 0.2]),
-                reg_class_agnostic=False,
-                reg_decoded_bbox=True,
-                norm_cfg=dict(type='SyncBN', requires_grad=True),
-                loss_cls=dict(
-                    type='CrossEntropyLoss', use_sigmoid=False, loss_weight=1.0),
-                loss_bbox=dict(type='GIoULoss', loss_weight=10.0)),
-            dict(
-                type='ConvFCBBoxHead',
-                num_shared_convs=4,
-                num_shared_fcs=1,
-                in_channels=256,
-                conv_out_channels=256,
-                fc_out_channels=1024,
-                roi_feat_size=7,
-                num_classes=80,
-                bbox_coder=dict(
-                    type='DeltaXYWHBBoxCoder',
-                    target_means=[0., 0., 0., 0.],
-                    target_stds=[0.05, 0.05, 0.1, 0.1]),
-                reg_class_agnostic=False,
-                reg_decoded_bbox=True,
-                norm_cfg=dict(type='SyncBN', requires_grad=True),
-                loss_cls=dict(
-                    type='CrossEntropyLoss', use_sigmoid=False, loss_weight=1.0),
-                loss_bbox=dict(type='GIoULoss', loss_weight=10.0)),
-            dict(
-                type='ConvFCBBoxHead',
-                num_shared_convs=4,
-                num_shared_fcs=1,
-                in_channels=256,
-                conv_out_channels=256,
-                fc_out_channels=1024,
-                roi_feat_size=7,
-                num_classes=80,
-                bbox_coder=dict(
-                    type='DeltaXYWHBBoxCoder',
-                    target_means=[0., 0., 0., 0.],
-                    target_stds=[0.033, 0.033, 0.067, 0.067]),
-                reg_class_agnostic=False,
-                reg_decoded_bbox=True,
-                norm_cfg=dict(type='SyncBN', requires_grad=True),
-                loss_cls=dict(
-                    type='CrossEntropyLoss', use_sigmoid=False, loss_weight=1.0),
-                loss_bbox=dict(type='GIoULoss', loss_weight=10.0))
-        ]))
-
-img_norm_cfg = dict(
-    mean=[123.675, 116.28, 103.53], std=[58.395, 57.12, 57.375], to_rgb=True)
-
-# augmentation strategy originates from DETR / Sparse RCNN
-train_pipeline = [
-    dict(type='LoadImageFromFile'),
-    dict(type='LoadAnnotations', with_bbox=True, with_mask=True),
-    dict(type='RandomFlip', flip_ratio=0.5),
-    dict(type='AutoAugment',
-         policies=[
-             [
-                 dict(type='Resize',
-                      img_scale=[(480, 1333), (512, 1333), (544, 1333), (576, 1333),
-                                 (608, 1333), (640, 1333), (672, 1333), (704, 1333),
-                                 (736, 1333), (768, 1333), (800, 1333)],
-                      multiscale_mode='value',
-                      keep_ratio=True)
-             ],
-             [
-                 dict(type='Resize',
-                      img_scale=[(400, 1333), (500, 1333), (600, 1333)],
-                      multiscale_mode='value',
-                      keep_ratio=True),
-                 dict(type='RandomCrop',
-                      crop_type='absolute_range',
-                      crop_size=(384, 600),
-                      allow_negative_crop=True),
-                 dict(type='Resize',
-                      img_scale=[(480, 1333), (512, 1333), (544, 1333),
-                                 (576, 1333), (608, 1333), (640, 1333),
-                                 (672, 1333), (704, 1333), (736, 1333),
-                                 (768, 1333), (800, 1333)],
-                      multiscale_mode='value',
-                      override=True,
-                      keep_ratio=True)
-             ]
-         ]),
-    dict(type='Normalize', **img_norm_cfg),
-    dict(type='Pad', size_divisor=32),
-    dict(type='DefaultFormatBundle'),
-    dict(type='Collect', keys=['img', 'gt_bboxes', 'gt_labels', 'gt_masks']),
-]
-data = dict(train=dict(pipeline=train_pipeline))
-
-optimizer = dict(_delete_=True, type='AdamW', lr=0.0001, betas=(0.9, 0.999), weight_decay=0.05,
-                 paramwise_cfg=dict(custom_keys={'absolute_pos_embed': dict(decay_mult=0.),
-                                                 'relative_position_bias_table': dict(decay_mult=0.),
-                                                 'norm': dict(decay_mult=0.)}))
-lr_config = dict(step=[27, 33])
-runner = dict(type='EpochBasedRunnerAmp', max_epochs=36)
-
-# do not use mmdet version fp16
-fp16 = None
-optimizer_config = dict(
-    type="DistOptimizerHook",
-    update_interval=1,
-    grad_clip=None,
-    coalesce=True,
-    bucket_size_mb=-1,
-    use_fp16=True,
-)
+# multi-gpu testing
+tools/dist_test.sh configs/cascade_mask_rcnn_swin_base_patch4_window7_mstrain_480-800_giou_4conv1f_adamw_3x_coco.py checkpoints/cascade_mask_rcnn_swin_base_patch4_window7.pth 1 --eval bbox segm
 ```
 
-@ Tutorial.py
-[demo](https://github.com/SwinTransformer/Swin-Transformer-Object-Detection/blob/master/demo/image_demo.py)
-```
-from argparse import ArgumentParser
-from mmdet.apis import inference_detector, init_detector, show_result_pyplot
-
-def main():
-    parser = ArgumentParser()
-    parser.add_argument('img', help='Image file')
-    parser.add_argument('config', help='Config file')
-    parser.add_argument('checkpoint', help='Checkpoint file')
-    parser.add_argument(
-        '--device', default='cuda:0', help='Device used for inference')
-    parser.add_argument(
-        '--score-thr', type=float, default=0.3, help='bbox score threshold')
-    args = parser.parse_args()
-
-    # build the model from a config file and a checkpoint file
-    model = init_detector(args.config, args.checkpoint, device=args.device)
-    # test a single image
-    result = inference_detector(model, args.img)
-    # show the results
-    show_result_pyplot(model, args.img, result, score_thr=args.score_thr)
-
-
-if __name__ == '__main__':
-    main()
-```
+## 5.2. Training
+@ tools/test.py
+![image](https://user-images.githubusercontent.com/69246778/191160822-9de9d600-02b1-4648-9af2-56f6ebb567ff.png)   
+![image](https://user-images.githubusercontent.com/69246778/191160944-2efedc2d-0e8f-40dc-ad51-90eddac192bf.png)   
+**model** is build_detector from mmdet.models.   
    
-error
-![image](https://user-images.githubusercontent.com/69246778/190973969-fcf4d9aa-2a4a-44d4-b0f2-78102d35f1bc.png)
+@ mmdet/models/swin.py
+![image](https://user-images.githubusercontent.com/69246778/191159983-5028ed8e-2269-405b-8490-bb0d060cb771.png)
+![image](https://user-images.githubusercontent.com/69246778/191160684-370c8ba6-5dcc-4deb-b7f0-8eda1c0fb2b2.png)
+Keyword for using SwinTransformer pre-trained model is **SwinTransformer**   
+   
+To train a detector with pre-trained models, run:
+```
+# single-gpu training
+python tools/train.py configs/cascade_mask_rcnn_swin_base_patch4_window7_mstrain_480-800_giou_4conv1f_adamw_3x_coco.py --cfg-options model.pretrained=SwinTransformer [model.backbone.use_checkpoint=True] [other optional arguments]
+
+# multi-gpu training
+tools/dist_train.sh configs/cascade_mask_rcnn_swin_base_patch4_window7_mstrain_480-800_giou_4conv1f_adamw_3x_coco.py 1 --cfg-options model.pretrained=SwinTransformer [model.backbone.use_checkpoint=True] [other optional arguments] 
+```
