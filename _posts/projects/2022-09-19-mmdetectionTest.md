@@ -2,14 +2,14 @@
 layout: post
 title: 
 description: |
-  Swin Transformer for Object Detection - Test COCO dataset
+  Swin Transformer for Object Detection - Training COCO dataset
 hide_image: true
 tags:
   - projects
 published: true
 ---
 
-# Swin Transformer for Object Detection - Test COCO dataset
+# Swin Transformer for Object Detection - Training COCO dataset
 * * *
 # 1. Reference
 ![image](https://user-images.githubusercontent.com/69246778/190968434-c13f7418-1785-4798-9c8a-4cb1f452244b.png)   
