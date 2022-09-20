@@ -106,14 +106,26 @@ model = dict(
         depths=[2, 2, 6, 2],
         num_heads=[3, 6, 12, 24],
         window_size=7,
-        mlp_ratio=4.,
+        mlp_ratio=4,
+        qkv_bias=True,
+        qk_scale=None,
+        drop_rate=0.,
+        attn_drop_rate=0.,
         drop_path_rate=0.2,
-        patch_norm=True
-    ),
-# mlp_ratio=4.,
+        patch_norm=True,
+        out_indices=(0, 1, 2, 3),
+        with_cp=False,
+        convert_weights=True,
+        init_cfg=None),
+        
+    neck=dict(in_channels=[96, 192, 384, 768]),
+    roi_head=dict(
 ```
 
 ### 5.1.e. Results
+![image](https://user-images.githubusercontent.com/69246778/191187165-55acf1a9-5fd3-498c-848f-e688013654a0.png)
+
+
 
 ## 5.2. Training
 @ tools/test.py   
@@ -129,14 +141,8 @@ Keyword for using SwinTransformer pre-trained model is **SwinTransformer**
 To train a detector with pre-trained models, run:   
 ```
 # single-gpu training
-python tools/train.py configs/swin/cascade_mask_rcnn_swin_base_patch4_window7_mstrain_480-800_giou_4conv1f_adamw_3x_coco.py --cfg-options model.pretrained=SwinTransformer
+python tools/train.py configs/swin/cascade_mask_rcnn_swin_tiny_patch4_window7_mstrain_480-800_giou_4conv1f_adamw_3x_coco.py --cfg-options model.pretrained=SwinTransformer
 
 # multi-gpu training
-tools/dist_train.sh configs/swin/cascade_mask_rcnn_swin_base_patch4_window7_mstrain_480-800_giou_4conv1f_adamw_3x_coco.py 1 --cfg-options model.pretrained=SwinTransformer
-```
-
-## 5.2.a. KeyError: 'EpochBasedRunnerAmp is not in the runner registry'
-![image](https://user-images.githubusercontent.com/69246778/191181531-16518f33-72f3-4351-8a57-71ba3e0fc539.png)
-```
-
+tools/dist_train.sh configs/swin/cascade_mask_rcnn_swin_tiny_patch4_window7_mstrain_480-800_giou_4conv1f_adamw_3x_coco.py 1 --cfg-options model.pretrained=SwinTransformer
 ```
