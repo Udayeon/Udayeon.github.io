@@ -2,24 +2,27 @@
 layout: post
 title: 
 description: |
-  Swin Transformer for Object Detection - Training COCO dataset
+  Swin Transformer for Object Detection - Test COCO dataset
 hide_image: true
 tags:
   - projects
 published: true
 ---
 
-# Swin Transformer for Object Detection - Training COCO dataset
+# Swin Transformer for Object Detection - Test COCO dataset
 * * *
+
+
 # 1. Reference
 ![image](https://user-images.githubusercontent.com/69246778/190968434-c13f7418-1785-4798-9c8a-4cb1f452244b.png)   
 ![image](https://user-images.githubusercontent.com/69246778/190968519-77c89add-13d1-43f1-b65f-58015b8e3161.png)   
 [Cascade Mask R-CNN](https://github.com/SwinTransformer/Swin-Transformer-Object-Detection#mask-r-cnn)
 
 # 2. Configs gitclone
-[git clone only some directories in git repository](https://infiduk.github.io/2022/02/09/git.html)   
-[SwinTransformer/Swin-Transformer-Object-Detection/configs/swin](https://github.com/SwinTransformer/Swin-Transformer-Object-Detection/tree/master/configs/swin)   
+[git clone only some directories in git repository](https://infiduk.github.io/2022/02/09/git.html)      
+[SwinTransformer/Swin-Transformer-Object-Detection/configs/swin](https://github.com/SwinTransformer/Swin-Transformer-Object-Detection/tree/master/configs/swin)      
 ![image](https://user-images.githubusercontent.com/69246778/190962477-2dec06ad-3b27-4c84-b690-27ca1118b109.png)   
+
 @ /mmdetection/mmdetection/configs/swin   
 ```
 git init
@@ -45,10 +48,9 @@ git pull origin master
 
 # 4. Checkpoints 
 ![image](https://user-images.githubusercontent.com/69246778/190969580-217e9dc5-e0a9-46c0-a4d0-cf95d7aaf153.png)
-![image](https://user-images.githubusercontent.com/69246778/190970472-01631ec6-71f6-4564-919b-a355f0e3ed61.png)   
 Download the model and move them to @mmdetection/mmdetection/checkpoints   
-   
-![image](https://user-images.githubusercontent.com/69246778/190970569-cdb5a9c3-6904-4c2a-8a95-49e837384518.png)
+![image](https://user-images.githubusercontent.com/69246778/191157829-8b7181fd-0e6e-4bb9-817c-f57abf65377d.png)
+
 
 # 5. Test
 # 5.1. cascade_mask_rcnn_swin_tiny_patch4_window7_mstrain_480-800_giou_4conv1f_adamw_3x_coco
