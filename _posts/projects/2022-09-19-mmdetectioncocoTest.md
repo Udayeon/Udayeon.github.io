@@ -119,9 +119,14 @@ Keyword for using SwinTransformer pre-trained model is **SwinTransformer**
 To train a detector with pre-trained models, run:   
 ```
 # single-gpu training
-python tools/train.py configs/swin/cascade_mask_rcnn_swin_base_patch4_window7_mstrain_480-800_giou_4conv1f_adamw_3x_coco.py --cfg-options model.pretrained=SwinTransformer [model.backbone.use_checkpoint=True] [other optional arguments]
+python tools/train.py configs/swin/cascade_mask_rcnn_swin_base_patch4_window7_mstrain_480-800_giou_4conv1f_adamw_3x_coco.py --cfg-options model.pretrained=SwinTransformer
 
 # multi-gpu training
-tools/dist_train.sh configs/swin/cascade_mask_rcnn_swin_base_patch4_window7_mstrain_480-800_giou_4conv1f_adamw_3x_coco.py 1 --cfg-options model.pretrained=SwinTransformer [model.backbone.use_checkpoint=True] [other optional arguments] 
+tools/dist_train.sh configs/swin/cascade_mask_rcnn_swin_base_patch4_window7_mstrain_480-800_giou_4conv1f_adamw_3x_coco.py 1 --cfg-options model.pretrained=SwinTransformer
 ```
 
+## 5.2.a. KeyError: 'EpochBasedRunnerAmp is not in the runner registry'
+![image](https://user-images.githubusercontent.com/69246778/191181531-16518f33-72f3-4351-8a57-71ba3e0fc539.png)
+```
+
+```
