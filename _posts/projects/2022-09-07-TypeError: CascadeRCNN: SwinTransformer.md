@@ -195,7 +195,7 @@ model = dict(
 
 
 ## 3. Edit /mmdetection/mmdetection/configs/swin/cascade_mask_rcnn_swin_tiny_patch4_window7_mstrain_480-800_giou_4conv1f_adamw_3x_coco.py
-```
+```py
 _base_ = [
     '../_base_/models/cascade_mask_rcnn_swin_fpn.py',
     '../_base_/datasets/coco_instance.py',
