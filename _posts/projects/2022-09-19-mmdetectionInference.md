@@ -128,15 +128,17 @@ model = dict(
 Perhaps that has not been implemented. But, another example is been implemented.   
    
 ```
-python tools/test.py configs/swin/mask_rcnn_swin-t-p4-w7_fpn_ms-crop-3x_coco.py checkpoints/mask_rcnn_swin-t-p4-w7_fpn_ms-crop-3x_coco_20210906_131725-bacf6f7b.pth --eval bbox segm
+python tools/test.py configs/swin/mask_rcnn_swin-t-p4-w7_fpn_fp16_ms-crop-3x_coco.py checkpoints/mask_rcnn_swin-t-p4-w7_fpn_fp16_ms-crop-3x_coco_20210908_165006-90a4008c.pth --eval bbox segm
+
 ```
 **result**   
-![image](https://user-images.githubusercontent.com/69246778/191197400-c6bb9a8a-ede1-4c2d-a1f5-57aff179d4bb.png)   
-![image](https://user-images.githubusercontent.com/69246778/191197432-eef663ad-c321-477e-8caf-3630d7e1051b.png)   
+![image](https://user-images.githubusercontent.com/69246778/191267152-71d5ee11-edf6-4961-9b7e-e35c943869c1.png)
+![image](https://user-images.githubusercontent.com/69246778/191267200-8e8d2105-ac04-4dd5-a91a-e072fc20bb7d.png)
    
 ```
 python tools/test.py configs/swin/mask_rcnn_swin-s-p4-w7_fpn_fp16_ms-crop-3x_coco.py checkpoints/mask_rcnn_swin-s-p4-w7_fpn_fp16_ms-crop-3x_coco_20210903_104808-b92c91f1.pth --eval bbox segm
 ```
+**result**   
 ![image](https://user-images.githubusercontent.com/69246778/191256043-f219f851-2961-4e8f-a1aa-10677d761cf2.png)   
 ![image](https://user-images.githubusercontent.com/69246778/191256098-fce84927-1a6d-47c7-b982-67e95510b85f.png)   
    
