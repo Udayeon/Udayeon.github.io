@@ -23,7 +23,7 @@ published: true
 [SwinTransformer/Swin-Transformer-Object-Detection/configs/swin](https://github.com/SwinTransformer/Swin-Transformer-Object-Detection/tree/master/configs/swin)      
 ![image](https://user-images.githubusercontent.com/69246778/190962477-2dec06ad-3b27-4c84-b690-27ca1118b109.png)   
 
-@ /mmdetection/mmdetection/configs/swin   
+@ /mmdetection/mmdetection/configs/swin   스크린샷, 2022-09-20 21-24-26
 ```
 git init
 git remote add origin https://github.com/SwinTransformer/Swin-Transformer-Object-Detection.git
@@ -142,6 +142,6 @@ python tools/test.py configs/swin/mask_rcnn_swin-s-p4-w7_fpn_fp16_ms-crop-3x_coc
    
    
    
-![image](https://user-images.githubusercontent.com/69246778/191201695-8cea3008-3243-4190-b4bf-681936340db1.png)   
+![image](https://user-images.githubusercontent.com/69246778/191256787-43110a30-e8f3-4b68-8523-3c47453946e4.png)
 **It is consistent with the Mask_R-CNN reference!**
 
