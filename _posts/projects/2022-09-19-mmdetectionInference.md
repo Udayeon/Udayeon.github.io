@@ -2,14 +2,14 @@
 layout: post
 title: 
 description: |
-  Swin Transformer for Object Detection - Test COCO dataset
+  Swin Transformer for Object Detection - Inference with COCO dataset
 hide_image: true
 tags:
   - projects
 published: true
 ---
 
-# Swin Transformer for Object Detection - Test COCO dataset
+# Swin Transformer for Object Detection - Inference with COCO dataset
 * * *
 
 
@@ -164,22 +164,3 @@ python tools/test.py configs/swin/mask_rcnn_swin-t-p4-w7_fpn_ms-crop-3x_coco.py 
 
 
 
-## 5.2. Training
-@ tools/test.py   
-![image](https://user-images.githubusercontent.com/69246778/191160822-9de9d600-02b1-4648-9af2-56f6ebb567ff.png)   
-![image](https://user-images.githubusercontent.com/69246778/191160944-2efedc2d-0e8f-40dc-ad51-90eddac192bf.png)   
-**model** is build_detector from mmdet.models.   
-   
-@ mmdet/models/swin.py   
-![image](https://user-images.githubusercontent.com/69246778/191159983-5028ed8e-2269-405b-8490-bb0d060cb771.png)   
-![image](https://user-images.githubusercontent.com/69246778/191160684-370c8ba6-5dcc-4deb-b7f0-8eda1c0fb2b2.png)   
-Keyword for using SwinTransformer pre-trained model is **SwinTransformer**     
-   
-To train a detector with pre-trained models, run:   
-```
-# single-gpu training
-python tools/train.py configs/swin/cascade_mask_rcnn_swin_tiny_patch4_window7_mstrain_480-800_giou_4conv1f_adamw_3x_coco.py --cfg-options model.pretrained=SwinTransformer
-
-# multi-gpu training
-tools/dist_train.sh configs/swin/cascade_mask_rcnn_swin_tiny_patch4_window7_mstrain_480-800_giou_4conv1f_adamw_3x_coco.py 1 --cfg-options model.pretrained=SwinTransformer
-```
