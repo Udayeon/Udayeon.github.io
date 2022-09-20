@@ -175,7 +175,7 @@ model = dict(
 
 ### 5.1.e. Results
 ![image](https://user-images.githubusercontent.com/69246778/191194365-f49c008a-6a66-4a52-8c44-e2c8fbdb959a.png)
-Perhaps that has not been implemented. But, anothe example is been implemented.
+Perhaps that has not been implemented. But, another example is been implemented.
 ```
 python tools/test.py configs/swin/mask_rcnn_swin-t-p4-w7_fpn_ms-crop-3x_coco.py checkpoints/mask_rcnn_swin-t-p4-w7_fpn_ms-crop-3x_coco_20210906_131725-bacf6f7b.pth --eval bbox segm
 ```
@@ -183,7 +183,7 @@ python tools/test.py configs/swin/mask_rcnn_swin-t-p4-w7_fpn_ms-crop-3x_coco.py 
 **result**   
 ![image](https://user-images.githubusercontent.com/69246778/191197400-c6bb9a8a-ede1-4c2d-a1f5-57aff179d4bb.png)
 ![image](https://user-images.githubusercontent.com/69246778/191197432-eef663ad-c321-477e-8caf-3630d7e1051b.png)
-![image](https://user-images.githubusercontent.com/69246778/191197578-3ec76b0e-a62b-4b20-87f8-2ed6568efa8a.png)
+![image](https://user-images.githubusercontent.com/69246778/191201695-8cea3008-3243-4190-b4bf-681936340db1.png)
 **It is consistent with the Mask_R-CNN reference!**
 
 
