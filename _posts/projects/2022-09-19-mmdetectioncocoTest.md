@@ -53,7 +53,33 @@ Download the model and move them to @mmdetection/mmdetection/checkpoints
 
 
 # 5. cascade_mask_rcnn_swin_tiny_patch4_window7
-## 5.1. Inference
+
+## 5.1. Inference  -  pretrained ImageNet-1k
+[ImageNet-1K Pretrained Swin-V1 Models](https://github.com/microsoft/Swin-Transformer#main-results-on-imagenet-with-pretrained-models)
+https://github.com/SwinTransformer/storage/releases/download/v1.0.0/swin_tiny_patch4_window7_224.pth   
+   
+@ configs/swin/cascade_mask_rcnn_swin_tiny_patch4_window7_mstrain_480-800_giou_4conv1f_adamw_3x_coco.py   
+```py
+_base_ = [
+    '../_base_/models/cascade_mask_rcnn_swin_fpn.py',
+    '../_base_/datasets/coco_instance.py',
+    '../_base_/schedules/schedule_1x.py', '../_base_/default_runtime.py'
+]
+pretrained = 'https://github.com/SwinTransformer/storage/releases/download/v1.0.0/swin_tiny_patch4_window7_224.pth'
+model = dict(
+    type="CascadeRCNN",
+    backbone=dict(
+        embed_dim=96,
+        depths=[2, 2, 6, 2],
+        num_heads=[3, 6, 12, 24],
+        window_size=7,
+        ape=False,
+        drop_path_rate=0.0,
+        patch_norm=True,
+        use_checkpoint=False,
+        init_cfg=dict(type='Pretrained', checkpoint=pretrained)
+        ),
+```
 @ /mmdetection/mmdetection   
 ```
 # single-gpu testing
@@ -100,7 +126,9 @@ delete 'use_checkpoint'
 ![image](https://user-images.githubusercontent.com/69246778/191163510-a85ce7f2-0e6b-48a1-833a-7f68e3909399.png)
 @ configs/swin/cascade_mask_rcnn_swin_tiny_patch4_window7_mstrain_480-800_giou_4conv1f_adamw_3x_coco.py
 ```py
+pretrained = 'https://github.com/SwinTransformer/storage/releases/download/v1.0.0/swin_tiny_patch4_window7_224.pth'  # noqa
 model = dict(
+    type="CascadeRCNN",
     backbone=dict(
         embed_dims=96,
         depths=[2, 2, 6, 2],
@@ -116,10 +144,9 @@ model = dict(
         out_indices=(0, 1, 2, 3),
         with_cp=False,
         convert_weights=True,
-        init_cfg=None),
-        
+        init_cfg=dict(type='Pretrained', checkpoint=pretrained)),
+
     neck=dict(in_channels=[96, 192, 384, 768]),
-    roi_head=dict(
 ```
 
 ### 5.1.e. Results
