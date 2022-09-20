@@ -96,6 +96,13 @@ delete 'use_checkpoint'
 ```
 
 
+### 5.1.d. TypeError: CascadeRCNN: SwinTransformer: empty() received an invalid combination of arguments - got (tuple, dtype=NoneType, device=NoneType), but expected one of:
+![image](https://user-images.githubusercontent.com/69246778/191163510-a85ce7f2-0e6b-48a1-833a-7f68e3909399.png)
+
+
+
+
+
 
 
 ## 5.2. Training
