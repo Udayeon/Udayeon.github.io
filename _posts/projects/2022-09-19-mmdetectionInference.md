@@ -57,53 +57,7 @@ Download the model and move them to @mmdetection/mmdetection/checkpoints
 ## 5.1. Inference  -  pretrained ImageNet-1k
 [ImageNet-1K Pretrained Swin-V1 Models](https://github.com/microsoft/Swin-Transformer#main-results-on-imagenet-with-pretrained-models)
 https://github.com/SwinTransformer/storage/releases/download/v1.0.0/swin_tiny_patch4_window7_224.pth   
-   
-@ configs/swin/cascade_mask_rcnn_swin_tiny_patch4_window7_mstrain_480-800_giou_4conv1f_adamw_3x_coco.py   
-```py
-_base_ = [
-    '../_base_/models/cascade_mask_rcnn_swin_fpn.py',
-    '../_base_/datasets/coco_instance.py',
-    '../_base_/schedules/schedule_1x.py', '../_base_/default_runtime.py'
-]
-pretrained = 'https://github.com/SwinTransformer/storage/releases/download/v1.0.0/swin_tiny_patch4_window7_224.pth'
-model = dict(
-    type="CascadeRCNN",
-    backbone=dict(
-        embed_dim=96,
-        depths=[2, 2, 6, 2],
-        num_heads=[3, 6, 12, 24],
-        window_size=7,
-        ape=False,
-        drop_path_rate=0.0,
-        patch_norm=True,
-        use_checkpoint=False,
-        init_cfg=dict(type='Pretrained', checkpoint=pretrained)
-        ),
-```
-
-@ configs/_base_/models/cascade_mask_rcnn_swin_fpn.py
-```
-# model settings
-pretrained= 'https://github.com/SwinTransformer/storage/releases/download/v1.0.0/swin_tiny_patch4_window7_224.pth'
-model = dict(
-    type='CascadeRCNN',
-    backbone=dict(
-        type='SwinTransformer',
-        embed_dims=96,
-        depths=[2, 2, 6, 2],
-        num_heads=[3, 6, 12, 24],
-        window_size=7,
-        mlp_ratio=4.,
-        qkv_bias=True,
-        qk_scale=None,
-        drop_rate=0.,
-        attn_drop_rate=0.,
-        drop_path_rate=0.2,
-        patch_norm=True,
-        out_indices=(0, 1, 2, 3),
-        init_cfg=dict(type='Pretrained', checkpoint=pretrained)),
-```
-
+  
 @ /mmdetection/mmdetection (Terminal)
 ```
 # single-gpu testing
@@ -148,29 +102,25 @@ delete 'use_checkpoint'
 
 ### 5.1.d. TypeError: CascadeRCNN: SwinTransformer: empty() received an invalid combination of arguments - got (tuple, dtype=NoneType, device=NoneType), but expected one of:
 ![image](https://user-images.githubusercontent.com/69246778/191163510-a85ce7f2-0e6b-48a1-833a-7f68e3909399.png)
-@ configs/swin/cascade_mask_rcnn_swin_tiny_patch4_window7_mstrain_480-800_giou_4conv1f_adamw_3x_coco.py
+@ configs/swin/cascade_mask_rcnn_swin_tiny_patch4_window7_mstrain_480-800_giou_4conv1f_adamw_3x_coco.py   
+'mlp_ratio = 4'
 ```py
-pretrained = 'https://github.com/SwinTransformer/storage/releases/download/v1.0.0/swin_tiny_patch4_window7_224.pth'  # noqa
+_base_ = [
+    '../_base_/models/cascade_mask_rcnn_swin_fpn.py',
+    '../_base_/datasets/coco_instance.py',
+    '../_base_/schedules/schedule_1x.py', '../_base_/default_runtime.py'
+]
+
 model = dict(
-    type="CascadeRCNN",
     backbone=dict(
         embed_dims=96,
         depths=[2, 2, 6, 2],
         num_heads=[3, 6, 12, 24],
         window_size=7,
         mlp_ratio=4,
-        qkv_bias=True,
-        qk_scale=None,
-        drop_rate=0.,
-        attn_drop_rate=0.,
         drop_path_rate=0.2,
-        patch_norm=True,
-        out_indices=(0, 1, 2, 3),
-        with_cp=False,
-        convert_weights=True,
-        init_cfg=dict(type='Pretrained', checkpoint=pretrained)),
-
-    neck=dict(in_channels=[96, 192, 384, 768]),
+        patch_norm=True
+    ),
 ```
 
 ### 5.1.e. Results
@@ -187,9 +137,9 @@ python tools/test.py configs/swin/mask_rcnn_swin-t-p4-w7_fpn_ms-crop-3x_coco.py 
 **It is consistent with the Mask_R-CNN reference!**
 
 
-### 5.1.f. 
+### 5.1.f.
 @ configs/swin/cascade_mask_rcnn_swin_tiny_patch4_window7_mstrain_480-800_giou_4conv1f_adamw_3x_coco.py   
-Retry using cascade_mask_rcnn_r50_fpn.py   
+
 ```py
 _base_ = [
     '../_base_/models/cascade_mask_rcnn_r50_fpn.py',
