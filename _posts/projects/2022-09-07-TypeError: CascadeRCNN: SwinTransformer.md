@@ -14,7 +14,7 @@ published: true
 ![image](https://user-images.githubusercontent.com/69246778/191164533-2fac495c-4a81-471b-8531-ce727082495f.png)
 
 ## 1. /mmdetection/mmdetection/mmdet/models/backbones/swin.py
-```
+```py
 # Copyright (c) OpenMMLab. All rights reserved.
 import warnings
 from collections import OrderedDict
@@ -789,7 +789,7 @@ class SwinTransformer(BaseModule):
         return outs
 ```
 ## 2. /mmdetection/mmdetection/mmdet/models/detectors/cascade_rcnn.py
-```
+```py
 # Copyright (c) OpenMMLab. All rights reserved.
 from ..builder import DETECTORS
 from .two_stage import TwoStageDetector
