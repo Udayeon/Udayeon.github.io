@@ -150,8 +150,8 @@ model = dict(
 ```
 
 ### 5.1.e. Results
-![image](https://user-images.githubusercontent.com/69246778/191187165-55acf1a9-5fd3-498c-848f-e688013654a0.png)
-
+![image](https://user-images.githubusercontent.com/69246778/191194365-f49c008a-6a66-4a52-8c44-e2c8fbdb959a.png)
+Perhaps that has not been implemented
 
 
 ## 5.2. Training
