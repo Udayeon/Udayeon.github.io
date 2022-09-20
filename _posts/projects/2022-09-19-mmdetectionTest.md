@@ -57,10 +57,10 @@ Download the model and move them to @mmdetection/mmdetection/checkpoints
 @ /mmdetection/mmdetection   
 ```
 # single-gpu testing
-python tools/test.py configs/cascade_mask_rcnn_swin_base_patch4_window7_mstrain_480-800_giou_4conv1f_adamw_3x_coco.py checkpoints/cascade_mask_rcnn_swin_base_patch4_window7.pth --eval bbox segm
+python tools/test.py configs/swin/cascade_mask_rcnn_swin_base_patch4_window7_mstrain_480-800_giou_4conv1f_adamw_3x_coco.py checkpoints/cascade_mask_rcnn_swin_base_patch4_window7.pth --eval bbox segm
 
 # multi-gpu testing
-tools/dist_test.sh configs/cascade_mask_rcnn_swin_base_patch4_window7_mstrain_480-800_giou_4conv1f_adamw_3x_coco.py checkpoints/cascade_mask_rcnn_swin_base_patch4_window7.pth 1 --eval bbox segm
+tools/dist_test.sh configs/swin/cascade_mask_rcnn_swin_base_patch4_window7_mstrain_480-800_giou_4conv1f_adamw_3x_coco.py checkpoints/cascade_mask_rcnn_swin_base_patch4_window7.pth 1 --eval bbox segm
 ```
 
 ## 5.2. Training
@@ -77,8 +77,8 @@ Keyword for using SwinTransformer pre-trained model is **SwinTransformer**
 To train a detector with pre-trained models, run:   
 ```
 # single-gpu training
-python tools/train.py configs/cascade_mask_rcnn_swin_base_patch4_window7_mstrain_480-800_giou_4conv1f_adamw_3x_coco.py --cfg-options model.pretrained=SwinTransformer [model.backbone.use_checkpoint=True] [other optional arguments]
+python tools/train.py configs/swin/cascade_mask_rcnn_swin_base_patch4_window7_mstrain_480-800_giou_4conv1f_adamw_3x_coco.py --cfg-options model.pretrained=SwinTransformer [model.backbone.use_checkpoint=True] [other optional arguments]
 
 # multi-gpu training
-tools/dist_train.sh configs/cascade_mask_rcnn_swin_base_patch4_window7_mstrain_480-800_giou_4conv1f_adamw_3x_coco.py 1 --cfg-options model.pretrained=SwinTransformer [model.backbone.use_checkpoint=True] [other optional arguments] 
+tools/dist_train.sh configs/swin/cascade_mask_rcnn_swin_base_patch4_window7_mstrain_480-800_giou_4conv1f_adamw_3x_coco.py 1 --cfg-options model.pretrained=SwinTransformer [model.backbone.use_checkpoint=True] [other optional arguments] 
 ```
