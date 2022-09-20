@@ -190,7 +190,7 @@ python tools/test.py configs/swin/mask_rcnn_swin-t-p4-w7_fpn_ms-crop-3x_coco.py 
 ### 5.1.f. 
 @ configs/swin/cascade_mask_rcnn_swin_tiny_patch4_window7_mstrain_480-800_giou_4conv1f_adamw_3x_coco.py   
 Retry using cascade_mask_rcnn_r50_fpn.py   
-```
+```py
 _base_ = [
     '../_base_/models/cascade_mask_rcnn_r50_fpn.py',
     '../_base_/datasets/coco_instance.py',
@@ -219,6 +219,12 @@ model = dict(
         init_cfg=dict(type='Pretrained', checkpoint=pretrained)),
 
     neck=dict(in_channels=[96, 192, 384, 768]),
-
 ```
+   
+```py
+python tools/test.py configs/swin/cascade_mask_rcnn_swin_tiny_patch4_window7_mstrain_480-800_giou_4conv1f_adamw_3x_coco.py checkpoints/cascade_mask_rcnn_swin_tiny_patch4_window7.pth --eval bbox segm
+```
+   
+**Result**
+
 
