@@ -125,18 +125,23 @@ model = dict(
 
 ### 5.1.e. Results
 ![image](https://user-images.githubusercontent.com/69246778/191194365-f49c008a-6a66-4a52-8c44-e2c8fbdb959a.png)
-Perhaps that has not been implemented. But, another example is been implemented.
+Perhaps that has not been implemented. But, another example is been implemented.   
+   
 ```
 python tools/test.py configs/swin/mask_rcnn_swin-t-p4-w7_fpn_ms-crop-3x_coco.py checkpoints/mask_rcnn_swin-t-p4-w7_fpn_ms-crop-3x_coco_20210906_131725-bacf6f7b.pth --eval bbox segm
 ```
-
-
-   
 **result**   
-![image](https://user-images.githubusercontent.com/69246778/191197400-c6bb9a8a-ede1-4c2d-a1f5-57aff179d4bb.png)
-![image](https://user-images.githubusercontent.com/69246778/191197432-eef663ad-c321-477e-8caf-3630d7e1051b.png)
-![image](https://user-images.githubusercontent.com/69246778/191201695-8cea3008-3243-4190-b4bf-681936340db1.png)
+![image](https://user-images.githubusercontent.com/69246778/191197400-c6bb9a8a-ede1-4c2d-a1f5-57aff179d4bb.png)   
+![image](https://user-images.githubusercontent.com/69246778/191197432-eef663ad-c321-477e-8caf-3630d7e1051b.png)   
+   
+```
+python tools/test.py configs/swin/mask_rcnn_swin-s-p4-w7_fpn_fp16_ms-crop-3x_coco.py checkpoints/mask_rcnn_swin-s-p4-w7_fpn_fp16_ms-crop-3x_coco_20210903_104808-b92c91f1.pth --eval bbox segm
+```
+![image](https://user-images.githubusercontent.com/69246778/191256043-f219f851-2961-4e8f-a1aa-10677d761cf2.png)   
+![image](https://user-images.githubusercontent.com/69246778/191256098-fce84927-1a6d-47c7-b982-67e95510b85f.png)   
+   
+   
+   
+![image](https://user-images.githubusercontent.com/69246778/191201695-8cea3008-3243-4190-b4bf-681936340db1.png)   
 **It is consistent with the Mask_R-CNN reference!**
-
-
 
