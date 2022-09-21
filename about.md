@@ -11,7 +11,7 @@ menu: true
 
 * Kookmin University, Department of Automotive Engineering B.S 
 * Research Intern at Intelligent Vehicle Signal Processing Lab, Kookmin University
-* Kookmin University, Department of Automotive Engineering M.S candidate
+* Kookmin University, Department of Automobile and IT Convergence, Intelligent Vehicle Signal Processing Lab M.S candidate
 
 
 
