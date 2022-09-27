@@ -49,10 +49,10 @@ we introduce **Locally-enhanced Positional Encoding(LePE)** in this paper.
 # 3. Method
 ## 3.1. Overall Architecture
 ![image](https://user-images.githubusercontent.com/69246778/192493775-faa94551-5c89-4d79-b8be-ddad15716310.png)   
-* **Stage1**
-**Input Image : H * W * 3 **
-**Conv layer : 7 * 7, Stride 4 **
-**Output Patch token : H/4 *  W/4 * C **
+* **Stage1**   
+**Input Image : H * W * 3**   
+**Conv layer : 7 * 7, Stride 4**   
+**Output Patch token : H/4 *  W/4 * C**   
 
 ## 3.2. Cross-Shaped Window Self-Attention
 ### 3.2.a. Horizontal and Vertical Stripes
