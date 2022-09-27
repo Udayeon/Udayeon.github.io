@@ -29,11 +29,28 @@ Results of **Cascade Mask R-CNN 3x + MS**
 
 
 # 1. Introduction
- To improve the full-attention mechanism efficiency, one typical way is to limit the attention region of each token from full-attention to local/windowed
- attention.
+![image](https://user-images.githubusercontent.com/69246778/192468426-8b397e6c-466d-4089-b0bc-320c2a9f95b8.png)   
+ The Transformer architecture with full-attention mechanism is computationally inefficient. To improve the full-attention mechanism efficiency, one typical way is **to limit the attention region of each token from full-attention to local/windowed attention.** The key is to achieve large receptive filed efficiently while keeping the computation cost low.   
+    
+ This paper presents **Cross-Shaped Window self-attention.** with **CSwin self-attention**, we perform the self-attention calculation in the horizontal and vertical striped in **parallel**, with each stripe obtained by splitting the input feature into stripes of equal **width**(This stripe width is an important param).   
+    
+ It is worthwhile to note that with CSwin self-attention mechanism, **the self-attention in horizontal and vertical stripes are calculated in parallel.**
+This strategy splits the multi-heads into parallel groups and applies different self-attention operations onto groups.   
+   
+ Based on the CSwin self-attention mechanism and hierarchical design, we propose a new vision Transformer architecture named **"CSwin Transformer"**. To further enhance this vision Transformer,
+we introduce **Locally-enhanced Positional Encoding(LePE)** in this paper.
 
-## 1.1. 소제목
-내용내용
 
-## 1.2. 소제목
-어쩔저쩔
+# 2. Related Work
+## 2.1. Vision Transformer
+## 2.2. Efficient Self-attentions
+## 2.3. Positional Encoding
+
+# 3. Method
+## 3.1. Overall Architecture
+## 3.2. Cross-Shaped Window Self-Attention
+### 3.2.a. Horizontal and Vertical Stripes
+### 3.2.b. Computation Complexity
+### 3.2.c. Locally-Enhanced Positional Encoding
+## 3.3. CSwin Transformer Block
+## 3.4. Architecture Variants
