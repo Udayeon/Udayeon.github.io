@@ -44,8 +44,8 @@ for _ in range(T):
 >>150
 ```
 
-# C++
-## 1.1. n개의 요소를 갖는 리스트
+# 2.C++
+## 2.1. n개의 요소를 갖는 리스트
 ```cpp
 #include <vector>
 using namespace std;
