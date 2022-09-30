@@ -50,23 +50,24 @@ for _ in range(T):
 #include <vector>
 using namespace std;
 
-int n, num;
-vector<int> score;
+int iter,n,a;
+vector<int> h;
 using namespace std;
 
 int main(int argc, char** argv)
 {
-	cin >> n ;
-	while (n--) {
-		cin >> num;
-		score.push_back(num);
+	cin >> iter ;
+	n=iter;
+	while (iter--) {
+		cin >> a;
+		h.push_back(a);
 	}
-	printf("%d", score[2]);
+	for(int k=0; k<h.size();k++){cout << h[k] << " ";}
 	return 0;
 }
 ```
 ```cpp
-3
-1 2 3
->> 3
+5
+1 2 3 4 5
+>> 1 2 3 4 5
 ```
