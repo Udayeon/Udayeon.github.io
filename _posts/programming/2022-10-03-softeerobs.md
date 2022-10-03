@@ -9,7 +9,7 @@ tags:
 published: true
 ---
 
-# (cpp) Softeer '지도 자동 구축' -DFS
+# (cpp) Softeer '장애물 인식 프로그램' - DFS
 * * *
 [문제](https://softeer.ai/practice/info.do?idx=1&eid=409&sw_prbl_sbms_sn=84468)
 
