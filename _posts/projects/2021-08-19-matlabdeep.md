@@ -5,7 +5,7 @@ description: |
   YOLOv2를 활용한 Multi objet Detector 1 - labeling
 hide_image: true
 tags:
-  - deeplearning
+  - projects
 published: true
 ---
 
