@@ -5,7 +5,7 @@ description: |
   (Matlab) 딥러닝을 사용한 Semantic Segmentation
 hide_image: true
 tags:
-  - deeplearning
+  - projects
 published: true
 ---
 
