@@ -19,7 +19,7 @@ published: true
 ### configs/swin/cascade_mask_rcnn_swin-t-p4-w7_fpn_ms-crop-3x_coco.py
 ```py
 _base_ = [
-    '../_base_/models/cascade_mask_rcnn_r50_fpn.py',
+    '../_base_/models/cascade_mask_rcnn_swin_fpn.py',
     '../_base_/datasets/coco_instance.py',
     '../_base_/schedules/schedule_1x.py', '../_base_/default_runtime.py'
 ]
@@ -110,7 +110,7 @@ optimizer = dict(
 lr_config = dict(warmup_iters=1000, step=[27, 33])
 runner = dict(max_epochs=36)
 ```
-###configs/base/models/cascade_mask_rcnn_swin_fpn.py
+### configs/base/models/cascade_mask_rcnn_swin_fpn.py
 ```py
 # model settings
 model = dict(
@@ -321,4 +321,28 @@ model = dict(
             mask_thr_binary=0.5)))
 ```
 
-# 3. Test
+# 3. Train
+* 4 GPU 3090 RTX
+* 3~4 days
+### cascade_mask_rcnn_swin-s-p4-w7_fpn_fp16_ms-crop-3x_coco.py
+```
+bash ./tools/dist_train.sh configs/swin/cascade_mask_rcnn_swin-s-p4-w7_fpn_fp16_ms-crop-3x_coco.py 4
+```
+
+### cascade_mask_rcnn_swin-t-p4-w7_fpn_fp16_ms-crop-3x_coco.py
+```
+bash ./tools/dist_train.sh configs/swin/cascade_mask_rcnn_swin-t-p4-w7_fpn_fp16_ms-crop-3x_coco.py 4
+```
+
+# 4. Test
+### cascade_mask_rcnn_swin-s-p4-w7_fpn_fp16_ms-crop-3x_coco.py
+```
+python tools/test.py configs/swin/cascade_mask_rcnn_swin-s-p4-w7_fpn_fp16_ms-crop-3x_coco.py work_dirs/cascade_mask_rcnn_swin-s-p4-w7_fpn_fp16_ms-crop-3x_coco/latest.pth --eval bbox segm
+```
+
+### cascade_mask_rcnn_swin-t-p4-w7_fpn_fp16_ms-crop-3x_coco.py
+```
+python tools/test.py configs/swin/cascade_mask_rcnn_swin-t-p4-w7_fpn_fp16_ms-crop-3x_coco.py work_dirs/cascade_mask_rcnn_swin-t-p4-w7_fpn_fp16_ms-crop-3x_coco/latest.pth --eval bbox segm
+```
+
+# 5. Results
