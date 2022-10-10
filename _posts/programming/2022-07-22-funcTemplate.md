@@ -2,7 +2,7 @@
 layout: post
 title: 
 description: |
-  (c++) 템플릿
+  (cpp) Template
 hide_image: true
 tags:
   - programming
