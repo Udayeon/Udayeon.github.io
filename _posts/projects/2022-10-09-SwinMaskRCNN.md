@@ -14,7 +14,7 @@ published: true
 
 # 1. Reference
 ![image](https://user-images.githubusercontent.com/69246778/194818882-60f7ec72-2836-4a4a-ae67-b14813035f8d.png)   
-[Results ans Models Mask R-CNN](https://github.com/SwinTransformer/Swin-Transformer-Object-Detection#mask-r-cnn)   
+[Results and Models Mask R-CNN](https://github.com/SwinTransformer/Swin-Transformer-Object-Detection#mask-r-cnn)   
 
 # 2. Checkpoints download
 [mmdetection Mask R-CNN download](https://github.com/open-mmlab/mmdetection/tree/master/configs/swin#mask-r-cnn)   
