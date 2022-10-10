@@ -5,7 +5,7 @@ description: |
   Swin Transformer - Image Classification
 hide_image: true
 tags:
-  - deeplearning
+  - projects
 published: true
 ---
 
