@@ -28,16 +28,16 @@ Make **checkpoints** directory at mmdetection.
 python tools/test.py configs/swin/mask_rcnn_swin-t-p4-w7_fpn_fp16_ms-crop-3x_coco.py checkpoints/mask_rcnn_swin-t-p4-w7_fpn_fp16_ms-crop-3x_coco_20210908_165006-90a4008c.pth --eval bbox segm
 ```   
    
-**Results**
-![image](https://user-images.githubusercontent.com/69246778/194819673-4783ff62-9bcd-4680-a173-11d64857f375.png)
-![image](https://user-images.githubusercontent.com/69246778/194819680-77fa2dcc-dfd8-44be-871e-d744c76db8bb.png)
+**Results**   
+![image](https://user-images.githubusercontent.com/69246778/194819673-4783ff62-9bcd-4680-a173-11d64857f375.png)   
+![image](https://user-images.githubusercontent.com/69246778/194819680-77fa2dcc-dfd8-44be-871e-d744c76db8bb.png)   
 
 ## 3.2. Swin Small Mask-RCNN
 ```
 python tools/test.py configs/swin/mask_rcnn_swin-s-p4-w7_fpn_fp16_ms-crop-3x_coco.py checkpoints/mask_rcnn_swin-s-p4-w7_fpn_fp16_ms-crop-3x_coco_20210903_104808-b92c91f1.pth --eval bbox segm
 ```
    
-**ResultS**
-![image](https://user-images.githubusercontent.com/69246778/194819859-fd99791e-3901-4d47-b84f-2f3bfb333e98.png)
-![image](https://user-images.githubusercontent.com/69246778/194819879-e417f2f9-992a-4c42-a5c7-12c468fcd022.png)
+**ResultS**   
+![image](https://user-images.githubusercontent.com/69246778/194819859-fd99791e-3901-4d47-b84f-2f3bfb333e98.png)   
+![image](https://user-images.githubusercontent.com/69246778/194819879-e417f2f9-992a-4c42-a5c7-12c468fcd022.png)   
 
