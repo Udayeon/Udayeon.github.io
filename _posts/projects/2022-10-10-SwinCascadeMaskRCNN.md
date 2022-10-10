@@ -345,13 +345,29 @@ model = dict(
 ```
 
 ## 2.2. Train
-4 GPU 3090 RTX   
+* 4 GPU 3090 RTX   
+* 3~4 days   
 ### cascade_mask_rcnn_swin-s-p4-w7_fpn_fp16_ms-crop-3x_coco.py
 ```py
 bash ./tools/dist_train.sh configs/swin/cascade_mask_rcnn_swin-s-p4-w7_fpn_fp16_ms-crop-3x_coco.py 4
 ```
 
-### cascade_mask_rcnn_swin-t-p4-w7_fpn_fp16_ms-crop-3x_coco.py
+
+## 3. Test
+/work-dirs/cascade_mask_rcnn_swin-s-p4-w7_fpn_fp16_ms-crop-3x_coco.py   
 ```
-bash ./tools/dist_train.sh configs/swin/cascade_mask_rcnn_swin-t-p4-w7_fpn_fp16_ms-crop-3x_coco.py 4
+epoch1.pth
+epoch2.pth
+epoch3.pth
+.
+.
+.
+latest.pth
+```   
+**latest.pth** move to /checkpoints   
+이때, log파일 참조해서 파일명 바꿔주고 옮기기(추후 다른 모델과 구별위해..)   
+cascade_mask_rcnn_swin-s-p4-w7_fpn_fp16_ms-crop-3x_coco_20220929_120855.pth
+
+```py
+python tools/test.py configs/swin/cascade_mask_rcnn_swin-s-p4-w7_fpn_fp16_ms-crop-3x_coco.py    checkpoints/cascade_mask_rcnn_swin-s-p4-w7_fpn_fp16_ms-crop-3x_coco_20220929_120855.pth --eval bbox segm
 ```
