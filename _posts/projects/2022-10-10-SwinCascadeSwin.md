@@ -323,12 +323,12 @@ model = dict(
 
 # 3. Train
 * 4 GPU 3090 RTX
-* 3~4 days
+* 3~4 days   
+
 ### cascade_mask_rcnn_swin-s-p4-w7_fpn_fp16_ms-crop-3x_coco.py
 ```
 bash ./tools/dist_train.sh configs/swin/cascade_mask_rcnn_swin-s-p4-w7_fpn_fp16_ms-crop-3x_coco.py 4
 ```
-
 ### cascade_mask_rcnn_swin-t-p4-w7_fpn_fp16_ms-crop-3x_coco.py
 ```
 bash ./tools/dist_train.sh configs/swin/cascade_mask_rcnn_swin-t-p4-w7_fpn_fp16_ms-crop-3x_coco.py 4
