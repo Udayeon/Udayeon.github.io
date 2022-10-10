@@ -9,7 +9,7 @@ tags:
 published: True
 ---
 
-# (C++) Template
+# () Template
 * * *
 
 # 1. 템플릿이란
