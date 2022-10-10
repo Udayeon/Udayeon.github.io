@@ -10,7 +10,7 @@ published: true
 ---
 
 
-# (C++) 간단한 Visual Odometry
+# (cpp) 간단한 Visual Odometry
 * * *
 [blog post](https://avisingh599.github.io/vision/monocular-vo/)
 [dataset](http://www.cvlibs.net/datasets/kitti/eval_odometry.php)
