@@ -39,8 +39,16 @@ published: true
  필요한 ECU만 작동하도록 하는 역할이다.또한 많은 ECU가 **BUS**로 연결되어 있는데 이는 하나의 큰 줄기에 가지처럼 연결한 구조를 이야기한다.
 
 # 4. Various Automotive Computing Platform
-|기능|Control|Infotainment(정보와 오락)|Intelligence|
-|예시|(Multicore)CPU,CAN|CPU+GPU,Wireless(LTE,BT,...)|CPU+GPU+NPU,Ethernet|
-|특징|- 기능적으로 안정적(ISO 26262,자동차 기능안전 표준을 따름)|-보안(ISO/SAE 21434,자동차사이버보안표준)|-가속화(CPU계산 빨라지게..)|
-|   1|- 실시간 스케줄링|-연결성(OTA,Over-The-Air:자동차에 내장된 소프트웨어를 무선으로 수정,추가,삭제하는 업데이트)|- Intended안전(SOTIF,사람의 실수나 외부 요인에 의한 센서 한계에 따른 안전표준)|
-|   2|- 멀티코어 검증/최적화|- 신규사용자경험(NUX,New Users Experiences)|- Choice of Operating System|
+|기능|예시|특징|
+|----|---|----|
+|Control|(Multicore)CPU,CAN |- 기능적으로 안정적(ISO 26262,자동차 기능안전 표준을 따름)|   
+|       |                   |- 실시간 스케줄링                                       |
+|       |                   |- 멀티코어 검증/최적화                                   |
+|Infotainment(정보와 오락)|CPU+GPU,Wireless(LTE,BT,...)|-보안(ISO/SAE 21434,자동차사이버보안표준)|
+|                         |                           |-연결성(OTA,Over-The-Air:자동차에 내장된 소프트웨어를 무선으로 수정,추가,삭제하는 업데이트)|
+|                         |                           |- 신규사용자경험(NUX,New Users Experiences)|
+|Intelligence|CPU+GPU+NPU,Ethernet|-가속기(CPU계산 빨라지게..)|
+|            |                    |- Intended안전(SOTIF,사람의 실수나 외부 요인에 의한 센서한계에 대한 표준|
+|            |                    |- Choice of Operating System|
+
+
