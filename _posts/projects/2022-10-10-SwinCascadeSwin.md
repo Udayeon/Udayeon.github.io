@@ -469,3 +469,5 @@ OrderedDict([('bbox_mAP', 0.489), ('bbox_mAP_50', 0.681), ('bbox_mAP_75', 0.536)
 |--------|----|----------|-------|------|-------|
 |Swin T  |Cascade Mask R-CNN|ImageNet 1k|COCO|50.9|44.3|
 |Swin S  |Cascade Mask R-CNN|ImageNet 1k|COCO|48.9|42.8|
+![image](https://user-images.githubusercontent.com/69246778/195001647-7a2caa43-db98-4de0-be47-04b53201128b.png)
+
