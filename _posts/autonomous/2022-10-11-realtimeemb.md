@@ -32,5 +32,15 @@ published: true
 공유기, 현관문시스템* 같은 것들이다. **Hard Real-Time**은 제약 조건을 한 번 이라도 만족하지 못하면 큰 문제가 야기되는 *공항 관제 시스템,자동차, 인공위성 발사* 등과 같은 것이다. 
 
 # 3. Automotive System
- 자동차는 매우 복잡하게 구성된 **Distributed Hard Real-Time Embedded System**이다. 수십 개의 ECU(전자 제어 장치)가 네트워크를 통해 연결되어 있고 센서부터 액추에이터까지
- ECU와 네트워크르
+ 자동차는 수십 개의 ECU(전자 제어 장치)가 네트워크를 통해 연결되어 있는 매우 복잡하게 구성된 **Distributed Hard Real-Time Embedded System**이다. 센서에서 액추에이터까지 ECU와 네트워크로 연결되는데 **end-to-end delays**가 시간 정확성을 정의한다. **end-to-end delays(종단간지연)** 은 시작부터 목적지까지 통신하는데 걸리는 시간을 의미한다.   
+ 자동차의 구조를 단순화하면 다음과 같다.   
+ ![image](https://user-images.githubusercontent.com/69246778/195063437-81a24e36-daf7-4281-8fab-96877903cde2.png)   
+ 왼쪽 부분에 있는 ECU묶음과 오른쪽 부분의 ECU묶음이 **Gateway**를 통해 연결되어 있는데, 이는 모든 ECU를 한 번에 작동시킬 수 없으므로
+ 필요한 ECU만 작동하도록 하는 역할이다.또한 많은 ECU가 **BUS**로 연결되어 있는데 이는 하나의 큰 줄기에 가지처럼 연결한 구조를 이야기한다.
+
+# 4. Various Automotive Computing Platform
+|기능|Control|Infotainment(정보와 오락)|Intelligence|
+|예시|(Multicore)CPU,CAN|CPU+GPU,Wireless(LTE,BT,...)|CPU+GPU+NPU,Ethernet|
+|특징|- 기능적으로 안정적(ISO 26262,자동차 기능안전 표준을 따름)|-보안(ISO/SAE 21434,자동차사이버보안표준)|-가속화(CPU계산 빨라지게..)|
+|    |- 실시간 스케줄링|-연결성(OTA,Over-The-Air:자동차에 내장된 소프트웨어를 무선으로 수정,추가,삭제하는 업데이트)|- Intended안전(SOTIF,사람의 실수나 외부 요인에 의한 센서 한계에 따른 안전표준)|
+|    |- 멀티코어 검증/최적화|- 신규사용자경험(NUX,New Users Experiences)|- Choice of Operating System|
