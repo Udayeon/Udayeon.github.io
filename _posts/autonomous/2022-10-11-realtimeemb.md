@@ -41,13 +41,13 @@ published: true
 # 4. Various Automotive Computing Platform
 |기능|예시|특징|
 |----|---|----|
-|Control|(Multicore)CPU,CAN |- 기능적으로 안정적(ISO 26262,자동차 기능안전 표준을 따름)|   
+|**Control**|(Multicore)CPU,CAN |- 기능적으로 안정적(ISO 26262,자동차 기능안전 표준을 따름)|   
 |       |                   |- 실시간 스케줄링                                       |
 |       |                   |- 멀티코어 검증/최적화                                   |
-|Infotainment(정보와 오락)|CPU+GPU,Wireless(LTE,BT,...)|-보안(ISO/SAE 21434,자동차사이버보안표준)|
+|**Infotainment(정보와 오락)**|CPU+GPU,Wireless(LTE,BT,...)|-보안(ISO/SAE 21434,자동차사이버보안표준)|
 |                         |                           |-연결성(OTA,Over-The-Air:자동차에 내장된 소프트웨어를 무선으로 수정,추가,삭제하는 업데이트)|
 |                         |                           |- 신규사용자경험(NUX,New Users Experiences)|
-|Intelligence|CPU+GPU+NPU,Ethernet|-가속기(CPU계산 빨라지게..)|
+|**Intelligence**|CPU+GPU+NPU,Ethernet|-가속기(CPU계산 빨라지게..)|
 |            |                    |- Intended안전(SOTIF,사람의 실수나 외부 요인에 의한 센서한계에 대한 표준|
 |            |                    |- Choice of Operating System|
 
