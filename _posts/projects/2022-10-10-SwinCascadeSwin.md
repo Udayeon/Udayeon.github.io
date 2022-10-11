@@ -335,14 +335,15 @@ bash ./tools/dist_train.sh configs/swin/cascade_mask_rcnn_swin-t-p4-w7_fpn_fp16_
 ```
 
 # 4. Test
+
 ### cascade_mask_rcnn_swin-s-p4-w7_fpn_fp16_ms-crop-3x_coco.py
 ```
-python tools/test.py configs/swin/cascade_mask_rcnn_swin-s-p4-w7_fpn_fp16_ms-crop-3x_coco.py work_dirs/cascade_mask_rcnn_swin-s-p4-w7_fpn_fp16_ms-crop-3x_coco/latest.pth --eval bbox segm
+python tools/test.py configs/swin/cascade_mask_rcnn_swin-s-p4-w7_fpn_fp16_ms-crop-3x_coco.py checkpoint/cascade_mask_rcnn_swin-s-p4-w7_fpn_fp16_ms-crop-3x_coco_swin_fpn.pth --eval bbox segm
 ```
 
 ### cascade_mask_rcnn_swin-t-p4-w7_fpn_fp16_ms-crop-3x_coco.py
 ```
-python tools/test.py configs/swin/cascade_mask_rcnn_swin-t-p4-w7_fpn_fp16_ms-crop-3x_coco.py work_dirs/cascade_mask_rcnn_swin-t-p4-w7_fpn_fp16_ms-crop-3x_coco/latest.pth --eval bbox segm
+python tools/test.py configs/swin/cascade_mask_rcnn_swin-t-p4-w7_fpn_fp16_ms-crop-3x_coco.py checkpoint/cascade_mask_rcnn_swin-t-p4-w7_fpn_fp16_ms-crop-3x_coco_swin_fpn.pth --eval bbox segm
 ```
 
 # 5. Results
