@@ -465,3 +465,7 @@ DONE (t=3.45s).
 OrderedDict([('bbox_mAP', 0.489), ('bbox_mAP_50', 0.681), ('bbox_mAP_75', 0.536), ('bbox_mAP_s', 0.321), ('bbox_mAP_m', 0.522), ('bbox_mAP_l', 0.634), ('bbox_mAP_copypaste', '0.489 0.681 0.536 0.321 0.522 0.634'), ('segm_mAP', 0.428), ('segm_mAP_50', 0.655), ('segm_mAP_75', 0.464), ('segm_mAP_s', 0.229), ('segm_mAP_m', 0.46), ('segm_mAP_l', 0.616), ('segm_mAP_copypaste', '0.428 0.655 0.464 0.229 0.460 0.616')])
 ```
 
+|backbone|head|pretrained|dataset|box AP|mask AP|
+|--------|----|----------|-------|------|-------|
+|Swin T  |Cascade Mask R-CNN|ImageNet 1k|COCO|50.9|44.3|
+|Swin S  |Cascade Mask R-CNN|ImageNet 1k|COCO|48.9|42.8|
