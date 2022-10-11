@@ -408,6 +408,60 @@ OrderedDict([('bbox_mAP', 0.509), ('bbox_mAP_50', 0.7), ('bbox_mAP_75', 0.557), 
 
 ### cascade_mask_rcnn_swin-t-p4-w7_fpn_fp16_ms-crop-3x_coco.py
 ```
+Evaluating bbox...
+Loading and preparing results...
+DONE (t=0.28s)
+creating index...
+index created!
+Running per image evaluation...
+Evaluate annotation type *bbox*
+DONE (t=17.13s).
+Accumulating evaluation results...
+DONE (t=3.64s).
 
+ Average Precision  (AP) @[ IoU=0.50:0.95 | area=   all | maxDets=100 ] = 0.489
+ Average Precision  (AP) @[ IoU=0.50      | area=   all | maxDets=1000 ] = 0.681
+ Average Precision  (AP) @[ IoU=0.75      | area=   all | maxDets=1000 ] = 0.536
+ Average Precision  (AP) @[ IoU=0.50:0.95 | area= small | maxDets=1000 ] = 0.321
+ Average Precision  (AP) @[ IoU=0.50:0.95 | area=medium | maxDets=1000 ] = 0.522
+ Average Precision  (AP) @[ IoU=0.50:0.95 | area= large | maxDets=1000 ] = 0.634
+ Average Recall     (AR) @[ IoU=0.50:0.95 | area=   all | maxDets=100 ] = 0.620
+ Average Recall     (AR) @[ IoU=0.50:0.95 | area=   all | maxDets=300 ] = 0.620
+ Average Recall     (AR) @[ IoU=0.50:0.95 | area=   all | maxDets=1000 ] = 0.620
+ Average Recall     (AR) @[ IoU=0.50:0.95 | area= small | maxDets=1000 ] = 0.457
+ Average Recall     (AR) @[ IoU=0.50:0.95 | area=medium | maxDets=1000 ] = 0.657
+ Average Recall     (AR) @[ IoU=0.50:0.95 | area= large | maxDets=1000 ] = 0.768
+
+
+Evaluating segm...
+/opt/conda/lib/python3.7/site-packages/mmdet/datasets/coco.py:474: UserWarning: The key "bbox" is deleted for more accurate mask AP of small/medium/large instances since v2.12.0. This does not change the overall mAP calculation.
+  UserWarning)
+Loading and preparing results...
+DONE (t=0.73s)
+creating index...
+index created!
+Running per image evaluation...
+Evaluate annotation type *segm*
+DONE (t=19.19s).
+Accumulating evaluation results...
+/opt/conda/lib/python3.7/site-packages/pycocotools/cocoeval.py:378: DeprecationWarning: `np.float` is a deprecated alias for the builtin `float`. To silence this warning, use `float` by itself. Doing this will not modify any behavior and is safe. If you specifically wanted the numpy scalar type, use `np.float64` here.
+Deprecated in NumPy 1.20; for more details and guidance: https://numpy.org/devdocs/release/1.20.0-notes.html#deprecations
+  tp_sum = np.cumsum(tps, axis=1).astype(dtype=np.float)
+DONE (t=3.45s).
+
+ Average Precision  (AP) @[ IoU=0.50:0.95 | area=   all | maxDets=100 ] = 0.428
+ Average Precision  (AP) @[ IoU=0.50      | area=   all | maxDets=1000 ] = 0.655
+ Average Precision  (AP) @[ IoU=0.75      | area=   all | maxDets=1000 ] = 0.464
+ Average Precision  (AP) @[ IoU=0.50:0.95 | area= small | maxDets=1000 ] = 0.229
+ Average Precision  (AP) @[ IoU=0.50:0.95 | area=medium | maxDets=1000 ] = 0.460
+ Average Precision  (AP) @[ IoU=0.50:0.95 | area= large | maxDets=1000 ] = 0.616
+ Average Recall     (AR) @[ IoU=0.50:0.95 | area=   all | maxDets=100 ] = 0.549
+ Average Recall     (AR) @[ IoU=0.50:0.95 | area=   all | maxDets=300 ] = 0.549
+ Average Recall     (AR) @[ IoU=0.50:0.95 | area=   all | maxDets=1000 ] = 0.549
+ Average Recall     (AR) @[ IoU=0.50:0.95 | area= small | maxDets=1000 ] = 0.372
+ Average Recall     (AR) @[ IoU=0.50:0.95 | area=medium | maxDets=1000 ] = 0.590
+ Average Recall     (AR) @[ IoU=0.50:0.95 | area= large | maxDets=1000 ] = 0.712
+
+OrderedDict([('bbox_mAP', 0.489), ('bbox_mAP_50', 0.681), ('bbox_mAP_75', 0.536), ('bbox_mAP_s', 0.321), ('bbox_mAP_m', 0.522), ('bbox_mAP_l', 0.634), ('bbox_mAP_copypaste', '0.489 0.681 0.536 0.321 0.522 0.634'), ('segm_mAP', 0.428), ('segm_mAP_50', 0.655), ('segm_mAP_75', 0.464), ('segm_mAP_s', 0.229), ('segm_mAP_m', 0.46), ('segm_mAP_l', 0.616), ('segm_mAP_copypaste', '0.428 0.655 0.464 0.229 0.460 0.616')])
 ```
 
