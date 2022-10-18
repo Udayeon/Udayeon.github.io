@@ -6,7 +6,7 @@ description: |
 hide_image: true
 tags:
   - projects
-published: True
+published: false
 ---
 
 # SwinTransformer in mmdetection Code Review
@@ -73,7 +73,7 @@ class WindowMSA(BaseModule):
         # bias maxtrix B, [2M-1][2M-1]
         self.relative_position_bias_table = nn.Parameter(
             torch.zeros((2 * window_size[0] - 1) * (2 * window_size[1] - 1),
-                        num_heads))  # 2*Wh-1 * 2*Ww-1, nH
+                        num_heads))  # (2*Wh-1 * 2*Ww-1)개, nH차원의 영벡터
 
 
         # About 2x faster than original impl
