@@ -12,8 +12,18 @@ published: true
 # Swin Transformer for Classification - Inference with ImageNet1K(mini version) dataset
 * * *
 
+# 1. dataset
+[ImageNet 1k Mini Ver](https://www.kaggle.com/datasets/ifigotin/imagenetmini-1000?resource=download)
+
 # 1. Training
 ```
 python -m torch.distributed.launch --nproc_per_node 4 --master_port 12345  main.py \
 --cfg configs/swin/swin_tiny_patch4_window7_224.yaml --data-path imagenet --batch-size 128
 ```
+
+# 2. Evaluation
+```
+python -m torch.distributed.launch --nproc_per_node 1 --master_port 12345 main.py --eval \
+--cfg configs/swin/swin_tiny_patch4_window7_224.yaml --resume output/swin_tiny_patch4_window7_224_swin2/default/ckpt_epoch_268.pth --data-path imagenet
+```
+
