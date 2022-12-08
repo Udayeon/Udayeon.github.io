@@ -5,7 +5,7 @@ description: |
   (Error) CUDA out of memory
 hide_image: true
 tags:
-  - etc
+  - deeplearning
 published: true
 ---
 
