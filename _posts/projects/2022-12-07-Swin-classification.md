@@ -650,5 +650,4 @@ python -m torch.distributed.launch --nproc_per_node 1 --master_port 12345 main.p
 --cfg configs/swin/swin_tiny_patch4_window7_224.yaml --resume checkpoints/swin_tiny_patch4_window7_224.pth --data-path imagenet
 ```
 
-![image](https://user-images.githubusercontent.com/69246778/206333425-13244d1b-d5f3-44ad-997a-a4f1d7133e09.png)
-
+![image](https://user-images.githubusercontent.com/69246778/206405643-ab521c42-a68f-45a6-aba7-4efcef5976fe.png)
