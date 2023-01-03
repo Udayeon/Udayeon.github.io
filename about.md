@@ -3,7 +3,7 @@ layout: about
 title: About Me
 order : 7
 description: >
- **Welcome!** Thank you for coming to my page. This page is a personal study diary to record and organize my research. The main areas are _self-driving cars, artificial intelligence_ and _deep learning_. It also covers _programming languages_, _dynamics_ , _mathematics_, and _automotive news_, etc. Please refer to the following for information about me. Thank you.
+ **Welcome!** Thank you for coming to my page. This page is a personal study diary to record and organize my research. The main areas are _self-driving cars, deep learning_ and _computer vision_. It also covers _programming languages_, _dynamics_ , _mathematics_, and _automotive news_, etc. Please refer to the following for information about me. Thank you.
 menu: true
 
 ---
