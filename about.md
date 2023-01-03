@@ -3,7 +3,7 @@ layout: about
 title: About Me
 order : 7
 description: >
- **Welcome!** Thank you for coming to my page. This page is a personal study diary to record and organize my research. Major fields are _self-driving cars, artificial intelligence_ and _deep learning_. It also covers _programming languages_, _dynamics_ , _mathematics_, and _automotive news_, etc. For information about me, see the following. Thank you.
+ **Welcome!** Thank you for coming to my page. This page is a personal study diary to record and organize my research. The main areas are _self-driving cars, artificial intelligence_ and _deep learning_. It also covers _programming languages_, _dynamics_ , _mathematics_, and _automotive news_, etc. Please refer to the following for information about me. Thank you.
 menu: true
 
 ---
