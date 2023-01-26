@@ -45,7 +45,7 @@ hand-craft방식의 sparse attention 패턴이 완화될 수 있을 겁니다. C
 **DAT**는 query agnostic(쿼리와 관련없는)오프셋 일부 그룹만을 학습할 것을 제안합니다. 특정 쿼리에 구애받는 것이 아니라
 모든 쿼리가 공유하는 영역에 대해 학습합니다. 이렇게하면, 중요한 영역으로 key와 value의 위치를 옮길 수 있습니다.   
    
-![image](https://user-images.githubusercontent.com/69246778/214780171-e5ec7f19-5625-4f8c-a679-46aa14fd111d.png)
+![image](https://user-images.githubusercontent.com/69246778/214780171-e5ec7f19-5625-4f8c-a679-46aa14fd111d.png)   
 (a) 모든 쿼리에 대해 global 어텐션을 합니다.   
 (b) 각 쿼리를 포함한 윈도우 내에서만 어텐션을 합니다.   
 (c) 각 쿼리에 대해 서로 다른 형태의 어텐션 영역을 지정합니다.   
