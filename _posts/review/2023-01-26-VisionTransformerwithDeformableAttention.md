@@ -15,36 +15,45 @@ published: true
 [논문 링크](https://openaccess.thecvf.com/content/CVPR2022/html/Xia_Vision_Transformer_With_Deformable_Attention_CVPR_2022_paper.html?ref=https://githubhelp.com)
 
 * * *
-**Abstract**
-PVT,SWIN과 같은 모델들은 local attention을 하므로 계산량을 줄일 수 있지만 data agnostic하고 먼 거리에 있는 것과의 관계성은 잘 포착하지 못합니다. key-value를 선택할 떄
-데이터에 기반하여 선택하면 관련된 영역에 더욱 초점을 잘 맞출 수 있고 더 많은 정보를 포함한 feature를 포착할 수 있게됩니다. 인풋에 대해 유연하게 수용장을 변형하는 
-**Deformable Attention Transformer**를 제안합니다.
-
+**Abstract**   
+트랜스포머 모델은 크고,global한 수용장 덕에 CNN보다 Representation power가 좋습니다. 그치만, 수용장이 크면 그만큼 메모리를 많이
+차지하고 계산 비용이 많이 듭니다. 또, 너무 넓게 보면 feature와 관련 없는 부분까지 영향을 받을 수도 있습니다. 이를 보완하기 위해
+제안된 것이 PVT와 Swin인데 이들은 Sparse Attention을 하므로 계산량을 줄일 순 있지만 data agnostic하고 먼 거리에 있는 것과의 
+관계성은 잘 포착하지 못합니다. 이런 문제를 해결하기 위해 **key-value를 data-dependent하게 선택해야 합니다. 
+그렇게 하면, 관련된 영역에 더욱 초점을 잘 맞출 수 있고 더 많은 정보를 포함한 feature를 포착할 수 있게됩니다.**
 
 # 1. Introduction
- CNN기반 모델과 비교하면, 트랜스포머 모델은 더 큰 수용장을 통해 거리가 먼 것과의 관계성도 잘 포착할 수 있습니다. 그치만 수용장이 크다고 마냥 좋은 것만은 아닙니다. 
-**계산량이 증가**하고, **수렴하는 속도가 느리며**, **오버피팅**이 발생할 위험성이 높아집니다. 과도한 어텐션 계산을 피하기 위해 제안된 대표적인 두 가지 모델은 
-'Swin Transformer'와 'PVT(Pyramid Vision Transformer)'입니다. Swin은 window라고 하는 특정 영역 내에서만 계산을 진행하고 PVT는 key,value의 피처맵을 다운샘플링해서 
-계산량을 줄입니다. 그치만, **이들 hand-craft방식은 효과적이지만 데이터와 무관하므로 최적은 아닐 수 있습니다. 필요한 key/value는 삭제되고, 필요 없는 것만 남을 수도 있다는 
-거죠.**   
+ CNN기반 모델과 비교하면 트랜스포머 모델은 더 큰 수용장을 통해 거리가 먼 것과의 관계성도 잘 포착할 수 있고 많은 양의 훈련 데이터
+및 모델 파라미터 영역에서 우수한 성능을 달성합니다. 그러나 과도한 attention은 **높은 계산 비용이 발생하고 수렴하는 속도가 
+느리며 오버피팅**이 발생할 위험성이 높아집니다.   
    
- 이상적인건, 주어진 쿼리에 대한 key/value쌍이 각각의 input에 유연하게 대할 수 있는 능력을 갖는 것입니다. input에 따라 다르게 어텐션을 영역이 지정되면 데이터의 정보를 더 
-잘 포착할 수 있을 겁니다. CNN논문에서도 컨볼루션 필터에 대해 **변형 가능한 수용장**을 학습하면, 데이터에 기반하기 때문에 정보가 더욱 풍부한 지역을 선택적으로 참여할 수 
-있다고 합니다. 이 아이디어를 그대로 비전 트랜스포머에 적용하면 좋겠지만 계산량이 너무 많아집니다.   
+과도한 어텐션 계산을 피하기 위해 Swin과 PVT라는 모델이 제안되었습닏. Swin은 window라고 하는 특정 영역 내에서만 어텐션을 진행하고 
+PVT는 key,value의 피처맵을 다운샘플링해서 계산량을 줄입니다. 그러나, **이들 hand-craft방식은 효과적이지만 데이터와 무관하므로 
+최적은 아닐 수 있습니다. 필요한 key/value는 삭제되고, 필요 없는 것들만 남을 수도 있습니다.**   
    
-본 논문에서 제안하는 **Deformable Attention Transformer(DAT)** 는 **deformable self-attention module**을 피라미드처럼 쌓은 것입니다. 
-기존의 **DCN(Deformable Convolution Network)** 은 전체 피처맵의 픽셀마다 다른 오프셋을 학습했다면, **DAT**는 query agnostic(쿼리와 무관한)오프셋 일부 그룹만을 
-학습할 것을 제안합니다. 특정 쿼리에 구애받는 것이 아니라 모든 쿼리가 공유하는 영역에 대해 학습합니다. 이렇게하면, **중요한 영역으로 key와 value의 위치를 옮길 수 있습니다.**   
+ 이상적으로는, 주어진 쿼리에 대한 후보 key/value쌍이 각각의 개별 input에 유연하게 대응할 수 있는 능력을 갖는 것입니다. 
+CNN논문에서도 컨볼루션 필터에 대해 **Deformable receptive field**을 학습하면, 
+data-dependent기반으로 정보가 더욱 풍부한 지역에 선택적으로 주의를 기울일 수 있다고 합니다. 
+이 아이디어를 Vision Transformer에 그대로 구현하기엔 높은 메모리/계산 비용이 발생합니다.   
    
+본 논문에서는 간단하고 효율적인 **Deformable self-attention**모듈을 제안합니다. 다양한 비전 작업을 위해 **Deformable Attention
+Transformer**백본을 설계했습니다. 기존의 DCN(Deformable Convolution Network)는 전체 피처맵의 픽셀마다 서로다른 오프셋을 
+학습했다면, **DAT(Deformable Attention Transformer)** 는 모든 쿼리들이 공유하는 몇 가지 샘플링 오프셋 그룹을 학습합니다. 
+그렇게 하면 key/value를 중요한 영역으로 이동시킬 수 있습니다. 아래 사진을 참조하면,   
 ![image](https://user-images.githubusercontent.com/69246778/214780171-e5ec7f19-5625-4f8c-a679-46aa14fd111d.png)   
-(a) 모든 쿼리에 대해 global 어텐션을 합니다.   
-(b) 각 쿼리를 포함한 윈도우 내에서만 어텐션을 합니다.   
-(c) 각 쿼리에 대해 서로 다른 형태의 어텐션 영역을 지정합니다.   
-(d) 모든 쿼리가 서로의 변형된 어텐션 영역을 공유합니다. (c는 각 쿼리가 각각 자신의 영역을 가짐)   
+(a) **ViT** : 모든 쿼리에 대해 global 어텐션을 합니다.   
+(b) **Swin Transformer** : 윈도우 내에서만 어텐션을 합니다.   
+(c) **DCN** : 각 쿼리에 대해, 서로 다른 형태의 deformed point을 학습합니다.   
+(d) **DAT** : 모든 쿼리에 대해, 공유되는 deformed point를 학습합니다.   
    
-
+ global attention은 일반적으로 서로 다른 쿼리에 대해 거의 동일한 attention 패턴을 가집니다. 그래서 선형적인 공간 복잡성이 유지될
+수 있고 Transformer백본에 Deformable attention 패턴을 도입할 수 있습니다. 특히, 각 어텐션 모듈의 reference point는 입력 데이터
+전체에서 동일하게 균일 그리드로 먼저 생성됩니다. 그리고나서, 오프셋 네트워크가 모든 쿼리 feature를 input으로 받아 reference point
+에 대한 오프셋을 생성합니다. 이러한 방식으로 key/value후보군들이 더 중요한 영역으로 이동해 보다 많은 정보를 캡처할 수 있습니다.
+   
 # 2. Related Work
 ## 2.1. Transformer vision backbone
+dense prediction과 효율적인 어텐션 매커니즘을 위해 Window attention, Global Tokens
 ## 2.2. Deformable CNN ans attention 
 
 # 3. Deformable Attention Transformer
