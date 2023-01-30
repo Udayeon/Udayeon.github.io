@@ -77,12 +77,16 @@ q,k,v에 가중치를 곱해준 후 어텐션 연산을 수행합니다. 이때,
 **서로 다른 쿼리끼리 유사한 어텐션 피처맵을 가지고 있다는 것을 활용하여 각 쿼리에 대해 key와 value의 이동을 공유하는 
 방식을 선택합니다.**   
 구체적으로, 우리는 피처맵의 중요한 부분에서 토큰 간의 관계를 더 잘 보기 위한 deformable attention을 제안합니다.
-초점 영역은 오프셋 네트워크가 쿼리를 통해 학습한 deformed smpling points로 결정됩니다. 우리는 이중 선형 보간법을 사용해서
-피처맵으로부터 피처를 추출하고 추출된 피처를 key와 value에 적용하여 deformed key와 deformed value를 얻습니다. 
-마지막으로, 멀티헤드어텐션을 이용해 샘플링된 key에 대한 쿼리에 attend하고 deformed value로부터 피처를 집계합니다.
-추가적으로, deformed point의 위치는 강력한 relative position bias를 제공해서 deformale attention을 더 용이하게 해줍니다.
+초점 영역은 **오프셋 네트워크**가 쿼리를 통해 학습한 deformed smpling points로 결정됩니다. 우리는 
+**이중 선형 보간법**을 사용해서 피처맵으로부터 피처를 추출하고 추출된 피처를 key와 value에 적용하여 
+**deformed key와 deformed value**를 얻습니다. 
+마지막으로, **멀티헤드어텐션**을 이용해 샘플링된 key에 대한 쿼리에 attend하고 deformed value로부터 피처를 집계합니다.
+추가적으로, deformed point의 위치는 강력한 **relative position bias**를 제공해서 deformale attention을 더 용이하게 해줍니다.
 
 ### 3.2.1 Deformable attention module
+![image](https://user-images.githubusercontent.com/69246778/215389705-95dc5df4-10ef-4c2e-b85a-dfd1aa89181d.png)
+'H x W x C'의 인풋 피처맵이 주어지면, HG x WG x 2'포인트들의 균일한 그리드가 레퍼런스로 생성된다. 구체적으로, 그리드 크기는 
+
 ### 3.2.2 Offset generation
 ### 3.2.3. Offset groups
 ### 3.2.4. Deformable relative position bias
