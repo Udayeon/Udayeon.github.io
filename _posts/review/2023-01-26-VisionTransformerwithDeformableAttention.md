@@ -100,7 +100,20 @@ q,k,v에 가중치를 곱해준 후 어텐션 연산을 수행합니다. 이때,
 ### 3.2.5. Computational complexity
 
 ## 3.3. Model Architectures
+![image](https://user-images.githubusercontent.com/69246778/215432933-0ca9277f-afc3-4793-a5c4-240c1285c57c.png)
 
+Transformer에서 기본 MHSA(Multi Head Self Attention)를 Deformable Attention으로 바꿉니다. 그리고 MLP와 결합해서 
+Deformable vision transformer block를 만듭니다. 네트워크 관점에서 볼 때, **Deformable Attention Transformer**는 피라미드 구조와
+유사한 구조를 가집니다. 다양한 스케일의 피처맵에 대해 광범위하게 적용할 수 있습니다. 위의 그림처럼, H x W x 3크기의 이미지를 
+4x4 컨볼루션을 겹치지 않게 계산해서 H/4 x W/4 x C 크기로 임베딩합니다. 계층적인 피라미드 구조를 목표로, 스테이지마다 점진적으로
+stride가 증가합니다.   
+3,4번째 스테이지에서 연속적인 local attention과 deformable attention을 제안합니다. 피처맵은 먼저 윈도우 베이스의 
+local attention을 통해 지역적인 정보를 수집하고, deformable attention으론 지역적으로 퍼져있는 토큰들 간의 전체적인 관계를 합니다.
+local 및 global한 수용장을 사용해서 모델은 더 강한 representation power를 갖게 됩니다. 이는 [GLiT](https://arxiv.org/pdf/2107.02960.pdf),
+[TNT](Transformer in Transformer), [Point-former](https://openaccess.thecvf.com/content/CVPR2021/papers/Pan_3D_Object_Detection_With_Pointformer_CVPR_2021_paper.pdf)와 비슷합니다.
+처음 두 개의 스테이지는 주로 local한 특징을 학습하므로 deformable은 잘 사용하지 않는다. 게다가, 처음 두개의 스테이지의 key와 value는보다 큰 spatial size를
+가지므로 오버헤드가 발생하고 deformable attention의 이중 선형보간을 크게 증가시킨다. 따라서, 초반에는 deformable attention을 사용하지 않고 마지막 2개에서만
+deformable attention을 사용한다. 초반 단계에서는 Swin Transformer의 Shift-window attention을 사용한다. 
 # 4. Experiments
 ## 4.1. ImageNet-1k Classification
 ## 4.2. COCO Object Detection
