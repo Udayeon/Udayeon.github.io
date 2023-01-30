@@ -2,7 +2,7 @@
 layout: post
 title: 
 description: |
-  ERROR : When 'sys.path.append()' not working
+  (error) ERROR : When 'sys.path.append()' not working
 
 hide_image: true
 tags:
