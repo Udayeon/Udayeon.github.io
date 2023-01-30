@@ -85,7 +85,7 @@ q,k,v에 가중치를 곱해준 후 어텐션 연산을 수행합니다. 이때,
 
 ### 3.2.1 Deformable attention module
 ![image](https://user-images.githubusercontent.com/69246778/215389705-95dc5df4-10ef-4c2e-b85a-dfd1aa89181d.png)
-'H x W x C'의 인풋 피처맵이 주어지면, HG x WG x 2'포인트들의 균일한 그리드가 레퍼런스로 생성된다. 구체적으로, 그리드 크기는 
+'H x W x C'의 인풋 피처맵이 주어지면, HG x WG x 2'포인트들의 균일한 그리드가 레퍼런스로 생성됩니다. 구체적으로, 그리드 크기는 
 
 ### 3.2.2 Offset generation
 ### 3.2.3. Offset groups
