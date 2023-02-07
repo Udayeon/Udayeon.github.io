@@ -2,14 +2,14 @@
 layout: post
 title: 
 description: |
-  Project_dy1. Double SW-MSA + shortcut
+  Project_dy0. Double SW-MSA
 hide_image: true
 tags:
   - projects
 published: true
 ---
 
-# Project_dy1. Double SW-MSA + shortcut
+# Project_dy0. Double SW-MSA
 * * *
 
 # 1. dataset
@@ -280,7 +280,7 @@ class SwinTransformerBlock(nn.Module):
         x = shortcut + self.drop_path(x)
 
         # FFN
-        x = x + self.drop_path(self.mlp(self.norm2(x))) + shortcut
+        x = x + self.drop_path(self.mlp(self.norm2(x)))
 
         return x
 
@@ -401,7 +401,7 @@ class SwinTransformerBlock2(nn.Module):
         x = shortcut + self.drop_path(x)
 
         # FFN
-        x = x + self.drop_path(self.mlp(self.norm2(x))) + shortcut
+        x = x + self.drop_path(self.mlp(self.norm2(x)))
 
         return x
 
