@@ -485,7 +485,7 @@ class SwinTransformer(nn.Module):
 MODEL:
   TYPE: swin
   NAME: swin_tiny_patch4_window7_224
-  DROP_PATH_RATE: 0.2
+  DROP_PATH_RATE: 0.3
   SWIN:
     EMBED_DIM: 64
     DEPTHS: [ 1, 2, 21, 1 ]
