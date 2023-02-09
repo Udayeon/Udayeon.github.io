@@ -15,7 +15,7 @@ published: true
 # 1. dataset
 [ImageNet 1k Mini Ver](https://www.kaggle.com/datasets/ifigotin/imagenetmini-1000?resource=download)
 
-# 2. Edit the siwn_transformer.py
+# 2. Edit the swin_transformer.py
 ```py
 # --------------------------------------------------------
 # Swin Transformer
