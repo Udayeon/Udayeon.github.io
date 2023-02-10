@@ -657,5 +657,6 @@ python -m torch.distributed.launch --nproc_per_node 1 --master_port 12345 main.p
 ```
    
 ![image](https://user-images.githubusercontent.com/69246778/217999451-ca4f37b7-c8f9-49a1-bea6-dac02e42fa48.png)   
+Epoch 253   
 INFO  * Acc@1 27.453 Acc@5 49.860   
 INFO Accuracy of the network on the 3923 test images: 27.5%   
