@@ -66,6 +66,7 @@ def window_partition(x, window_size):
     Args:
         x: (B, H, W, C)
         window_size (int): window size
+
     Returns:
         windows: (num_windows*B, window_size, window_size, C)
     """
@@ -82,6 +83,7 @@ def window_reverse(windows, window_size, H, W):
         window_size (int): Window size
         H (int): Height of image
         W (int): Width of image
+
     Returns:
         x: (B, H, W, C)
     """
@@ -94,6 +96,7 @@ def window_reverse(windows, window_size, H, W):
 class WindowAttention(nn.Module):
     r""" Window based multi-head self attention (W-MSA) module with relative position bias.
     It supports both of shifted and non-shifted window.
+
     Args:
         dim (int): Number of input channels.
         window_size (tuple[int]): The height and width of the window.
@@ -190,6 +193,7 @@ class WindowAttention(nn.Module):
 
 class SwinTransformerBlock(nn.Module):
     r""" Swin Transformer Block.
+
     Args:
         dim (int): Number of input channels.
         input_resolution (tuple[int]): Input resulotion.
@@ -329,6 +333,7 @@ class SwinTransformerBlock(nn.Module):
 
 class PatchMerging(nn.Module):
     r""" Patch Merging Layer.
+
     Args:
         input_resolution (tuple[int]): Resolution of input feature.
         dim (int): Number of input channels.
@@ -377,6 +382,7 @@ class PatchMerging(nn.Module):
 
 class BasicLayer(nn.Module):
     """ A basic Swin Transformer layer for one stage.
+
     Args:
         dim (int): Number of input channels.
         input_resolution (tuple[int]): Input resolution.
@@ -449,6 +455,7 @@ class BasicLayer(nn.Module):
 
 class PatchEmbed(nn.Module):
     r""" Image to Patch Embedding
+
     Args:
         img_size (int): Image size.  Default: 224.
         patch_size (int): Patch token size. Default: 4.
@@ -498,6 +505,7 @@ class SwinTransformer(nn.Module):
     r""" Swin Transformer
         A PyTorch impl of : `Swin Transformer: Hierarchical Vision Transformer using Shifted Windows`  -
           https://arxiv.org/pdf/2103.14030
+
     Args:
         img_size (int | tuple(int)): Input image size. Default 224
         patch_size (int | tuple(int)): Patch size. Default: 4
@@ -640,14 +648,14 @@ MODEL:
 
 # 4. Training
 ```
-python -m torch.distributed.launch --nproc_per_node 4 --master_port 12345  main.py \
---cfg configs/swin/swin_tiny_patch4_window7_224.yaml --data-path imagenet --batch-size 128
+python -m torch.distributed.launch --nproc_per_node 4 --master_port 12345  main.py --cfg configs/swin/swin_tiny_patch4_window7_224.yaml --data-path imagenet --batch-size 128
 ```
 
 # 5. Evaluation
 ```
-python -m torch.distributed.launch --nproc_per_node 1 --master_port 12345 main.py --eval \
---cfg configs/swin/swin_tiny_patch4_window7_224.yaml --resume checkpoints/swin_tiny_patch4_window7_224.pth --data-path imagenet
+python -m torch.distributed.launch --nproc_per_node 1 --master_port 12345 main.py --eval --cfg configs/swin/swin_tiny_patch4_window7_224.yaml --resume checkpoints/SwinTransformer-tiny.pth --data-path imagenet
 ```
-
-![image](https://user-images.githubusercontent.com/69246778/206405643-ab521c42-a68f-45a6-aba7-4efcef5976fe.png)
+   
+![image](https://user-images.githubusercontent.com/69246778/217999451-ca4f37b7-c8f9-49a1-bea6-dac02e42fa48.png)   
+INFO  * Acc@1 27.453 Acc@5 49.860   
+INFO Accuracy of the network on the 3923 test images: 27.5%   
