@@ -1141,3 +1141,5 @@ python -m torch.distributed.launch --nproc_per_node 4 --master_port 12345  main.
 ```
 python -m torch.distributed.launch --nproc_per_node 1 --master_port 12345 main.py --eval --cfg configs/swin/swin_tiny_patch4_window7_224.yaml --resume checkpoints/swinshorcutdouble.pth --data-path imagenet
 ```
+![image](https://user-images.githubusercontent.com/69246778/219562051-5d485014-8f08-4c65-be07-f68c15d9b366.png)
+
