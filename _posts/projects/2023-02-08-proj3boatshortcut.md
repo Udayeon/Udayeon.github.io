@@ -746,6 +746,7 @@ class SwinTransformer(nn.Module):
         flops += self.num_features * self.num_classes
         return flops
 ```
+
 # 3. Edit the siwn_tiny_patch4_window7_224.yaml
 ```py
 MODEL:
@@ -766,5 +767,7 @@ python -m torch.distributed.launch --nproc_per_node 4 --master_port 12345  main.
 
 # 5. Evaluation
 ```
-python -m torch.distributed.launch --nproc_per_node 1 --master_port 12345 main.py --eval --cfg configs/swin/swin_tiny_patch4_window7_224.yaml --resume checkpoints/BOATSwinTransformerShortcut.pth --data-path imagenet
+python -m torch.distributed.launch --nproc_per_node 1 --master_port 12345 main.py --eval --cfg configs/swin/swin_tiny_patch4_window7_224.yaml --resume checkpoints/BOATSwinTShortcut.pth --data-path imagenet
 ```
+![image](https://user-images.githubusercontent.com/69246778/219524108-071db19b-7a2b-495d-aebd-82afda272c6f.png)
+
