@@ -9,7 +9,7 @@ tags:
 published: true
 ---
 
-# Project_dy0. Double SW-MSA
+# Project_dy0. Swin + Double SW-MSA
 * * *
 
 # 1. dataset
