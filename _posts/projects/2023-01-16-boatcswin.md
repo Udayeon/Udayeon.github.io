@@ -503,4 +503,6 @@ python -m torch.distributed.launch --nproc_per_node 4 --master_port 12345  main.
 ```
 python -m torch.distributed.launch --nproc_per_node 2 --master_port 12345 main.py --eval --cfg configs/swin/swin_tiny_patch4_window7_224.yaml --resume checkpoints/BOATCSwin.pth --data-path imagenet
 ```
+   
+![image](https://user-images.githubusercontent.com/69246778/219988873-f023811d-c0c4-4a2e-9561-88e72d927561.png)
 
