@@ -492,6 +492,8 @@ MODEL:
     NUM_HEADS: [ 2, 4, 8, 16 ]
 
 ```
+
+* **Need to edit a batch size and the number of GPU**
 # 4. Training
 ```
 python -m torch.distributed.launch --nproc_per_node 4 --master_port 12345  main.py --cfg configs/swin/swin_tiny_patch4_window7_224.yaml --data-path imagenet --batch-size 54
@@ -499,6 +501,6 @@ python -m torch.distributed.launch --nproc_per_node 4 --master_port 12345  main.
 
 # 5. Evaluation
 ```
-python -m torch.distributed.launch --nproc_per_node 1 --master_port 12345 main.py --eval --cfg configs/swin/swin_tiny_patch4_window7_224.yaml --resume checkpoints/BOATCSwin.pth --data-path imagenet
+python -m torch.distributed.launch --nproc_per_node 2 --master_port 12345 main.py --eval --cfg configs/swin/swin_tiny_patch4_window7_224.yaml --resume checkpoints/BOATCSwin.pth --data-path imagenet
 ```
 
