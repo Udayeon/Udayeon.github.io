@@ -1,0 +1,139 @@
+---
+layout: post
+title: 
+description: |
+  Kaiming He, Xiangyu Zhang, Shaoqing Ren, Jian Sun
+  Microsoft Research
+hide_image: true
+tags:
+  - review
+published: true
+---
+
+# Deep Residual Learning for Image Recognition
+
+[Link](https://arxiv.org/pdf/1512.03385.pdf)
+* * *
+
+## Abstract
+신경망이 깊어질수록 학습이 어려워진다. 본 논문에서는 layer의 인풋을 참조하는 residual function을 학습하는 방식으로 깊은 
+네트워크에서의 정확도를 향상시킨다. 
+
+## 1. Introduction
+합성곱 신경망이 깊어질수록 높은 성능을 달성할 수 있다. 그러나 레이어를 무한정 적층할 수는 없다. 왜냐하면, 
+**Gradient vanishing/exploding**문제가 발생하기 때문이다. 이 문제들은 normalized initialization이나
+intermediate normalization layers를 통해서 해결할 수는 있지만, 정확도가 수렴하기 시작한 이후에 정확도가 급속하게 저하하는 문제점이 
+발생한다. 아래 그림을 보면, CIFAR데이터에 대해 레이어가 깊어질수록 에러가 큰 것을 확인할 수 있다.   
+![image](https://user-images.githubusercontent.com/69246778/223010148-47a2ccdd-1ec9-4d86-aa87-a2b4ead3ce17.png)   
+   
+이는 ImageNet에서도 마찬가지다.
+![image](https://user-images.githubusercontent.com/69246778/223010400-e7ef2bd5-c406-4ee8-aa74-78591ed6a131.png)
+
+      
+![image](https://user-images.githubusercontent.com/69246778/222346677-c8d61b2a-dff7-4305-b071-6007ec72ae0c.png)   
+Swin Transformer의 핵심 디자인 중 하나는 **Shifted Window**이다. 먼저 일반적인 Window Partioning으로 셀프 어텐션을 수행하고 
+다음 레이어에서 partion을 이동시킨 후 새로운 window기반의 셀프 어텐션을 수행한다. 새로운 window는 이전 레이어의 윈도우간 경계를 
+포함한다.   
+   
+   
+![image](https://user-images.githubusercontent.com/69246778/222346075-ed7cbd4c-d8a6-4986-a5f9-7b3883d43fad.png)   
+![image](https://user-images.githubusercontent.com/69246778/222346300-0c66af74-d872-4582-b3dd-2f3bf1913fe4.png)   
+이전의 Sliding Window기반의 어텐션은 쿼리마다 다른 key를 공유하지만 **Shifted Window는 동일한 key를 공유하므로 하드웨어에서 
+메모리 엑세스가 용이하다.** 위의 Table5,6에서도 알 수 있듯이 모델링 파워는 비슷하지만 FPS가 훨씬 개선된 것을 확인할 수 있다.   
+   
+   
+## 2. Related Work
+* **CNN and variants**   
+CNN은 컴퓨터 비전의 대표적인 네트워크 모델로 사용된다. AlexNet, VGG, GoogleNet, ResNet, DenseNet, HRNet, 
+EfficientNet등 깊고 효과적인 합성곱 신경망 구조가 제안되었고 그 밖에 Depthwise convolution과 deformable convolution과 같은 개별 합성곱
+레이어 개선에 대한 연구도 진행되고 있다. **CNN은 여전히 중요한 비전 네트워크지만 Tranformer같은 구조들이 기본적인 비전 인식 
+태스크에서 매우 좋은 성능을 달성했고, 이것이 비전과 언어를 통합 모델링 할 수 있을 것으로 기대한다.**   
+   
+* **Self-attention based backbone architectures**   
+이전 논문들("Local relation networks for image recognition","Stand-alone self attention in vision models",
+"Exploring self-attention for image recognition")에서 특정 영역 내에서만 어텐션을 수행하는 방법을 제안하여 ResNet보다 성능을 달성했다. 
+그러나 이들은 메모리 엑세스에 비용이 많이 드므로 convolution 네트워크보다 더 큰 지연시간을 발생시킨다. Swin Transformer는 
+**Shift Windows**를 사용하여 하드웨어에서 더 효율적인 구현이 가능하도록 한다.
+   
+* **Self-attention/Transformers to complement CNNs**      
+CNN에 self-attention layer나 transformer를 추가하는 연구도 있다. Swin은 기본적인 시각적 피처 추출에 transformer를 적용한다. 
+   
+* **Transformer based vision backbones**   
+우리 연구와 가장 관련 있는 것은 Vision Transformer부분이다. 기존 ViT는 중간 크기 정도의 이미지 패치에 Transformer를 적용한다. 높은 
+성능에 달성하는 대신 대규모의 훈련 데이터셋(JFT-300M)이 필요하다. DeiT는 ViT가 적은 데이터셋(ImageNet1K)를 사용하여도 효과적인 성능을 내는
+방법 몇 가지를 소개한다. 그러나, ViT는 이미지 해상도가 높은 경우엔 적합하지 않다. 왜냐하면 복잡성이 이미지의 크기에 따라 제곱으로 증가하기 
+때문이다. ViT를 개선한 다른 연구들도 여전히 이미지 크기에 따라 제곱적으로 복잡성이 증가한다. **swin은 선형적인 증가를 제안한다.**
+
+## 3. Method
+![image](https://user-images.githubusercontent.com/69246778/222354587-694f47e5-1232-4ae3-8418-3127bf0f8ac1.png)   
+### Overall Architecture
+총 4개의 단계로 구성되어 있다. 각 Stage는 PatchMerging하여 해상도 조정하는 부분과 SwinBlock으로 구성되어 있다. 각 단계별
+SwinBlock의 갯수는 [2,2,6,2]개이다.   
+   
+      
+먼저 input이미지를 4x4크기의 패치로 나눈다. 4x4크기로 나눈 후에 하나의 패치 뒤로 나머지 세 개를 임베딩 시킨다고 생각하면 돼서 
+이미지의 크기는 1/4로 줄고, 3채널 이미지 이므로 4x4x3 = 48차원이 된다. 이게 stage1의 input이 된다. stage1의 결과를 stage2로 넣고 
+그 결과를 또 stage3에 넣는 방식이다. 각 stage에서는 해상도를 조절하기 위한 PatchMerging이 수행되는데, 주변의 Patch들을 하나로 
+합치므로 이미지의 크기는 1/2씩 줄어든다. 임베딩 차원은 stage별로 각각 [96,192,384,768]이다.   
+   
+   
+Swin Transformer Block은 두 개가 연속으로 붙어있는 것이 기본 구조이다. 일반적인 Window Attention을 진행하고 다음 블럭에서
+Shifted Window Attnetion을 진행한다. 즉, 각 단계별 블럭 갯수인 [2,2,6,2]는 각각    
+[W-MSA & SW-MSA, W-MSA & SW-MSA, W-MSA & SW-MSA & W-MSA & SW-MSA & W-MSA & SW-MSA, W-MSA & SW-MSA]인 셈.   
+   
+   
+블럭은 2층의 MLP가 GELU함수와 함께 사용되고 각 MSA모듈과 MLP이전에는 LayerNorm레이어가 있으며, 각 모듈 이후에는 
+Residual Connection이 적용된다. 
+   
+   
+### Shifted Window based Self-Attention
+이미지 전역에 대해 어텐션하는 것은 이미지 크기에 대해 계산량이 제곱으로 증가하므로 적절하지 않다. 따라서, 효율적인 모델링을 위해 로컬 윈도우 내에서
+어텐션을 계산한다. 윈도우는 이미지를 겹치지 않게 분할하고 각 윈도우가 M x M개의 패치를 포함한다고 할 떄, 계산복잡도는 다음과 같다.   
+![image](https://user-images.githubusercontent.com/69246778/222366025-d7e713e1-b352-4ae2-933f-5191b4011d3e.png)   
+* h : 이미지의 height
+* w : 이미지의 width
+* C : 이미지의 채널   
+(1) 전역 어텐션은 이미지 크기에 따라 계산량이 제곱으로 증가한다   
+(2) 로컬 어텐션은 각 윈도우의 크기가 일정하므로 이미지 크기와 관련없이 선형의 복잡도를 갖는다.   
+   
+그러나, 윈도우 기반의 self attention은 윈도우 간의 연결이 부족하다. 따라서, shifted window partitioning을 도입하여 윈도우 간의 연결성을 보완한다.
+첫 번째는 일반적인 윈도우 분할을 하고 두 번째는 (윈도우크기/2,윈도우크기/2)만큼 이동한다. 식으로 나타내면 다음과 같다.   
+![image](https://user-images.githubusercontent.com/69246778/222368971-558492b6-7c73-4592-bed9-b53f17e2f140.png)   
+   
+   
+shifted window의 성능은 분류,인식,분할 모든 태스크에 대해 효과적이다.   
+![image](https://user-images.githubusercontent.com/69246778/222369342-09c0457e-78f8-4af0-a2ee-a0bc11592dc1.png)   
+   
+   
+Shifted window의 문제 중 하나는 shift하다보면 윈도우가 M x M보다 작은 경우가 생기는 것이다. 이때 비어 있는 부분을 패딩해서 M x M 으로 만든 후
+패딩된 부분은 마스킹하면 되지만 이는 많은 계산량이 요구된다. 따라서, **Cyclic shift**를 사용하여 효율적인 계산을 제안한다. 단, cyclic shift한 부분은 
+피처맵 상에서 인접하지 않으므로 그냥 마스킹하고 계산한다. **Cyclic shift**는 배치 윈도우의 수가 일반적인 윈도우 분할의 경우와 동일하게 유지되므로 
+효율적이다. attention 끝나면 다시 원래대로 돌리는 **Reverse cyclic shift**를 진행한다.   
+![image](https://user-images.githubusercontent.com/69246778/222371159-a6e45968-b39c-4cb8-b5f1-58397584ac50.png)   
+   
+   
+padding과 cyclic shift의 결과를 아래 표에서 비교해보면 stage별 소요시간이 감소하고 FPS가 증가함을 알 수있다.   
+![image](https://user-images.githubusercontent.com/69246778/222373425-e024ae53-e8d4-43a0-9f01-cdda8d60f3ee.png)   
+   
+   
+### Relative position bias
+![image](https://user-images.githubusercontent.com/69246778/222389957-9c3b415b-c6fa-4ff8-a66b-a77328f1da7f.png)   
+![image](https://user-images.githubusercontent.com/69246778/222390939-b781af9f-3486-4c61-a2d2-8f871823e856.png)   
+   
+### Architecture Variants
+T,S,B,L 버전의 Swin Transformer가 있음   
+![image](https://user-images.githubusercontent.com/69246778/222392519-b78d8a5f-6365-4b8b-a4cd-7a9f6048c850.png)   
+   
+  
+FLOPs 비교해보면 큰 모델일수록 FLOPs가 큼   
+![image](https://user-images.githubusercontent.com/69246778/222392726-4ef8ecd4-9f20-4a31-83da-862de719d931.png)   
+   
+## 4. Experiments & results
+### 4.1. Image Classification on ImageNet-1K
+![image](https://user-images.githubusercontent.com/69246778/222394193-24618034-cd4b-4a21-9cab-609932bfa59b.png)
+
+### 4.2. Object Detection on COCO
+![image](https://user-images.githubusercontent.com/69246778/222394263-b0edb013-0499-46ec-8b21-43ea4744d886.png)
+
+### 4.3. Semantic Segmentation on ADE20K
+![image](https://user-images.githubusercontent.com/69246778/222394378-5be62ecf-a605-4a6e-8ca2-6b0773d6d57c.png)
