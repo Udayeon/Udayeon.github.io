@@ -87,5 +87,16 @@ deformable attention을 사용한다. 초반 단계에서는 Swin Transformer의
 ![image](https://user-images.githubusercontent.com/69246778/223355283-2baedf35-ee16-401d-b204-4135c9e35981.png)
 
 
+## 논문요약
+기존의 transformer 모델에서는 입력 패치들 간의 상호작용을 고정된 형태의 어텐션으로 처리하는데, 이 논문에서는 deformable attention 메커니즘을 도입하여 
+입력 패치들 간의 상호작용을 보다 유연하게 처리한다. 제안된 모델은 이미지넷(ImageNet) 데이터셋에서 다른 모델들과 비교하여 우수한 성능을 보여주었으며, 
+deformable attention이 모델의 성능 향상에 기여하는 것을 실험적으로 검증하였다.   
+   
+Deformable Attention은 입력 패치들 간의 상호작용을 처리하는 어텐션 메커니즘 중 하나로 기존의 어텐션이 입력 패치들 간의 상대적인 위치를 고정된 형태로 가정하는 것과
+달리 **Deformable Attention은 입력 패치들 간의 상대적인 위치를 동적으로 조절하여 상호작용을 더 잘 처리할 수 있도록 한다.** Deformable Attention은 입력 
+패치들의 위치를 조절하기 위해 **위치 이동 벡터(offset vector)** 를 학습한다. 이 위치 이동 벡터는 각 패치의 특성 정보에 따라서 동적으로 결정되며, 
+이를 통해 입력 패치들 간의 상대적인 위치를 조절할 수 있다. 조정된 포인트에서 k,v를 선택한다.
+
+
 
 
