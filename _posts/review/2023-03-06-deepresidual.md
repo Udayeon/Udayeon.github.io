@@ -43,7 +43,7 @@ vector를 인코딩하는 것이 원래 벡터를 인코딩하는 것보다 효�
 low-level의 컴퓨터 비전에서 사용되는 Multigrid방식은 시스템을 여러 개의 작은 문제들로 재정의 하는데, 각 문제들은 coarser한 
 스케일과 finer한 스케일 간의 residual(잔차)를 처리한다. 이런 방식은 residual을 계산하지 않는 솔루션보다 수렴 속도가 훨씬 빠르다.   
    
-* **Shortcut Connections**
+* **Shortcut Connections**   
 shortcut connection은 신경망에서 한개 이상의 레이어를 건너뛰고 연결하는 방식이다. MLP를 학습하는 초기 방법 중 하나는 네트워크 
 입력에서 출력으로 선형 레이어를 추가하는 것이다. 또한, 중간에 있는 레이어가 보조 분류기에 직접 연결되어 그래디언트 소실/폭발 문제를
 해결하기도 한다.   
@@ -52,4 +52,9 @@ shortcut connection은 신경망에서 한개 이상의 레이어를 건너뛰�
    
 ## 3. Deep Residual Learning
 ### 3.1. Residual Learning
+네트워크 초기 입력을 x라 할때 몇몇 레이어를 통해 매핑한 값을 H(x)라 할 수 있다. (네트워크 전체를 거친 출력을 의미하는 것은 아님) 
+그리고 다른 몇몇 레이어에서는 f(x) = H(x)-x라는 잔여 함수(입력과 출력의 차이)를 mapping한다. 
+따라서, 원래 함수 H(x) = f(x) + x가 된다. residual 매핑을 최적화 하는 것이 원래 mapping을 최적화하는 것보다 더 쉽다는 가설을 
+세웠고, 만약 identity 매핑이 최적이라면, residual을 0으로 밀어버리면 된다. 
+
 
