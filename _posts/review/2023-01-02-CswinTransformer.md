@@ -12,34 +12,22 @@ published: true
 # CSWin Transformer: A General Vision Transformer Backbone with Cross-Shaped Windows
 [Link](https://arxiv.org/abs/2107.00652)
 * * *
- A challenging issue in Transformer design is that **global self-attention is very expensive to compute, whereas local self-attention often limits the
-field of interactions of eash token.** To adress this issue, we develop the **Cross-Shaped Winodow self-attention mechanism** for computing self-attention
-in the horizontal and vertical stripes in parallel that form a cross-shaped window, with eace stripe obtained by splitting the input feature into stripes 
-of equal width. We also introduce **Locally-enhanced Positional Encoding(LePE)**, which handles the local positional information better than existing 
-encoding schemes.     
-Results of **Cascade Mask R-CNN 3x + MS**
-|Pretraining|Backbone|Dataset|Task|Results|
-|-----------|--------|-------|---------|---------------------|
-|ImageNet-1K|Swin-T  |COCO   |Detection|50.4boxAP, 43.7maskAP|
-|           |Swin-S  |       |         |51.9boxAP, 45.0maskAP|
-|           |Swin-B  |       |         |51.9boxAP, 45.0maskAP|
-|           |CSwin-T |       |         |52.5boxAP, 45.3maskAP|
-|           |CSwin-S |       |         |53.7boxAP, 46.4maskAP|
-|           |CSwin-B |       |         |53.9boxAP, 46.4maskAP|
 
+# Abstract
+CSwin Transformer는 전역 어텐션으로 발생하는 계산량 문제를 해결하기 위해 소개된 트랜스포머 기반 백본이다. Cswin은
+**어텐션 영역을 십자가 모양으로 제한하고 LePE를 사용하여 성능을 향상시켰다.** 
 
 # 1. Introduction
-![image](https://user-images.githubusercontent.com/69246778/192468426-8b397e6c-466d-4089-b0bc-320c2a9f95b8.png)   
- The Transformer architecture with full-attention mechanism is computationally inefficient. To improve the full-attention mechanism efficiency, one typical way is **to limit the attention region of each token from full-attention to local/windowed attention.** The key is to achieve large receptive filed efficiently while keeping the computation cost low.   
-    
- This paper presents **Cross-Shaped Window self-attention.** with **CSwin self-attention**, we perform the self-attention calculation in the horizontal and vertical striped in **parallel**, with each stripe obtained by splitting the input feature into stripes of equal **width**(This stripe width is an important param).   
-    
- It is worthwhile to note that with CSwin self-attention mechanism, **the self-attention in horizontal and vertical stripes are calculated in parallel.**
-This strategy splits the multi-heads into parallel groups and applies different self-attention operations onto groups.   
-   
- Based on the CSwin self-attention mechanism and hierarchical design, we propose a new vision Transformer architecture named **"CSwin Transformer"**. To further enhance this vision Transformer,
-we introduce **Locally-enhanced Positional Encoding(LePE)** in this paper.
+![image](https://user-images.githubusercontent.com/69246778/223364833-3c5fc46f-9402-469d-938b-7d1e7eca91bb.png)
 
+트랜스포머 모델에서 효율성을 높이기 위한 한가지 방법은 각 토큰에 대해 어텐션 영역을 제한하는 것이다. 어텐션 영역끼리 연결하기 위해
+halo나 shift등의 기술을 사용하면 윈도우 간 정보 교환이 가능하다. 충분히 큰 수용장이 성능향상에 도움이 도움이 되는데 수용장의 크기가
+느리게 증가하면서 아주 많은 어텐션이 수행된다. 따라서, 중요한 것은 **충분히 큰 수용장을, 최소한의 비용으로 달성하는 것이다.**   
+본 논문에서는 **Cross-shaped Window(CSwin) self-attention**을 제안한다. 기존 셀프 어텐션 매커니즘이랑 비교해보면, **수직, 수평
+스트라이프에서 어텐션 연산을 병렬로 수행하는 것이 특징이다.** 이때, 스트라이프의 간격은 중요한 매개변수가 된다. 스트라이프 너비를
+계산 비용을 조절하면서 높은 성능에 달성할 수 있기 때문이다. **얕은 레이어에는 작은 너비를 사용하고 깊어질수록 큰 너비를 
+사용한다**   
+병렬 연산을 수행하
 
 # 2. Related Work
 ## 2.1. Vision Transformer
