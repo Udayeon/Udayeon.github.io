@@ -55,6 +55,10 @@ shortcut connection은 신경망에서 한개 이상의 레이어를 건너뛰�
 네트워크 초기 입력을 x라 할때 몇몇 레이어를 통해 매핑한 값을 H(x)라 할 수 있다. (네트워크 전체를 거친 출력을 의미하는 것은 아님) 
 그리고 다른 몇몇 레이어에서는 f(x) = H(x)-x라는 잔여 함수(입력과 출력의 차이)를 mapping한다. 
 따라서, 원래 함수 H(x) = f(x) + x가 된다. residual 매핑을 최적화 하는 것이 원래 mapping을 최적화하는 것보다 더 쉽다는 가설을 
-세웠고, 만약 identity 매핑이 최적이라면, residual을 0으로 밀어버리면 된다. 
+세웠고, 만약 identity 매핑이 최적이라면, residual을 0으로 밀어버리면 된다. 실제로 identity가 최적일 가능성은 적지만, 만약
+최적 함수가 제로 매핑보다 identity 매핑에 더 가깝다면 새로운 함수를 학습하기 보다 identity기준으로 노이즈를 찾는 것이 쉽기
+때문에 Identity매핑이 합리적인 사전 조건을 제시한다고 할 수 있다. 
+### 3.2. Identity Mapping by Shortcuts
+
 
 
