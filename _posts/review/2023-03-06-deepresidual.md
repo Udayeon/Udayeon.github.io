@@ -59,6 +59,9 @@ shortcut connection은 신경망에서 한개 이상의 레이어를 건너뛰�
 최적 함수가 제로 매핑보다 identity 매핑에 더 가깝다면 새로운 함수를 학습하기 보다 identity기준으로 노이즈를 찾는 것이 쉽기
 때문에 Identity매핑이 합리적인 사전 조건을 제시한다고 할 수 있다. 
 ### 3.2. Identity Mapping by Shortcuts
+본 논문에서는 모든 layer층마다 residual learning을 적용한다. fig2의 블럭을 쌓는 방식으로 구현한다.   
+![image](https://user-images.githubusercontent.com/69246778/223346049-39e18052-a334-489f-af28-ea07129f2bf0.png)   
+이 식이 fig2의 식인데, x와 y는 각각 인풋,아웃풋 벡터로 residual mapping F(x,w)와 identity mapping x를 더한다.
 
 
 
