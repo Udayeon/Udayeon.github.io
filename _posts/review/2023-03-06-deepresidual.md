@@ -33,7 +33,8 @@ intermediate normalization layers를 통해서 어느정도는 해결할 수는 
 **deep residual connection**을 제안하여 정확도 감소 문제를 해결한다. 아래의 그림은 residual connection을 나타내는 그림이다.      
 ![image](https://user-images.githubusercontent.com/69246778/223305539-b84aba79-1fb7-427e-8f5b-a523c1118757.png)   
 F(x)+x는 **shortcut connections**을 가진 피드포워드 신경망으로 실현할 수 있다. shortcut connection은 하나 이상의 레이어를 건너
-뛰는 것을 말하는데 위의 그림에서는 identity mapping하는 부분이 shortcut이고 그 출력은 layer를 거쳐 나온 출력에 더해진다.   
+뛰는 것을 말하는데 위의 그림에서는 identity mapping하는 부분이 shortcut이고 그 출력을 layer를 거쳐 나온 출력에 더한다. 즉, 기존의 학습 정보를
+보존하고 거기에 추가적으로 학습할 정보를 더해주는 식으로 추가적으로 학습해야 할 정보만을 학습하는 것.
 
 
 ## 2. Related Work
