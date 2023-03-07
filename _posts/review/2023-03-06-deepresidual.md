@@ -67,5 +67,10 @@ identity에 가중치를 줄수도 있다. 그치만, 그냥 기본적인 identi
 함수 F는 그 형태가 매우 다양하고 유연하며 fully-connected layer뿐만 아니라 여러 합성곱 계층을 나타낼 수도 있다.
 
  
-
-
+## 논문요약
+* “Deep Residual Learning for Image Recognition”은 딥 러닝에서 생기는 “degradation” 문제를 해결하기 위해 제안된 논문.    
+* 층이 많은 딥 러닝 네트워크가 레이어를 추가할수록 성능이 저하되는 현상을 발견하였고, 이를 해결하기 위해 residual learning 개념을 도입.   
+* Residual learning은 입력과 출력의 차이인 “residual”에 대한 매핑을 학습하는 것으로, 이를 통해 더 깊은 네트워크를 학습하면서도 성능 저하 문제를 해결. 
+* 이때, residual mapping을 적용하기 위해 “shortcut connection”을 사용하며, 이는 identity mapping을 수행하는데 사용됩니다.   
+* 실험 결과, residual learning을 적용한 네트워크가 이전 네트워크 대비 더 높은 성능을 보임.    
+* 또한, 이 방법은 일반적인 딥 러닝 라이브러리를 이용하여 쉽게 구현할 수 있으며, 추가적인 파라미터나 계산 복잡도를 요구하지 않는다는 장점이 있다.   
