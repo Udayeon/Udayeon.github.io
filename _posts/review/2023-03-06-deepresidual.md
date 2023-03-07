@@ -60,8 +60,12 @@ shortcut connection은 신경망에서 한개 이상의 레이어를 건너뛰�
 때문에 Identity매핑이 합리적인 사전 조건을 제시한다고 할 수 있다. 
 ### 3.2. Identity Mapping by Shortcuts
 본 논문에서는 모든 layer층마다 residual learning을 적용한다. fig2의 블럭을 쌓는 방식으로 구현한다.   
-![image](https://user-images.githubusercontent.com/69246778/223346049-39e18052-a334-489f-af28-ea07129f2bf0.png)   
-이 식이 fig2의 식인데, x와 y는 각각 인풋,아웃풋 벡터로 residual mapping F(x,w)와 identity mapping x를 더한다.
+![image](https://user-images.githubusercontent.com/69246778/223346615-bd1e276b-0372-4d07-8345-79437c0f1ec3.png)    
+이 식이 fig2의 식인데, x와 y는 각각 인풋,아웃풋 벡터로 residual mapping F(x,w)와 identity mapping x를 더한다.   
+![image](https://user-images.githubusercontent.com/69246778/223346674-28ec217e-33c8-4530-a6c7-adb82ee100b1.png)   
+identity에 가중치를 줄수도 있다. 그치만, 그냥 기본적인 identity만으로도 정확도 감소 문제 해결에 충분하다.   
+함수 F는 그 형태가 매우 다양하고 유연하며 fully-connected layer뿐만 아니라 여러 합성곱 계층을 나타낼 수도 있다.
 
+ 
 
 
