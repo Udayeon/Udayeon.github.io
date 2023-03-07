@@ -68,11 +68,6 @@ q,k,v에 가중치를 곱해준 후 어텐션 연산을 수행하는데 이때, 
 
 
 
-### 3.2.2 Offset generation
-### 3.2.3. Offset groups
-### 3.2.4. Deformable relative position bias
-### 3.2.5. Computational complexity
-
 ## 3.3. Model Architectures
 ![image](https://user-images.githubusercontent.com/69246778/215432933-0ca9277f-afc3-4793-a5c4-240c1285c57c.png)
 
@@ -89,12 +84,9 @@ local 및 global한 수용장을 사용해서 모델은 더 강한 representatio
 가지므로 오버헤드가 발생하고 deformable attention의 이중 선형보간을 크게 증가시킨다. 따라서, 초반에는 deformable attention을 사용하지 않고 마지막 2개에서만
 deformable attention을 사용한다. 초반 단계에서는 Swin Transformer의 Shift-window attention을 사용한다. 
 # 4. Experiments
-## 4.1. ImageNet-1k Classification
-## 4.2. COCO Object Detection
-## 4.3. ADE20K Semantic Segmentation
-## 4.4. Ablation Study
-
-
+![image](https://user-images.githubusercontent.com/69246778/223355196-026f3eb7-605e-4ff4-b395-5fddbaa42544.png)
+![image](https://user-images.githubusercontent.com/69246778/223355227-5d96401f-8c1f-4601-a188-069e4c9b6021.png)
+![image](https://user-images.githubusercontent.com/69246778/223355283-2baedf35-ee16-401d-b204-4135c9e35981.png)
 
 
 
