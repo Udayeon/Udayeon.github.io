@@ -66,7 +66,10 @@ shortcut connection은 신경망에서 한개 이상의 레이어를 건너뛰�
 identity에 가중치를 줄수도 있다. 그치만, 그냥 기본적인 identity만으로도 정확도 감소 문제 해결에 충분하다.   
 함수 F는 그 형태가 매우 다양하고 유연하며 fully-connected layer뿐만 아니라 여러 합성곱 계층을 나타낼 수도 있다.
 
- 
+## 4. Experiments
+![image](https://user-images.githubusercontent.com/69246778/223348601-ce7a96df-eafc-4dc5-bc9c-d54a36a3d8ef.png)
+깊은 레이어를 가졌음에도 성능 향상됨.
+
 ## 논문요약
 * “Deep Residual Learning for Image Recognition”은 딥 러닝에서 생기는 “degradation” 문제를 해결하기 위해 제안된 논문.    
 * 층이 많은 딥 러닝 네트워크가 레이어를 추가할수록 성능이 저하되는 현상을 발견하였고, 이를 해결하기 위해 residual learning 개념을 도입.   
