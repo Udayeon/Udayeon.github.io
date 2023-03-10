@@ -38,7 +38,10 @@ File - Open Scenario - pyesmini - resources - xosc
 python ./EnvironmentSimulator/Applications/odrplot/xodr.py track.csv
 ```
 * **Error**
-![image](https://user-images.githubusercontent.com/69246778/223963553-4db57e34-c373-4dce-9d77-625b4644e441.png)
 ```
-
+Traceback (most recent call last):
+  File "./EnvironmentSimulator/Applications/odrplot/xodr.py", line 6, in <module>
+    import matplotlib.pyplot as plt
+ImportError: No module named matplotlib.pyplot
 ```
+Colab
