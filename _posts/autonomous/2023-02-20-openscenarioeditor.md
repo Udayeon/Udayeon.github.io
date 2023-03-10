@@ -44,4 +44,6 @@ Traceback (most recent call last):
     import matplotlib.pyplot as plt
 ImportError: No module named matplotlib.pyplot
 ```
-Colab
+pip install matplotlib해도 계속 같은 에러가 발생해서 Colab환경에서 진행함.
+
+
