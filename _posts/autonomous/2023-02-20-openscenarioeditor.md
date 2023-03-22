@@ -145,6 +145,8 @@ plt.show()
 ![image](https://user-images.githubusercontent.com/69246778/224246804-1bc3b3a8-bfa3-4d1a-a40f-8ea852b91da4.png)
 
 ### Road network visualization
+@ /VILS_DY/OpenScenarioEditor/pyesmini/esmini
+
 ```
 ./bin/esmini --window 60 60 800 400 --osc ./resources/xosc/cut-in.xosc --road_features on
 ```
