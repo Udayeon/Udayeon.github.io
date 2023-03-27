@@ -24,3 +24,5 @@ published: true
 ```
 /home/carrot/바탕화면/VILS_DY/esmini/bin/esmini --window 60 60 800 400 --osc CutIn.xosc
 ```
+![image](https://user-images.githubusercontent.com/69246778/227838695-cb25001b-6550-4f51-8783-c46858f367b5.png)
+
