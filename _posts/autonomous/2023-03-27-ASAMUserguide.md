@@ -19,3 +19,8 @@ published: true
 @/home/carrot/바탕화면/openscenario-v1.2.0/Examples
 ![image](https://user-images.githubusercontent.com/69246778/227838261-1afac361-619c-4eee-9e0a-9b7db4d1b675.png)
 
+# 3. Run
+@ /home/carrot/바탕화면/VILS_DY/openscenario-v1.2.0
+```
+/home/carrot/바탕화면/VILS_DY/esmini/bin/esmini --window 60 60 800 400 --osc CutIn.xosc
+```
