@@ -27,3 +27,7 @@ published: true
 ```
 ![image](https://user-images.githubusercontent.com/69246778/227838695-cb25001b-6550-4f51-8783-c46858f367b5.png)
 
+# 4. CSV logger
+```
+/home/carrot/바탕화면/VILS_DY/esmini/bin/esmini --window 60 60 800 400 --osc CutIn.xosc --fixed_timestep 0.1 --csv_logger full_log.csv
+```
