@@ -37,6 +37,9 @@ sudo -s
 ```
 crontab -e
 ```
+![image](https://user-images.githubusercontent.com/69246778/231729064-9a025c30-7121-402c-9f76-051e79d68b4a.png)
 ```
 0 * * * *	sync && echo 3 > /proc/sys/vm/drop_caches # 매 시간 캐시 비우기
 ```
+![1391](https://user-images.githubusercontent.com/69246778/231729284-0a551ebf-a653-45b0-84fb-591db5580795.png)
+
