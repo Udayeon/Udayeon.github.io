@@ -29,5 +29,8 @@ published: True
 echo 3 > /proc/sys/vm/drop_caches
 ```
 ![image](https://user-images.githubusercontent.com/69246778/231625878-14a7ad13-acd4-4f7f-b841-ab1998b30ea8.png)
-
-
+근데 위와 같은 에러 발생함.   
+   
+```
+sudo -s
+```
