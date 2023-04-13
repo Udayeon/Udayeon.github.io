@@ -34,3 +34,9 @@ echo 3 > /proc/sys/vm/drop_caches
 ```
 sudo -s
 ```
+```
+crontab -e
+```
+```
+0 * * * *	sync && echo 3 > /proc/sys/vm/drop_caches # 매 시간 캐시 비우기
+```
