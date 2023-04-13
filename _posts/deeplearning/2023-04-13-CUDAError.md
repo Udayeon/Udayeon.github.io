@@ -41,5 +41,6 @@ crontab -e
 ```
 0 * * * *	sync && echo 3 > /proc/sys/vm/drop_caches # 매 시간 캐시 비우기
 ```
+캐시 비우면서 학습한 결과 reference와 비슷한 성능 보임
 ![1391](https://user-images.githubusercontent.com/69246778/231729284-0a551ebf-a653-45b0-84fb-591db5580795.png)
 
