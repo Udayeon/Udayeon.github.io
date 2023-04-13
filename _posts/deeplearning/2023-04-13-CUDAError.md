@@ -39,8 +39,28 @@ crontab -e
 ```
 ![image](https://user-images.githubusercontent.com/69246778/231729064-9a025c30-7121-402c-9f76-051e79d68b4a.png)
 ```
-0 * * * *	sync && echo 3 > /proc/sys/vm/drop_caches # 매 시간 캐시 비우기
+3 * * * *	sync && echo 3 > /proc/sys/vm/drop_caches
+6 * * * *	sync && echo 3 > /proc/sys/vm/drop_caches
+9 * * * *	sync && echo 3 > /proc/sys/vm/drop_caches
+12 * * * *	sync && echo 3 > /proc/sys/vm/drop_caches
+15 * * * *	sync && echo 3 > /proc/sys/vm/drop_caches
+18 * * * *	sync && echo 3 > /proc/sys/vm/drop_caches
+21 * * * *	sync && echo 3 > /proc/sys/vm/drop_caches
+24 * * * *	sync && echo 3 > /proc/sys/vm/drop_caches
+27 * * * *	sync && echo 3 > /proc/sys/vm/drop_caches
+30 * * * *	sync && echo 3 > /proc/sys/vm/drop_caches
+33 * * * *	sync && echo 3 > /proc/sys/vm/drop_caches
+36 * * * *	sync && echo 3 > /proc/sys/vm/drop_caches
+39 * * * *	sync && echo 3 > /proc/sys/vm/drop_caches
+42 * * * *	sync && echo 3 > /proc/sys/vm/drop_caches
+45 * * * *	sync && echo 3 > /proc/sys/vm/drop_caches
+48 * * * *	sync && echo 3 > /proc/sys/vm/drop_caches
+51 * * * *	sync && echo 3 > /proc/sys/vm/drop_caches
+54 * * * *	sync && echo 3 > /proc/sys/vm/drop_caches
+57 * * * *	sync && echo 3 > /proc/sys/vm/drop_caches
 ```
+배치가 너무 커서 안되길래 3분에 한 번씩 비우는 것으로 수정함.
+
 캐시 비우면서 학습한 결과 reference와 비슷한 성능 보임
 ![1391](https://user-images.githubusercontent.com/69246778/231729284-0a551ebf-a653-45b0-84fb-591db5580795.png)
 
