@@ -1,0 +1,47 @@
+---
+layout: post
+title: 
+description: |
+  Baekjoon 14425번 문제 ' 문자열 집합' - 자료 구조, 문자열, 해시를 사용한 집합과 맵, 트리를 사용한 집합과 맵
+hide_image: true
+tags:
+  - programming
+published: true
+---
+
+# (cpp)Baekjoon 14425번 문제 ' 문자열 집합' - 자료 구조, 문자열, 해시를 사용한 집합과 맵, 트리를 사용한 집합과 맵
+
+* * *
+[문제](https://www.acmicpc.net/problem/14425)   
+   
+# 문제풀이
+문자열 입력 받으면서 true로 매핑하고 체크하려는 문자열이 포함되어 있으면(true이면) ans를 하나씩 늘린다.
+# 코드
+```cpp
+#define _CRT_SECURE_NO_WARNINGS
+#include <iostream>
+#include <algorithm>
+#include <map>
+#include <string>
+using namespace std;
+
+
+int n, m,ans;
+string s, c;
+map<string, bool> check;
+
+int main() {
+	cin >> n >> m;
+
+	for (int i = 0; i < n; i++) {
+		cin >> s;
+		check[s] = true;
+	}
+	for (int j = 0; j < m; j++) {
+		cin >> c;
+		if (check[c]) ans++;
+	}
+	cout << ans;
+}
+```
+* **map<key,value> : 각 노드가 key와 value 쌍으로 이루어진 트리**
