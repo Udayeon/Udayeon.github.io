@@ -64,3 +64,62 @@ int main(){
     
 }
 ```
+   
+아래 코드는 좀더 쉬운 입출력 형식을 활용하여 작성했음. cin으로 연속되는 숫자를 하나씩 각각 받으려면
+string으로 받고 int로 전환해야 하는데, 이때 -'0'하면 정수화 된다. 
+```cpp
+#define _CRT_SECURE_NO_WARNINGS
+#include<iostream>
+#include<vector>
+#include<algorithm>
+
+using namespace std;
+
+int n;
+string state;
+int map[26][26];
+bool check_map[26][26];
+int x_pos[4] = { -1,1,0,0 };
+int y_pos[4] = { 0,0,-1,1 };
+
+int dfs(int cur_x, int cur_y) {
+	check_map[cur_x][cur_y] = true;
+	int obstacle = 1;
+	for (int i = 0; i < 4; i++) {
+		int next_x = cur_x + x_pos[i];
+		int next_y = cur_y + y_pos[i];
+		if (next_x < 0 || next_y < 0 || next_x >= n || next_y >= n || check_map[next_x][next_y] == true || map[next_x][next_y] == 0) {
+			continue;
+		}
+		obstacle = obstacle + dfs(next_x, next_y);
+	}
+	return obstacle;
+
+}
+
+
+int main() {
+	cin >> n;
+	for (int i = 0; i < n; i++) {
+		cin>>state;
+		for (int j = 0; j < n; j++) {
+			map[i][j] = state[j]-'0';
+		}
+	}
+	vector<int> ans;
+	for (int i = 0; i < n; i++) {
+		for (int j = 0; j < n; j++) {
+			if (map[i][j] == 1 && check_map[i][j] == false) {
+				ans.push_back(dfs(i, j));
+			}
+		}
+	}
+
+	cout << ans.size();
+	sort(ans.begin(), ans.end(), less<>());
+
+	for (int i = 0; i < ans.size(); i++) {
+		cout <<"\n"<< ans[i];
+	}
+}
+```
